@@ -2,6 +2,7 @@
 
 > **경제학 연구자를 위한 지식 외재화 엔진**
 > *"Think like Andrej Karpathy organizing compressed cognition."*
+<img width="1587" height="1027" alt="image" src="https://github.com/user-attachments/assets/cd83aac2-c6bf-41f9-b114-be5a76de3167" />
 
 ---
 
