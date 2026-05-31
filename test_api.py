@@ -11,7 +11,7 @@ from core.llm_analyzer import (
     _detect_provider, _is_qwen3_thinking, _extract_chunk_text
 )
 
-API_KEY  = "sk-ec8305ff9e5c4498833fa79a603078d0"
+API_KEY  = ""
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 MODEL    = "qwen3-4b"
 
