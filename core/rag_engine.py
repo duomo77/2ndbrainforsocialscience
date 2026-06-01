@@ -77,6 +77,11 @@ MAX_RETRIEVAL_RADIUS = {
     RetrievalLayer.L4_ATOMIC:  20,   # 원자 노트 최대 20개
 }
 
+# Guardrails for desktop vaults that can grow into tens of thousands of notes.
+MAX_RAG_SCAN_MULTIPLIER = 3
+MAX_RAG_FILE_BYTES = 512 * 1024
+MAX_RAG_CONTENT_CHARS = 16_000
+
 # 검색 후보 랭킹 가중치
 RANKING_WEIGHTS = {
     "semantic_relevance":    0.30,
@@ -413,21 +418,13 @@ class HierarchicalRetriever:
             RetrievalLayer.L4_ATOMIC:  [],  # 전체 볼트 검색
         }
 
-        if layer == RetrievalLayer.L4_ATOMIC:
-            # 전체 볼트에서 원자 노트 검색
-            md_files = list(self._vault.rglob("*.md"))[:max_count * 3]
-        else:
-            md_files = []
-            for folder_hint in layer_folders.get(layer, []):
-                target = self._vault / folder_hint
-                if target.is_file():
-                    md_files.append(target)
-                elif target.is_dir():
-                    md_files.extend(list(target.glob("*.md"))[:max_count])
+        md_files = self._iter_layer_files(layer, layer_folders, max_count)
 
-        for md_file in md_files[:max_count * 2]:
+        for md_file in md_files:
             try:
-                content = md_file.read_text(encoding="utf-8", errors="ignore")
+                if self._should_skip_file(md_file):
+                    continue
+                content = self._read_text_limited(md_file)
                 if not content.strip():
                     continue
 
@@ -464,10 +461,59 @@ class HierarchicalRetriever:
                 if len(candidates) >= max_count:
                     break
 
-            except Exception:
+            except Exception as e:
+                logger.debug("Skipping RAG candidate %s: %s", md_file, e)
                 continue
 
         return candidates
+
+    def _iter_layer_files(
+        self,
+        layer: RetrievalLayer,
+        layer_folders: dict[RetrievalLayer, list[str]],
+        max_count: int,
+    ):
+        """Yield a bounded stream of candidate markdown files without materializing the vault."""
+        limit = max_count * MAX_RAG_SCAN_MULTIPLIER
+        yielded = 0
+
+        if layer == RetrievalLayer.L4_ATOMIC:
+            for md_file in self._vault.rglob("*.md"):
+                if yielded >= limit:
+                    break
+                if md_file.is_symlink():
+                    continue
+                yielded += 1
+                yield md_file
+            return
+
+        for folder_hint in layer_folders.get(layer, []):
+            if yielded >= limit:
+                break
+            target = self._vault / folder_hint
+            if target.is_symlink():
+                continue
+            if target.is_file() and target.suffix.lower() == ".md":
+                yielded += 1
+                yield target
+            elif target.is_dir():
+                for md_file in target.glob("*.md"):
+                    if yielded >= limit:
+                        break
+                    if md_file.is_symlink():
+                        continue
+                    yielded += 1
+                    yield md_file
+
+    def _should_skip_file(self, md_file: Path) -> bool:
+        try:
+            return md_file.stat().st_size > MAX_RAG_FILE_BYTES
+        except OSError:
+            return True
+
+    def _read_text_limited(self, md_file: Path) -> str:
+        with md_file.open("r", encoding="utf-8", errors="ignore") as f:
+            return f.read(MAX_RAG_CONTENT_CHARS)
 
     def _estimate_tier(self, md_file: Path, content: str) -> str:
         """메모리 티어 추정."""
