@@ -474,7 +474,7 @@ class InfraDashboard(QWidget):
             score = data.get("trust_score", 1.0)
             color = STATUS_COLORS["ok"] if score > 0.7 else STATUS_COLORS["warning"]
             self._card_security.set_value(f"trust {score:.2f}", color)
-        elif engine_name == "graph_integrity":
+        elif engine_name in ("graph_integrity", "semantic_graph"):
             nodes = data.get("nodes", 0)
             edges = data.get("edges", 0)
             ok    = data.get("ok", True)

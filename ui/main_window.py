@@ -24,6 +24,7 @@ from core.worker import AnalysisWorker, ValidationWorker
 from core.config import Config
 from ui.settings_dialog import PRESET_MODELS, SettingsDialog
 from ui.infra_dashboard import InfraDashboard
+from ui.workflow import InputDraft, validate_input_draft
 
 # v6.0 인지 UX 컴포넌트 (지연 임포트로 안전 처리)
 try:
@@ -197,6 +198,7 @@ class MainWindow(QMainWindow):
         self.input_tabs.addTab(self._build_dataset_tab(),    "🗃 Dataset")
         self.input_tabs.addTab(self._build_equation_tab(),   "∑ Equation")
         self.input_tabs.addTab(self._build_notes_tab(),      "📋 Notes")
+        self.input_tabs.currentChanged.connect(self._update_readiness)
         l.addWidget(self.input_tabs)
         opt_box = QGroupBox("⚙️ Options")
         ol = QVBoxLayout(opt_box)
@@ -209,6 +211,10 @@ class MainWindow(QMainWindow):
         self.auto_save_chk.setChecked(self.config.get("auto_save",True))
         ol.addWidget(self.auto_save_chk)
         l.addWidget(opt_box)
+        self.readiness_label = QLabel("")
+        self.readiness_label.setWordWrap(True)
+        self.readiness_label.setStyleSheet("color:#f9e2af;font-size:11px;padding:2px 0;")
+        l.addWidget(self.readiness_label)
         self.analyze_btn = QPushButton("🚀  분석 시작  (ROS)")
         self.analyze_btn.setObjectName("primary")
         self.analyze_btn.setMinimumHeight(44)
@@ -222,8 +228,11 @@ class MainWindow(QMainWindow):
         rl = QVBoxLayout(recent_box)
         self.recent_list = QTreeWidget(); self.recent_list.setHeaderHidden(True)
         self.recent_list.setMaximumHeight(100); self.recent_list.setRootIsDecorated(False)
+        self.recent_list.itemDoubleClicked.connect(self._open_recent_analysis)
         rl.addWidget(self.recent_list); l.addWidget(recent_box)
         self._refresh_recent()
+        self._connect_readiness_signals()
+        self._update_readiness()
         return w
 
     def _build_paper_tab(self):
@@ -262,11 +271,12 @@ class MainWindow(QMainWindow):
         tr.addWidget(self.t_type,1); l.addLayout(tr)
         self.t_title = QLineEdit(); self.t_title.setPlaceholderText("소스 이름 / 제목 *")
         self.t_date  = QLineEdit(); self.t_date.setPlaceholderText("날짜 (YYYY-MM-DD)")
+        self.t_date.setText(datetime.now().strftime("%Y-%m-%d"))
         self.t_ctx   = QLineEdit(); self.t_ctx.setPlaceholderText("맥락 (강의명, 발표자 등)")
         l.addWidget(self.t_title); l.addWidget(self.t_date); l.addWidget(self.t_ctx)
         self.t_file_label = QLabel("📎 파일 없음")
         self.t_file_label.setStyleSheet("color:#a6adc8;font-size:11px;")
-        fb = QPushButton("📂 스크립트 파일 선택 (.txt / .md)")
+        fb = QPushButton("📂 스크립트 선택 (.txt / .md / .srt / .vtt)")
         fb.clicked.connect(lambda: self._pick_file("transcript"))
         l.addWidget(fb); l.addWidget(self.t_file_label)
         l.addWidget(QLabel("또는 텍스트 직접 입력:"))
@@ -282,7 +292,7 @@ class MainWindow(QMainWindow):
         l.addWidget(self.d_name); l.addWidget(self.d_ctx)
         self.d_file_label = QLabel("📎 파일 없음")
         self.d_file_label.setStyleSheet("color:#a6adc8;font-size:11px;")
-        fb = QPushButton("📂 CSV / Excel 선택"); fb.clicked.connect(lambda: self._pick_file("dataset"))
+        fb = QPushButton("📂 CSV / TSV / Excel 선택"); fb.clicked.connect(lambda: self._pick_file("dataset"))
         l.addWidget(fb); l.addWidget(self.d_file_label)
         l.addWidget(QLabel("또는 데이터 설명 입력:"))
         self.d_text = QTextEdit()
@@ -520,6 +530,8 @@ class MainWindow(QMainWindow):
                 _, meta = parse_pdf(path, max_chars=100)
                 if meta.get("title") and not self.p_title.text(): self.p_title.setText(meta["title"])
                 if meta.get("author") and not self.p_authors.text(): self.p_authors.setText(meta["author"])
+            elif not self.p_title.text():
+                self.p_title.setText(Path(path).stem)
         elif tab == "transcript":
             self._transcript_file = path; self.t_file_label.setText(f"📎 {name}")
             if not self.t_title.text(): self.t_title.setText(Path(path).stem)
@@ -529,6 +541,47 @@ class MainWindow(QMainWindow):
         elif tab == "notes":
             self._notes_file = path; self.n_file_label.setText(f"📎 {name}")
             if not self.n_title.text(): self.n_title.setText(Path(path).stem)
+        self._update_readiness()
+
+    def _connect_readiness_signals(self):
+        for widget in (
+            self.p_title, self.p_text,
+            self.t_title, self.t_text,
+            self.d_name, self.d_text,
+            self.eq_text,
+            self.n_title, self.n_text,
+        ):
+            widget.textChanged.connect(self._update_readiness)
+
+    def _current_input_draft(self) -> InputDraft:
+        tab_idx = self.input_tabs.currentIndex()
+        input_type, file_path, raw_text, metadata, _ = self._collect_input(tab_idx)
+        return InputDraft(
+            input_type=input_type,
+            title=metadata.get("title", ""),
+            file_path=file_path,
+            raw_text=raw_text,
+        )
+
+    def _update_readiness(self, *args):
+        if not hasattr(self, "readiness_label"):
+            return
+        result = validate_input_draft(self._current_input_draft())
+        self.readiness_label.setText(("✅ " if result.ready else "• ") + result.message)
+        self.readiness_label.setStyleSheet(
+            f"color:{'#a6e3a1' if result.ready else '#f9e2af'};font-size:11px;padding:2px 0;"
+        )
+
+    def _focus_missing_input(self, field: str):
+        tab_idx = self.input_tabs.currentIndex()
+        if field == "title":
+            title_widgets = [self.p_title, self.t_title, self.d_name, None, self.n_title]
+            widget = title_widgets[tab_idx]
+        else:
+            content_widgets = [self.p_text, self.t_text, self.d_text, self.eq_text, self.n_text]
+            widget = content_widgets[tab_idx]
+        if widget is not None:
+            widget.setFocus()
 
     # ── 분석 시작 ──────────────────────────────────────────────────────────────
     def _start_analysis(self):
@@ -540,8 +593,19 @@ class MainWindow(QMainWindow):
             self._open_settings(); return
         tab_idx = self.input_tabs.currentIndex()
         input_type, file_path, raw_text, metadata, topic_override = self._collect_input(tab_idx)
-        if not raw_text and not file_path:
-            QMessageBox.warning(self,"입력 없음","텍스트를 입력하거나 파일을 선택하세요."); return
+        readiness = validate_input_draft(InputDraft(
+            input_type=input_type,
+            title=metadata.get("title", ""),
+            file_path=file_path,
+            raw_text=raw_text,
+        ))
+        if not readiness.ready:
+            QMessageBox.warning(self, "입력 확인", readiness.message)
+            self._focus_missing_input(readiness.field)
+            return
+        self.config.set("model", model)
+        self.config.set("auto_save", self.auto_save_chk.isChecked())
+        self.config.save()
         self.analyze_btn.setEnabled(False); self.analyze_btn.setText("⏳ 분석 중...")
         self.progress.setVisible(True); self.result_editor.clear()
         self.save_btn.setEnabled(False); self.open_btn.setEnabled(False); self._result = ""
@@ -651,7 +715,7 @@ class MainWindow(QMainWindow):
             msg = f"{icon} Graph: {data.get('graph_nodes',0)}N / {data.get('graph_edges',0)}E"
         elif engine_name == "security":
             msg = f"{icon} Trust: {data.get('trust_score',1.0):.2f}"
-        elif engine_name in ("graph_integrity", "graph"):
+        elif engine_name in ("graph_integrity", "graph", "semantic_graph"):
             msg = f"{icon} {data.get('nodes',0)}N / {data.get('edges',0)}E"
         else:
             msg = f"{icon} {engine_name}: {data}"
@@ -748,7 +812,16 @@ class MainWindow(QMainWindow):
         self.recent_list.clear()
         for s in memory.load_recent_sessions(10):
             item = QTreeWidgetItem(self.recent_list,[f"{s.get('type','?')} · {s.get('title','')[:30]}"])
+            item.setData(0, Qt.ItemDataRole.UserRole, s.get("path", ""))
             item.setForeground(0,QColor("#a6adc8")); item.setFont(0,QFont("Segoe UI",9))
+
+    def _open_recent_analysis(self, item, col):
+        path = item.data(0, Qt.ItemDataRole.UserRole)
+        vault = self.config.get("vault_path", "")
+        if path and vault and os.path.exists(path):
+            obsidian_sync.open_in_obsidian(vault, path)
+        elif path:
+            self._set_status(f"최근 분석 파일을 찾을 수 없습니다: {Path(path).name}")
 
     # ── 설정 / 프로필 ──────────────────────────────────────────────────────────
     def _open_settings(self):
