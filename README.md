@@ -1,147 +1,126 @@
-# Research Operating System (ROS) v2.0
+# Research Operating System (ROS)
 
-> **경제학 연구자를 위한 지식 외재화 엔진**
-> *"Think like Andrej Karpathy organizing compressed cognition."*
-<img width="1587" height="1027" alt="image" src="https://github.com/user-attachments/assets/cd83aac2-c6bf-41f9-b114-be5a76de3167" />
-결과물
-<img width="934" height="646" alt="image" src="https://github.com/user-attachments/assets/ffddbf67-0573-4852-b714-993bead34e86" />
-
----
+ROS는 논문, 강의 스크립트, 데이터셋, 수식, 연구 메모를 분석해 Obsidian용 Markdown 지식 노트로 변환하는 데스크톱 앱입니다.
 
 ## 빠른 시작
 
-```bash
-# 1. 압축 해제
-unzip econometric-wiki-compiler.zip && cd econometric-wiki
+### Windows
 
-# 2. 의존성 설치 (1회)
+1. 프로젝트 폴더에서 `run.bat`을 실행합니다.
+2. 처음 실행 시 설정 창에서 API Provider, API Key, Model을 입력합니다.
+3. Obsidian을 사용한다면 볼트 폴더를 선택합니다.
+4. 입력 탭에서 파일 또는 텍스트를 넣고 `분석 시작`을 누릅니다.
+
+명령줄에서 실행하려면:
+
+```powershell
 pip install -r requirements.txt
-
-# 3. 실행
 python main.py
 ```
 
-**Windows 원클릭 EXE 빌드:**
-```
-build_exe.bat 더블클릭 → dist/ROS.exe 생성
-```
-
----
-
-## 핵심 철학
-
-ROS는 단순 요약 도구가 아닙니다. 연구자의 인지를 **외재화·구조화·연결·진화**시키는 시스템입니다.
-
-- 모든 노트는 **Atomic Reusable Intellectual Primitive**로 생성됩니다
-- 선형 요약 대신 **의미론적 연결(Semantic Linking)**을 우선합니다
-- 분석할수록 **지식 그래프가 축적**되고 더 정확해집니다
-
----
-
-## 지원 입력 유형
-
-| 탭 | 입력 형식 | 분석 결과 |
-|----|-----------|-----------|
-| 📄 논문 | PDF, 텍스트 | Causal DAG, 식별 전략, 추정식, CATE |
-| 🎙 스크립트 | TXT, MD (강의/회의록) | 핵심 개념 추출, 지식 노드 생성 |
-| 📊 데이터셋 | CSV, Excel | 패널 구조 추론, 처치변수 후보, FE 제안 |
-| ✏️ 수식 | 직접 입력 | LaTeX 파싱, 경제학적 해석, 연결 개념 |
-| 📝 노트 | 자유 텍스트 | Atomic note 변환, 위키 연결 |
-
----
-
-## Obsidian 볼트 구조
-
-```
-YourVault/
-└── Papers/
-    ├── 📐 Econometrics/
-    ├── 🤖 MachineLearning/
-    ├── 📊 GeneralEconomics/
-    ├── 👷 LaborEconomics/
-    ├── 💹 Finance/
-    ├── 🏥 HealthEconomics/
-    ├── 🏛 PublicEconomics/
-    ├── 🌍 DevelopmentEconomics/
-    ├── 🏭 IndustrialOrganization/
-    ├── 📈 Statistics/
-    ├── 📝 WorkingPapers/
-    ├── 🎙 Transcripts/
-    ├── 📊 Datasets/
-    └── _INDEX.md   ← MOC 자동 생성
-```
-
----
-
-## 지원 API Provider
-
-**글로벌:** OpenAI, Azure OpenAI, Anthropic (호환), Groq
-
-**중국:**
-
-| Provider | 대표 모델 |
-|----------|-----------|
-| DeepSeek (深度求索) | deepseek-v4-pro, deepseek-chat |
-| Qwen / 通义千问 | qwen3-72b, qwen-max |
-| Zhipu GLM (智谱AI) | glm-4-plus, glm-z1-plus |
-| Moonshot Kimi | kimi-k2.6, moonshot-v1-128k |
-| MiniMax | MiniMax-Text-01 |
-| Baidu ERNIE | ernie-4.5-turbo |
-| SiliconFlow | DeepSeek-V3, Qwen3-235B |
-| 01.AI / 零一万物 | yi-large |
-
----
-
-## EXE 빌드 방법
-
-### Windows
-```
-build_exe.bat 더블클릭
-→ dist/ROS.exe 생성 (단일 파일, ~140MB)
-```
-
 ### macOS / Linux
+
 ```bash
-bash build_exe.sh
-→ dist/ROS 생성
+pip install -r requirements.txt
+python main.py
 ```
 
----
+## 기본 사용 순서
 
-## 알려진 버그 수정 (v2.0)
+1. `설정`에서 LLM 연결과 Obsidian 볼트를 구성합니다.
+2. `프로필`에서 연구 분야, 관심 주제, 선호 방법론을 입력합니다.
+3. 왼쪽 입력 패널에서 작업 유형을 선택합니다.
+4. 파일을 선택하거나 텍스트를 직접 입력합니다.
+5. 노란색 준비 상태 메시지가 초록색 `분석 준비 완료`로 바뀌는지 확인합니다.
+6. `분석 시작`을 누릅니다.
+7. 가운데 결과를 검토한 뒤 저장하거나 Obsidian에서 엽니다.
+8. 최근 분석 목록을 더블클릭하면 저장된 노트를 다시 열 수 있습니다.
 
-| 버그 | 원인 | 상태 |
-|------|------|------|
-| KeyError: 'D, Y' | 프롬프트 {D, Y} → Python .format() 충돌 | ✅ 수정 |
-| 스트리밍 토큰 누락 | openai SDK 2.x .stream() 이벤트 구조 변경 | ✅ 수정 |
-| qwen3 thinking 토큰 혼입 | reasoning_content 필드 미처리 | ✅ 수정 |
+## 입력 유형
 
----
+| 탭 | 지원 입력 | 용도 |
+|---|---|---|
+| Paper | `.pdf`, `.txt`, `.md`, `.tex` | 논문 기여, 식별 전략, 가정, 결과, 확장 아이디어 분석 |
+| Script | `.txt`, `.md`, `.srt`, `.vtt` | 강의, 세미나, 회의록, 팟캐스트 전사 분석 |
+| Dataset | `.csv`, `.tsv`, `.xlsx`, `.xls` | 변수 구조, 패널 구조, 연구 설계 기회 분석 |
+| Equation | 직접 입력 | 수식의 의미, 가정, 연결 개념 분석 |
+| Notes | `.txt`, `.md`, `.rst` 또는 직접 입력 | 연구 메모와 아이디어를 구조화된 노트로 변환 |
 
-## 파일 구조
+실제 음성 파일인 `.mp3`, `.wav`, `.m4a`, `.flac` 등은 먼저 텍스트, SRT 또는 VTT로 전사해야 합니다.
 
+## 교수 연구 흐름 예시
+
+### 논문 읽기
+
+1. `Paper` 탭에서 PDF를 선택합니다.
+2. 제목과 저자가 자동으로 채워졌는지 확인합니다.
+3. 필요하면 저널, 연도, Zotero 링크를 입력합니다.
+4. 분석 결과에서 식별 전략, 핵심 가정, 방법론적 약점, 후속 연구 질문을 검토합니다.
+
+### 강의 준비
+
+1. `Script` 탭에서 강의 원고 또는 전사 파일을 선택합니다.
+2. 유형을 `lecture`로 선택하고 강의명과 날짜를 확인합니다.
+3. 결과를 Obsidian에 저장해 강의별 핵심 개념과 연결 노트를 축적합니다.
+
+### 데이터셋 검토
+
+1. `Dataset` 탭에서 CSV, TSV 또는 Excel 파일을 선택합니다.
+2. 데이터셋 이름과 분석 목적을 입력합니다.
+3. 결과에서 관측 단위, 패널 구조, 처리 변수 후보, 고정효과 후보를 검토합니다.
+
+## LLM Provider 설정
+
+설정 창에서 Provider를 선택하면 Base URL과 추천 모델 목록이 바뀝니다. 모델 입력란은 직접 편집할 수 있으므로 프리셋에 없는 새 모델도 사용할 수 있습니다.
+
+지원 경로:
+
+- OpenAI
+- Azure OpenAI
+- Anthropic 호환 endpoint
+- Groq
+- DeepSeek
+- Qwen / DashScope
+- Zhipu GLM
+- Moonshot Kimi
+- MiniMax
+- Baidu ERNIE
+- SiliconFlow
+- 01.AI
+
+Provider마다 실제 사용 가능한 모델과 API 권한이 다를 수 있으므로 설정 창의 `연결 테스트`를 먼저 실행하세요.
+
+## Obsidian 저장
+
+분석 완료 후 자동 저장을 켜면 ROS가 입력 유형과 주제에 따라 노트를 분류합니다.
+
+```text
+YourVault/
+  _INDEX.md
+  Papers/
+    Econometrics/
+    MachineLearning/
+    Finance/
+  Transcripts/
+  Datasets/
+  Notes/
+  Equations/
 ```
-econometric-wiki/
-├── main.py
-├── requirements.txt
-├── ROS.spec              # PyInstaller 빌드 설정
-├── build_exe.bat / .sh
-├── core/
-│   ├── config.py         # 설정 영속화 (Config 클래스)
-│   ├── classifier.py     # 저널→주제 자동 분류
-│   ├── memory.py         # 장기 메모리 & 지식 그래프
-│   ├── parsers.py        # 멀티소스 파서
-│   ├── ros_engine.py     # ROS LLM 분석 엔진
-│   ├── obsidian_sync.py  # Obsidian 볼트 동기화
-│   └── worker.py         # 백그라운드 워커
-└── ui/
-    ├── main_window.py    # 메인 윈도우 (다크 테마)
-    ├── settings_dialog.py
-    ├── profile_dialog.py # 연구자 프로필 편집
-    ├── input_panel.py
-    ├── result_panel.py
-    └── vault_panel.py
+
+기존 파일을 덮어쓸 때는 백업 파일을 생성합니다. 결과 Markdown은 `[[WikiLink]]`를 사용해 지식 그래프에 연결됩니다.
+
+## 문제 해결
+
+- 앱이 시작되지 않으면 `python main.py`로 실행해 오류 메시지를 확인하세요.
+- API 연결 실패 시 API Key, Base URL, Model 이름을 확인하세요.
+- PDF 텍스트가 비어 있으면 스캔 PDF일 수 있습니다. OCR 후 다시 시도하세요.
+- 음성 파일은 먼저 전사해야 합니다.
+- Obsidian 저장이 되지 않으면 볼트 경로와 쓰기 권한을 확인하세요.
+
+## 테스트
+
+```powershell
+python -m pytest -q
 ```
 
-설정 파일: `~/.econometric_wiki/config.json`
-메모리/그래프: `~/.econometric_wiki/memory.json`
+설정 파일은 `~/.econometric_wiki/config.json`, 연구 메모리 파일은 `~/.ros_memory/` 아래에 저장됩니다.
