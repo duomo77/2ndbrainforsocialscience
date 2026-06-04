@@ -247,6 +247,11 @@ class AnalysisWorker(QThread):
             pass
 
         # 그래프 무결성 트랜잭션 (v4.0)
+        # Write the typed graph alongside the legacy graph during migration.
+        # Analysis remains available if graph persistence fails, while the
+        # failure is surfaced through the worker status channel.
+        self._update_semantic_graph(title, enhanced)
+
         graph_engine = _get_graph_integrity_engine()
         if graph_engine:
             try:
@@ -549,6 +554,25 @@ class AnalysisWorker(QThread):
             sep = "\n\n---\n\n## 🧠 ROS Cognitive Engine Output\n\n"
             return markdown.rstrip() + sep + "\n".join(additions)
         return markdown
+
+    def _update_semantic_graph(self, title: str, markdown: str) -> None:
+        try:
+            from core.knowledge_graph import get_knowledge_graph_service
+
+            report = get_knowledge_graph_service().ingest_markdown(
+                title=title,
+                markdown=markdown,
+                source_type=self.input_type,
+                source_ref=self.file_path or "",
+            )
+            self.engine_update.emit("semantic_graph", {
+                "nodes": report.total_nodes,
+                "edges": report.total_edges,
+                "nodes_upserted": report.nodes_upserted,
+                "edges_upserted": report.edges_upserted,
+            })
+        except Exception as exc:
+            self.status_update.emit(f"Semantic graph update failed: {exc}")
 
     def get_result(self) -> str:
         return self._result

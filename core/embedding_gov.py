@@ -48,6 +48,8 @@ SEMANTIC_DUP_THRESHOLD = 0.92
 
 # 임베딩 비용 추정 (per 1K tokens, USD)
 EMBEDDING_COST_PER_1K = 0.0001  # text-embedding-3-small 기준
+MAX_SHINGLE_WORDS = 500
+SHINGLE_INDEX_PREFIX = 10
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -126,7 +128,8 @@ class SemanticDeduplicator:
 
     def __init__(self):
         self._hash_registry: dict[str, str] = {}  # content_hash → node_id
-        self._shingle_registry: dict[str, set[str]] = {}  # node_id → shingles
+        self._shingle_registry: dict[str, frozenset[bytes]] = {}  # node_id → hashed shingles
+        self._shingle_hash_index: dict[bytes, set[str]] = {}
 
     def is_duplicate(self, content: str, node_id: str) -> tuple[bool, Optional[str]]:
         """
@@ -142,27 +145,35 @@ class SemanticDeduplicator:
 
         # 2. Shingling 기반 근사 중복 감지
         shingles = self._compute_shingles(content)
-        for existing_id, existing_shingles in self._shingle_registry.items():
+        candidate_ids: set[str] = set()
+        for shingle in list(shingles)[:SHINGLE_INDEX_PREFIX]:
+            candidate_ids.update(self._shingle_hash_index.get(shingle, set()))
+
+        for existing_id in candidate_ids:
             if existing_id == node_id:
                 continue
+            existing_shingles = self._shingle_registry.get(existing_id, frozenset())
             similarity = self._jaccard_similarity(shingles, existing_shingles)
             if similarity >= SEMANTIC_DUP_THRESHOLD:
                 return True, existing_id
 
         # 중복 아님 → 등록
-        self._hash_registry[content_hash] = node_id
-        self._shingle_registry[node_id] = shingles
+        self._register_hashes(content_hash, node_id, shingles)
         return False, None
 
     def _compute_hash(self, content: str) -> str:
         return hashlib.sha256(content.encode()).hexdigest()[:16]
 
-    def _compute_shingles(self, content: str, k: int = 3) -> set[str]:
+    def _compute_shingles(self, content: str, k: int = 3) -> frozenset[bytes]:
         """k-shingle 집합 생성."""
-        words = content.lower().split()
+        words = content.lower().split()[:MAX_SHINGLE_WORDS]
         if len(words) < k:
-            return {" ".join(words)}
-        return {" ".join(words[i:i+k]) for i in range(len(words) - k + 1)}
+            value = " ".join(words).encode()
+            return frozenset({hashlib.blake2b(value, digest_size=8).digest()}) if value else frozenset()
+        return frozenset(
+            hashlib.blake2b(" ".join(words[i:i+k]).encode(), digest_size=8).digest()
+            for i in range(len(words) - k + 1)
+        )
 
     def _jaccard_similarity(self, a: set, b: set) -> float:
         if not a or not b:
@@ -174,8 +185,21 @@ class SemanticDeduplicator:
     def register(self, content: str, node_id: str):
         """노드 등록 (중복 체크 없이)."""
         content_hash = self._compute_hash(content)
+        self._register_hashes(content_hash, node_id, self._compute_shingles(content))
+
+    def _register_hashes(self, content_hash: str, node_id: str, shingles: frozenset[bytes]):
+        old_shingles = self._shingle_registry.get(node_id, frozenset())
+        for shingle in old_shingles:
+            ids = self._shingle_hash_index.get(shingle)
+            if ids:
+                ids.discard(node_id)
+                if not ids:
+                    self._shingle_hash_index.pop(shingle, None)
+
         self._hash_registry[content_hash] = node_id
-        self._shingle_registry[node_id] = self._compute_shingles(content)
+        self._shingle_registry[node_id] = shingles
+        for shingle in list(shingles)[:SHINGLE_INDEX_PREFIX]:
+            self._shingle_hash_index.setdefault(shingle, set()).add(node_id)
 
 
 # ══════════════════════════════════════════════════════════════════════════════

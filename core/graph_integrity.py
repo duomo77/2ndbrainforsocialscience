@@ -26,7 +26,7 @@ except ImportError:
 import time
 from collections import defaultdict, deque
 from dataclasses import dataclass, field, asdict
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Optional
 
@@ -285,7 +285,7 @@ class GraphIntegrityEngine:
         self, title: str, node_type: str, trust_score: float = 1.0
     ) -> GraphNode:
         node_id = hashlib.sha256(title.strip().lower().encode()).hexdigest()[:16]
-        now     = datetime.utcnow().isoformat()
+        now     = datetime.now(UTC).isoformat()
         node    = GraphNode(
             node_id    = node_id,
             title      = title,
@@ -323,7 +323,7 @@ class GraphIntegrityEngine:
 
         tgt_id  = hashlib.sha256(target_title.strip().lower().encode()).hexdigest()[:16]
         edge_id = hashlib.sha256(f"{src_id}{tgt_id}{edge_type}".encode()).hexdigest()[:16]
-        now     = datetime.utcnow().isoformat()
+        now     = datetime.now(UTC).isoformat()
         edge    = GraphEdge(
             edge_id    = edge_id,
             source     = src_id,
@@ -374,6 +374,9 @@ class GraphIntegrityEngine:
         if max_depth > MAX_GRAPH_DEPTH:
             warnings.append(f"Graph depth {max_depth} exceeds recommended {MAX_GRAPH_DEPTH}")
 
+        if invalid_edges:
+            issues.append(f"{len(invalid_edges)} edge(s) reference unknown nodes")
+
         is_valid = len(issues) == 0
 
         return IntegrityReport(
@@ -418,7 +421,7 @@ class GraphIntegrityEngine:
         ).hexdigest()[:12]
         cp = GraphCheckpoint(
             checkpoint_id  = f"cp_{int(time.time())}",
-            timestamp      = datetime.utcnow().isoformat(),
+            timestamp      = datetime.now(UTC).isoformat(),
             node_count     = len(nodes),
             edge_count     = len(edges),
             graph_hash     = gh,

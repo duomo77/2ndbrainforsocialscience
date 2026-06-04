@@ -14,13 +14,16 @@ Core Principles:
 from __future__ import annotations
 
 import hashlib
+from io import StringIO
 import json
 import logging
+import os
 try:
     from core.ros_logger import get_logger as _get_logger
 except ImportError:
     _get_logger = logging.getLogger
 import math
+import re
 import time
 from dataclasses import dataclass, field, asdict
 from datetime import datetime
@@ -81,6 +84,12 @@ MAX_RETRIEVAL_RADIUS = {
 MAX_RAG_SCAN_MULTIPLIER = 3
 MAX_RAG_FILE_BYTES = 512 * 1024
 MAX_RAG_CONTENT_CHARS = 16_000
+_LATEX_PATTERN = re.compile(r'\$[^$]+\$')
+_WIKILINK_PATTERN = re.compile(r'\[\[[^\]]+\]\]')
+_ECON_KEYWORDS_PATTERN = re.compile(
+    r'\b(DML|IV|DID|RDD|OLS|GMM|CATE|ATE|causal|identification|estimator|assumption)\b',
+    re.IGNORECASE,
+)
 
 # 검색 후보 랭킹 가중치
 RANKING_WEIGHTS = {
@@ -422,7 +431,8 @@ class HierarchicalRetriever:
 
         for md_file in md_files:
             try:
-                if self._should_skip_file(md_file):
+                st = md_file.stat()
+                if st.st_size > MAX_RAG_FILE_BYTES:
                     continue
                 content = self._read_text_limited(md_file)
                 if not content.strip():
@@ -440,7 +450,7 @@ class HierarchicalRetriever:
                 token_count = len(content) // 4
 
                 # 메모리 티어 추정
-                tier = self._estimate_tier(md_file, content)
+                tier = self._estimate_tier_from_mtime(st.st_mtime)
 
                 # 추상화 밀도 추정
                 abstraction_density = self._estimate_abstraction_density(content)
@@ -452,7 +462,7 @@ class HierarchicalRetriever:
                     tier=tier,
                     semantic_relevance=semantic_relevance,
                     trust_score=0.9,
-                    recency_decay=self._compute_recency_decay(md_file),
+                    recency_decay=self._compute_recency_decay_from_mtime(st.st_mtime),
                     abstraction_density=abstraction_density,
                     token_count=min(token_count, 500),  # 노트당 최대 500토큰
                 )
@@ -478,20 +488,27 @@ class HierarchicalRetriever:
         yielded = 0
 
         if layer == RetrievalLayer.L4_ATOMIC:
-            for md_file in self._vault.rglob("*.md"):
+            for root, dirs, files in os.walk(self._vault):
                 if yielded >= limit:
                     break
-                if md_file.is_symlink():
-                    continue
-                yielded += 1
-                yield md_file
+                dirs[:] = [d for d in dirs if not os.path.islink(os.path.join(root, d))]
+                for filename in files:
+                    if yielded >= limit:
+                        break
+                    if not filename.lower().endswith(".md"):
+                        continue
+                    md_file = Path(root) / filename
+                    if os.path.islink(md_file):
+                        continue
+                    yielded += 1
+                    yield md_file
             return
 
         for folder_hint in layer_folders.get(layer, []):
             if yielded >= limit:
                 break
             target = self._vault / folder_hint
-            if target.is_symlink():
+            if os.path.islink(target):
                 continue
             if target.is_file() and target.suffix.lower() == ".md":
                 yielded += 1
@@ -500,7 +517,7 @@ class HierarchicalRetriever:
                 for md_file in target.glob("*.md"):
                     if yielded >= limit:
                         break
-                    if md_file.is_symlink():
+                    if os.path.islink(md_file):
                         continue
                     yielded += 1
                     yield md_file
@@ -519,39 +536,39 @@ class HierarchicalRetriever:
         """메모리 티어 추정."""
         # 최근 수정 시간 기반
         try:
-            mtime = md_file.stat().st_mtime
-            age_days = (time.time() - mtime) / 86400
-            if age_days < 7:
-                return MemoryTier.HOT.value
-            elif age_days < 90:
-                return MemoryTier.WARM.value
-            else:
-                return MemoryTier.COLD.value
+            return self._estimate_tier_from_mtime(md_file.stat().st_mtime)
         except Exception:
             return MemoryTier.WARM.value
+
+    def _estimate_tier_from_mtime(self, mtime: float) -> str:
+        age_days = (time.time() - mtime) / 86400
+        if age_days < 7:
+            return MemoryTier.HOT.value
+        if age_days < 90:
+            return MemoryTier.WARM.value
+        return MemoryTier.COLD.value
 
     def _estimate_abstraction_density(self, content: str) -> float:
         """추상화 밀도 추정 (수식, WikiLink, 방법론 키워드 기반)."""
         score = 0.0
         # LaTeX 수식
-        import re
-        score += min(len(re.findall(r'\$[^$]+\$', content)) * 0.05, 0.3)
+        score += min(len(_LATEX_PATTERN.findall(content)) * 0.05, 0.3)
         # WikiLink
-        score += min(len(re.findall(r'\[\[[^\]]+\]\]', content)) * 0.03, 0.2)
+        score += min(len(_WIKILINK_PATTERN.findall(content)) * 0.03, 0.2)
         # 방법론 키워드
-        econ_keywords = ["DML", "IV", "DID", "RDD", "OLS", "GMM", "CATE", "ATE",
-                         "causal", "identification", "estimator", "assumption"]
-        score += min(sum(1 for k in econ_keywords if k.lower() in content.lower()) * 0.04, 0.3)
+        score += min(len(_ECON_KEYWORDS_PATTERN.findall(content)) * 0.04, 0.3)
         return min(score, 1.0)
 
     def _compute_recency_decay(self, md_file: Path) -> float:
         """최신성 감쇠 계산 (지수 감쇠)."""
         try:
-            mtime = md_file.stat().st_mtime
-            age_days = (time.time() - mtime) / 86400
-            return math.exp(-age_days / 180)  # 180일 반감기
+            return self._compute_recency_decay_from_mtime(md_file.stat().st_mtime)
         except Exception:
             return 0.5
+
+    def _compute_recency_decay_from_mtime(self, mtime: float) -> float:
+        age_days = (time.time() - mtime) / 86400
+        return math.exp(-age_days / 180)  # 180일 half-life
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -629,7 +646,12 @@ class RAGContextBuilder:
                 sections.append(c.content)
                 used_tokens += content_tokens
 
-        return "\n\n".join(sections)
+        result = StringIO()
+        for i, section in enumerate(sections):
+            if i:
+                result.write("\n\n")
+            result.write(section)
+        return result.getvalue()
 
 
 # ══════════════════════════════════════════════════════════════════════════════

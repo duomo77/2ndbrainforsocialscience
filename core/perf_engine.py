@@ -29,6 +29,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
 try:
     from core.ros_logger import get_logger as _get_logger
 except ImportError:
@@ -178,6 +179,7 @@ class LRUCache:
         self._sizes:     dict[str, int] = {}
         self.max_size    = max_size
         self.max_bytes   = max_bytes
+        self._max_bytes  = max_bytes
         self._total_bytes = 0
         self._hits       = 0
         self._misses     = 0
@@ -232,13 +234,23 @@ class CacheEngine:
     """
 
     def __init__(self):
-        # 레이어별 캐시 (크기/용량 차별화)
-        self.embedding_cache    = LRUCache(max_size=2000, max_bytes=100*1024*1024)  # 100MB
-        self.retrieval_cache    = LRUCache(max_size=500,  max_bytes=20*1024*1024)   # 20MB
-        self.semantic_cache     = LRUCache(max_size=1000, max_bytes=30*1024*1024)   # 30MB
-        self.graph_cache        = LRUCache(max_size=200,  max_bytes=10*1024*1024)   # 10MB
-        self.prompt_cache       = LRUCache(max_size=100,  max_bytes=5*1024*1024)    # 5MB
-        self.transcript_cache   = LRUCache(max_size=50,   max_bytes=50*1024*1024)   # 50MB
+        total_mb = max(8, int(os.getenv("ROS_TOTAL_CACHE_MB", "50")))
+        total_bytes = total_mb * 1024 * 1024
+        weights = {
+            "embedding": 0.35,
+            "retrieval": 0.20,
+            "semantic": 0.18,
+            "graph": 0.10,
+            "prompt": 0.07,
+            "transcript": 0.10,
+        }
+
+        self.embedding_cache    = LRUCache(max_size=1000, max_bytes=int(total_bytes * weights["embedding"]))
+        self.retrieval_cache    = LRUCache(max_size=300,  max_bytes=int(total_bytes * weights["retrieval"]))
+        self.semantic_cache     = LRUCache(max_size=500,  max_bytes=int(total_bytes * weights["semantic"]))
+        self.graph_cache        = LRUCache(max_size=200,  max_bytes=int(total_bytes * weights["graph"]))
+        self.prompt_cache       = LRUCache(max_size=100,  max_bytes=int(total_bytes * weights["prompt"]))
+        self.transcript_cache   = LRUCache(max_size=50,   max_bytes=int(total_bytes * weights["transcript"]))
 
         self._layers = {
             "embedding":   self.embedding_cache,

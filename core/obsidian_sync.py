@@ -9,8 +9,17 @@ obsidian_sync.py — Obsidian Vault Sync Engine (ROS Edition)
 
 import os
 import re
+import time
 from pathlib import Path
 from datetime import datetime
+
+import yaml
+
+_FRONTMATTER_PATTERN = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
+_WIKILINK_PATTERN = re.compile(r'\[\[([^\]\|#]+?)(?:\|[^\]]+?)?\]\]')
+_concept_cache: dict[str, tuple[int, int, tuple[str, ...]]] = {}
+_notes_cache: dict[str, tuple[float, list[dict]]] = {}
+_NOTES_CACHE_TTL_SECONDS = 5.0
 
 
 FOLDER_MAP = {
@@ -102,9 +111,7 @@ def detect_topic(content: str, journal: str = "") -> str:
 
 def extract_frontmatter(markdown: str) -> dict:
     try:
-        import yaml
-        pattern = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
-        match = pattern.match(markdown)
+        match = _FRONTMATTER_PATTERN.match(markdown)
         if match:
             return yaml.safe_load(match.group(1)) or {}
     except Exception:
@@ -113,7 +120,7 @@ def extract_frontmatter(markdown: str) -> dict:
 
 
 def extract_wikilinks(markdown: str) -> list:
-    return list(set(re.findall(r'\[\[([^\]\|#]+?)(?:\|[^\]]+?)?\]\]', markdown)))
+    return list(set(_WIKILINK_PATTERN.findall(markdown)))
 
 
 def save_note_to_vault(
@@ -178,7 +185,16 @@ def save_note_to_vault(
     if update_index:
         _update_index(vault, title or filepath.stem, str(filepath), input_type, topic)
 
+    _invalidate_vault_caches(vault)
     return True, str(filepath), topic
+
+
+def _invalidate_vault_caches(vault: Path):
+    prefix = str(vault.resolve())
+    for key in list(_concept_cache):
+        if key.startswith(prefix):
+            _concept_cache.pop(key, None)
+    _notes_cache.pop(prefix, None)
 
 
 def _update_index(vault: Path, title: str, note_path: str, input_type: str, topic: str):
@@ -231,19 +247,33 @@ def scan_vault_concepts(vault_path: str, subfolder: str = "") -> list:
     concepts = set()
     for md in base.rglob("*.md"):
         try:
-            text = md.read_text(encoding="utf-8", errors="replace")
-            concepts.update(extract_wikilinks(text))
-            concepts.add(md.stem)
+            st = md.stat()
+            cache_key = str(md.resolve())
+            fingerprint = (st.st_mtime_ns, st.st_size)
+            cached = _concept_cache.get(cache_key)
+            if cached and cached[:2] == fingerprint:
+                file_concepts = cached[2]
+            else:
+                text = md.read_text(encoding="utf-8", errors="replace")
+                file_concepts = tuple(sorted(set(extract_wikilinks(text) + [md.stem])))
+                _concept_cache[cache_key] = (*fingerprint, file_concepts)
+            concepts.update(file_concepts)
         except Exception:
             pass
     return sorted(concepts)
 
 
 def list_notes(vault_path: str) -> list:
-    if not vault_path or not Path(vault_path).exists():
+    if not vault_path:
         return []
+    vault = Path(vault_path)
+    cache_key = str(vault.absolute())
+    now = time.time()
+    cached = _notes_cache.get(cache_key)
+    if cached and now - cached[0] <= _NOTES_CACHE_TTL_SECONDS:
+        return [dict(item) for item in cached[1]]
     notes = []
-    for md in Path(vault_path).rglob("*.md"):
+    for md in vault.rglob("*.md"):
         if md.name.startswith("_"):
             continue
         try:
@@ -257,7 +287,9 @@ def list_notes(vault_path: str) -> list:
             })
         except Exception:
             pass
-    return sorted(notes, key=lambda x: x["modified"], reverse=True)
+    result = sorted(notes, key=lambda x: x["modified"], reverse=True)
+    _notes_cache[cache_key] = (now, [dict(item) for item in result])
+    return result
 
 
 def get_vault_stats(vault_path: str) -> dict:
