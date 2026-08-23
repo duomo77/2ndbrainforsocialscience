@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        # Real floor: core modules use datetime.UTC (3.11+). See audit F-03.
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install pipenv
+        pipenv install --dev
+
+    - name: Run tests with coverage
+      run: |
+        pipenv run pytest --cov=core --cov-report=xml
+
+    - name: Lint code
+      run: |
+        # .flake8 config: fatal-class checks (E9/F/W6) — see audit F-17 ratchet
+        pipenv run flake8 core/
+        # Black enforced on the newest package first; extend scope per phase
+        pipenv run black --check literature/

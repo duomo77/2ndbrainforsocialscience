@@ -1,0 +1,41 @@
+{
+  "id": "doc-40545fde-795fba3c",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-root/pytest-1/test_process_txt_file0/sample.txt",
+  "doc_type": "txt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 39,
+  "content_hash": "a064ab78ab12e2a605276e5f05b6c636535ea3c67360c0cfbde5b422850e18dd",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-07-31T19:02:09.800511",
+      "duration_ms": 0.140941992867738
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-07-31T19:02:09.800831",
+      "duration_ms": 0.22094999440014362
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-07-31T19:02:09.800987",
+      "duration_ms": 0.06665699766017497
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-07-31T19:02:09.801089",
+      "duration_ms": 0.02160000440198928
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-07-31T19:02:09.801330",
+      "duration_ms": 0.03237600321881473
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

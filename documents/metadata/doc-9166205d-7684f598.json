@@ -1,0 +1,43 @@
+{
+  "id": "doc-9166205d-7684f598",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-gimjunseong/pytest-10/test_process_r_file_through_pi0/model.r",
+  "doc_type": "code_r",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 56,
+  "content_hash": "e5f1ec1aa6ac3b288186c5fe6475df3148ad095fedeaad9832557c1b97ac1a2e",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-08-23T16:49:52.996487",
+      "duration_ms": 0.2305449961568229
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-08-23T16:49:52.996971",
+      "duration_ms": 0.345460997777991
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-08-23T16:49:52.997285",
+      "duration_ms": 0.14157700206851587
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-08-23T16:49:52.997451",
+      "duration_ms": 0.03090999962296337
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-08-23T16:49:52.997578",
+      "duration_ms": 0.0028810027288272977
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "[2026-08-23T16:49:52.996476] Could not determine MIME type, using: application/octet-stream"
+  ]
+}

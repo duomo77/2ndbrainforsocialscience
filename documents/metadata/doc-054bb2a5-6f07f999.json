@@ -1,0 +1,41 @@
+{
+  "id": "doc-054bb2a5-6f07f999",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-root/pytest-16/test_process_vtt_through_pipel0/captions.vtt",
+  "doc_type": "transcript_vtt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 54,
+  "content_hash": "307c1e2dad566d9e0b532e34562ef941fa12789bde6cb707dbd2659fa7bf919a",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-08-01T18:45:57.541565",
+      "duration_ms": 0.21276400366332382
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-08-01T18:45:57.542038",
+      "duration_ms": 0.3392369981156662
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-08-01T18:45:57.542402",
+      "duration_ms": 0.21946198830846697
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-08-01T18:45:57.542601",
+      "duration_ms": 0.031005998607724905
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-08-01T18:45:57.542775",
+      "duration_ms": 0.004137997166253626
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

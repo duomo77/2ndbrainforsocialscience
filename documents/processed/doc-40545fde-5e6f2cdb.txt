@@ -1,0 +1,31 @@
+Dataset: sample.txt
+Shape: 1 rows × 2 columns
+File: /private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-root/pytest-0/test_stage_history_recorded0/sample.txt
+
+=== Column Types ===
+  Hello: object
+   world!: float64
+
+=== Missing Data ===
+   world!: 100.0% ████████████████████
+
+=== Numeric Summary ===
+       world!
+count     0.0
+mean      NaN
+std       NaN
+min       NaN
+25%       NaN
+50%       NaN
+75%       NaN
+max       NaN
+
+=== Categorical Variables (top values) ===
+  Hello: {'This is a test document.': 1}
+
+=== Panel Structure Inference ===
+Structure unclear -- no obvious ID/time variables found
+
+=== First 5 Rows ===
+                      Hello   world!
+0  This is a test document.      NaN

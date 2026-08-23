@@ -1,0 +1,41 @@
+{
+  "id": "doc-9c3ac735-1e55a1a1",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-gimjunseong/pytest-11/test_stage_history_includes_cl0/subtitles.srt",
+  "doc_type": "transcript_srt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 46,
+  "content_hash": "681d0641fbde27a25cdb1a9f4a30febddde15e73755529dafac6d7e73e840b0c",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-08-23T16:50:25.427961",
+      "duration_ms": 0.21530100639211014
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-08-23T16:50:25.428298",
+      "duration_ms": 0.23584400332765654
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-08-23T16:50:25.428472",
+      "duration_ms": 0.08330400305567309
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-08-23T16:50:25.428573",
+      "duration_ms": 0.018976999854203314
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-08-23T16:50:25.428644",
+      "duration_ms": 0.0024620021576993167
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

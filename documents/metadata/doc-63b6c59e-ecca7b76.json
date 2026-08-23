@@ -1,0 +1,41 @@
+{
+  "id": "doc-63b6c59e-ecca7b76",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-root/pytest-0/test_process_python_file_throu0/analysis.py",
+  "doc_type": "txt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 71,
+  "content_hash": "ae192b09972e454de4a38e38aad4ba487af9707a2754d91d7fc2c939efdb8291",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-07-31T19:01:32.844666",
+      "duration_ms": 0.16806799976620823
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-07-31T19:01:32.845271",
+      "duration_ms": 0.45710199628956616
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-07-31T19:01:32.845531",
+      "duration_ms": 0.09344599675387144
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-07-31T19:01:32.845681",
+      "duration_ms": 0.03581700730137527
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-07-31T19:01:32.845780",
+      "duration_ms": 0.004101995727978647
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

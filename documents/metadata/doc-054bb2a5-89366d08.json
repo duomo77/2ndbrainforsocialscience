@@ -1,0 +1,41 @@
+{
+  "id": "doc-054bb2a5-89366d08",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-gimjunseong/pytest-6/test_process_vtt_through_pipel0/captions.vtt",
+  "doc_type": "transcript_vtt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 54,
+  "content_hash": "307c1e2dad566d9e0b532e34562ef941fa12789bde6cb707dbd2659fa7bf919a",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-08-19T18:42:27.927016",
+      "duration_ms": 0.3388090044609271
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-08-19T18:42:27.927858",
+      "duration_ms": 0.6185319944052026
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-08-19T18:42:27.928400",
+      "duration_ms": 0.25886100047500804
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-08-19T18:42:27.928693",
+      "duration_ms": 0.04817400622414425
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-08-19T18:42:27.928891",
+      "duration_ms": 0.00467000063508749
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

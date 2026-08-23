@@ -1,0 +1,6 @@
+# Audit F-17 (2026-08-23): black formatting ratchet.
+# CI currently enforces `black --check` on literature/ only; extend the
+# enforced scope phase by phase as older packages are refactored.
+[tool.black]
+line-length = 100
+target-version = ["py311"]

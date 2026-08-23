@@ -1,0 +1,41 @@
+{
+  "id": "doc-7b53c0b6-2c53b010",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-gimjunseong/pytest-2/test_process_md_file0/sample.md",
+  "doc_type": "markdown",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 67,
+  "content_hash": "78bc6a3ab945f9b34980111acda015b89ca49f1efb753d66a7fa773edfbeda4a",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-08-19T18:36:22.411607",
+      "duration_ms": 0.2149319989257492
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-08-19T18:36:22.412083",
+      "duration_ms": 0.3476609999779612
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-08-19T18:36:22.412316",
+      "duration_ms": 0.10581799870124087
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-08-19T18:36:22.412472",
+      "duration_ms": 0.03565299994079396
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-08-19T18:36:22.412583",
+      "duration_ms": 0.005276000592857599
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

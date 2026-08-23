@@ -1,0 +1,41 @@
+{
+  "id": "doc-9c3ac735-20432e20",
+  "original_path": "/private/var/folders/t6/hxc6g3_n61d9qyhz_3jtnq300000gn/T/pytest-of-root/pytest-5/test_stage_history_includes_cl0/subtitles.srt",
+  "doc_type": "transcript_srt",
+  "language": "unknown",
+  "encoding": "utf-8",
+  "page_count": 1,
+  "file_size_bytes": 46,
+  "content_hash": "681d0641fbde27a25cdb1a9f4a30febddde15e73755529dafac6d7e73e840b0c",
+  "needs_ocr": false,
+  "processing_duration_ms": 0.0,
+  "stage_history": [
+    {
+      "stage": "validating",
+      "timestamp": "2026-07-31T19:05:41.260256",
+      "duration_ms": 0.2378109929850325
+    },
+    {
+      "stage": "identifying",
+      "timestamp": "2026-07-31T19:05:41.260641",
+      "duration_ms": 0.22669399913866073
+    },
+    {
+      "stage": "parsing",
+      "timestamp": "2026-07-31T19:05:41.260808",
+      "duration_ms": 0.08050599717535079
+    },
+    {
+      "stage": "cleaning",
+      "timestamp": "2026-07-31T19:05:41.260909",
+      "duration_ms": 0.01976500789169222
+    },
+    {
+      "stage": "normalizing",
+      "timestamp": "2026-07-31T19:05:41.260982",
+      "duration_ms": 0.002564003807492554
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

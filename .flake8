@@ -1,0 +1,15 @@
+[flake8]
+# Ratchet step 1 (audit F-17, 2026-08-23): enforce the fatal class only —
+# syntax errors (E9), pyflakes (F: undefined names, duplicate dict keys,
+# unused imports), dangerous constructs (W6).
+# Style rules are intentionally NOT enforced yet: 1,900+ pre-existing style
+# violations exist in core/; widen `select` incrementally per refactoring
+# phase rather than reformatting the codebase in one pass.
+max-line-length = 100
+select = E9, F, W6
+exclude =
+    __pycache__,
+    .pytest_cache,
+    documents,
+    cache,
+    processed
