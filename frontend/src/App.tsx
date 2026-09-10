@@ -40,7 +40,7 @@ function App() {
   const [backendOk, setBackendOk] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [outputView, setOutputView] = useState<"card" | "context">("card");
+  const [outputView, setOutputView] = useState<"card" | "context" | "intelligence">("card");
 
   useEffect(() => {
     health()
@@ -71,7 +71,7 @@ function App() {
       const response = file ? await analyzeFile(file, payload) : await analyzeText(payload);
       setResult(response);
       setEvents(response.events);
-      setOutputView(response.deep_context_markdown ? "context" : "card");
+      setOutputView(response.research_intelligence_markdown ? "intelligence" : response.deep_context_markdown ? "context" : "card");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Analysis failed");
     } finally {
@@ -81,15 +81,21 @@ function App() {
 
   async function copyMarkdown() {
     const activeMarkdown =
-      outputView === "context" ? result?.deep_context_markdown : result?.markdown;
+      outputView === "intelligence"
+        ? result?.research_intelligence_markdown
+        : outputView === "context"
+          ? result?.deep_context_markdown
+          : result?.markdown;
     if (!activeMarkdown) return;
     await navigator.clipboard.writeText(activeMarkdown);
   }
 
   const activeMarkdown =
-    outputView === "context"
-      ? result?.deep_context_markdown || "Deep Research Context will appear for paper inputs."
-      : result?.markdown || "Markdown output will appear here.";
+    outputView === "intelligence"
+      ? result?.research_intelligence_markdown || "Research Intelligence will appear for paper inputs."
+      : outputView === "context"
+        ? result?.deep_context_markdown || "Deep Research Context will appear for paper inputs."
+        : result?.markdown || "Markdown output will appear here.";
 
   return (
     <main className="app-shell">
@@ -207,6 +213,15 @@ function App() {
                 >
                   Context
                 </button>
+                <button
+                  className={outputView === "intelligence" ? "active" : ""}
+                  onClick={() => setOutputView("intelligence")}
+                  disabled={!result?.research_intelligence_markdown}
+                  role="tab"
+                  aria-selected={outputView === "intelligence"}
+                >
+                  Intelligence
+                </button>
               </div>
               <button
                 className="icon-button"
@@ -219,10 +234,12 @@ function App() {
             </div>
           </div>
           {error ? <div className="error-box">{error}</div> : null}
-          {result?.saved_path || result?.deep_context_path ? (
+          {result?.saved_path || result?.deep_context_path || result?.research_intelligence_path ? (
             <div className="save-paths">
               {result.saved_path ? <p>Saved: {result.saved_path}</p> : null}
               {result.deep_context_path ? <p>Context: {result.deep_context_path}</p> : null}
+              {result.research_intelligence_path ? <p>Intelligence: {result.research_intelligence_path}</p> : null}
+              {result.methodology_atlas_paths?.length ? <p>Atlas: {result.methodology_atlas_paths.join(", ")}</p> : null}
             </div>
           ) : null}
           <pre className="markdown-output">{activeMarkdown}</pre>

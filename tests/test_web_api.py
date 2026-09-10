@@ -115,8 +115,13 @@ def test_paper_demo_response_includes_deep_context(monkeypatch):
     body = response.json()
     assert "type: paper" in body["markdown"]
     assert "[[Policy Paper - Deep Research Context]]" in body["markdown"]
+    assert "[[Policy Paper - Research Intelligence]]" in body["markdown"]
     assert "type: research_context" in body["deep_context_markdown"]
+    assert "type: research_intelligence" in body["research_intelligence_markdown"]
+    assert "## Claim Evidence Assumption Graph" in body["research_intelligence_markdown"]
     assert body["deep_context_path"] == ""
+    assert body["research_intelligence_path"] == ""
+    assert body["methodology_atlas_paths"] == []
 
 
 def test_file_upload_honors_multipart_analysis_fields(monkeypatch):

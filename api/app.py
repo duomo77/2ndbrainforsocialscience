@@ -60,6 +60,9 @@ def _analysis_payload(result, events: list) -> dict[str, Any]:
         "saved_path": outcome.saved_path,
         "deep_context_markdown": outcome.deep_context_markdown,
         "deep_context_path": outcome.deep_context_path,
+        "research_intelligence_markdown": outcome.research_intelligence_markdown,
+        "research_intelligence_path": outcome.research_intelligence_path,
+        "methodology_atlas_paths": outcome.methodology_atlas_paths,
         "events": [event.__dict__ for event in events],
     }
 

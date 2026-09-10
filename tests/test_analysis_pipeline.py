@@ -257,10 +257,14 @@ def test_paper_pipeline_adds_deep_research_context_layer(monkeypatch):
 
     assert result.ok is True
     assert "## Deep Context" in result.value.markdown
+    assert "## Research Intelligence" in result.value.markdown
     assert "type: paper" in result.value.markdown
     assert "[[Wage Paper - Deep Research Context]]" in result.value.markdown
+    assert "[[Wage Paper - Research Intelligence]]" in result.value.markdown
     assert result.value.deep_context_markdown
+    assert result.value.research_intelligence_markdown
     assert "type: research_context" in result.value.deep_context_markdown
+    assert "type: research_intelligence" in result.value.research_intelligence_markdown
     assert "WHAT" not in result.value.deep_context_markdown
     assert "Identification Background" in result.value.deep_context_markdown
     assert "Do not conflate this with identification" in result.value.deep_context_markdown
@@ -276,10 +280,12 @@ def test_non_paper_pipeline_does_not_create_deep_context(monkeypatch):
 
     assert result.ok is True
     assert result.value.deep_context_markdown == ""
+    assert result.value.research_intelligence_markdown == ""
     assert "## Deep Context" not in result.value.markdown
+    assert "## Research Intelligence" not in result.value.markdown
 
 
-def test_paper_auto_save_writes_card_and_context_notes(monkeypatch, tmp_path):
+def test_paper_auto_save_writes_card_context_and_intelligence_notes(monkeypatch, tmp_path):
     monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
     monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
     monkeypatch.setattr(pipeline_mod.memory, "log_session", lambda *args: None)
@@ -303,6 +309,14 @@ def test_paper_auto_save_writes_card_and_context_notes(monkeypatch, tmp_path):
     assert context_path.exists()
     assert result.value.deep_context_path == str(context_path)
     assert "source_paper: IV Paper" in context_path.read_text(encoding="utf-8")
+    intelligence_path = tmp_path / "Research Intelligence" / "IV Paper - Research Intelligence.md"
+    atlas_path = tmp_path / "Methodology Atlas" / "Method - Instrumental Variables.md"
+    assert intelligence_path.exists()
+    assert atlas_path.exists()
+    assert result.value.research_intelligence_path == str(intelligence_path)
+    assert result.value.methodology_atlas_paths == [str(atlas_path)]
+    assert "## Replication Pack Skeleton" in intelligence_path.read_text(encoding="utf-8")
+    assert "## Source Applications" in atlas_path.read_text(encoding="utf-8")
 
 
 def test_human_verified_context_is_not_overwritten(monkeypatch, tmp_path):
@@ -333,3 +347,34 @@ def test_human_verified_context_is_not_overwritten(monkeypatch, tmp_path):
     assert result.ok is True
     assert protected.read_text(encoding="utf-8").endswith("Human note")
     assert "AI Update" in result.value.deep_context_path
+
+
+def test_human_verified_methodology_atlas_is_not_overwritten(monkeypatch, tmp_path):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    monkeypatch.setattr(pipeline_mod.memory, "log_session", lambda *args: None)
+    atlas_dir = tmp_path / "Methodology Atlas"
+    atlas_dir.mkdir()
+    protected = atlas_dir / "Method - Case Study.md"
+    protected.write_text(
+        "---\ntitle: Method - Case Study\nhuman_verified: true\n---\n\nHuman atlas",
+        encoding="utf-8",
+    )
+    runtime, _calls = _runtime(
+        content="Research question: What explains reform? We use a case study with process evidence.",
+        analysis="---\ntitle: Protected Atlas Paper\n---\n\n## Research Question\nCore question: What explains reform?",
+    )
+
+    result = _run(
+        runtime,
+        input_type="paper",
+        raw_text="",
+        metadata={"title": "Protected Atlas Paper"},
+        vault_path=str(tmp_path),
+        auto_save=True,
+    )
+
+    assert result.ok is True
+    assert protected.read_text(encoding="utf-8").endswith("Human atlas")
+    assert not (tmp_path / ".ros_backups").exists()
+    assert result.value.methodology_atlas_paths == [str(protected)]

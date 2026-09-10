@@ -23,6 +23,11 @@ from core.constants import (
 )
 from core.contracts import AnalysisResult, AnalysisStatus, Err, LLMConfig, Ok, Result, VaultConfig
 from core.research_context import add_deep_context_link, build_deep_research_context
+from core.research_intelligence import (
+    add_research_intelligence_link,
+    build_research_intelligence,
+    merge_methodology_atlas_markdown,
+)
 from core.utils.markdown_utils import extract_frontmatter, extract_wikilink_targets, inject_frontmatter
 from core.utils.text_utils import rank_concept_nodes
 
@@ -100,6 +105,9 @@ class PipelineOutcome:
     saved_path: str = ""
     deep_context_markdown: str = ""
     deep_context_path: str = ""
+    research_intelligence_markdown: str = ""
+    research_intelligence_path: str = ""
+    methodology_atlas_paths: list[str] = field(default_factory=list)
     engine_outputs: dict[str, dict] = field(default_factory=dict)
 
     def to_analysis_result(self) -> AnalysisResult:
@@ -229,6 +237,15 @@ class AnalysisPipeline:
                 )
                 if deep_context:
                     cached_result = add_deep_context_link(cached_result, title)
+                research_intelligence = self._build_research_intelligence_if_needed(
+                    input_type=input_type,
+                    title=title,
+                    content=content,
+                    card_markdown=cached_result,
+                    deep_context_markdown=deep_context.markdown if deep_context else "",
+                )
+                if research_intelligence:
+                    cached_result = add_research_intelligence_link(cached_result, title)
                 saved_path, saved_topic, save_error = self._save_output(
                     markdown=cached_result,
                     title=title,
@@ -247,6 +264,17 @@ class AnalysisPipeline:
                 )
                 if deep_context_error:
                     return Err(deep_context_error)
+                (
+                    research_intelligence_path,
+                    methodology_atlas_paths,
+                    research_intelligence_error,
+                ) = self._save_research_intelligence(
+                    research_intelligence=research_intelligence,
+                    vault_config=vault_config,
+                    callbacks=callbacks,
+                )
+                if research_intelligence_error:
+                    return Err(research_intelligence_error)
                 return Ok(
                     PipelineOutcome(
                         markdown=cached_result,
@@ -256,6 +284,11 @@ class AnalysisPipeline:
                         saved_path=saved_path,
                         deep_context_markdown=deep_context.markdown if deep_context else "",
                         deep_context_path=deep_context_path,
+                        research_intelligence_markdown=(
+                            research_intelligence.markdown if research_intelligence else ""
+                        ),
+                        research_intelligence_path=research_intelligence_path,
+                        methodology_atlas_paths=methodology_atlas_paths,
                     )
                 )
 
@@ -386,6 +419,15 @@ class AnalysisPipeline:
         )
         if deep_context:
             analysis = add_deep_context_link(analysis, title)
+        research_intelligence = self._build_research_intelligence_if_needed(
+            input_type=input_type,
+            title=title,
+            content=content,
+            card_markdown=analysis,
+            deep_context_markdown=deep_context.markdown if deep_context else "",
+        )
+        if research_intelligence:
+            analysis = add_research_intelligence_link(analysis, title)
 
         enhanced = self.runtime.run_cognitive_engines(analysis, title)
 
@@ -410,10 +452,26 @@ class AnalysisPipeline:
         )
         if deep_context_error:
             return Err(deep_context_error)
+        (
+            research_intelligence_path,
+            methodology_atlas_paths,
+            research_intelligence_error,
+        ) = self._save_research_intelligence(
+            research_intelligence=research_intelligence,
+            vault_config=vault_config,
+            callbacks=callbacks,
+        )
+        if research_intelligence_error:
+            return Err(research_intelligence_error)
 
         callbacks.status("🔗 지식 그래프 업데이트 중...")
         self.runtime.persist_legacy_graph(title, enhanced)
         self.runtime.update_semantic_graph(title, enhanced)
+        if research_intelligence:
+            self.runtime.update_semantic_graph(
+                research_intelligence.intelligence_title,
+                research_intelligence.markdown,
+            )
         self._update_graph_integrity(input_type, title, enhanced, callbacks)
         self._store_memory_trust(input_type, metadata, title, enhanced)
         self.runtime.persist_analysis_cache(
@@ -429,6 +487,11 @@ class AnalysisPipeline:
                 saved_path=saved_path,
                 deep_context_markdown=deep_context.markdown if deep_context else "",
                 deep_context_path=deep_context_path,
+                research_intelligence_markdown=(
+                    research_intelligence.markdown if research_intelligence else ""
+                ),
+                research_intelligence_path=research_intelligence_path,
+                methodology_atlas_paths=methodology_atlas_paths,
             )
         )
 
@@ -560,6 +623,24 @@ class AnalysisPipeline:
             depth=str(metadata.get("deep_context_depth", "standard")),
         )
 
+    def _build_research_intelligence_if_needed(
+        self,
+        *,
+        input_type: str,
+        title: str,
+        content: str,
+        card_markdown: str,
+        deep_context_markdown: str,
+    ):
+        if input_type != "paper":
+            return None
+        return build_research_intelligence(
+            title=title,
+            content=content,
+            card_markdown=card_markdown,
+            deep_context_markdown=deep_context_markdown,
+        )
+
     def _save_deep_context(
         self,
         *,
@@ -598,6 +679,106 @@ class AnalysisPipeline:
             return "", message
         callbacks.saved(path, "Contexts")
         return path, ""
+
+    def _save_research_intelligence(
+        self,
+        *,
+        research_intelligence,
+        vault_config: VaultConfig,
+        callbacks: AnalysisCallbacks,
+    ) -> tuple[str, list[str], str]:
+        if not research_intelligence or not vault_config.auto_save:
+            return "", [], ""
+        if not vault_config.vault_path:
+            message = "Research Intelligence 저장이 필요하지만 Obsidian 볼트 경로가 없습니다."
+            callbacks.error(message)
+            return "", [], message
+
+        callbacks.status("🧠 Research Intelligence 저장 중...")
+        try:
+            ok, path, _topic = obsidian_sync.save_note_to_vault(
+                vault_path=vault_config.vault_path,
+                markdown_content=research_intelligence.markdown,
+                title=research_intelligence.intelligence_title,
+                input_type="research_intelligence",
+                custom_filename=research_intelligence.intelligence_title,
+            )
+        except Exception as exc:
+            message = f"Research Intelligence 저장 오류: {exc}"
+            callbacks.error(message)
+            return "", [], message
+        if not ok:
+            message = f"Research Intelligence 저장 실패: {path}"
+            callbacks.error(message)
+            return "", [], message
+
+        atlas_paths: list[str] = []
+        for method_name, atlas_markdown in research_intelligence.methodology_atlas.items():
+            atlas_title = f"Method - {method_name}"
+            protected_path = self._human_verified_methodology_atlas_path(
+                vault_config.vault_path,
+                atlas_title,
+            )
+            if protected_path:
+                atlas_paths.append(str(protected_path))
+                continue
+            atlas_markdown = self._merge_existing_methodology_atlas(
+                vault_config.vault_path,
+                atlas_title,
+                atlas_markdown,
+                research_intelligence.title,
+            )
+            ok, atlas_path, _topic = obsidian_sync.save_note_to_vault(
+                vault_path=vault_config.vault_path,
+                markdown_content=atlas_markdown,
+                title=atlas_title,
+                input_type="methodology_atlas",
+                custom_filename=atlas_title,
+            )
+            if ok:
+                atlas_paths.append(atlas_path)
+        callbacks.saved(path, "Research Intelligence")
+        return path, atlas_paths, ""
+
+    @staticmethod
+    def _human_verified_methodology_atlas_path(vault_path: str, atlas_title: str) -> Path | None:
+        vault = Path(vault_path).expanduser()
+        safe_name = obsidian_sync.sanitize_filename(atlas_title)
+        if not safe_name.endswith(".md"):
+            safe_name += ".md"
+        target = vault / "Methodology Atlas" / safe_name
+        if not target.exists():
+            return None
+        try:
+            frontmatter, _body = extract_frontmatter(target.read_text(encoding="utf-8"))
+        except Exception:
+            return None
+        if frontmatter.get("human_verified") is True:
+            return target
+        return None
+
+    @staticmethod
+    def _merge_existing_methodology_atlas(
+        vault_path: str,
+        atlas_title: str,
+        generated_markdown: str,
+        source_title: str,
+    ) -> str:
+        vault = Path(vault_path).expanduser()
+        safe_name = obsidian_sync.sanitize_filename(atlas_title)
+        if not safe_name.endswith(".md"):
+            safe_name += ".md"
+        target = vault / "Methodology Atlas" / safe_name
+        if not target.exists():
+            return generated_markdown
+        existing = target.read_text(encoding="utf-8")
+        try:
+            frontmatter, _body = extract_frontmatter(existing)
+            if frontmatter.get("human_verified") is True:
+                return existing
+        except Exception:
+            pass
+        return merge_methodology_atlas_markdown(existing, generated_markdown, source_title)
 
     @staticmethod
     def _avoid_human_verified_context_overwrite(vault_path: str, filename: str) -> str:

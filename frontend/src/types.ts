@@ -33,5 +33,8 @@ export interface AnalyzeResponse {
   saved_path: string;
   deep_context_markdown: string;
   deep_context_path: string;
+  research_intelligence_markdown: string;
+  research_intelligence_path: string;
+  methodology_atlas_paths: string[];
   events: AnalysisEvent[];
 }
