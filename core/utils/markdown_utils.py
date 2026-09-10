@@ -9,6 +9,11 @@ from __future__ import annotations
 import re
 from typing import List, Tuple
 
+import yaml
+
+
+_FRONTMATTER_PATTERN = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.DOTALL)
+
 
 def extract_frontmatter(text: str) -> Tuple[dict, str]:
     """Extract YAML frontmatter from Markdown text.
@@ -19,27 +24,14 @@ def extract_frontmatter(text: str) -> Tuple[dict, str]:
     Returns:
         Tuple of (frontmatter_dict, body_text)
     """
-    match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
+    match = _FRONTMATTER_PATTERN.match(text)
     if not match:
         return {}, text
 
-    frontmatter_text = match.group(1)
-    body = text[match.end():]
-
-    # Simple YAML parsing (avoid PyYAML dependency for basic cases)
-    result = {}
-    for line in frontmatter_text.split("\n"):
-        line = line.strip()
-        if ":" in line:
-            key, _, value = line.partition(":")
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            # Handle lists
-            if value.startswith("[") and value.endswith("]"):
-                value = [v.strip().strip('"').strip("'") for v in value[1:-1].split(",")]
-            result[key] = value
-
-    return result, body
+    parsed = yaml.safe_load(match.group(1)) or {}
+    if not isinstance(parsed, dict):
+        raise ValueError("YAML frontmatter must be a mapping")
+    return parsed, text[match.end():]
 
 
 def extract_frontmatter_tags(text: str) -> List[str]:
@@ -170,12 +162,10 @@ def inject_frontmatter(text: str, updates: dict) -> str:
     frontmatter, body = extract_frontmatter(text)
     frontmatter.update(updates)
 
-    lines = ["---"]
-    for key, value in frontmatter.items():
-        if isinstance(value, list):
-            lines.append(f"{key}: [{', '.join(value)}]")
-        else:
-            lines.append(f"{key}: {value}")
-    lines.append("---")
-
-    return "\n".join(lines) + "\n" + body
+    rendered = yaml.safe_dump(
+        frontmatter,
+        allow_unicode=True,
+        sort_keys=False,
+        default_flow_style=False,
+    ).rstrip()
+    return f"---\n{rendered}\n---\n\n{body.lstrip()}"

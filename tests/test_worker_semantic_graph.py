@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
+import pytest
+
+pytest.importorskip("PyQt6", reason="legacy PyQt worker is optional")
 from core.worker import AnalysisWorker
 
 
@@ -54,4 +57,3 @@ def test_worker_reports_semantic_graph_failure_without_raising(monkeypatch, qt_a
     worker._update_semantic_graph("Paper A", "# Paper A")
 
     assert any("Semantic graph" in status and "disk full" in status for status in statuses)
-

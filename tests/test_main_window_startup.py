@@ -1,6 +1,9 @@
 import os
 import sys
 
+import pytest
+
+pytest.importorskip("PyQt6", reason="legacy PyQt UI is optional")
 from PyQt6.QtWidgets import QApplication
 
 from ui.main_window import MainWindow, apply_dark_theme

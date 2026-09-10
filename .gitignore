@@ -1,0 +1,37 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Test/runtime caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build outputs
+build/
+dist/
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+*.spec~
+
+# ROS generated document stores
+documents/cache/*
+documents/temporary/*
+documents/raw/doc-*
+documents/processed/doc-*
+documents/metadata/doc-*
+
+# Keep directory documentation visible
+!documents/raw/README.md
+!documents/processed/README.md
+!documents/metadata/README.md
+!documents/cache/README.md
+!documents/temporary/README.md
+
+# Local logs
+*.log
+logs/*.log

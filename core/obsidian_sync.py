@@ -9,6 +9,7 @@ obsidian_sync.py — Obsidian Vault Sync Engine (ROS Edition)
 
 import os
 import re
+import tempfile
 import time
 from pathlib import Path
 from datetime import datetime
@@ -84,6 +85,56 @@ def sanitize_filename(name: str) -> str:
     return name[:120]
 
 
+def _safe_path_component(value: str, label: str) -> str:
+    """Validate user-controlled folder names as one filesystem component."""
+    value = str(value or "").strip()
+    if (
+        not value
+        or value in {".", ".."}
+        or Path(value).name != value
+        or "/" in value
+        or "\\" in value
+        or "\x00" in value
+    ):
+        raise ValueError(f"Invalid {label}")
+    safe = sanitize_filename(value)
+    if not safe or safe in {".", ".."}:
+        raise ValueError(f"Invalid {label}")
+    return safe
+
+
+def _within_vault(candidate: Path, vault: Path) -> bool:
+    try:
+        candidate.resolve(strict=False).relative_to(vault)
+        return True
+    except (OSError, RuntimeError, ValueError):
+        return False
+
+
+def _atomic_write_text(path: Path, content: str) -> None:
+    """Durably replace a UTF-8 text file without exposing a partial write."""
+    fd, temp_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
+    temp_path = Path(temp_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, path)
+        if hasattr(os, "O_DIRECTORY"):
+            directory_fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory_fd)
+            finally:
+                os.close(directory_fd)
+    finally:
+        temp_path.unlink(missing_ok=True)
+
+
 def detect_topic(content: str, journal: str = "") -> str:
     jl = journal.lower()
     for key, topic in JOURNAL_TOPIC_MAP.items():
@@ -138,20 +189,39 @@ def save_note_to_vault(
     Obsidian 볼트에 노트 저장.
     Returns: (success: bool, path_or_error: str, topic: str)
     """
-    vault = Path(vault_path)
-    if not vault.exists():
+    vault_input = Path(vault_path).expanduser()
+    if not vault_input.exists() or not vault_input.is_dir():
         return False, f"볼트 경로 없음: {vault_path}", ""
+    try:
+        vault = vault_input.resolve(strict=True)
+    except (OSError, RuntimeError) as exc:
+        return False, f"볼트 경로 확인 실패: {exc}", ""
 
     base_folder = FOLDER_MAP.get(input_type, "Notes")
 
     if input_type == "paper":
-        topic = topic_override or detect_topic(markdown_content, journal)
+        try:
+            topic = (
+                _safe_path_component(topic_override, "topic override")
+                if topic_override
+                else detect_topic(markdown_content, journal)
+            )
+        except ValueError as exc:
+            return False, str(exc), ""
         folder = vault / base_folder / topic
     else:
         topic = base_folder
         folder = vault / base_folder
 
-    folder.mkdir(parents=True, exist_ok=True)
+    if not _within_vault(folder, vault):
+        return False, "저장 경로가 볼트 범위를 벗어납니다.", ""
+    try:
+        folder.mkdir(parents=True, exist_ok=True)
+        folder = folder.resolve(strict=True)
+    except (OSError, RuntimeError) as exc:
+        return False, f"저장 폴더 생성 실패: {exc}", ""
+    if not _within_vault(folder, vault):
+        return False, "저장 폴더가 볼트 범위를 벗어납니다.", ""
 
     # 파일명 결정
     if custom_filename:
@@ -166,27 +236,28 @@ def save_note_to_vault(
         safe_name += ".md"
 
     filepath = folder / safe_name
+    if not _within_vault(filepath, vault):
+        return False, "노트 경로가 볼트 범위를 벗어납니다.", ""
+    if filepath.is_symlink():
+        return False, "심볼릭 링크 대상에는 노트를 저장할 수 없습니다.", ""
 
-    # 원자적 쓰기: tmp 파일에 먼저 쓴 후 rename (v4.0)
-    # B-09/F-14 수정: 백업은 볼트 스캔에 섞이지 않도록 숨김 디렉터리로 이동하고
-    # 노트당 개수를 상한한다.
-    tmp_path = filepath.with_suffix(".tmp")
+    # Existing content stays in place until the final atomic replacement.
     try:
-        tmp_path.write_text(markdown_content, encoding="utf-8")
-        # 기존 파일 백업 후 원자적 교체
         if filepath.exists():
-            ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+            ts = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
             backup_dir = vault / ".ros_backups"
+            if not _within_vault(backup_dir, vault):
+                return False, "백업 경로가 볼트 범위를 벗어납니다.", ""
             backup_dir.mkdir(exist_ok=True)
+            backup_dir = backup_dir.resolve(strict=True)
+            if not _within_vault(backup_dir, vault):
+                return False, "백업 폴더가 볼트 범위를 벗어납니다.", ""
             bak = backup_dir / f"{filepath.stem}.bak_{ts}.md"
-            filepath.rename(bak)
+            _atomic_write_text(bak, filepath.read_text(encoding="utf-8"))
             _evict_old_backups(backup_dir, filepath.stem, keep=5)
-        tmp_path.replace(filepath)
-    except Exception:
-        # 원자적 쓰기 실패 시 직접 쓰기 폴백
-        if tmp_path.exists():
-            tmp_path.unlink(missing_ok=True)
-        filepath.write_text(markdown_content, encoding="utf-8")
+        _atomic_write_text(filepath, markdown_content)
+    except (OSError, UnicodeError) as exc:
+        return False, f"원자적 노트 저장 실패: {exc}", ""
 
     if update_index:
         _update_index(vault, title or filepath.stem, str(filepath), input_type, topic)
@@ -261,7 +332,7 @@ def _update_index(vault: Path, title: str, note_path: str, input_type: str, topi
         content = content[:idx] + "".join(new_lines) + content[section_end:]
     else:
         content += f"\n{header}\n{entry}"
-    index_path.write_text(content, encoding="utf-8")
+    _atomic_write_text(index_path, content)
 
 
 def _create_index(vault: Path):
@@ -280,7 +351,7 @@ def _create_index(vault: Path):
     for topic, icon in TOPIC_ICONS.items():
         lines.append(f"## {icon} {topic}")
         lines.append("")
-    (vault / "_INDEX.md").write_text("\n".join(lines), encoding="utf-8")
+    _atomic_write_text(vault / "_INDEX.md", "\n".join(lines))
 
 
 def scan_vault_concepts(vault_path: str, subfolder: str = "") -> list:

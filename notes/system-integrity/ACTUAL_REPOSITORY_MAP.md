@@ -1,0 +1,491 @@
+# Actual Repository Map
+
+Generated: 2026-09-07T07:12:08.041938+00:00
+
+## Source Code
+
+- `api/__init__.py` -- classes: -; functions: -
+- `api/app.py` -- classes: AnalyzeRequest, ValidateRequest; functions: _analysis_payload, _frontend_file, _store_upload, analyze, analyze_file, create_app, health, spa
+- `api/runtime.py` -- classes: WebAnalysisEvent, WebAnalysisRequest, WebAnalysisRuntime; functions: __init__, _concept_candidates, _event, _local_demo_analysis, build_pipeline_runtime, callbacks, parse_input, persist_analysis_cache
+- `config/app_config.py` -- classes: AppConfig, ConfigSchema; functions: __init__, api_key, auto_save, auto_sync, base_url, cache_dir, debug_mode, get
+- `conftest.py` -- classes: -; functions: qt_app
+- `core/__init__.py` -- classes: -; functions: -
+- `core/analysis_pipeline.py` -- classes: AnalysisCallbacks, AnalysisPipeline, AnalysisRuntime, PipelineOutcome; functions: __init__, _apply_epistemic_envelope, _llm_call, _safe_fallback, _save_output, _store_memory_trust, _update_graph_integrity, _validate_metadata
+- `core/classifier.py` -- classes: ClassificationResult, UniversalClassifier; functions: __init__, _build, classify, classify_by_journal, classify_paper, get_all_disciplines, get_all_topics, get_classifier
+- `core/config.py` -- classes: Config; functions: __contains__, __getitem__, __init__, __setitem__, _atomic_write_json, _backup_corrupt_config, _normalize_aliases, _restrict_secret_permissions
+- `core/constants.py` -- classes: -; functions: -
+- `core/contracts.py` -- classes: AnalysisRequest, AnalysisResult, AnalysisStatus, AnalyzerProtocol, CacheProtocol, ClassifierProtocol, Err, InputType; functions: analyze, classify, get, get_all_topics, get_metrics, invalidate, is_valid, list_notes
+- `core/contradiction_engine.py` -- classes: AssumptionNode, ContradictionEdge, ContradictionEngine, ContradictionSeverity, ContradictionStore, ContradictionType; functions: __init__, __init__, _load, _make_id, _reconstruct, _save, add_edge, build_assumption_tree
+- `core/embedding_gov.py` -- classes: SemanticDeduplicator; functions: __init__, __len__, _compute_shingles, _hash_shingle, _jaccard_similarity, is_duplicate, register, unregister
+- `core/engine_loader.py` -- classes: -; functions: _f, _f, _f, _f, _f, _f, _f, _f
+- `core/exceptions.py` -- classes: APIKeyInvalidError, APIRateLimitError, APIResponseError, APITimeoutError, ConfigurationError, EmbeddingError, EmptyContentError, GraphError; functions: __init__, __init__, __init__, __init__, __init__, __init__, __init__, __init__
+- `core/fault_recovery.py` -- classes: CircuitBreaker, CircuitState, ErrorCategory, FaultRecoveryEngine, SafeMode; functions: __init__, _load_log, _log_fault, _on_failure, _on_success, _save_log, call, classify_error
+- `core/graph_integrity.py` -- classes: CycleDetector, GraphCheckpoint, GraphEdge, GraphIntegrityEngine, GraphNode, GraphStore, IntegrityReport; functions: __init__, __init__, _compute_max_depth, _create_checkpoint, _load, _load_checkpoints, _path, _reaches
+- `core/graph_migration.py` -- classes: -; functions: _default_sentinel_path, _ensure_node, _write_sentinel, migrate_legacy_to_typed
+- `core/idea_lineage.py` -- classes: IdeaLineageEngine, LineageBranch, LineageNode, LineageStore, TransformationType; functions: __init__, __init__, _build_tree, _compute_semantic_diff, _content_hash, _load, _make_lineage_id, _save
+- `core/intel/__init__.py` -- classes: -; functions: -
+- `core/intel/classifier.py` -- classes: DocumentClassifier; functions: _classify_by_content, _classify_by_extension, _count_section_matches, _detect_pdf_type, _infer_page_count, classify, classify_document, infer_category_from_score
+- `core/intel/equation_extractor.py` -- classes: EquationExtractor; functions: _extract_display_equations, _extract_env_equations, _extract_inline_equations, _find_context, _find_reference_id, estimate_latex_quality, extract, extract_equations
+- `core/intel/figure_detector.py` -- classes: FigureDetector; functions: _extract_caption, _find_ascii_art_regions, _find_equation_blocks, _find_figure_references, _infer_kind, count_references_in_text, detect, detect_figures
+- `core/intel/intelligence_manager.py` -- classes: DocumentIntelligenceManager; functions: __init__, _build_doc, _classify, _content_hash, _enrich, _ensure_services, _extract_raw, _get_cached
+- `core/intel/language_detector.py` -- classes: LanguageDetector; functions: _detect_encoding, _detect_from_common_words, _detect_from_unicode_ranges, _detect_writing_direction, _get_iso639_name, _is_mixed_languages, _sample_text, detect
+- `core/intel/layout_analysis.py` -- classes: LayoutAnalyzer; functions: analyze, detect_footnotes, detect_headers_footers, detect_headings, detect_lists, detect_multicolumn, detect_page_numbers, detect_paragraphs
+- `core/intel/models.py` -- classes: ClassificationResult, DocumentCategory, EquationBlock, FigureBlock, LanguageDirection, LanguageResult, PDFType, Page; functions: add_metric, has_content, is_acceptable, passes, summarize
+- `core/intel/ocr_base.py` -- classes: NoOpOCREngineProvider, OCREngineProvider, OCRProviderRegistry, StubOCREngineProvider; functions: __init__, __init__, __init__, _do_health_check, _do_health_check, _do_health_check, _do_initialize, _do_initialize
+- `core/intel/parser_base.py` -- classes: BaseDocumentParser; functions: __init__, _attach_block, _compute_hash, _do_parse, detect_type, name, parse_with_intel, parse_with_intel
+- `core/intel/section_extractor.py` -- classes: SectionExtractor; functions: _build_hierarchy, _classify_heading, _extract_appendices, _extract_from_headings, _find_section_boundaries, detect_irmad, extract, extract_sections
+- `core/intel/table_extractor.py` -- classes: TableExtractor; functions: _classify_and_parse, _detect_table_regions, _parse_ascii_table, _parse_pipe_table, _parse_tabular_table, export_csv, export_json, export_markdown
+- `core/intel/text_normalizer.py` -- classes: TextNormalizer; functions: _apply_encoding_fixes, _replacer, clean_for_embedding, deduplicate_blank_lines, estimate_quality, fix_broken_lines, fix_hyphenation, fix_ocr_artifacts
+- `core/interfaces.py` -- classes: AgentResult, AgentTask, BaseProvider, DocumentParser, EmbeddingProvider, EmbeddingResult, GraphEdge, GraphNode; functions: __init__, add_edge, add_node, can_handle, clear, clear, delete, delete
+- `core/knowledge_graph.py` -- classes: GraphMutation, IngestionReport, KnowledgeEdge, KnowledgeGraphService, KnowledgeGraphStore, KnowledgeNode, NodeType, RelationshipType; functions: __init__, __init__, _load, _merge_edge, _merge_node, _now, _save, _serialize
+- `core/math_ontology.py` -- classes: MathObject, MathObjectType, MathOntologyEngine, MathOntologyStore; functions: __init__, __init__, _expand, _load, _reconstruct, _save, _seed_builtin, add
+- `core/memory.py` -- classes: -; functions: _ensure_dir, add_question, get_concept_list, get_graph_stats, load_concepts, load_graph, load_profile, load_questions
+- `core/memory_trust.py` -- classes: MemoryRecord, MemoryStore, MemoryTrustEngine, MemoryTrustLayer, MemoryTrustScorer; functions: __init__, __init__, _load, all_records, apply_contradiction_penalty, apply_contradiction_penalty, apply_decay, by_layer
+- `core/metadata/__init__.py` -- classes: -; functions: -
+- `core/metadata/engine.py` -- classes: ExtractionConfig; functions: _provenance, extract_citations, extract_from_headers, extract_pdf_info, infer_research_metadata, merge_metadata, parse_authors, run_extraction
+- `core/metadata/models.py` -- classes: AuthorMetadata, BibliographicMetadata, CitationInstance, CitationMetadata, CompleteMetadata, DocumentMeta, ExtractorType, MetadataField; functions: _sd, add_issue, from_json, from_structured_document, merge, resolution_rate, to_dict, to_json
+- `core/metadata/normalize.py` -- classes: MetadataNormalizer; functions: __init__, _strip_suffix, get_normalizer, infer_from_text, normalize_author_name, normalize_country, normalize_date, normalize_doi
+- `core/metadata/validate.py` -- classes: MetadataValidator; functions: _check_consistency, _check_required_fields, _normalize_for_comparison, _validate_bibliographic, _validate_citations, _validate_research, check_duplicate_authors, is_valid_doi
+- `core/note_evolution.py` -- classes: MaturityScorer, NoteEvolutionEngine, NoteEvolutionRecord, NoteEvolutionStore, NoteStage, StageTransition; functions: __init__, __init__, _load, _save, _try_promote, all_records, get, get_by_stage
+- `core/observability.py` -- classes: Alert, AlertManager, AlertSeverity, AnalysisMetric, EventCategory, LogEntry, LogLevel, ObservabilityEngine; functions: __enter__, __exit__, __init__, __init__, __init__, cache_hit_rate, efficiency_report, emit
+- `core/obsidian_sync.py` -- classes: -; functions: _atomic_write_text, _create_index, _evict_old_backups, _invalidate_vault_caches, _is_scannable_note, _safe_path_component, _update_index, _within_vault
+- `core/orchestration.py` -- classes: ResourceGovernor, ResourceSnapshot; functions: __init__, _compute_token_rate, assess_pressure, get_recommended_model, get_resource_governor, get_stats, log_tokens, should_throttle
+- `core/parsers.py` -- classes: -; functions: _clean_transcript, _extract_transcript_meta, _file_gate_error, _format_cat, _format_dtypes, _format_missing, _infer_panel_structure, _looks_like_paper
+- `core/perf_engine.py` -- classes: CacheEngine, ComputationNode, ContextSlot, IncrementalEngine, LRUCache, TokenEconomyEngine; functions: __init__, __init__, __init__, __init__, _load, _make_key, _save, all_stats
+- `core/pipeline/__init__.py` -- classes: -; functions: -
+- `core/pipeline/cleaner.py` -- classes: DocumentCleanerImpl; functions: _clean_csv_text, _clean_html_text, _clean_ocr_text, _fix_encoding_artifacts, _normalize_quotes, clean, clean_text, normalize
+- `core/pipeline/doc_manager.py` -- classes: DocumentManager; functions: __init__, _generate_id, cancel, get, get_history, get_stats, list_all, query
+- `core/pipeline/error_recovery.py` -- classes: ErrorRecoveryManager; functions: __init__, can_retry, execute_with_recovery, reset
+- `core/pipeline/file_storage.py` -- classes: FileStorage; functions: __init__, cleanup, clear_cache, get_metadata_path, get_processed_path, get_raw_path, get_stats, load_metadata
+- `core/pipeline/identifier.py` -- classes: DocumentIdentifierImpl; functions: _check_file_signature, _estimate_page_count, _guess_mime_type, _is_likely_text, _pdf_needs_ocr, detect_encoding, detect_language, identify
+- `core/pipeline/interfaces.py` -- classes: DocumentCleaner, DocumentIdentifier, DocumentParser, DocumentStorage, DocumentValidator, PipelineStage; functions: can_handle, clean, cleanup, detect_encoding, detect_language, execute, extract_metadata, get_metadata_path
+- `core/pipeline/models.py` -- classes: Document, DocumentType, IdentificationResult, ParseResult, ProcessingHistory, ProcessingStage, ProcessingStatus, ValidationResult; functions: has_errors, is_processed, mark_completed, mark_failed, record_error, record_stage, record_warning
+- `core/pipeline/parsers.py` -- classes: CSVExcelParser, CodeParser, DOCXParser, EPUBParser, HTMLParser, PDFParser, PPTXParser, ParserRegistry; functions: __init__, __init__, __init__, _analyze_code, _extract_title, _parse_srt, _parse_vtt, create_default_registry
+- `core/pipeline/pipeline.py` -- classes: DocumentPipeline; functions: __init__, _clean, _identify, _normalize, _ocr, _parse, _store, _validate
+- `core/pipeline/validator.py` -- classes: DocumentValidatorImpl; functions: __init__, max_file_size_bytes, supported_extensions, validate
+- `core/qualitative_engine.py` -- classes: DiscourseFrame, EpistemicDetector, EpistemicMode, EpistemicProfile, EpistemicTension, MaterialType, MixedMethodIntegrator, MultiEpistemicEngine; functions: __init__, __init__, detect, detect_concept_drift, detect_integration_strategy, detect_mode, entropy_report, extract_discourse_frames
+- `core/rag_engine.py` -- classes: CheapestCognitionRouter, CognitionPath, HierarchicalRetriever, MemoryTier, RAGContextBuilder, RAGEngine, RAGMetrics, RetrievalCandidate; functions: __init__, __init__, __init__, __init__, _compute_recency_decay, _compute_recency_decay_from_mtime, _estimate_abstraction_density, _estimate_cost_saved
+- `core/rag_observability.py` -- classes: CompressionResult, ContextCompressor, RAGEvent, RAGObservability; functions: __init__, _abstraction_aware_summarization, _check_alerts, _compute_health_status, _graph_condensation, _importance_score, _line_importance, _lineage_summarization
+- `core/research_tension.py` -- classes: KnowledgeGraphDB, KnowledgeGraphEdge, KnowledgeGraphNode, ResearchTensionEngine, TensionAlert, TensionType; functions: __init__, __init__, _load, _load, _save, _save, acknowledge, add_concept_node
+- `core/ros_engine.py` -- classes: -; functions: _build_client, _call_llm, _detect_epistemic_mode, _detect_provider, _extract_frontmatter_tags, _extract_text, _format_profile, _is_qwen3
+- `core/ros_logger.py` -- classes: StructuredLogger; functions: _configure_root_logger, _get_event_file, get_logger, log_analysis_complete, log_analysis_start, log_engine_status, log_error, log_event
+- `core/security.py` -- classes: AuditTrail, ContentSanitizer, ObsidianSafeWriter, PromptInjectionDetector, SecurityGate, ThreatLevel, ThreatReport, ThreatType; functions: __init__, __init__, __init__, _evict_old_snapshots, _last_hash, _snapshot, _validate_markdown, get_audit_trail
+- `core/utils/__init__.py` -- classes: -; functions: -
+- `core/utils/file_utils.py` -- classes: -; functions: atomic_write, atomic_write_json, backup_file, ensure_dir, get_file_size_mb, is_writable, load_json_store, quarantine_store_file
+- `core/utils/hash_utils.py` -- classes: -; functions: content_hash, file_hash, quick_hash, stable_id
+- `core/utils/json_utils.py` -- classes: -; functions: jsonl_append, merge_configs, safe_load_json, safe_load_json_dict, safe_load_json_list, validate_json_schema
+- `core/utils/markdown_utils.py` -- classes: -; functions: count_wikilinks, extract_code_blocks, extract_frontmatter, extract_frontmatter_tags, extract_headings, extract_wikilink_targets, inject_frontmatter, parse_wikilinks
+- `core/utils/path_utils.py` -- classes: -; functions: ensure_unique_path, find_files_by_extension, get_relative_path, is_within_vault, resolve_vault_path, sanitize_filename
+- `core/utils/text_utils.py` -- classes: -; functions: char_count, clean_whitespace, estimated_tokens, extract_sentences, is_empty_content, rank_concept_nodes, sort_key, truncate_end
+- `core/utils/validation_utils.py` -- classes: -; functions: is_non_empty_string, is_valid_email, is_valid_url, safe_bool, safe_float, safe_int, validate_choice, validate_list_length
+- `core/worker.py` -- classes: AnalysisWorker, ValidationWorker; functions: __init__, __init__, _execute, _get_cache_engine, _get_context_compressor, _get_contradiction_engine, _get_evolution_engine, _get_fault_recovery_engine
+- `literature/__init__.py` -- classes: -; functions: -
+- `literature/context/__init__.py` -- classes: -; functions: -
+- `literature/context/classifier.py` -- classes: ClassificationResult, ClassifierConfig, ContextClassifier; functions: __init__, _build_rationale, _dedupe_categories, _has_meta_analysis, _has_review, _has_systematic_review, _match_patterns, _match_phrases
+- `literature/context/engine.py` -- classes: ContextExpansionConfig, ScientificContextEngine, _Candidate; functions: __init__, __init__, _call_search, _classify_candidates, _collect, _fill_buckets, _merge_candidate, _now_iso
+- `literature/context/evidence.py` -- classes: EvidenceStrengthScorer; functions: _category_counts, _level, assess
+- `literature/context/graph.py` -- classes: -; functions: _edge_confidence, _paper_metadata, build_graph_mutation, ingest_scientific_context
+- `literature/context/importer.py` -- classes: -; functions: _load_default_engine, _record_warning, attach_scientific_context, expand_document_context, seed_from_document
+- `literature/context/markdown.py` -- classes: -; functions: _format_authors, _frontmatter, _paper_lines, _provenance_table, _safe_text, _seed_line, _wikilink, _yaml_escape
+- `literature/context/models.py` -- classes: ContextCategory, ContextPaper, EvidenceAssessment, EvidenceLevel, ProviderProvenance, ScientificContext; functions: _now, _provenance_to_dict, category_lists, doi, from_dict, from_dict, from_dict, from_dict
+- `literature/search/__init__.py` -- classes: -; functions: -
+- `literature/search/arxiv_provider.py` -- classes: ArXivProvider; functions: __init__, _collapse, _entry_to_paper, _parse_feed, _query, _title_query, find_related, search
+- `literature/search/base.py` -- classes: LiteratureProvider; functions: __init__, __repr__, _limit, find_citing, find_referenced, find_related, is_configured, resolve_doi
+- `literature/search/crossref_provider.py` -- classes: CrossrefProvider; functions: __init__, _extract_year, _item_to_paper, _strip_jats, _with_mailto, resolve_doi, search
+- `literature/search/models.py` -- classes: LiteratureSource, RetrievalChannel, RetrievedPaper, SeedPaper; functions: _now, dedup_key, from_dict, from_dict, is_empty, make_paper_id, matches_seed, normalize_doi
+- `literature/search/openalex_provider.py` -- classes: OpenAlexProvider; functions: __init__, _common_params, _resolve_work_batch, _work_to_paper, find_citing, find_referenced, find_related, reconstruct_abstract
+- `literature/search/pubmed_provider.py` -- classes: PubMedProvider; functions: __init__, _common_params, _esearch, _esummary, _parse_year, _record_to_paper, find_related, resolve_doi
+- `literature/search/registry.py` -- classes: LiteratureProviderRegistry; functions: __contains__, __init__, __iter__, __len__, _transport, available, default_registry, get
+- `literature/search/semantic_scholar_provider.py` -- classes: SemanticScholarProvider; functions: __init__, _auth_headers, _item_to_paper, find_citing, find_related, is_configured, resolve_doi, search
+- `literature/search/ssrn_provider.py` -- classes: SSRNProvider; functions: __init__, _common_params, _is_ssrn_work, _work_to_paper, resolve_doi, search
+- `literature/search/transport.py` -- classes: HttpTransport, TransportConfig, TransportError; functions: __init__, __init__, _get, _pace, _parse_retry_after, _sleep_backoff, close, get_json
+- `logs/log_manager.py` -- classes: LogCategory, LogManager; functions: __init__, configure, get, get_log_manager, log_error, log_event, log_root
+- `main.py` -- classes: -; functions: main
+- `test_worker_semantic_graph.py` -- classes: -; functions: _worker, fail, test_worker_emits_semantic_graph_metrics, test_worker_reports_semantic_graph_failure_without_raising
+- `tools/verify_system_integrity.py` -- classes: ActionChain, FeatureStatus, MarkdownSpec, Requirement; functions: _classify_markdown, _first_heading, _is_ignored_path, _read, _rel, action_inventory, collect_markdown_specs, contains
+
+## Tests
+
+- `tests/conftest.py` -- classes: -; functions: qt_app
+- `tests/test_analysis_pipeline.py` -- classes: _Cache, _Gate, _Incremental; functions: __init__, __init__, __init__, _run, _runtime, get_analysis, mark_computed, needs_recompute
+- `tests/test_config_reliability.py` -- classes: -; functions: _point_config_at, test_config_save_normalizes_legacy_aliases, test_corrupt_config_is_backed_up_before_defaults, test_save_config_is_atomic_and_loadable
+- `tests/test_document_intelligence.py` -- classes: TestBackwardCompatibility, TestBaseDocumentParser, TestDocumentClassifier, TestDocumentIntelligenceManager, TestEquationExtractor, TestFigureDetector, TestLanguageDetector, TestLayoutAnalyzer; functions: _do_parse, sample_paper_text, sample_rich_text, test_analyze_full_pipeline, test_classify_research_paper, test_code_file_classification, test_content_scoring_returns_valid_result, test_create_manager
+- `tests/test_document_pipeline.py` -- classes: TestBackwardCompatibility, TestCodeParser, TestDocumentCleaner, TestDocumentIdentifier, TestDocumentManager, TestDocumentPipeline, TestDocumentValidator, TestErrorRecovery; functions: _setup, cleaner, identifier, sample_csv_file, sample_html_file, sample_md_file, sample_txt_file, test_all_standard_parsers_registered
+- `tests/test_graph_integrity_transactions.py` -- classes: -; functions: test_graph_integrity_engine_initializes_mutation_counter, test_graph_integrity_transaction_rejects_dangling_edge_and_rolls_back
+- `tests/test_input_file_support.py` -- classes: -; functions: test_audio_file_is_detected_but_requires_transcription, test_markdown_file_is_supported_as_notes, test_srt_and_vtt_are_supported_as_transcripts, test_tsv_dataset_is_supported
+- `tests/test_main_window_startup.py` -- classes: -; functions: test_main_window_constructs_with_pyqt6_menu_actions
+- `tests/test_model_presets.py` -- classes: -; functions: test_china_presets_drop_known_legacy_first_choices, test_flat_model_list_contains_all_provider_presets, test_global_presets_prefer_current_generation_models, test_presets_include_broader_modern_china_options
+- `tests/test_performance_hot_paths.py` -- classes: -; functions: _clear_obsidian_caches, counted_jaccard, counted_read_text, counted_stat, counted_stat, explode, explode, test_abstraction_density_uses_precompiled_patterns
+- `tests/test_phase1_hardening.py` -- classes: CacheRecorder, ExplodingGate, IncrementalRecorder, RecoveryStub, TestAtomicWrite, TestGatePolicy, TestJournalMapResolution, TestLoadJsonStoreContract; functions: __init__, __init__, _make_worker, _neutralize_engines, broken_replace, execute_with_recovery, get_analysis, mark_computed
+- `tests/test_phase2_secure.py` -- classes: TestAuditChain, TestBackupRotation, TestExtractorCaps, TestLlmOutputTrustClass, TestOutputBoundary, TestParserGates, TestSecretPermissions, TestWorkerOutputBoundary; functions: __init__, _make_worker, _neutralize_engines, execute_with_recovery, fail_live_replace, store_memory, test_backups_live_in_hidden_dir_and_are_capped, test_benign_analysis_passes
+- `tests/test_phase3_correct.py` -- classes: FakeRunningWorker, TestEvolutionVersionStability, TestLineageIdempotency, TestRagContextWiring, TestSafeModeTemplate, TestStreamCompletionGuard, TestWorkerLifecycle, _Choice; functions: __init__, __init__, __init__, __init__, __init__, __init__, _capture_prompt, create
+- `tests/test_phase4_refactor.py` -- classes: TestDeadCodeRemoval, TestLegacyMigration, TestProviderProfiles, TestWikilinkCentralization; functions: migration_env, test_alias_is_stripped, test_count_matches_targets, test_deleted_symbols_are_gone, test_detection_equivalence, test_empty_legacy_graph_writes_sentinel, test_forced_remigration_does_not_duplicate, test_graph_edge_extraction_uses_unified_helper
+- `tests/test_professor_workflow.py` -- classes: -; functions: test_dataset_requires_name_but_accepts_description, test_equation_does_not_require_title, test_main_window_professor_defaults_and_recent_paths, test_paper_requires_title_and_content_or_file, test_paper_with_title_and_file_is_ready, test_text_paper_file_uses_filename_as_title
+- `tests/test_rag_retrieval_bounds.py` -- classes: -; functions: counted_read_text, test_atomic_retrieval_reads_bounded_number_of_files, test_atomic_retrieval_skips_huge_files
+- `tests/test_ros_engine_contracts.py` -- classes: _FakeClient, _FakeCompletions; functions: __init__, __init__, create, test_china_provider_base_urls_are_detected, test_extract_graph_edges_is_deterministic_and_dedupes_links, test_qwen3_validation_disables_thinking, test_validate_api_rejects_missing_required_fields_without_network, test_validate_api_uses_non_streaming_probe
+- `tests/test_scientific_context.py` -- classes: FakeTransport, FixtureProvider, SecondaryProvider, StubDocument, StubProvider; functions: __init__, __init__, _context_paper, _full_context, _paper, _route, find_related, get_json
+- `tests/test_semantic_knowledge_graph.py` -- classes: -; functions: test_markdown_extractor_creates_first_class_methods_questions_and_relationships, test_service_ingestion_is_idempotent_and_updates_importance, test_store_persists_typed_nodes_and_weighted_edges_atomically, test_store_rejects_dangling_edges_without_partial_writes
+- `tests/test_system_integrity_verifier.py` -- classes: -; functions: _minimal_repo, _write, test_cli_generates_reports, test_generate_reports_writes_required_integrity_artifacts
+- `tests/test_v8.py` -- classes: TestClassifier, TestContradictionEngine, TestEdgeCases, TestEngineLoader, TestIntegration, TestNoteEvolution, TestObsidianSync, TestRegressions; functions: test_all_disciplines_defined, test_all_engines_logged, test_atomic_write_no_partial_file, test_classifier_empty_inputs, test_economics_journal, test_empty_input_handled, test_empty_markdown_obsidian_save, test_engine_loader_concurrent_calls
+- `tests/test_web_api.py` -- classes: -; functions: _disable_optional_engines, fake_analysis, test_demo_analysis_endpoint_runs_without_pyqt_or_api_key, test_file_upload_honors_multipart_analysis_fields, test_file_upload_rejects_oversized_payload, test_file_upload_rejects_unsupported_extension, test_health_endpoint_reports_fastapi_runtime
+- `tests/test_worker_semantic_graph.py` -- classes: -; functions: _worker, fail, test_worker_emits_semantic_graph_metrics, test_worker_reports_semantic_graph_failure_without_raising
+
+## Configuration
+
+- `.github/workflows/ci.yml`
+- `package.json`
+- `pyproject.toml`
+- `pytest.ini`
+- `requirements.txt`
+
+## UI Components
+
+- `ui/__init__.py` -- classes: -; functions: -
+- `ui/cognitive_panels.py` -- classes: CognitiveResultPanel, ContradictionHighlighter, EquationScaffold, FocusModeOverlay, LocalGraphView, SemanticBreadcrumb; functions: __init__, __init__, __init__, __init__, __init__, __init__, _build_node_row, _on_idle
+- `ui/cognitive_ux.py` -- classes: AbstractionLevelBar, CalmMonetizationWidget, CogPalette, CognitiveLoadGuard, CognitiveStatusBar, ConfidenceBadge, ConfidenceLevel, FocusModeController; functions: __init__, __init__, __init__, __init__, __init__, __init__, __init__, __init__
+- `ui/infra_dashboard.py` -- classes: CircuitBreakerRow, InfraDashboard, MetricCard; functions: __init__, __init__, __init__, _build_rag_panel, _refresh, _refresh_cache, _refresh_circuit_breakers, _refresh_graph
+- `ui/input_panel.py` -- classes: DropZone, EpistemicModeSelector, InputPanel, TopicBadge; functions: __init__, __init__, __init__, __init__, _build_dataset_tab, _build_equation_tab, _build_file_tab, _build_qualitative_tab
+- `ui/main_window.py` -- classes: MainWindow; functions: __init__, _add_menu_action, _build_dataset_tab, _build_equation_tab, _build_input_panel, _build_menu, _build_notes_tab, _build_paper_tab
+- `ui/profile_dialog.py` -- classes: ProfileDialog; functions: __init__, _build_ui, _load, _save
+- `ui/result_panel.py` -- classes: MarkdownHighlighter, ResultPanel; functions: __init__, __init__, _build_ui, _copy_to_clipboard, _export_to_file, _on_text_changed, _save_to_vault, append_token
+- `ui/settings_dialog.py` -- classes: SettingsDialog; functions: __init__, _add_rule_row, _browse_vault, _build_api_tab, _build_classify_tab, _build_concepts_tab, _build_ui, _build_vault_tab
+- `ui/vault_panel.py` -- classes: VaultPanel; functions: __init__, _build_ui, _on_item_double_clicked, _open_folder, _open_note_file, _reveal_in_os, _show_context_menu, _update_index
+- `ui/workflow.py` -- classes: InputDraft, ReadinessResult; functions: validate_input_draft
+
+## Documentation
+
+- `ARCHITECTURE.md`
+- `CONTRIBUTING.md`
+- `DOCUMENT_PIPELINE.md`
+- `FOUNDATION.md`
+- `PHASE6_EXTENSION_IMPLEMENTATION_REVIEW.md`
+- `README.md`
+- `REFACTOR.md`
+- `REFACTOR_PLAN.md`
+- `REFACTOR_REPORT.md`
+- `SYSTEM_AUDIT_AND_REFACTORING_REPORT.md`
+- `UPDATES.md`
+- `VALIDATION_REPORT.md`
+- `agents/README.md`
+- `brain/README.md`
+- `cache/README.md`
+- `config/README.md`
+- `core/intel/DOCUMENT_INTELLIGENCE.md`
+- `dashboard/README.md`
+- `datasets/README.md`
+- `embeddings/README.md`
+- `experiments/README.md`
+- `graphs/README.md`
+- `literature/README.md`
+- `literature/SCIENTIFIC_CONTEXT.md`
+- `logs/README.md`
+- `notes/session-logs/2026-09-04-phase6-extension-review.md`
+- `notes/session-logs/2026-09-07-production-grade-integrated-record.md`
+- `plugins/README.md`
+- `processed/README.md`
+- `projects/README.md`
+- `vectors/README.md`
+- `writing/README.md`
+
+## Generated / Runtime Data
+
+- `documents/metadata/doc-054bb2a5-01f9119e.json`
+- `documents/metadata/doc-054bb2a5-03e95f84.json`
+- `documents/metadata/doc-054bb2a5-06eb75be.json`
+- `documents/metadata/doc-054bb2a5-091325d9.json`
+- `documents/metadata/doc-054bb2a5-121e395c.json`
+- `documents/metadata/doc-054bb2a5-1462dfc2.json`
+- `documents/metadata/doc-054bb2a5-1e652a0f.json`
+- `documents/metadata/doc-054bb2a5-35657ce9.json`
+- `documents/metadata/doc-054bb2a5-3997e835.json`
+- `documents/metadata/doc-054bb2a5-3d79b37c.json`
+- `documents/metadata/doc-054bb2a5-3e1cdf5b.json`
+- `documents/metadata/doc-054bb2a5-40d40038.json`
+- `documents/metadata/doc-054bb2a5-424380f7.json`
+- `documents/metadata/doc-054bb2a5-4fdbacc6.json`
+- `documents/metadata/doc-054bb2a5-510cb056.json`
+- `documents/metadata/doc-054bb2a5-5cc93ca9.json`
+- `documents/metadata/doc-054bb2a5-6746a27f.json`
+- `documents/metadata/doc-054bb2a5-6a674706.json`
+- `documents/metadata/doc-054bb2a5-6ed626c2.json`
+- `documents/metadata/doc-054bb2a5-6f07f999.json`
+- `documents/metadata/doc-054bb2a5-747bab48.json`
+- `documents/metadata/doc-054bb2a5-76fd65bc.json`
+- `documents/metadata/doc-054bb2a5-7b7a8794.json`
+- `documents/metadata/doc-054bb2a5-7e8f26ce.json`
+- `documents/metadata/doc-054bb2a5-848c2341.json`
+- `documents/metadata/doc-054bb2a5-85fd8da4.json`
+- `documents/metadata/doc-054bb2a5-89366d08.json`
+- `documents/metadata/doc-054bb2a5-8d38c4cb.json`
+- `documents/metadata/doc-054bb2a5-90740e0d.json`
+- `documents/metadata/doc-054bb2a5-92997979.json`
+- `documents/metadata/doc-054bb2a5-93e985e9.json`
+- `documents/metadata/doc-054bb2a5-96659d72.json`
+- `documents/metadata/doc-054bb2a5-aba66b36.json`
+- `documents/metadata/doc-054bb2a5-ad64d888.json`
+- `documents/metadata/doc-054bb2a5-af7d9d1e.json`
+- `documents/metadata/doc-054bb2a5-bcee1474.json`
+- `documents/metadata/doc-054bb2a5-c7a7969f.json`
+- `documents/metadata/doc-054bb2a5-d4ad1e99.json`
+- `documents/metadata/doc-054bb2a5-d8bdcbc4.json`
+- `documents/metadata/doc-054bb2a5-dfbd4087.json`
+- `documents/metadata/doc-054bb2a5-e3c2daaf.json`
+- `documents/metadata/doc-054bb2a5-e4c87b02.json`
+- `documents/metadata/doc-054bb2a5-e6b7a504.json`
+- `documents/metadata/doc-054bb2a5-e7211ab5.json`
+- `documents/metadata/doc-054bb2a5-e9c2e9c6.json`
+- `documents/metadata/doc-054bb2a5-f5308ce0.json`
+- `documents/metadata/doc-054bb2a5-f7be21fd.json`
+- `documents/metadata/doc-054bb2a5-f9e271e7.json`
+- `documents/metadata/doc-054bb2a5-ffe62764.json`
+- `documents/metadata/doc-40545fde-025a0849.json`
+- `documents/metadata/doc-40545fde-027dfe30.json`
+- `documents/metadata/doc-40545fde-02d387d4.json`
+- `documents/metadata/doc-40545fde-02db232d.json`
+- `documents/metadata/doc-40545fde-033b90c8.json`
+- `documents/metadata/doc-40545fde-0820b4f1.json`
+- `documents/metadata/doc-40545fde-08218333.json`
+- `documents/metadata/doc-40545fde-0d50997d.json`
+- `documents/metadata/doc-40545fde-0d83366f.json`
+- `documents/metadata/doc-40545fde-0fddb97d.json`
+- `documents/metadata/doc-40545fde-1241389e.json`
+- `documents/metadata/doc-40545fde-12bd0f43.json`
+- `documents/metadata/doc-40545fde-13693abc.json`
+- `documents/metadata/doc-40545fde-15699e5c.json`
+- `documents/metadata/doc-40545fde-158774e3.json`
+- `documents/metadata/doc-40545fde-15e85f3b.json`
+- `documents/metadata/doc-40545fde-191ba905.json`
+- `documents/metadata/doc-40545fde-19e480fd.json`
+- `documents/metadata/doc-40545fde-1a424a20.json`
+- `documents/metadata/doc-40545fde-1a94cb5b.json`
+- `documents/metadata/doc-40545fde-1c78fd3d.json`
+- `documents/metadata/doc-40545fde-1d768fe3.json`
+- `documents/metadata/doc-40545fde-1f32d43e.json`
+- `documents/metadata/doc-40545fde-20642891.json`
+- `documents/metadata/doc-40545fde-20667162.json`
+- `documents/metadata/doc-40545fde-255ac7e6.json`
+- `documents/metadata/doc-40545fde-27881406.json`
+- `documents/metadata/doc-40545fde-2a4ef2b0.json`
+- `documents/metadata/doc-40545fde-2d8fd8c1.json`
+- `documents/metadata/doc-40545fde-33a8b687.json`
+- `documents/metadata/doc-40545fde-35846c68.json`
+- `documents/metadata/doc-40545fde-35ad75d6.json`
+- `documents/metadata/doc-40545fde-3a3a72c4.json`
+- `documents/metadata/doc-40545fde-3bfede47.json`
+- `documents/metadata/doc-40545fde-3e9df31b.json`
+- `documents/metadata/doc-40545fde-3ebd0811.json`
+- `documents/metadata/doc-40545fde-3edf4625.json`
+- `documents/metadata/doc-40545fde-3f5baba0.json`
+- `documents/metadata/doc-40545fde-425097d1.json`
+- `documents/metadata/doc-40545fde-42cec372.json`
+- `documents/metadata/doc-40545fde-444ea45b.json`
+- `documents/metadata/doc-40545fde-446f5fc8.json`
+- `documents/metadata/doc-40545fde-4840e8db.json`
+- `documents/metadata/doc-40545fde-4b25416b.json`
+- `documents/metadata/doc-40545fde-4db89961.json`
+- `documents/metadata/doc-40545fde-51354082.json`
+- `documents/metadata/doc-40545fde-51cacce7.json`
+- `documents/metadata/doc-40545fde-5319a82f.json`
+- `documents/metadata/doc-40545fde-532270d2.json`
+- `documents/metadata/doc-40545fde-54759b4f.json`
+- `documents/metadata/doc-40545fde-54d0e899.json`
+- `documents/metadata/doc-40545fde-55676fc7.json`
+- `documents/metadata/doc-40545fde-572fada8.json`
+- `documents/metadata/doc-40545fde-5848087b.json`
+- `documents/metadata/doc-40545fde-59fb33c6.json`
+- `documents/metadata/doc-40545fde-5a529454.json`
+- `documents/metadata/doc-40545fde-5bd1785d.json`
+- `documents/metadata/doc-40545fde-5e6f2cdb.json`
+- `documents/metadata/doc-40545fde-608fd005.json`
+- `documents/metadata/doc-40545fde-647837a6.json`
+- `documents/metadata/doc-40545fde-671146d2.json`
+- `documents/metadata/doc-40545fde-69a4f862.json`
+- `documents/metadata/doc-40545fde-6cb8cd9b.json`
+- `documents/metadata/doc-40545fde-71596070.json`
+- `documents/metadata/doc-40545fde-722a656a.json`
+- `documents/metadata/doc-40545fde-7261b72f.json`
+- `documents/metadata/doc-40545fde-731494e5.json`
+- `documents/metadata/doc-40545fde-73e3862d.json`
+- `documents/metadata/doc-40545fde-7468fc55.json`
+- `documents/metadata/doc-40545fde-75777eb6.json`
+- `documents/metadata/doc-40545fde-78cafcf0.json`
+- `documents/metadata/doc-40545fde-795fba3c.json`
+- `documents/metadata/doc-40545fde-7acbb64d.json`
+- `documents/metadata/doc-40545fde-80d73a33.json`
+- `documents/metadata/doc-40545fde-88a41f19.json`
+- `documents/metadata/doc-40545fde-88fae5ca.json`
+- `documents/metadata/doc-40545fde-89f44540.json`
+- `documents/metadata/doc-40545fde-8f758a1a.json`
+- `documents/metadata/doc-40545fde-8fdd16d0.json`
+- `documents/metadata/doc-40545fde-903f5ec5.json`
+- `documents/metadata/doc-40545fde-925238bc.json`
+- `documents/metadata/doc-40545fde-94b90a53.json`
+- `documents/metadata/doc-40545fde-97758a06.json`
+- `documents/metadata/doc-40545fde-98112f2e.json`
+- `documents/metadata/doc-40545fde-984729d3.json`
+- `documents/metadata/doc-40545fde-9dee9505.json`
+- `documents/metadata/doc-40545fde-a179cc1b.json`
+- `documents/metadata/doc-40545fde-a19323e3.json`
+- `documents/metadata/doc-40545fde-a1cc8cb6.json`
+- `documents/metadata/doc-40545fde-a464c695.json`
+- `documents/metadata/doc-40545fde-a66793b7.json`
+- `documents/metadata/doc-40545fde-aaf0f02a.json`
+- `documents/metadata/doc-40545fde-ad21b5e1.json`
+- `documents/metadata/doc-40545fde-ad6a7fe3.json`
+- `documents/metadata/doc-40545fde-aea5829b.json`
+- `documents/metadata/doc-40545fde-afc64a07.json`
+- `documents/metadata/doc-40545fde-b2ec6203.json`
+- `documents/metadata/doc-40545fde-b569c6af.json`
+- `documents/metadata/doc-40545fde-b6f72fde.json`
+- `documents/metadata/doc-40545fde-b88f707a.json`
+- `documents/metadata/doc-40545fde-b9b288ac.json`
+- `documents/metadata/doc-40545fde-b9c97149.json`
+- `documents/metadata/doc-40545fde-bbadc086.json`
+- `documents/metadata/doc-40545fde-bd042d15.json`
+- `documents/metadata/doc-40545fde-bf101f8e.json`
+- `documents/metadata/doc-40545fde-bf4cf460.json`
+- `documents/metadata/doc-40545fde-bf540ca0.json`
+- `documents/metadata/doc-40545fde-bfc1a531.json`
+- `documents/metadata/doc-40545fde-c39fcadd.json`
+- `documents/metadata/doc-40545fde-c5d17a8d.json`
+- `documents/metadata/doc-40545fde-c9ccbf88.json`
+- `documents/metadata/doc-40545fde-cc282551.json`
+- `documents/metadata/doc-40545fde-ceab3bbf.json`
+- `documents/metadata/doc-40545fde-cf5df933.json`
+- `documents/metadata/doc-40545fde-cf8e1143.json`
+- `documents/metadata/doc-40545fde-d07e7d21.json`
+- `documents/metadata/doc-40545fde-d1f5490e.json`
+- `documents/metadata/doc-40545fde-d862a309.json`
+- `documents/metadata/doc-40545fde-d98633cd.json`
+- `documents/metadata/doc-40545fde-de3cb524.json`
+- `documents/metadata/doc-40545fde-df17a127.json`
+- `documents/metadata/doc-40545fde-e0f5b227.json`
+- `documents/metadata/doc-40545fde-e1949465.json`
+- `documents/metadata/doc-40545fde-e32eb8e7.json`
+- `documents/metadata/doc-40545fde-e448e0e1.json`
+- `documents/metadata/doc-40545fde-e6c4ba20.json`
+- `documents/metadata/doc-40545fde-e8c23dd4.json`
+- `documents/metadata/doc-40545fde-e920c78c.json`
+- `documents/metadata/doc-40545fde-e96c9725.json`
+- `documents/metadata/doc-40545fde-eb0557e1.json`
+- `documents/metadata/doc-40545fde-edd21345.json`
+- `documents/metadata/doc-40545fde-ef22c6e8.json`
+- `documents/metadata/doc-40545fde-f0ae42cb.json`
+- `documents/metadata/doc-40545fde-f2de4f64.json`
+- `documents/metadata/doc-40545fde-f34265c2.json`
+- `documents/metadata/doc-40545fde-f353c4dd.json`
+- `documents/metadata/doc-40545fde-f3d6ad8d.json`
+- `documents/metadata/doc-40545fde-f42ea0d5.json`
+- `documents/metadata/doc-40545fde-f480c016.json`
+- `documents/metadata/doc-40545fde-f5a6ea03.json`
+- `documents/metadata/doc-40545fde-f5e6a00d.json`
+- `documents/metadata/doc-40545fde-f68db825.json`
+- `documents/metadata/doc-40545fde-f6af9a1b.json`
+- `documents/metadata/doc-40545fde-f7869c90.json`
+- `documents/metadata/doc-40545fde-f7b63cd1.json`
+- `documents/metadata/doc-40545fde-f85311fe.json`
+- `documents/metadata/doc-40545fde-fbbce724.json`
+- `documents/metadata/doc-40545fde-fd35c508.json`
+- `documents/metadata/doc-63b6c59e-03bceac1.json`
+- `documents/metadata/doc-63b6c59e-09dd2435.json`
+- `documents/metadata/doc-63b6c59e-0d968afe.json`
+- `documents/metadata/doc-63b6c59e-105e9f7a.json`
+- `documents/metadata/doc-63b6c59e-160185ff.json`
+- `documents/metadata/doc-63b6c59e-19ebf17e.json`
+- `documents/metadata/doc-63b6c59e-1d14902b.json`
+- `documents/metadata/doc-63b6c59e-2f69d1af.json`
+- `documents/metadata/doc-63b6c59e-379bc394.json`
+- `documents/metadata/doc-63b6c59e-3c7c3c5f.json`
+- `documents/metadata/doc-63b6c59e-441d22e4.json`
+- `documents/metadata/doc-63b6c59e-456500f7.json`
+- `documents/metadata/doc-63b6c59e-4b1f86a5.json`
+- `documents/metadata/doc-63b6c59e-4d05f47e.json`
+- `documents/metadata/doc-63b6c59e-4e4c31bd.json`
+- `documents/metadata/doc-63b6c59e-57be68a7.json`
+- `documents/metadata/doc-63b6c59e-6312f66d.json`
+- `documents/metadata/doc-63b6c59e-68c1718f.json`
+- `documents/metadata/doc-63b6c59e-7138d9ce.json`
+- `documents/metadata/doc-63b6c59e-7ab2990d.json`
+- `documents/metadata/doc-63b6c59e-7b77bb7f.json`
+- `documents/metadata/doc-63b6c59e-88e75492.json`
+- `documents/metadata/doc-63b6c59e-8f64c149.json`
+- `documents/metadata/doc-63b6c59e-9112c332.json`
+- `documents/metadata/doc-63b6c59e-95501698.json`
+- `documents/metadata/doc-63b6c59e-9a414893.json`
+- `documents/metadata/doc-63b6c59e-9e82d6cc.json`
+- `documents/metadata/doc-63b6c59e-9f73ee8d.json`
+- `documents/metadata/doc-63b6c59e-a1caebe5.json`
+- `documents/metadata/doc-63b6c59e-acdbdf19.json`
+- `documents/metadata/doc-63b6c59e-b0c1f17f.json`
+- `documents/metadata/doc-63b6c59e-bc4656c5.json`
+- `documents/metadata/doc-63b6c59e-bd0bacf4.json`
+- `documents/metadata/doc-63b6c59e-c36758c5.json`
+- `documents/metadata/doc-63b6c59e-c4bedb28.json`
+- `documents/metadata/doc-63b6c59e-d28838c2.json`
+- `documents/metadata/doc-63b6c59e-d329ab6d.json`
+- `documents/metadata/doc-63b6c59e-d3307050.json`
+- `documents/metadata/doc-63b6c59e-d5ea9769.json`
+- `documents/metadata/doc-63b6c59e-d96a4cd2.json`
+- `documents/metadata/doc-63b6c59e-e6f3eddc.json`
+- `documents/metadata/doc-63b6c59e-e94c7d30.json`
+- `documents/metadata/doc-63b6c59e-eb048a1d.json`
+- `documents/metadata/doc-63b6c59e-ecca7b76.json`
+- `documents/metadata/doc-63b6c59e-ee3decdf.json`
+- `documents/metadata/doc-63b6c59e-f290dba6.json`
+- `documents/metadata/doc-63b6c59e-f304b200.json`
+- `documents/metadata/doc-63b6c59e-f360d94b.json`
+- `documents/metadata/doc-63b6c59e-fc8065d2.json`
+- `documents/metadata/doc-7b53c0b6-0f2a9a59.json`
+- `documents/metadata/doc-7b53c0b6-21d050f9.json`
+- `documents/metadata/doc-7b53c0b6-2c53b010.json`
+- `documents/metadata/doc-7b53c0b6-2cd7cc3e.json`
+- `documents/metadata/doc-7b53c0b6-2ebc53df.json`
+- `documents/metadata/doc-7b53c0b6-403f23af.json`
+- `documents/metadata/doc-7b53c0b6-4a00dbd6.json`
+- `documents/metadata/doc-7b53c0b6-4eadb403.json`
+- `documents/metadata/doc-7b53c0b6-52e49eb0.json`
+- `documents/metadata/doc-7b53c0b6-5378a36c.json`
+- `documents/metadata/doc-7b53c0b6-5731d561.json`
+- `documents/metadata/doc-7b53c0b6-5fb0256a.json`
+- `documents/metadata/doc-7b53c0b6-606d335c.json`
+- `documents/metadata/doc-7b53c0b6-610b02c5.json`
+- `documents/metadata/doc-7b53c0b6-6ebdd194.json`
+- `documents/metadata/doc-7b53c0b6-6f6d8d4f.json`
+- `documents/metadata/doc-7b53c0b6-791e3f9a.json`
+- `documents/metadata/doc-7b53c0b6-7b8f2c5f.json`
+- `documents/metadata/doc-7b53c0b6-7ba46da4.json`
+- `documents/metadata/doc-7b53c0b6-800ff0e3.json`
+- `documents/metadata/doc-7b53c0b6-85a90861.json`
+- `documents/metadata/doc-7b53c0b6-87b47f2f.json`
+- `documents/metadata/doc-7b53c0b6-8c2addd0.json`
+- `documents/metadata/doc-7b53c0b6-8f078b52.json`
+- `documents/metadata/doc-7b53c0b6-90a3943d.json`
+- `documents/metadata/doc-7b53c0b6-9eef3b80.json`
+- `documents/metadata/doc-7b53c0b6-a0c96ac6.json`
+- `documents/metadata/doc-7b53c0b6-a786bc5c.json`
+- `documents/metadata/doc-7b53c0b6-a7aa679d.json`
+- `documents/metadata/doc-7b53c0b6-a98d2e09.json`
+- `documents/metadata/doc-7b53c0b6-abc290fd.json`
+- `documents/metadata/doc-7b53c0b6-b119d726.json`
+- `documents/metadata/doc-7b53c0b6-ba07fcb3.json`
+- `documents/metadata/doc-7b53c0b6-bdac23f8.json`
+- `documents/metadata/doc-7b53c0b6-c18aff47.json`
+- `documents/metadata/doc-7b53c0b6-c60274a3.json`
+- `documents/metadata/doc-7b53c0b6-c6203b50.json`
+- `documents/metadata/doc-7b53c0b6-c93573cd.json`
+- `documents/metadata/doc-7b53c0b6-cbe333f3.json`
+- `documents/metadata/doc-7b53c0b6-cef43db3.json`
+- `documents/metadata/doc-7b53c0b6-de85f740.json`
+- `documents/metadata/doc-7b53c0b6-df44210b.json`
+- `documents/metadata/doc-7b53c0b6-e3302c38.json`
+- `documents/metadata/doc-7b53c0b6-e7b5e86d.json`
+- `documents/metadata/doc-7b53c0b6-edd1120d.json`
+- `documents/metadata/doc-7b53c0b6-ee2f800a.json`
+- `documents/metadata/doc-7b53c0b6-f5a2f98d.json`
+- `documents/metadata/doc-7b53c0b6-fd615529.json`
+- `documents/metadata/doc-7b53c0b6-fe24c910.json`
+- `documents/metadata/doc-9166205d-06bb9ad4.json`
+- `documents/metadata/doc-9166205d-1aba6432.json`
+- `documents/metadata/doc-9166205d-21c06769.json`
+- `documents/metadata/doc-9166205d-25a260f0.json`
+- `documents/metadata/doc-9166205d-266736a7.json`

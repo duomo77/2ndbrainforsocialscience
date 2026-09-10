@@ -1,44 +1,41 @@
 # Research Operating System (ROS)
 
-ROS는 논문, 강의 스크립트, 데이터셋, 수식, 연구 메모를 분석해 Obsidian용 Markdown 지식 노트로 변환하는 데스크톱 앱입니다.
+ROS는 논문, 강의 스크립트, 데이터셋, 수식, 연구 메모를 분석해 Obsidian용 Markdown 지식 노트로 변환하는 React/TypeScript 웹 앱입니다. Python 코어는 FastAPI 백엔드로 실행됩니다.
 
 ## 빠른 시작
 
-### Windows
-
-1. 프로젝트 폴더에서 `run.bat`을 실행합니다.
-2. 처음 실행 시 설정 창에서 API Provider, API Key, Model을 입력합니다.
-3. Obsidian을 사용한다면 볼트 폴더를 선택합니다.
-4. 입력 탭에서 파일 또는 텍스트를 넣고 `분석 시작`을 누릅니다.
-
-**Python 설치 명령**:
-```powershell
-pip install -r requirements.txt
-```
-
-명령줄에서 실행하려면:
-```powershell
-pip install -r requirements.txt
-python main.py
-```
-
-### macOS / Linux
+### macOS / Linux / Windows
 
 ```bash
-pip install -r requirements.txt
-python main.py
+python3 -m pip install -r requirements.txt
+npm install
+npm run dev
+```
+
+브라우저에서 `http://127.0.0.1:5173/`을 엽니다. API 키가 없어도 `demo-local` 모델로 로컬 데모 분석을 실행할 수 있습니다.
+
+업로드는 지원 확장자만 허용하며 요청당 50 MiB로 제한됩니다. 생성 노트에는 `ai_generated`, `human_verified`, `evidence_status`, `citation_status`, `provenance`가 기록되므로 AI 결과와 인간 검증 결과를 구분해 검토하세요.
+
+백엔드만 실행하려면:
+
+```bash
+python3 main.py
+```
+
+React 앱을 정적 파일로 빌드하려면:
+
+```bash
+npm run build
+python3 main.py
 ```
 
 ## 기본 사용 순서
 
-1. `설정`에서 LLM 연결과 Obsidian 볼트를 구성합니다.
-2. `프로필`에서 연구 분야, 관심 주제, 선호 방법론을 입력합니다.
-3. 왼쪽 입력 패널에서 작업 유형을 선택합니다.
-4. 파일을 선택하거나 텍스트를 직접 입력합니다.
-5. 노란색 준비 상태 메시지가 초록색 `분석 준비 완료`로 바뀌는지 확인합니다.
-6. `분석 시작`을 누릅니다.
-7. 가운데 결과를 검토한 뒤 저장하거나 Obsidian에서 엽니다.
-8. 최근 분석 목록을 더블클릭하면 저장된 노트를 다시 열 수 있습니다.
+1. 왼쪽 패널에서 입력 유형, 제목, 모델, 선택적 API 설정을 입력합니다.
+2. 파일을 선택하거나 텍스트를 직접 입력합니다.
+3. `Analyze`를 누릅니다.
+4. 오른쪽 결과 패널에서 생성된 Markdown을 검토합니다.
+5. 하단 Runtime Events에서 보안 검증, RAG, 그래프 업데이트 흐름을 확인합니다.
 
 ## 입력 유형
 
@@ -112,6 +109,8 @@ YourVault/
 ```
 
 기존 파일을 덮어쓸 때는 백업 파일을 생성합니다. 결과 Markdown은 `[[WikiLink]]`를 사용해 지식 그래프에 연결됩니다.
+
+백업은 볼트의 숨김 `.ros_backups/` 아래에 보관되며, 볼트 밖 경로와 symlink를 통한 저장은 차단됩니다. 자동 저장 실패는 분석 성공으로 처리되지 않습니다.
 
 ## 문제 해결
 
