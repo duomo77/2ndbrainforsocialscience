@@ -31,6 +31,7 @@ export interface AnalyzeResponse {
   topic: string;
   cached: boolean;
   saved_path: string;
+  deep_context_markdown: string;
+  deep_context_path: string;
   events: AnalysisEvent[];
 }
-

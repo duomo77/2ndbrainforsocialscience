@@ -90,6 +90,35 @@ def test_demo_analysis_endpoint_runs_without_pyqt_or_api_key(monkeypatch):
     assert any(event["kind"] == "status" for event in body["events"])
 
 
+def test_paper_demo_response_includes_deep_context(monkeypatch):
+    _disable_optional_engines(monkeypatch)
+    monkeypatch.setattr(
+        runtime_mod.WebAnalysisRuntime,
+        "update_semantic_graph",
+        lambda self, title, markdown: self._event(
+            "engine", "semantic_graph", {"nodes": 1, "edges": 0}
+        ),
+    )
+    client = TestClient(create_app())
+
+    response = client.post(
+        "/api/analyze",
+        json={
+            "input_type": "paper",
+            "raw_text": "Research question: Does policy affect employment? We use DID and parallel trends.",
+            "metadata": {"title": "Policy Paper"},
+            "model": "demo-local",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "type: paper" in body["markdown"]
+    assert "[[Policy Paper - Deep Research Context]]" in body["markdown"]
+    assert "type: research_context" in body["deep_context_markdown"]
+    assert body["deep_context_path"] == ""
+
+
 def test_file_upload_honors_multipart_analysis_fields(monkeypatch):
     captured = {}
 

@@ -31,6 +31,7 @@ FOLDER_MAP = {
     "equation":   "Equations",
     "code":       "Code",
     "concept":    "Concepts",
+    "research_context": "Contexts",
 }
 
 JOURNAL_TOPIC_MAP = {

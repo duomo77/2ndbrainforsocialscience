@@ -40,6 +40,7 @@ function App() {
   const [backendOk, setBackendOk] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [outputView, setOutputView] = useState<"card" | "context">("card");
 
   useEffect(() => {
     health()
@@ -70,6 +71,7 @@ function App() {
       const response = file ? await analyzeFile(file, payload) : await analyzeText(payload);
       setResult(response);
       setEvents(response.events);
+      setOutputView(response.deep_context_markdown ? "context" : "card");
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Analysis failed");
     } finally {
@@ -78,9 +80,16 @@ function App() {
   }
 
   async function copyMarkdown() {
-    if (!result?.markdown) return;
-    await navigator.clipboard.writeText(result.markdown);
+    const activeMarkdown =
+      outputView === "context" ? result?.deep_context_markdown : result?.markdown;
+    if (!activeMarkdown) return;
+    await navigator.clipboard.writeText(activeMarkdown);
   }
+
+  const activeMarkdown =
+    outputView === "context"
+      ? result?.deep_context_markdown || "Deep Research Context will appear for paper inputs."
+      : result?.markdown || "Markdown output will appear here.";
 
   return (
     <main className="app-shell">
@@ -179,12 +188,44 @@ function App() {
               <CheckCircle2 aria-hidden="true" size={18} />
               <h2>Result</h2>
             </div>
-            <button className="icon-button" onClick={copyMarkdown} disabled={!result?.markdown} title="Copy Markdown">
-              <Clipboard aria-hidden="true" size={18} />
-            </button>
+            <div className="result-actions">
+              <div className="output-tabs" role="tablist" aria-label="Output layer">
+                <button
+                  className={outputView === "card" ? "active" : ""}
+                  onClick={() => setOutputView("card")}
+                  role="tab"
+                  aria-selected={outputView === "card"}
+                >
+                  Card
+                </button>
+                <button
+                  className={outputView === "context" ? "active" : ""}
+                  onClick={() => setOutputView("context")}
+                  disabled={!result?.deep_context_markdown}
+                  role="tab"
+                  aria-selected={outputView === "context"}
+                >
+                  Context
+                </button>
+              </div>
+              <button
+                className="icon-button"
+                onClick={copyMarkdown}
+                disabled={!result?.markdown}
+                title="Copy active Markdown"
+              >
+                <Clipboard aria-hidden="true" size={18} />
+              </button>
+            </div>
           </div>
           {error ? <div className="error-box">{error}</div> : null}
-          <pre className="markdown-output">{result?.markdown || "Markdown output will appear here."}</pre>
+          {result?.saved_path || result?.deep_context_path ? (
+            <div className="save-paths">
+              {result.saved_path ? <p>Saved: {result.saved_path}</p> : null}
+              {result.deep_context_path ? <p>Context: {result.deep_context_path}</p> : null}
+            </div>
+          ) : null}
+          <pre className="markdown-output">{activeMarkdown}</pre>
         </section>
       </section>
 
@@ -207,4 +248,3 @@ function App() {
 }
 
 export default App;
-

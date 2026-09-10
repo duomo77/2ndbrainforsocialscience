@@ -24,6 +24,7 @@ from core.intel.figure_detector import FigureDetector, detect_figures
 from core.intel.equation_extractor import EquationExtractor, extract_equations
 from core.intel.parser_base import BaseDocumentParser, parse_with_intel
 from core.intel.ocr_base import OCREngineProvider, get_default_ocr_engine, NoOpOCREngineProvider
+from core.interfaces import OCRResult
 
 
 @pytest.fixture
@@ -300,6 +301,16 @@ class TestEquationExtractor:
     def test_inline_equations_found(self, sample_rich_text):
         assert isinstance(extract_equations(sample_rich_text), list)
 
+    def test_equation_blocks_preserve_raw_latex_and_validation(self):
+        equations = extract_equations("Model: $y_i = x_i + e_i$.", page_number=2)
+
+        assert equations
+        eq = equations[0]
+        assert eq.raw_latex == "y_i = x_i + e_i"
+        assert eq.normalized_latex == eq.raw_latex
+        assert eq.metadata["latex_validation"]["valid"] is True
+        assert eq.verification_status == "RAW_OCR"
+
 
 class TestOCREngineProvider:
     def test_stub_provider_initializes(self):
@@ -347,6 +358,79 @@ class TestDocumentIntelligenceManager:
     def test_status_report(self):
         from core.intel import DocumentIntelligenceManager
         assert isinstance(DocumentIntelligenceManager().get_status(), dict)
+
+    def test_process_extracts_structured_markdown_and_initializes_services(self, tmp_path):
+        from core.intel import DocumentIntelligenceManager
+
+        path = tmp_path / "paper.md"
+        path.write_text(
+            "Abstract\n\nThis paper studies institutions.\n\n"
+            "Methodology\n\nWe estimate $y_i = x_i + e_i$ using archival data.\n",
+            encoding="utf-8",
+        )
+
+        doc = DocumentIntelligenceManager().process(path)
+
+        assert doc.raw_text
+        assert doc.category == DocumentCategory.RESEARCH_PAPER
+        assert doc.parser_used == "text_parser"
+        assert doc.total_pages == 1
+        assert doc.equations
+        assert doc.quality.is_acceptable
+
+    def test_process_reuses_cached_document_without_exposing_mutable_cache(self, tmp_path):
+        from core.intel import DocumentIntelligenceManager
+
+        path = tmp_path / "paper.md"
+        path.write_text("Abstract\n\nOriginal content.\n", encoding="utf-8")
+        manager = DocumentIntelligenceManager()
+
+        first = manager.process(path)
+        first.raw_text = "mutated outside cache"
+        second = manager.process(path)
+
+        assert second.raw_text == "Abstract\n\nOriginal content."
+        assert len(manager._cache) == 1
+
+    def test_process_does_not_mutate_options(self, tmp_path):
+        from core.intel import DocumentIntelligenceManager
+
+        path = tmp_path / "note.txt"
+        path.write_text("Methodology\n\nA short note.", encoding="utf-8")
+        options = {"parser_confidence": 0.42}
+
+        doc = DocumentIntelligenceManager().process(path, options)
+
+        assert options == {"parser_confidence": 0.42}
+        assert doc.quality.parser_confidence == 0.42
+
+    def test_process_routes_image_input_through_ocr_provider(self, tmp_path):
+        from core.intel import DocumentIntelligenceManager
+
+        class FakeOCREngine(NoOpOCREngineProvider):
+            @property
+            def name(self):
+                return "fake-ocr"
+
+            def extract_text(self, file_path: Path, **options):
+                return OCRResult(
+                    text="Abstract\n\nOCR text from scan.",
+                    page_count=1,
+                    confidence=0.91,
+                    metadata={"page_count": 1},
+                )
+
+        path = tmp_path / "scan.png"
+        path.write_bytes(b"fake image bytes")
+        manager = DocumentIntelligenceManager()
+        manager._ocr_engine = FakeOCREngine()
+
+        doc = manager.process(path)
+
+        assert doc.raw_text == "Abstract\n\nOCR text from scan."
+        assert doc.ocr_engine == "fake-ocr"
+        assert doc.quality.ocr_confidence == 0.91
+        assert any("OCR used" in warning for warning in doc.quality.warnings)
 
 
 class TestBackwardCompatibility:

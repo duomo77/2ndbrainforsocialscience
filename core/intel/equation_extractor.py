@@ -71,13 +71,18 @@ class EquationExtractor:
                 before, after = self._find_context(text, m.start())
                 ref_id = self._find_reference_id(text, m.end())
                 eq_type = "numbered" if ref_id else "display"
+                metadata = self._build_equation_metadata(latex_raw)
                 results.append(EquationBlock(
                     latex=latex_raw,
+                    raw_latex=latex_raw,
+                    normalized_latex=latex_raw,
                     type=eq_type,
                     page_number=start_page,
                     context_before=before,
                     context_after=after,
                     reference_id=ref_id,
+                    confidence=metadata["latex_quality"],
+                    metadata=metadata,
                 ))
                 consumed.append(m.span())
         return results
@@ -95,14 +100,20 @@ class EquationExtractor:
             before, after = self._find_context(text, m.start())
             ref_id = self._find_reference_id(text, m.end())
             eq_type = "numbered" if ref_id else "display"
+            full_latex = f"\\begin{{{env_name}}}{latex_raw}\\end{{{env_name}}}"
+            metadata = self._build_equation_metadata(full_latex)
+            metadata["environment"] = env_name
             results.append(EquationBlock(
-                latex=f"\\begin{{{env_name}}}{latex_raw}\\end{{{env_name}}}",
+                latex=full_latex,
+                raw_latex=full_latex,
+                normalized_latex=full_latex,
                 type=eq_type,
                 page_number=start_page,
                 context_before=before,
                 context_after=after,
                 reference_id=ref_id,
-                metadata={"environment": env_name},
+                confidence=metadata["latex_quality"],
+                metadata=metadata,
             ))
             consumed.append(m.span())
         return results
@@ -121,13 +132,18 @@ class EquationExtractor:
                 continue
             before, after = self._find_context(text, m.start())
             ref_id = self._find_reference_id(text, m.end())
+            metadata = self._build_equation_metadata(latex_raw)
             results.append(EquationBlock(
                 latex=latex_raw,
+                raw_latex=latex_raw,
+                normalized_latex=latex_raw,
                 type="numbered" if ref_id else "inline",
                 page_number=start_page,
                 context_before=before,
                 context_after=after,
                 reference_id=ref_id,
+                confidence=metadata["latex_quality"],
+                metadata=metadata,
             ))
             consumed.append(m.span())
         return results
@@ -185,6 +201,38 @@ class EquationExtractor:
         if unclosed:
             score -= 0.2
         return max(0.0, min(1.0, score))
+
+    @classmethod
+    def _build_equation_metadata(cls, latex_str: str) -> dict:
+        """Attach validation/provenance hints without rewriting the equation."""
+        return {
+            "latex_quality": cls.estimate_latex_quality(latex_str),
+            "latex_validation": cls.validate_latex(latex_str),
+            "provenance_status": "source_text_extracted",
+        }
+
+    @staticmethod
+    def validate_latex(latex_str: str) -> dict:
+        """Lightweight LaTeX sanity checks used as provenance metadata."""
+        brace_balance = 0
+        min_balance = 0
+        for char in latex_str:
+            if char == "{":
+                brace_balance += 1
+            elif char == "}":
+                brace_balance -= 1
+                min_balance = min(min_balance, brace_balance)
+
+        begin_envs = re.findall(r"\\begin\{([^}]+)\}", latex_str)
+        end_envs = re.findall(r"\\end\{([^}]+)\}", latex_str)
+        envs_balanced = begin_envs == end_envs
+        braces_balanced = brace_balance == 0 and min_balance >= 0
+
+        return {
+            "balanced_braces": braces_balanced,
+            "balanced_environments": envs_balanced,
+            "valid": braces_balanced and envs_balanced,
+        }
 
 
 def extract_equations(text: str, page_number: int = -1) -> List[EquationBlock]:

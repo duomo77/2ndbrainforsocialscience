@@ -1,6 +1,6 @@
 # Actual Repository Map
 
-Generated: 2026-09-07T07:12:08.041938+00:00
+Generated: 2026-09-10T05:14:52.975751+00:00
 
 ## Source Code
 
@@ -10,7 +10,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `config/app_config.py` -- classes: AppConfig, ConfigSchema; functions: __init__, api_key, auto_save, auto_sync, base_url, cache_dir, debug_mode, get
 - `conftest.py` -- classes: -; functions: qt_app
 - `core/__init__.py` -- classes: -; functions: -
-- `core/analysis_pipeline.py` -- classes: AnalysisCallbacks, AnalysisPipeline, AnalysisRuntime, PipelineOutcome; functions: __init__, _apply_epistemic_envelope, _llm_call, _safe_fallback, _save_output, _store_memory_trust, _update_graph_integrity, _validate_metadata
+- `core/analysis_pipeline.py` -- classes: AnalysisCallbacks, AnalysisPipeline, AnalysisRuntime, PipelineOutcome; functions: __init__, _apply_epistemic_envelope, _avoid_human_verified_context_overwrite, _build_deep_context_if_needed, _llm_call, _safe_fallback, _save_deep_context, _save_output
 - `core/classifier.py` -- classes: ClassificationResult, UniversalClassifier; functions: __init__, _build, classify, classify_by_journal, classify_paper, get_all_disciplines, get_all_topics, get_classifier
 - `core/config.py` -- classes: Config; functions: __contains__, __getitem__, __init__, __setitem__, _atomic_write_json, _backup_corrupt_config, _normalize_aliases, _restrict_secret_permissions
 - `core/constants.py` -- classes: -; functions: -
@@ -25,7 +25,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `core/idea_lineage.py` -- classes: IdeaLineageEngine, LineageBranch, LineageNode, LineageStore, TransformationType; functions: __init__, __init__, _build_tree, _compute_semantic_diff, _content_hash, _load, _make_lineage_id, _save
 - `core/intel/__init__.py` -- classes: -; functions: -
 - `core/intel/classifier.py` -- classes: DocumentClassifier; functions: _classify_by_content, _classify_by_extension, _count_section_matches, _detect_pdf_type, _infer_page_count, classify, classify_document, infer_category_from_score
-- `core/intel/equation_extractor.py` -- classes: EquationExtractor; functions: _extract_display_equations, _extract_env_equations, _extract_inline_equations, _find_context, _find_reference_id, estimate_latex_quality, extract, extract_equations
+- `core/intel/equation_extractor.py` -- classes: EquationExtractor; functions: _build_equation_metadata, _extract_display_equations, _extract_env_equations, _extract_inline_equations, _find_context, _find_reference_id, estimate_latex_quality, extract
 - `core/intel/figure_detector.py` -- classes: FigureDetector; functions: _extract_caption, _find_ascii_art_regions, _find_equation_blocks, _find_figure_references, _infer_kind, count_references_in_text, detect, detect_figures
 - `core/intel/intelligence_manager.py` -- classes: DocumentIntelligenceManager; functions: __init__, _build_doc, _classify, _content_hash, _enrich, _ensure_services, _extract_raw, _get_cached
 - `core/intel/language_detector.py` -- classes: LanguageDetector; functions: _detect_encoding, _detect_from_common_words, _detect_from_unicode_ranges, _detect_writing_direction, _get_iso639_name, _is_mixed_languages, _sample_text, detect
@@ -66,6 +66,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `core/qualitative_engine.py` -- classes: DiscourseFrame, EpistemicDetector, EpistemicMode, EpistemicProfile, EpistemicTension, MaterialType, MixedMethodIntegrator, MultiEpistemicEngine; functions: __init__, __init__, detect, detect_concept_drift, detect_integration_strategy, detect_mode, entropy_report, extract_discourse_frames
 - `core/rag_engine.py` -- classes: CheapestCognitionRouter, CognitionPath, HierarchicalRetriever, MemoryTier, RAGContextBuilder, RAGEngine, RAGMetrics, RetrievalCandidate; functions: __init__, __init__, __init__, __init__, _compute_recency_decay, _compute_recency_decay_from_mtime, _estimate_abstraction_density, _estimate_cost_saved
 - `core/rag_observability.py` -- classes: CompressionResult, ContextCompressor, RAGEvent, RAGObservability; functions: __init__, _abstraction_aware_summarization, _check_alerts, _compute_health_status, _graph_condensation, _importance_score, _line_importance, _lineage_summarization
+- `core/research_context.py` -- classes: BackgroundConcept, MethodSignal, ResearchContext; functions: _clean_sentence, _concept_intuition, _detect_assumptions, _detect_concepts, _detect_methods, _empirical_background, _evidence_status_block, _extract_contribution
 - `core/research_tension.py` -- classes: KnowledgeGraphDB, KnowledgeGraphEdge, KnowledgeGraphNode, ResearchTensionEngine, TensionAlert, TensionType; functions: __init__, __init__, _load, _load, _save, _save, acknowledge, add_concept_node
 - `core/ros_engine.py` -- classes: -; functions: _build_client, _call_llm, _detect_epistemic_mode, _detect_provider, _extract_frontmatter_tags, _extract_text, _format_profile, _is_qwen3
 - `core/ros_logger.py` -- classes: StructuredLogger; functions: _configure_root_logger, _get_event_file, get_logger, log_analysis_complete, log_analysis_start, log_engine_status, log_error, log_event
@@ -109,7 +110,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `tests/conftest.py` -- classes: -; functions: qt_app
 - `tests/test_analysis_pipeline.py` -- classes: _Cache, _Gate, _Incremental; functions: __init__, __init__, __init__, _run, _runtime, get_analysis, mark_computed, needs_recompute
 - `tests/test_config_reliability.py` -- classes: -; functions: _point_config_at, test_config_save_normalizes_legacy_aliases, test_corrupt_config_is_backed_up_before_defaults, test_save_config_is_atomic_and_loadable
-- `tests/test_document_intelligence.py` -- classes: TestBackwardCompatibility, TestBaseDocumentParser, TestDocumentClassifier, TestDocumentIntelligenceManager, TestEquationExtractor, TestFigureDetector, TestLanguageDetector, TestLayoutAnalyzer; functions: _do_parse, sample_paper_text, sample_rich_text, test_analyze_full_pipeline, test_classify_research_paper, test_code_file_classification, test_content_scoring_returns_valid_result, test_create_manager
+- `tests/test_document_intelligence.py` -- classes: FakeOCREngine, TestBackwardCompatibility, TestBaseDocumentParser, TestDocumentClassifier, TestDocumentIntelligenceManager, TestEquationExtractor, TestFigureDetector, TestLanguageDetector; functions: _do_parse, extract_text, name, sample_paper_text, sample_rich_text, test_analyze_full_pipeline, test_classify_research_paper, test_code_file_classification
 - `tests/test_document_pipeline.py` -- classes: TestBackwardCompatibility, TestCodeParser, TestDocumentCleaner, TestDocumentIdentifier, TestDocumentManager, TestDocumentPipeline, TestDocumentValidator, TestErrorRecovery; functions: _setup, cleaner, identifier, sample_csv_file, sample_html_file, sample_md_file, sample_txt_file, test_all_standard_parsers_registered
 - `tests/test_graph_integrity_transactions.py` -- classes: -; functions: test_graph_integrity_engine_initializes_mutation_counter, test_graph_integrity_transaction_rejects_dangling_edge_and_rolls_back
 - `tests/test_input_file_support.py` -- classes: -; functions: test_audio_file_is_detected_but_requires_transcription, test_markdown_file_is_supported_as_notes, test_srt_and_vtt_are_supported_as_transcripts, test_tsv_dataset_is_supported
@@ -127,7 +128,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `tests/test_semantic_knowledge_graph.py` -- classes: -; functions: test_markdown_extractor_creates_first_class_methods_questions_and_relationships, test_service_ingestion_is_idempotent_and_updates_importance, test_store_persists_typed_nodes_and_weighted_edges_atomically, test_store_rejects_dangling_edges_without_partial_writes
 - `tests/test_system_integrity_verifier.py` -- classes: -; functions: _minimal_repo, _write, test_cli_generates_reports, test_generate_reports_writes_required_integrity_artifacts
 - `tests/test_v8.py` -- classes: TestClassifier, TestContradictionEngine, TestEdgeCases, TestEngineLoader, TestIntegration, TestNoteEvolution, TestObsidianSync, TestRegressions; functions: test_all_disciplines_defined, test_all_engines_logged, test_atomic_write_no_partial_file, test_classifier_empty_inputs, test_economics_journal, test_empty_input_handled, test_empty_markdown_obsidian_save, test_engine_loader_concurrent_calls
-- `tests/test_web_api.py` -- classes: -; functions: _disable_optional_engines, fake_analysis, test_demo_analysis_endpoint_runs_without_pyqt_or_api_key, test_file_upload_honors_multipart_analysis_fields, test_file_upload_rejects_oversized_payload, test_file_upload_rejects_unsupported_extension, test_health_endpoint_reports_fastapi_runtime
+- `tests/test_web_api.py` -- classes: -; functions: _disable_optional_engines, fake_analysis, test_demo_analysis_endpoint_runs_without_pyqt_or_api_key, test_file_upload_honors_multipart_analysis_fields, test_file_upload_rejects_oversized_payload, test_file_upload_rejects_unsupported_extension, test_health_endpoint_reports_fastapi_runtime, test_paper_demo_response_includes_deep_context
 - `tests/test_worker_semantic_graph.py` -- classes: -; functions: _worker, fail, test_worker_emits_semantic_graph_metrics, test_worker_reports_semantic_graph_failure_without_raising
 
 ## Configuration
@@ -189,6 +190,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 
 ## Generated / Runtime Data
 
+- `documents/metadata/doc-054bb2a5-0021f43b.json`
 - `documents/metadata/doc-054bb2a5-01f9119e.json`
 - `documents/metadata/doc-054bb2a5-03e95f84.json`
 - `documents/metadata/doc-054bb2a5-06eb75be.json`
@@ -202,20 +204,26 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-054bb2a5-3e1cdf5b.json`
 - `documents/metadata/doc-054bb2a5-40d40038.json`
 - `documents/metadata/doc-054bb2a5-424380f7.json`
+- `documents/metadata/doc-054bb2a5-4bea9103.json`
 - `documents/metadata/doc-054bb2a5-4fdbacc6.json`
 - `documents/metadata/doc-054bb2a5-510cb056.json`
 - `documents/metadata/doc-054bb2a5-5cc93ca9.json`
+- `documents/metadata/doc-054bb2a5-6526940a.json`
 - `documents/metadata/doc-054bb2a5-6746a27f.json`
 - `documents/metadata/doc-054bb2a5-6a674706.json`
 - `documents/metadata/doc-054bb2a5-6ed626c2.json`
 - `documents/metadata/doc-054bb2a5-6f07f999.json`
+- `documents/metadata/doc-054bb2a5-70002b97.json`
 - `documents/metadata/doc-054bb2a5-747bab48.json`
 - `documents/metadata/doc-054bb2a5-76fd65bc.json`
 - `documents/metadata/doc-054bb2a5-7b7a8794.json`
+- `documents/metadata/doc-054bb2a5-7c30afbe.json`
 - `documents/metadata/doc-054bb2a5-7e8f26ce.json`
 - `documents/metadata/doc-054bb2a5-848c2341.json`
 - `documents/metadata/doc-054bb2a5-85fd8da4.json`
+- `documents/metadata/doc-054bb2a5-86b49860.json`
 - `documents/metadata/doc-054bb2a5-89366d08.json`
+- `documents/metadata/doc-054bb2a5-8c2be506.json`
 - `documents/metadata/doc-054bb2a5-8d38c4cb.json`
 - `documents/metadata/doc-054bb2a5-90740e0d.json`
 - `documents/metadata/doc-054bb2a5-92997979.json`
@@ -223,16 +231,19 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-054bb2a5-96659d72.json`
 - `documents/metadata/doc-054bb2a5-aba66b36.json`
 - `documents/metadata/doc-054bb2a5-ad64d888.json`
+- `documents/metadata/doc-054bb2a5-addc9130.json`
 - `documents/metadata/doc-054bb2a5-af7d9d1e.json`
 - `documents/metadata/doc-054bb2a5-bcee1474.json`
 - `documents/metadata/doc-054bb2a5-c7a7969f.json`
 - `documents/metadata/doc-054bb2a5-d4ad1e99.json`
 - `documents/metadata/doc-054bb2a5-d8bdcbc4.json`
 - `documents/metadata/doc-054bb2a5-dfbd4087.json`
+- `documents/metadata/doc-054bb2a5-e06db380.json`
 - `documents/metadata/doc-054bb2a5-e3c2daaf.json`
 - `documents/metadata/doc-054bb2a5-e4c87b02.json`
 - `documents/metadata/doc-054bb2a5-e6b7a504.json`
 - `documents/metadata/doc-054bb2a5-e7211ab5.json`
+- `documents/metadata/doc-054bb2a5-e92ae169.json`
 - `documents/metadata/doc-054bb2a5-e9c2e9c6.json`
 - `documents/metadata/doc-054bb2a5-f5308ce0.json`
 - `documents/metadata/doc-054bb2a5-f7be21fd.json`
@@ -251,6 +262,8 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-1241389e.json`
 - `documents/metadata/doc-40545fde-12bd0f43.json`
 - `documents/metadata/doc-40545fde-13693abc.json`
+- `documents/metadata/doc-40545fde-146d4dba.json`
+- `documents/metadata/doc-40545fde-1520aca0.json`
 - `documents/metadata/doc-40545fde-15699e5c.json`
 - `documents/metadata/doc-40545fde-158774e3.json`
 - `documents/metadata/doc-40545fde-15e85f3b.json`
@@ -260,11 +273,13 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-1a94cb5b.json`
 - `documents/metadata/doc-40545fde-1c78fd3d.json`
 - `documents/metadata/doc-40545fde-1d768fe3.json`
+- `documents/metadata/doc-40545fde-1ee55ae8.json`
 - `documents/metadata/doc-40545fde-1f32d43e.json`
 - `documents/metadata/doc-40545fde-20642891.json`
 - `documents/metadata/doc-40545fde-20667162.json`
 - `documents/metadata/doc-40545fde-255ac7e6.json`
 - `documents/metadata/doc-40545fde-27881406.json`
+- `documents/metadata/doc-40545fde-28c34149.json`
 - `documents/metadata/doc-40545fde-2a4ef2b0.json`
 - `documents/metadata/doc-40545fde-2d8fd8c1.json`
 - `documents/metadata/doc-40545fde-33a8b687.json`
@@ -272,6 +287,8 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-35ad75d6.json`
 - `documents/metadata/doc-40545fde-3a3a72c4.json`
 - `documents/metadata/doc-40545fde-3bfede47.json`
+- `documents/metadata/doc-40545fde-3d1619e7.json`
+- `documents/metadata/doc-40545fde-3e670c32.json`
 - `documents/metadata/doc-40545fde-3e9df31b.json`
 - `documents/metadata/doc-40545fde-3ebd0811.json`
 - `documents/metadata/doc-40545fde-3edf4625.json`
@@ -281,7 +298,9 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-444ea45b.json`
 - `documents/metadata/doc-40545fde-446f5fc8.json`
 - `documents/metadata/doc-40545fde-4840e8db.json`
+- `documents/metadata/doc-40545fde-49b3dfc2.json`
 - `documents/metadata/doc-40545fde-4b25416b.json`
+- `documents/metadata/doc-40545fde-4c589b00.json`
 - `documents/metadata/doc-40545fde-4db89961.json`
 - `documents/metadata/doc-40545fde-51354082.json`
 - `documents/metadata/doc-40545fde-51cacce7.json`
@@ -300,6 +319,7 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-647837a6.json`
 - `documents/metadata/doc-40545fde-671146d2.json`
 - `documents/metadata/doc-40545fde-69a4f862.json`
+- `documents/metadata/doc-40545fde-6aaec4ad.json`
 - `documents/metadata/doc-40545fde-6cb8cd9b.json`
 - `documents/metadata/doc-40545fde-71596070.json`
 - `documents/metadata/doc-40545fde-722a656a.json`
@@ -309,9 +329,13 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-7468fc55.json`
 - `documents/metadata/doc-40545fde-75777eb6.json`
 - `documents/metadata/doc-40545fde-78cafcf0.json`
+- `documents/metadata/doc-40545fde-79521ead.json`
 - `documents/metadata/doc-40545fde-795fba3c.json`
+- `documents/metadata/doc-40545fde-7a695c2b.json`
 - `documents/metadata/doc-40545fde-7acbb64d.json`
+- `documents/metadata/doc-40545fde-7e2ab315.json`
 - `documents/metadata/doc-40545fde-80d73a33.json`
+- `documents/metadata/doc-40545fde-83e6e091.json`
 - `documents/metadata/doc-40545fde-88a41f19.json`
 - `documents/metadata/doc-40545fde-88fae5ca.json`
 - `documents/metadata/doc-40545fde-89f44540.json`
@@ -324,24 +348,32 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-98112f2e.json`
 - `documents/metadata/doc-40545fde-984729d3.json`
 - `documents/metadata/doc-40545fde-9dee9505.json`
+- `documents/metadata/doc-40545fde-a09ad956.json`
 - `documents/metadata/doc-40545fde-a179cc1b.json`
 - `documents/metadata/doc-40545fde-a19323e3.json`
 - `documents/metadata/doc-40545fde-a1cc8cb6.json`
 - `documents/metadata/doc-40545fde-a464c695.json`
+- `documents/metadata/doc-40545fde-a5836e77.json`
+- `documents/metadata/doc-40545fde-a5aebb6e.json`
 - `documents/metadata/doc-40545fde-a66793b7.json`
+- `documents/metadata/doc-40545fde-a7588c96.json`
 - `documents/metadata/doc-40545fde-aaf0f02a.json`
 - `documents/metadata/doc-40545fde-ad21b5e1.json`
 - `documents/metadata/doc-40545fde-ad6a7fe3.json`
+- `documents/metadata/doc-40545fde-ae5e89ed.json`
 - `documents/metadata/doc-40545fde-aea5829b.json`
 - `documents/metadata/doc-40545fde-afc64a07.json`
 - `documents/metadata/doc-40545fde-b2ec6203.json`
 - `documents/metadata/doc-40545fde-b569c6af.json`
+- `documents/metadata/doc-40545fde-b5bcc7b4.json`
 - `documents/metadata/doc-40545fde-b6f72fde.json`
+- `documents/metadata/doc-40545fde-b725b119.json`
 - `documents/metadata/doc-40545fde-b88f707a.json`
 - `documents/metadata/doc-40545fde-b9b288ac.json`
 - `documents/metadata/doc-40545fde-b9c97149.json`
 - `documents/metadata/doc-40545fde-bbadc086.json`
 - `documents/metadata/doc-40545fde-bd042d15.json`
+- `documents/metadata/doc-40545fde-bed355a7.json`
 - `documents/metadata/doc-40545fde-bf101f8e.json`
 - `documents/metadata/doc-40545fde-bf4cf460.json`
 - `documents/metadata/doc-40545fde-bf540ca0.json`
@@ -350,28 +382,37 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-40545fde-c5d17a8d.json`
 - `documents/metadata/doc-40545fde-c9ccbf88.json`
 - `documents/metadata/doc-40545fde-cc282551.json`
+- `documents/metadata/doc-40545fde-cd1ac600.json`
 - `documents/metadata/doc-40545fde-ceab3bbf.json`
 - `documents/metadata/doc-40545fde-cf5df933.json`
 - `documents/metadata/doc-40545fde-cf8e1143.json`
 - `documents/metadata/doc-40545fde-d07e7d21.json`
 - `documents/metadata/doc-40545fde-d1f5490e.json`
+- `documents/metadata/doc-40545fde-d5558617.json`
 - `documents/metadata/doc-40545fde-d862a309.json`
+- `documents/metadata/doc-40545fde-d93e863b.json`
 - `documents/metadata/doc-40545fde-d98633cd.json`
+- `documents/metadata/doc-40545fde-db28ec06.json`
 - `documents/metadata/doc-40545fde-de3cb524.json`
 - `documents/metadata/doc-40545fde-df17a127.json`
 - `documents/metadata/doc-40545fde-e0f5b227.json`
 - `documents/metadata/doc-40545fde-e1949465.json`
 - `documents/metadata/doc-40545fde-e32eb8e7.json`
 - `documents/metadata/doc-40545fde-e448e0e1.json`
+- `documents/metadata/doc-40545fde-e6587955.json`
+- `documents/metadata/doc-40545fde-e67766e3.json`
 - `documents/metadata/doc-40545fde-e6c4ba20.json`
 - `documents/metadata/doc-40545fde-e8c23dd4.json`
 - `documents/metadata/doc-40545fde-e920c78c.json`
 - `documents/metadata/doc-40545fde-e96c9725.json`
 - `documents/metadata/doc-40545fde-eb0557e1.json`
+- `documents/metadata/doc-40545fde-eb291a54.json`
 - `documents/metadata/doc-40545fde-edd21345.json`
+- `documents/metadata/doc-40545fde-ef094063.json`
 - `documents/metadata/doc-40545fde-ef22c6e8.json`
 - `documents/metadata/doc-40545fde-f0ae42cb.json`
 - `documents/metadata/doc-40545fde-f2de4f64.json`
+- `documents/metadata/doc-40545fde-f2f39dac.json`
 - `documents/metadata/doc-40545fde-f34265c2.json`
 - `documents/metadata/doc-40545fde-f353c4dd.json`
 - `documents/metadata/doc-40545fde-f3d6ad8d.json`
@@ -390,9 +431,12 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-63b6c59e-09dd2435.json`
 - `documents/metadata/doc-63b6c59e-0d968afe.json`
 - `documents/metadata/doc-63b6c59e-105e9f7a.json`
+- `documents/metadata/doc-63b6c59e-10a9204d.json`
+- `documents/metadata/doc-63b6c59e-13c186a3.json`
 - `documents/metadata/doc-63b6c59e-160185ff.json`
 - `documents/metadata/doc-63b6c59e-19ebf17e.json`
 - `documents/metadata/doc-63b6c59e-1d14902b.json`
+- `documents/metadata/doc-63b6c59e-1fb751a9.json`
 - `documents/metadata/doc-63b6c59e-2f69d1af.json`
 - `documents/metadata/doc-63b6c59e-379bc394.json`
 - `documents/metadata/doc-63b6c59e-3c7c3c5f.json`
@@ -401,12 +445,14 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-63b6c59e-4b1f86a5.json`
 - `documents/metadata/doc-63b6c59e-4d05f47e.json`
 - `documents/metadata/doc-63b6c59e-4e4c31bd.json`
+- `documents/metadata/doc-63b6c59e-57075c1b.json`
 - `documents/metadata/doc-63b6c59e-57be68a7.json`
 - `documents/metadata/doc-63b6c59e-6312f66d.json`
 - `documents/metadata/doc-63b6c59e-68c1718f.json`
 - `documents/metadata/doc-63b6c59e-7138d9ce.json`
 - `documents/metadata/doc-63b6c59e-7ab2990d.json`
 - `documents/metadata/doc-63b6c59e-7b77bb7f.json`
+- `documents/metadata/doc-63b6c59e-8207bdb1.json`
 - `documents/metadata/doc-63b6c59e-88e75492.json`
 - `documents/metadata/doc-63b6c59e-8f64c149.json`
 - `documents/metadata/doc-63b6c59e-9112c332.json`
@@ -417,13 +463,16 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-63b6c59e-a1caebe5.json`
 - `documents/metadata/doc-63b6c59e-acdbdf19.json`
 - `documents/metadata/doc-63b6c59e-b0c1f17f.json`
+- `documents/metadata/doc-63b6c59e-b5251518.json`
 - `documents/metadata/doc-63b6c59e-bc4656c5.json`
 - `documents/metadata/doc-63b6c59e-bd0bacf4.json`
 - `documents/metadata/doc-63b6c59e-c36758c5.json`
 - `documents/metadata/doc-63b6c59e-c4bedb28.json`
+- `documents/metadata/doc-63b6c59e-c54ea365.json`
 - `documents/metadata/doc-63b6c59e-d28838c2.json`
 - `documents/metadata/doc-63b6c59e-d329ab6d.json`
 - `documents/metadata/doc-63b6c59e-d3307050.json`
+- `documents/metadata/doc-63b6c59e-d3d25500.json`
 - `documents/metadata/doc-63b6c59e-d5ea9769.json`
 - `documents/metadata/doc-63b6c59e-d96a4cd2.json`
 - `documents/metadata/doc-63b6c59e-e6f3eddc.json`
@@ -431,61 +480,13 @@ Generated: 2026-09-07T07:12:08.041938+00:00
 - `documents/metadata/doc-63b6c59e-eb048a1d.json`
 - `documents/metadata/doc-63b6c59e-ecca7b76.json`
 - `documents/metadata/doc-63b6c59e-ee3decdf.json`
+- `documents/metadata/doc-63b6c59e-efe16fd9.json`
 - `documents/metadata/doc-63b6c59e-f290dba6.json`
 - `documents/metadata/doc-63b6c59e-f304b200.json`
 - `documents/metadata/doc-63b6c59e-f360d94b.json`
+- `documents/metadata/doc-63b6c59e-f5888cf1.json`
 - `documents/metadata/doc-63b6c59e-fc8065d2.json`
+- `documents/metadata/doc-7b53c0b6-034fb31c.json`
+- `documents/metadata/doc-7b53c0b6-05a9c5e7.json`
 - `documents/metadata/doc-7b53c0b6-0f2a9a59.json`
-- `documents/metadata/doc-7b53c0b6-21d050f9.json`
-- `documents/metadata/doc-7b53c0b6-2c53b010.json`
-- `documents/metadata/doc-7b53c0b6-2cd7cc3e.json`
-- `documents/metadata/doc-7b53c0b6-2ebc53df.json`
-- `documents/metadata/doc-7b53c0b6-403f23af.json`
-- `documents/metadata/doc-7b53c0b6-4a00dbd6.json`
-- `documents/metadata/doc-7b53c0b6-4eadb403.json`
-- `documents/metadata/doc-7b53c0b6-52e49eb0.json`
-- `documents/metadata/doc-7b53c0b6-5378a36c.json`
-- `documents/metadata/doc-7b53c0b6-5731d561.json`
-- `documents/metadata/doc-7b53c0b6-5fb0256a.json`
-- `documents/metadata/doc-7b53c0b6-606d335c.json`
-- `documents/metadata/doc-7b53c0b6-610b02c5.json`
-- `documents/metadata/doc-7b53c0b6-6ebdd194.json`
-- `documents/metadata/doc-7b53c0b6-6f6d8d4f.json`
-- `documents/metadata/doc-7b53c0b6-791e3f9a.json`
-- `documents/metadata/doc-7b53c0b6-7b8f2c5f.json`
-- `documents/metadata/doc-7b53c0b6-7ba46da4.json`
-- `documents/metadata/doc-7b53c0b6-800ff0e3.json`
-- `documents/metadata/doc-7b53c0b6-85a90861.json`
-- `documents/metadata/doc-7b53c0b6-87b47f2f.json`
-- `documents/metadata/doc-7b53c0b6-8c2addd0.json`
-- `documents/metadata/doc-7b53c0b6-8f078b52.json`
-- `documents/metadata/doc-7b53c0b6-90a3943d.json`
-- `documents/metadata/doc-7b53c0b6-9eef3b80.json`
-- `documents/metadata/doc-7b53c0b6-a0c96ac6.json`
-- `documents/metadata/doc-7b53c0b6-a786bc5c.json`
-- `documents/metadata/doc-7b53c0b6-a7aa679d.json`
-- `documents/metadata/doc-7b53c0b6-a98d2e09.json`
-- `documents/metadata/doc-7b53c0b6-abc290fd.json`
-- `documents/metadata/doc-7b53c0b6-b119d726.json`
-- `documents/metadata/doc-7b53c0b6-ba07fcb3.json`
-- `documents/metadata/doc-7b53c0b6-bdac23f8.json`
-- `documents/metadata/doc-7b53c0b6-c18aff47.json`
-- `documents/metadata/doc-7b53c0b6-c60274a3.json`
-- `documents/metadata/doc-7b53c0b6-c6203b50.json`
-- `documents/metadata/doc-7b53c0b6-c93573cd.json`
-- `documents/metadata/doc-7b53c0b6-cbe333f3.json`
-- `documents/metadata/doc-7b53c0b6-cef43db3.json`
-- `documents/metadata/doc-7b53c0b6-de85f740.json`
-- `documents/metadata/doc-7b53c0b6-df44210b.json`
-- `documents/metadata/doc-7b53c0b6-e3302c38.json`
-- `documents/metadata/doc-7b53c0b6-e7b5e86d.json`
-- `documents/metadata/doc-7b53c0b6-edd1120d.json`
-- `documents/metadata/doc-7b53c0b6-ee2f800a.json`
-- `documents/metadata/doc-7b53c0b6-f5a2f98d.json`
-- `documents/metadata/doc-7b53c0b6-fd615529.json`
-- `documents/metadata/doc-7b53c0b6-fe24c910.json`
-- `documents/metadata/doc-9166205d-06bb9ad4.json`
-- `documents/metadata/doc-9166205d-1aba6432.json`
-- `documents/metadata/doc-9166205d-21c06769.json`
-- `documents/metadata/doc-9166205d-25a260f0.json`
-- `documents/metadata/doc-9166205d-266736a7.json`
+- `documents/metadata/doc-7b53c0b6-195770dc.json`

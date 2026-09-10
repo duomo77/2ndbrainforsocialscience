@@ -105,13 +105,14 @@ def _run(
     runtime,
     callbacks=None,
     *,
+    input_type="notes",
     raw_text="benign research notes",
     metadata=None,
     vault_path="",
     auto_save=False,
 ):
     return AnalysisPipeline(runtime).run(
-        input_type="notes",
+        input_type=input_type,
         raw_text=raw_text,
         metadata=metadata or {"title": "Pipeline Note"},
         file_path=None,
@@ -234,3 +235,101 @@ def test_pipeline_sanitizes_title_and_forces_epistemic_state(monkeypatch):
     assert result.value.title == "Trusted titlehuman_verified true"
     assert result.value.markdown.count("human_verified:") == 1
     assert "human_verified: false" in result.value.markdown
+
+
+def test_paper_pipeline_adds_deep_research_context_layer(monkeypatch):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: ["Selection Bias"])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    runtime, _calls = _runtime(
+        content=(
+            "Research question: Does training affect wages?\n"
+            "We use ordinary least squares and discuss exogeneity."
+        ),
+        analysis="---\ntitle: Wage Paper\n---\n\n## Research Question\nCore question: Does training affect wages?",
+    )
+
+    result = _run(
+        runtime,
+        input_type="paper",
+        raw_text="",
+        metadata={"title": "Wage Paper"},
+    )
+
+    assert result.ok is True
+    assert "## Deep Context" in result.value.markdown
+    assert "type: paper" in result.value.markdown
+    assert "[[Wage Paper - Deep Research Context]]" in result.value.markdown
+    assert result.value.deep_context_markdown
+    assert "type: research_context" in result.value.deep_context_markdown
+    assert "WHAT" not in result.value.deep_context_markdown
+    assert "Identification Background" in result.value.deep_context_markdown
+    assert "Do not conflate this with identification" in result.value.deep_context_markdown
+    assert "LITERATURE LINEAGE NOT SUFFICIENTLY VERIFIED" in result.value.deep_context_markdown
+
+
+def test_non_paper_pipeline_does_not_create_deep_context(monkeypatch):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    runtime, _calls = _runtime()
+
+    result = _run(runtime, input_type="notes")
+
+    assert result.ok is True
+    assert result.value.deep_context_markdown == ""
+    assert "## Deep Context" not in result.value.markdown
+
+
+def test_paper_auto_save_writes_card_and_context_notes(monkeypatch, tmp_path):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    monkeypatch.setattr(pipeline_mod.memory, "log_session", lambda *args: None)
+    runtime, _calls = _runtime(
+        content="Research question: Does treatment change outcomes? We use IV and exclusion restriction.",
+        analysis="---\ntitle: IV Paper\n---\n\n## Research Question\nCore question: Does treatment change outcomes?",
+    )
+
+    result = _run(
+        runtime,
+        input_type="paper",
+        raw_text="",
+        metadata={"title": "IV Paper", "journal": "Journal of Econometrics"},
+        vault_path=str(tmp_path),
+        auto_save=True,
+    )
+
+    assert result.ok is True
+    assert (tmp_path / "Papers" / "Econometrics" / "IV Paper.md").exists()
+    context_path = tmp_path / "Contexts" / "IV Paper - Deep Research Context.md"
+    assert context_path.exists()
+    assert result.value.deep_context_path == str(context_path)
+    assert "source_paper: IV Paper" in context_path.read_text(encoding="utf-8")
+
+
+def test_human_verified_context_is_not_overwritten(monkeypatch, tmp_path):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    monkeypatch.setattr(pipeline_mod.memory, "log_session", lambda *args: None)
+    context_dir = tmp_path / "Contexts"
+    context_dir.mkdir()
+    protected = context_dir / "Protected Paper - Deep Research Context.md"
+    protected.write_text(
+        "---\ntitle: Protected Paper - Deep Research Context\nhuman_verified: true\n---\n\nHuman note",
+        encoding="utf-8",
+    )
+    runtime, _calls = _runtime(
+        content="Research question: What explains reform adoption? We use case study evidence.",
+        analysis="---\ntitle: Protected Paper\n---\n\n## Research Question\nCore question: What explains reform adoption?",
+    )
+
+    result = _run(
+        runtime,
+        input_type="paper",
+        raw_text="",
+        metadata={"title": "Protected Paper"},
+        vault_path=str(tmp_path),
+        auto_save=True,
+    )
+
+    assert result.ok is True
+    assert protected.read_text(encoding="utf-8").endswith("Human note")
+    assert "AI Update" in result.value.deep_context_path

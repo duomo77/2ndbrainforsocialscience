@@ -17,6 +17,7 @@ from __future__ import annotations
 import hashlib
 import logging
 import time
+import copy
 from pathlib import Path
 from typing import Any, Dict, Optional
 
@@ -44,17 +45,18 @@ class DocumentIntelligenceManager:
     def _ensure_services(self):
         """Lazy-initialize pluggable services from container or module imports."""
         svc_map = [
-            ("_ocr_engine", "core.intel.ocr_base", "get_default_ocr_engine"),
-            ("_classifier", "core.intel.classifier", "classify_document"),
-            ("_lang_detector", "core.intel.language_detector", "detect_language"),
-            ("_text_normalizer", "core.intel.text_normalizer", "normalize_text"),
+            ("_ocr_engine", "core.intel.ocr_base", "get_default_ocr_engine", True),
+            ("_classifier", "core.intel.classifier", "classify_document", False),
+            ("_lang_detector", "core.intel.language_detector", "detect_language", False),
+            ("_text_normalizer", "core.intel.text_normalizer", "normalize_text", False),
         ]
-        for attr, mod, name in svc_map:
-            if getattr(self, attr) is not False:
+        for attr, mod, name, invoke in svc_map:
+            if getattr(self, attr) is not None:
                 continue
             try:
                 m = __import__(mod, fromlist=[name])
-                setattr(self, attr, getattr(m, name)())
+                value = getattr(m, name)
+                setattr(self, attr, value() if invoke else value)
             except Exception:
                 logger.warning(f"{attr} not available")
                 setattr(self, attr, False)
@@ -73,33 +75,41 @@ class DocumentIntelligenceManager:
                                       quality=QualityReport(errors=[f"File not found: {path}"]))
 
         chash = self._content_hash(path)
+        cached = self._get_cached(f"doc:{chash}")
+        if cached:
+            cached.processing_time_ms = round((time.monotonic() - t0) * 1000, 1)
+            return cached  # type: ignore[return-value]
 
-        # 2. Classify document
-        cls_result = self._classify(path, "")
+        self._ensure_services()
+
+        # 2-3. Extract native/parser text before deciding whether OCR is needed.
+        raw_text, parser_used, parser_meta, parse_errors = self._extract_raw(path, opts)
+        errors.extend(parse_errors)
+
+        # 4. Classify document using the healthiest native text sample available.
+        sample = raw_text[:max(1000, len(raw_text) // 10)] if raw_text else ""
+        cls_result = self._classify(path, sample)
         if cls_result.category == DocumentCategory.UNKNOWN:
             warnings.append(f"Could not classify document: {path.name}")
 
-        # 3. Check cache before expensive work
-        cached_key = f"classify:{chash}"
-        cached = self._get_cached(cached_key)
-        if cached:
-            cached["processing_time_ms"] = round((time.monotonic() - t0) * 1000, 1)
-            return cached  # type: ignore[return-value]
-
-        # 4. Run OCR if needed (scanned/hybrid/image-only PDFs)
+        # 5. Run OCR only when extraction/classification indicates it is needed.
         pdf_type = cls_result.pdf_type
         ocr_result = None
-        if pdf_type in (PDFType.SCANNED, PDFType.IMAGE_ONLY):
-            ocr_result = self._run_ocr(path, pdf_type)
+        if self._should_run_ocr(path, pdf_type, raw_text, opts):
+            ocr_result = self._run_ocr(path, pdf_type, opts)
             if ocr_result:
-                warnings.append(f"OCR used for {pdf_type.value} PDF")
-        elif pdf_type == PDFType.HYBRID:
-            ocr_result = self._run_ocr(path, pdf_type)
-            if ocr_result:
-                warnings.append("OCR supplemented hybrid PDF")
+                ocr_text = getattr(ocr_result, "text", "") or ""
+                if ocr_text:
+                    if pdf_type == PDFType.HYBRID and raw_text:
+                        raw_text = f"{raw_text}\n\n--- OCR Supplement ---\n\n{ocr_text}"
+                    else:
+                        raw_text = ocr_text
+                if pdf_type == PDFType.HYBRID:
+                    warnings.append("OCR supplemented hybrid PDF")
+                else:
+                    label = pdf_type.value if pdf_type else path.suffix.lower().lstrip(".")
+                    warnings.append(f"OCR used for {label} input")
 
-        # 5-6. Select parser and extract raw text
-        raw_text, parser_used = self._extract_raw(path, opts)
         if not raw_text:
             errors.append(f"Parser produced no output for {path.suffix}")
             return self._build_doc(path, "", [], {}, [], [], [], [], errors, warnings, t0, opts)
@@ -120,7 +130,7 @@ class DocumentIntelligenceManager:
             except Exception:
                 warnings.append("Language detection failed")
 
-        # Re-classify with richer text sample
+        # Re-classify with normalized text for richer academic/category signals.
         sample = normalized[:max(1000, len(normalized) // 10)]
         cls_result = self._classify(path, sample)
 
@@ -145,25 +155,28 @@ class DocumentIntelligenceManager:
                 h.update(buf)
         return h.hexdigest()[:16]
 
-    def _extract_raw(self, path: Path, opts: dict) -> tuple[str, str]:
+    def _extract_raw(self, path: Path, opts: dict) -> tuple[str, str, dict, list[str]]:
         """Use ParserRegistry to parse; fall back to plain text reading."""
         try:
             from core.pipeline.parsers import create_default_registry
+            from core.pipeline.models import EXTENSION_TO_DOC_TYPE, DocumentType
             registry = create_default_registry()
-            ext_map = {".pdf": "PDF", ".txt": "TXT", ".md": "TXT", ".html": "HTML",
-                       ".docx": "DOCX", ".pptx": "PPTX", ".csv": "CSV"}
-            parser = registry.get(ext_map.get(path.suffix.lower(), "TXT"))
-            result = parser.parse(path)
+            doc_type = EXTENSION_TO_DOC_TYPE.get(path.suffix.lower(), DocumentType.TXT)
+            parser = registry.get(doc_type)
+            result = parser.parse(path, **opts)
             text = getattr(result, "text", "")
-            return text, type(parser).__name__
+            parser_used = getattr(result, "parser_used", "") or type(parser).__name__
+            metadata = getattr(result, "metadata", {}) or {}
+            parse_errors = list(getattr(result, "errors", []) or [])
+            return text, parser_used, metadata, parse_errors
         except Exception:
             # Ultimate fallback: read as plain text
             for enc in ["utf-8", "latin-1", "cp1252"]:
                 try:
-                    return path.read_text(encoding=enc), "fallback"
+                    return path.read_text(encoding=enc), "fallback", {"encoding": enc}, []
                 except (UnicodeDecodeError, OSError):
                     continue
-            return "", "none"
+            return "", "none", {}, ["Unable to parse or read document"]
 
     def _classify(self, path: Path, text_sample: str) -> ClassificationResult:
         if self._classifier:
@@ -173,12 +186,34 @@ class DocumentIntelligenceManager:
                 pass
         return ClassificationResult()
 
-    def _run_ocr(self, path: Path, pdf_type: PDFType) -> Optional[Any]:
+    def _should_run_ocr(
+        self,
+        path: Path,
+        pdf_type: Optional[PDFType],
+        raw_text: str,
+        opts: dict,
+    ) -> bool:
+        if opts.get("disable_ocr"):
+            return False
+        if not self._ocr_engine:
+            return False
+        if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".tif", ".tiff"}:
+            return True
+        if path.suffix.lower() != ".pdf":
+            return False
+        if pdf_type in (PDFType.SCANNED, PDFType.IMAGE_ONLY, PDFType.HYBRID):
+            return True
+        return not raw_text.strip()
+
+    def _run_ocr(self, path: Path, pdf_type: Optional[PDFType], opts: dict) -> Optional[Any]:
         if not self._ocr_engine:
             return None
         try:
-            from core.intel.ocr_base import run_ocr_on_document
-            return run_ocr_on_document(str(path), engine=self._ocr_engine, force=True)
+            return self._ocr_engine.extract_text(
+                path,
+                pdf_type=pdf_type.value if pdf_type else None,
+                force=opts.get("force_ocr", False),
+            )
         except Exception:
             return None
 
@@ -208,23 +243,25 @@ class DocumentIntelligenceManager:
                    opts: dict, lang=None, cls=None, ocr=None, parser_used=""):
         """Assemble StructuredDocument, validate, and cache acceptable results."""
         # Compute quality metrics
-        vp = sum(1 for s in sections if s.page_end > 0)
-        comp = min(vp / max(len(sections), 1), 1.0)
-        overall = comp if sections else 0.0
+        content_score = 1.0 if text.strip() else 0.0
+        structured_score = 1.0 if (sections or tables or figures or equations) else 0.0
+        overall = (0.7 * content_score) + (0.3 * structured_score)
         q = QualityReport(
             overall_score=round(min(max(overall, 0.0), 1.0), 3),
-            parser_confidence=opts.pop("parser_confidence", 1.0),
-            completeness_ratio=round(comp, 3),
+            parser_confidence=opts.get("parser_confidence", 1.0),
+            completeness_ratio=round(content_score, 3),
             warnings=list(warnings),
             errors=list(errors),
         )
+        q.add_metric("content_presence", content_score, confidence=1.0)
+        q.add_metric("structured_extraction", structured_score, confidence=0.8)
 
         doc = StructuredDocument(
             id=f"doc-{hashlib.md5(str(path).encode()).hexdigest()[:8]}",
             source_path=path, original_filename=path.name,
             category=cls.category if cls else DocumentCategory.UNKNOWN,
             pdf_type=cls.pdf_type if cls else None,
-            total_pages=len(sections),
+            total_pages=self._infer_total_pages(text, sections, meta, ocr),
             sections=sections, tables=tables, figures=figures, equations=equations,
             quality=q, raw_text=text, parser_used=parser_used,
         )
@@ -249,10 +286,33 @@ class DocumentIntelligenceManager:
         if time.time() - entry["_ts"] > self._max_cache_age_seconds:
             del self._cache[key]
             return None
-        return entry["_data"]
+        return copy.deepcopy(entry["_data"])
 
     def _set_cache(self, key: str, data: Any) -> None:
-        self._cache[key] = {"_data": data, "_ts": time.time()}
+        self._cache[key] = {"_data": copy.deepcopy(data), "_ts": time.time()}
+
+    @staticmethod
+    def _infer_total_pages(text: str, sections: list, meta: dict, ocr: Any = None) -> int:
+        for source in (meta, getattr(ocr, "metadata", {}) if ocr else {}):
+            for key in ("page_count", "pages", "num_pages"):
+                try:
+                    count = int(source.get(key, 0))
+                except (TypeError, ValueError):
+                    count = 0
+                if count > 0:
+                    return count
+        ocr_pages = int(getattr(ocr, "page_count", 0) or 0) if ocr else 0
+        if ocr_pages > 0:
+            return ocr_pages
+        section_pages = [
+            p
+            for sec in sections
+            for p in (getattr(sec, "page_start", -1), getattr(sec, "page_end", -1))
+            if isinstance(p, int) and p > 0
+        ]
+        if section_pages:
+            return max(section_pages)
+        return 1 if text.strip() else 0
 
     def clear_cache(self) -> int:
         now = time.time()

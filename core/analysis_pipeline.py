@@ -22,6 +22,7 @@ from core.constants import (
     MAX_WIKILINKS_PER_NOTE,
 )
 from core.contracts import AnalysisResult, AnalysisStatus, Err, LLMConfig, Ok, Result, VaultConfig
+from core.research_context import add_deep_context_link, build_deep_research_context
 from core.utils.markdown_utils import extract_frontmatter, extract_wikilink_targets, inject_frontmatter
 from core.utils.text_utils import rank_concept_nodes
 
@@ -97,6 +98,8 @@ class PipelineOutcome:
     topic: str = "Uncategorized"
     cached: bool = False
     saved_path: str = ""
+    deep_context_markdown: str = ""
+    deep_context_path: str = ""
     engine_outputs: dict[str, dict] = field(default_factory=dict)
 
     def to_analysis_result(self) -> AnalysisResult:
@@ -215,6 +218,17 @@ class AnalysisPipeline:
                     )
                 except (TypeError, ValueError) as exc:
                     return Err(f"캐시된 Markdown frontmatter 검증 실패: {exc}")
+                deep_context = self._build_deep_context_if_needed(
+                    input_type=input_type,
+                    title=title,
+                    content=content,
+                    card_markdown=cached_result,
+                    metadata=metadata,
+                    existing_nodes=[],
+                    rag_context="",
+                )
+                if deep_context:
+                    cached_result = add_deep_context_link(cached_result, title)
                 saved_path, saved_topic, save_error = self._save_output(
                     markdown=cached_result,
                     title=title,
@@ -226,6 +240,13 @@ class AnalysisPipeline:
                 )
                 if save_error:
                     return Err(save_error)
+                deep_context_path, deep_context_error = self._save_deep_context(
+                    deep_context=deep_context,
+                    vault_config=vault_config,
+                    callbacks=callbacks,
+                )
+                if deep_context_error:
+                    return Err(deep_context_error)
                 return Ok(
                     PipelineOutcome(
                         markdown=cached_result,
@@ -233,6 +254,8 @@ class AnalysisPipeline:
                         topic=saved_topic,
                         cached=True,
                         saved_path=saved_path,
+                        deep_context_markdown=deep_context.markdown if deep_context else "",
+                        deep_context_path=deep_context_path,
                     )
                 )
 
@@ -352,6 +375,18 @@ class AnalysisPipeline:
         if callbacks.cancelled():
             return Err(self.CANCELLED_MESSAGE)
 
+        deep_context = self._build_deep_context_if_needed(
+            input_type=input_type,
+            title=title,
+            content=content,
+            card_markdown=analysis,
+            metadata=metadata,
+            existing_nodes=existing_nodes,
+            rag_context=rag_context,
+        )
+        if deep_context:
+            analysis = add_deep_context_link(analysis, title)
+
         enhanced = self.runtime.run_cognitive_engines(analysis, title)
 
         if callbacks.cancelled():
@@ -368,6 +403,13 @@ class AnalysisPipeline:
         )
         if save_error:
             return Err(save_error)
+        deep_context_path, deep_context_error = self._save_deep_context(
+            deep_context=deep_context,
+            vault_config=vault_config,
+            callbacks=callbacks,
+        )
+        if deep_context_error:
+            return Err(deep_context_error)
 
         callbacks.status("🔗 지식 그래프 업데이트 중...")
         self.runtime.persist_legacy_graph(title, enhanced)
@@ -385,6 +427,8 @@ class AnalysisPipeline:
                 title=title,
                 topic=saved_topic,
                 saved_path=saved_path,
+                deep_context_markdown=deep_context.markdown if deep_context else "",
+                deep_context_path=deep_context_path,
             )
         )
 
@@ -438,6 +482,7 @@ class AnalysisPipeline:
         }
         updates: dict[str, Any] = {
             "title": title,
+            "type": input_type,
             "source_type": input_type,
             "ai_generated": True,
             "human_verified": False,
@@ -491,6 +536,86 @@ class AnalysisPipeline:
         memory.log_session("saved", title, input_type, path)
         callbacks.saved(path, topic)
         return path, topic, ""
+
+    def _build_deep_context_if_needed(
+        self,
+        *,
+        input_type: str,
+        title: str,
+        content: str,
+        card_markdown: str,
+        metadata: dict[str, Any],
+        existing_nodes: list[str],
+        rag_context: str,
+    ):
+        if input_type != "paper":
+            return None
+        return build_deep_research_context(
+            title=title,
+            content=content,
+            card_markdown=card_markdown,
+            metadata=metadata,
+            existing_nodes=existing_nodes,
+            rag_context=rag_context,
+            depth=str(metadata.get("deep_context_depth", "standard")),
+        )
+
+    def _save_deep_context(
+        self,
+        *,
+        deep_context,
+        vault_config: VaultConfig,
+        callbacks: AnalysisCallbacks,
+    ) -> tuple[str, str]:
+        if not deep_context or not vault_config.auto_save:
+            return "", ""
+        if not vault_config.vault_path:
+            message = "Deep Research Context 저장이 필요하지만 Obsidian 볼트 경로가 없습니다."
+            callbacks.error(message)
+            return "", message
+
+        callbacks.status("📚 Deep Research Context 저장 중...")
+        filename = deep_context.context_title
+        try:
+            filename = self._avoid_human_verified_context_overwrite(
+                vault_config.vault_path,
+                filename,
+            )
+            ok, path, _topic = obsidian_sync.save_note_to_vault(
+                vault_path=vault_config.vault_path,
+                markdown_content=deep_context.markdown,
+                title=deep_context.context_title,
+                input_type="research_context",
+                custom_filename=filename,
+            )
+        except Exception as exc:
+            message = f"Deep Research Context 저장 오류: {exc}"
+            callbacks.error(message)
+            return "", message
+        if not ok:
+            message = f"Deep Research Context 저장 실패: {path}"
+            callbacks.error(message)
+            return "", message
+        callbacks.saved(path, "Contexts")
+        return path, ""
+
+    @staticmethod
+    def _avoid_human_verified_context_overwrite(vault_path: str, filename: str) -> str:
+        vault = Path(vault_path).expanduser()
+        safe_name = obsidian_sync.sanitize_filename(filename)
+        if not safe_name.endswith(".md"):
+            safe_name += ".md"
+        target = vault / "Contexts" / safe_name
+        if not target.exists():
+            return filename
+        try:
+            frontmatter, _body = extract_frontmatter(target.read_text(encoding="utf-8"))
+        except Exception:
+            return filename
+        if frontmatter.get("human_verified") is True:
+            suffix = datetime.now(UTC).strftime("%Y%m%d%H%M%S")
+            return f"{target.stem} - AI Update {suffix}.md"
+        return filename
 
     def _update_graph_integrity(
         self, input_type: str, title: str, enhanced: str, callbacks: AnalysisCallbacks

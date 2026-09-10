@@ -294,6 +294,23 @@ class DocumentClassifier:
                     hits += len(re.findall(pat, text, re.IGNORECASE))
             category_scores[cat] = hits
 
+        # If canonical academic structure is present, favour research_paper.
+        # This lets Markdown/Obsidian notes that contain paper-like structure
+        # classify by research semantics instead of by storage format.
+        academic_core = {
+            "abstract",
+            "introduction",
+            "methodology",
+            "methods",
+            "data",
+            "results",
+            "discussion",
+            "conclusion",
+            "references",
+        }
+        if len(set(matched_sections) & academic_core) >= 2:
+            category_scores["research_paper"] = category_scores.get("research_paper", 0) + 10
+
         # If section density is strong, favour research_paper.
         if section_density > 0.6:
             category_scores["research_paper"] = section_scores.get("research_paper", 0) + 20

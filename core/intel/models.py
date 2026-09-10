@@ -195,6 +195,8 @@ class EquationBlock:
     """A mathematical expression extracted from a document."""
     id: str = field(default_factory=lambda: f"eqn-{uuid.uuid4().hex[:8]}")
     latex: str = ""               # LaTeX representation (if available)
+    raw_latex: str = ""           # Original recognized LaTeX before any normalization
+    normalized_latex: str = ""    # Parser-normalized LaTeX, if available
     plain_text: str = ""          # Plain text fallback
     image_bytes: Optional[bytes] = None   # Visual representation
     page_number: int = -1
@@ -204,6 +206,8 @@ class EquationBlock:
     context_after: str = ""       # Text immediately after equation
     reference_id: Optional[str] = None   # e.g., "(Eq. 3)" for cross-references
     type: str = "inline"          # "inline", "display", "numbered", "unnumbered"
+    confidence: float = 0.0
+    verification_status: str = "RAW_OCR"
     metadata: Dict[str, Any] = field(default_factory=dict)
 
 
@@ -299,6 +303,9 @@ class StructuredDocument:
 
     # Content structure
     sections: List[Section] = field(default_factory=list)
+    tables: List[TableBlock] = field(default_factory=list)
+    figures: List[FigureBlock] = field(default_factory=list)
+    equations: List[EquationBlock] = field(default_factory=list)
     pages: List[Page] = field(default_factory=list)
     references: List[ReferenceBlock] = field(default_factory=list)
     appendices: List[Section] = field(default_factory=list)
@@ -323,15 +330,17 @@ class StructuredDocument:
     raw_text: str = ""
     parser_used: str = ""
     ocr_engine: Optional[str] = None
+    processing_time_ms: float = 0.0
 
     def summarize(self) -> str:
         """Human-readable summary of document contents."""
+        table_count = len(self.tables) or sum(len(s.tables) for s in self.sections)
+        figure_count = len(self.figures) or sum(len(s.figures) for s in self.sections)
+        equation_count = len(self.equations) or sum(len(s.equations) for s in self.sections)
         parts = [
             f"[StructuredDoc {self.id}] Filename: {self.original_filename}",
             f"Pages: {self.total_pages}, Sections: {len(self.sections)}",
-            f"Tables: {sum(len(s.tables) for s in self.sections)}, "
-            f"Figures: {sum(len(s.figures) for s in self.sections)}, "
-            f"Equations: {sum(len(s.equations) for s in self.sections)}",
+            f"Tables: {table_count}, Figures: {figure_count}, Equations: {equation_count}",
             f"References: {len(self.references)}",
             f"Language: {self.primary_language or 'unknown'}",
             f"Quality: {'PASS' if self.quality.is_acceptable else 'FAIL'} "

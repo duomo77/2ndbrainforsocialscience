@@ -110,7 +110,7 @@ See `SPECIFICATION_VS_IMPLEMENTATION_ARCHITECTURE.md`.
 | --- | --- |
 | python | 3.13.0 |
 | platform | macOS-15.3.2-x86_64-i386-64bit-Mach-O |
-| pytest | PASS<br>  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute<br><br>tests/test_phase2_secure.py::TestParserGates::test_broken_pdf_returns_signal_not_content<br>  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute<br><br>-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html<br>346 passed, 6 warnings in 5.57s<br><sys>:0: DeprecationWarning: builtin type swigvarlink has no __module__ attribute |
+| pytest | PASS<br>  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute<br><br>tests/test_phase2_secure.py::TestParserGates::test_broken_pdf_returns_signal_not_content<br>  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute<br><br>-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html<br>356 passed, 6 warnings in 4.44s<br><sys>:0: DeprecationWarning: builtin type swigvarlink has no __module__ attribute |
 | main_import | PASS |
 | graph_smoke | PASS |
 
