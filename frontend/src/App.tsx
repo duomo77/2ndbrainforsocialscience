@@ -12,6 +12,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 
 import { analyzeFile, analyzeText, health } from "./api";
+import { FigureSpecViewer } from "./FigureSpecViewer";
 import type { AnalysisEvent, AnalyzePayload, AnalyzeResponse, InputType } from "./types";
 
 const inputTypes: { value: InputType; label: string }[] = [
@@ -40,7 +41,7 @@ function App() {
   const [backendOk, setBackendOk] = useState<boolean | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [outputView, setOutputView] = useState<"card" | "context" | "intelligence">("card");
+  const [outputView, setOutputView] = useState<"card" | "context" | "intelligence" | "figures">("card");
 
   useEffect(() => {
     health()
@@ -71,7 +72,15 @@ function App() {
       const response = file ? await analyzeFile(file, payload) : await analyzeText(payload);
       setResult(response);
       setEvents(response.events);
-      setOutputView(response.research_intelligence_markdown ? "intelligence" : response.deep_context_markdown ? "context" : "card");
+      setOutputView(
+        response.figure_intelligence_markdown
+          ? "figures"
+          : response.research_intelligence_markdown
+            ? "intelligence"
+            : response.deep_context_markdown
+              ? "context"
+              : "card",
+      );
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : "Analysis failed");
     } finally {
@@ -81,7 +90,9 @@ function App() {
 
   async function copyMarkdown() {
     const activeMarkdown =
-      outputView === "intelligence"
+      outputView === "figures"
+        ? result?.figure_intelligence_markdown
+        : outputView === "intelligence"
         ? result?.research_intelligence_markdown
         : outputView === "context"
           ? result?.deep_context_markdown
@@ -91,7 +102,9 @@ function App() {
   }
 
   const activeMarkdown =
-    outputView === "intelligence"
+    outputView === "figures"
+      ? result?.figure_intelligence_markdown || "Figure Intelligence will appear when paper figures are detected."
+      : outputView === "intelligence"
       ? result?.research_intelligence_markdown || "Research Intelligence will appear for paper inputs."
       : outputView === "context"
         ? result?.deep_context_markdown || "Deep Research Context will appear for paper inputs."
@@ -222,6 +235,15 @@ function App() {
                 >
                   Intelligence
                 </button>
+                <button
+                  className={outputView === "figures" ? "active" : ""}
+                  onClick={() => setOutputView("figures")}
+                  disabled={!result?.figure_intelligence_markdown}
+                  role="tab"
+                  aria-selected={outputView === "figures"}
+                >
+                  Figures
+                </button>
               </div>
               <button
                 className="icon-button"
@@ -234,13 +256,17 @@ function App() {
             </div>
           </div>
           {error ? <div className="error-box">{error}</div> : null}
-          {result?.saved_path || result?.deep_context_path || result?.research_intelligence_path ? (
+          {result?.saved_path || result?.deep_context_path || result?.research_intelligence_path || result?.figure_intelligence_path ? (
             <div className="save-paths">
               {result.saved_path ? <p>Saved: {result.saved_path}</p> : null}
               {result.deep_context_path ? <p>Context: {result.deep_context_path}</p> : null}
               {result.research_intelligence_path ? <p>Intelligence: {result.research_intelligence_path}</p> : null}
               {result.methodology_atlas_paths?.length ? <p>Atlas: {result.methodology_atlas_paths.join(", ")}</p> : null}
+              {result.figure_intelligence_path ? <p>Figures: {result.figure_intelligence_path}</p> : null}
             </div>
+          ) : null}
+          {outputView === "figures" && result?.figure_visualization_specs?.length ? (
+            <FigureSpecViewer specs={result.figure_visualization_specs} />
           ) : null}
           <pre className="markdown-output">{activeMarkdown}</pre>
         </section>

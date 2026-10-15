@@ -105,7 +105,11 @@ def test_paper_demo_response_includes_deep_context(monkeypatch):
         "/api/analyze",
         json={
             "input_type": "paper",
-            "raw_text": "Research question: Does policy affect employment? We use DID and parallel trends.",
+            "raw_text": (
+                "Research question: Does policy affect employment? "
+                "We use DID and parallel trends. "
+                "Figure 1. Event-study estimates around implementation."
+            ),
             "metadata": {"title": "Policy Paper"},
             "model": "demo-local",
         },
@@ -119,9 +123,12 @@ def test_paper_demo_response_includes_deep_context(monkeypatch):
     assert "type: research_context" in body["deep_context_markdown"]
     assert "type: research_intelligence" in body["research_intelligence_markdown"]
     assert "## Claim Evidence Assumption Graph" in body["research_intelligence_markdown"]
+    assert "type: figure_intelligence" in body["figure_intelligence_markdown"]
+    assert body["figure_visualization_specs"][0]["chart_type"] == "EVENT_STUDY"
     assert body["deep_context_path"] == ""
     assert body["research_intelligence_path"] == ""
     assert body["methodology_atlas_paths"] == []
+    assert body["figure_intelligence_path"] == ""
 
 
 def test_file_upload_honors_multipart_analysis_fields(monkeypatch):

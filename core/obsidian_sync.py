@@ -34,6 +34,7 @@ FOLDER_MAP = {
     "research_context": "Contexts",
     "research_intelligence": "Research Intelligence",
     "methodology_atlas": "Methodology Atlas",
+    "figure_intelligence": "Figure Intelligence",
 }
 
 JOURNAL_TOPIC_MAP = {

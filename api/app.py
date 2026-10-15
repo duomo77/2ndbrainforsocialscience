@@ -63,6 +63,9 @@ def _analysis_payload(result, events: list) -> dict[str, Any]:
         "research_intelligence_markdown": outcome.research_intelligence_markdown,
         "research_intelligence_path": outcome.research_intelligence_path,
         "methodology_atlas_paths": outcome.methodology_atlas_paths,
+        "figure_intelligence_markdown": outcome.figure_intelligence_markdown,
+        "figure_intelligence_path": outcome.figure_intelligence_path,
+        "figure_visualization_specs": outcome.figure_visualization_specs,
         "events": [event.__dict__ for event in events],
     }
 

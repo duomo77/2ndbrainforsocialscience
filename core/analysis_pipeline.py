@@ -22,6 +22,7 @@ from core.constants import (
     MAX_WIKILINKS_PER_NOTE,
 )
 from core.contracts import AnalysisResult, AnalysisStatus, Err, LLMConfig, Ok, Result, VaultConfig
+from core.figure_intelligence import add_figure_intelligence_link, build_figure_intelligence
 from core.research_context import add_deep_context_link, build_deep_research_context
 from core.research_intelligence import (
     add_research_intelligence_link,
@@ -108,6 +109,9 @@ class PipelineOutcome:
     research_intelligence_markdown: str = ""
     research_intelligence_path: str = ""
     methodology_atlas_paths: list[str] = field(default_factory=list)
+    figure_intelligence_markdown: str = ""
+    figure_intelligence_path: str = ""
+    figure_visualization_specs: list[dict[str, Any]] = field(default_factory=list)
     engine_outputs: dict[str, dict] = field(default_factory=dict)
 
     def to_analysis_result(self) -> AnalysisResult:
@@ -246,6 +250,13 @@ class AnalysisPipeline:
                 )
                 if research_intelligence:
                     cached_result = add_research_intelligence_link(cached_result, title)
+                figure_intelligence = self._build_figure_intelligence_if_needed(
+                    input_type=input_type,
+                    title=title,
+                    content=content,
+                )
+                if figure_intelligence and figure_intelligence.figures:
+                    cached_result = add_figure_intelligence_link(cached_result, title)
                 saved_path, saved_topic, save_error = self._save_output(
                     markdown=cached_result,
                     title=title,
@@ -275,6 +286,13 @@ class AnalysisPipeline:
                 )
                 if research_intelligence_error:
                     return Err(research_intelligence_error)
+                figure_intelligence_path, figure_intelligence_error = self._save_figure_intelligence(
+                    figure_intelligence=figure_intelligence,
+                    vault_config=vault_config,
+                    callbacks=callbacks,
+                )
+                if figure_intelligence_error:
+                    return Err(figure_intelligence_error)
                 return Ok(
                     PipelineOutcome(
                         markdown=cached_result,
@@ -289,6 +307,17 @@ class AnalysisPipeline:
                         ),
                         research_intelligence_path=research_intelligence_path,
                         methodology_atlas_paths=methodology_atlas_paths,
+                        figure_intelligence_markdown=(
+                            figure_intelligence.markdown
+                            if figure_intelligence and figure_intelligence.figures
+                            else ""
+                        ),
+                        figure_intelligence_path=figure_intelligence_path,
+                        figure_visualization_specs=(
+                            list(figure_intelligence.visualization_specs)
+                            if figure_intelligence and figure_intelligence.figures
+                            else []
+                        ),
                     )
                 )
 
@@ -428,6 +457,13 @@ class AnalysisPipeline:
         )
         if research_intelligence:
             analysis = add_research_intelligence_link(analysis, title)
+        figure_intelligence = self._build_figure_intelligence_if_needed(
+            input_type=input_type,
+            title=title,
+            content=content,
+        )
+        if figure_intelligence and figure_intelligence.figures:
+            analysis = add_figure_intelligence_link(analysis, title)
 
         enhanced = self.runtime.run_cognitive_engines(analysis, title)
 
@@ -463,6 +499,13 @@ class AnalysisPipeline:
         )
         if research_intelligence_error:
             return Err(research_intelligence_error)
+        figure_intelligence_path, figure_intelligence_error = self._save_figure_intelligence(
+            figure_intelligence=figure_intelligence,
+            vault_config=vault_config,
+            callbacks=callbacks,
+        )
+        if figure_intelligence_error:
+            return Err(figure_intelligence_error)
 
         callbacks.status("🔗 지식 그래프 업데이트 중...")
         self.runtime.persist_legacy_graph(title, enhanced)
@@ -471,6 +514,11 @@ class AnalysisPipeline:
             self.runtime.update_semantic_graph(
                 research_intelligence.intelligence_title,
                 research_intelligence.markdown,
+            )
+        if figure_intelligence and figure_intelligence.figures:
+            self.runtime.update_semantic_graph(
+                figure_intelligence.figure_note_title,
+                figure_intelligence.markdown,
             )
         self._update_graph_integrity(input_type, title, enhanced, callbacks)
         self._store_memory_trust(input_type, metadata, title, enhanced)
@@ -492,6 +540,17 @@ class AnalysisPipeline:
                 ),
                 research_intelligence_path=research_intelligence_path,
                 methodology_atlas_paths=methodology_atlas_paths,
+                figure_intelligence_markdown=(
+                    figure_intelligence.markdown
+                    if figure_intelligence and figure_intelligence.figures
+                    else ""
+                ),
+                figure_intelligence_path=figure_intelligence_path,
+                figure_visualization_specs=(
+                    list(figure_intelligence.visualization_specs)
+                    if figure_intelligence and figure_intelligence.figures
+                    else []
+                ),
             )
         )
 
@@ -641,6 +700,18 @@ class AnalysisPipeline:
             deep_context_markdown=deep_context_markdown,
         )
 
+    def _build_figure_intelligence_if_needed(
+        self,
+        *,
+        input_type: str,
+        title: str,
+        content: str,
+    ):
+        if input_type != "paper":
+            return None
+        bundle = build_figure_intelligence(title=title, content=content)
+        return bundle if bundle.figures else None
+
     def _save_deep_context(
         self,
         *,
@@ -739,6 +810,40 @@ class AnalysisPipeline:
                 atlas_paths.append(atlas_path)
         callbacks.saved(path, "Research Intelligence")
         return path, atlas_paths, ""
+
+    def _save_figure_intelligence(
+        self,
+        *,
+        figure_intelligence,
+        vault_config: VaultConfig,
+        callbacks: AnalysisCallbacks,
+    ) -> tuple[str, str]:
+        if not figure_intelligence or not figure_intelligence.figures or not vault_config.auto_save:
+            return "", ""
+        if not vault_config.vault_path:
+            message = "Figure Intelligence 저장이 필요하지만 Obsidian 볼트 경로가 없습니다."
+            callbacks.error(message)
+            return "", message
+
+        callbacks.status("📈 Figure Intelligence 저장 중...")
+        try:
+            ok, path, _topic = obsidian_sync.save_note_to_vault(
+                vault_path=vault_config.vault_path,
+                markdown_content=figure_intelligence.markdown,
+                title=figure_intelligence.figure_note_title,
+                input_type="figure_intelligence",
+                custom_filename=figure_intelligence.figure_note_title,
+            )
+        except Exception as exc:
+            message = f"Figure Intelligence 저장 오류: {exc}"
+            callbacks.error(message)
+            return "", message
+        if not ok:
+            message = f"Figure Intelligence 저장 실패: {path}"
+            callbacks.error(message)
+            return "", message
+        callbacks.saved(path, "Figure Intelligence")
+        return path, ""
 
     @staticmethod
     def _human_verified_methodology_atlas_path(vault_path: str, atlas_title: str) -> Path | None:

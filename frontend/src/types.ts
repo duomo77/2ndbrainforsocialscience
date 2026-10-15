@@ -36,5 +36,43 @@ export interface AnalyzeResponse {
   research_intelligence_markdown: string;
   research_intelligence_path: string;
   methodology_atlas_paths: string[];
+  figure_intelligence_markdown: string;
+  figure_intelligence_path: string;
+  figure_visualization_specs: VisualizationSpec[];
   events: AnalysisEvent[];
+}
+
+export interface VisualizationSpec {
+  chart_type: string;
+  data_source: {
+    origin: string;
+    description: string;
+    evidence_status: string;
+  };
+  x: EncodingSpec;
+  y: EncodingSpec;
+  color?: EncodingSpec;
+  annotations?: { text: string; target?: string; evidence_status?: string }[];
+  reference_lines?: { axis: "x" | "y"; value: number; label?: string }[];
+  interactions?: string[];
+  layout?: { width?: number; height?: number };
+  data?: FigureDatum[];
+  source_figure_id: string;
+  reconstruction_status: string;
+}
+
+export interface EncodingSpec {
+  field: string;
+  label: string;
+  type: "quantitative" | "temporal" | "nominal" | "ordinal" | string;
+  scale: string;
+  evidence_status: string;
+}
+
+export interface FigureDatum {
+  x: number | string;
+  y: number;
+  label?: string;
+  series?: string;
+  provenance?: string;
 }

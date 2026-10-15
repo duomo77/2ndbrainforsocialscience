@@ -319,6 +319,37 @@ def test_paper_auto_save_writes_card_context_and_intelligence_notes(monkeypatch,
     assert "## Source Applications" in atlas_path.read_text(encoding="utf-8")
 
 
+def test_paper_auto_save_writes_figure_intelligence_note(monkeypatch, tmp_path):
+    monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
+    monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})
+    monkeypatch.setattr(pipeline_mod.memory, "log_session", lambda *args: None)
+    runtime, _calls = _runtime(
+        content=(
+            "Research question: Does reform change jobs? "
+            "Figure 1. Event-study estimates around the reform; x-axis shows event time "
+            "and y-axis shows effect estimates."
+        ),
+        analysis="---\ntitle: Figure Paper\n---\n\n## Research Question\nCore question: Does reform change jobs?",
+    )
+
+    result = _run(
+        runtime,
+        input_type="paper",
+        raw_text="",
+        metadata={"title": "Figure Paper"},
+        vault_path=str(tmp_path),
+        auto_save=True,
+    )
+
+    figure_path = tmp_path / "Figure Intelligence" / "Figure Paper - Figure Intelligence.md"
+    assert result.ok is True
+    assert "[[Figure Paper - Figure Intelligence]]" in result.value.markdown
+    assert figure_path.exists()
+    assert result.value.figure_intelligence_path == str(figure_path)
+    assert result.value.figure_visualization_specs[0]["chart_type"] == "EVENT_STUDY"
+    assert "type: figure_intelligence" in figure_path.read_text(encoding="utf-8")
+
+
 def test_human_verified_context_is_not_overwritten(monkeypatch, tmp_path):
     monkeypatch.setattr(pipeline_mod.memory, "get_concept_list", lambda: [])
     monkeypatch.setattr(pipeline_mod.memory, "load_profile", lambda: {})

@@ -18,17 +18,19 @@
   "license": "ISC",
   "description": "Research Operating System web runtime",
   "dependencies": {
+    "@types/d3": "^7.4.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "d3": "^7.9.0",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite": "^6.0.7"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1",
-    "typescript": "^5.7.2",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.7.2",
     "wait-on": "^9.0.10"
   }
 }

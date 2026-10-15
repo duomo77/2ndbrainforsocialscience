@@ -316,6 +316,106 @@ textarea {
   word-break: break-word;
 }
 
+.figure-spec-stack {
+  background: #f8fafb;
+  border-bottom: 1px solid #e1e7ea;
+  display: grid;
+  gap: 12px;
+  max-height: 520px;
+  overflow: auto;
+  padding: 14px;
+}
+
+.figure-card {
+  background: #ffffff;
+  border: 1px solid #dbe4e8;
+  border-radius: 8px;
+  min-width: 0;
+  padding: 12px;
+}
+
+.figure-card-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.figure-card-header h3 {
+  color: #1d2a33;
+  font-size: 14px;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.figure-card-header p,
+.figure-provenance {
+  color: #5c6a73;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.figure-card-header span {
+  background: #eef3f4;
+  border: 1px solid #d6e0e3;
+  border-radius: 5px;
+  color: #43525c;
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 720;
+  padding: 4px 6px;
+}
+
+.figure-card svg {
+  background: #fbfcfc;
+  border: 1px solid #e2e8eb;
+  border-radius: 6px;
+  display: block;
+  height: auto;
+  max-height: 360px;
+  width: 100%;
+}
+
+.figure-card .grid line {
+  stroke: #e5ecef;
+}
+
+.figure-card .grid path {
+  display: none;
+}
+
+.figure-card .axis-label {
+  fill: #40505a;
+  font-size: 12px;
+  font-weight: 680;
+}
+
+.figure-card .series-line {
+  stroke: #146c78;
+  stroke-width: 2;
+}
+
+.figure-card .stem {
+  stroke: #9fb0b8;
+  stroke-width: 1.5;
+}
+
+.figure-card .reference-line {
+  stroke: #b05c26;
+  stroke-dasharray: 4 4;
+  stroke-width: 1.4;
+}
+
+.figure-card .empty-plot {
+  stroke: #cdd8dd;
+  stroke-dasharray: 6 5;
+}
+
+.figure-provenance {
+  margin-top: 8px;
+}
+
 .save-paths {
   background: #f6f8f9;
   border-bottom: 1px solid #e1e7ea;
