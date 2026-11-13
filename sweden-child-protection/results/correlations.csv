@@ -1,0 +1,33 @@
+﻿year,predictor,method,n,estimate,p_value,adjustment
+2024,foreign_born_share,pearson,44,0.0419728925737,0.78675969318,none
+2024,foreign_born_share,partial_pearson,44,-0.143447562716,0.364782133577,metro residuals; ranked first for Spearman
+2024,foreign_born_share,spearman,44,0.0869013555733,0.574861229002,none
+2024,foreign_born_share,partial_spearman,44,-0.0706703419207,0.656513975492,metro residuals; ranked first for Spearman
+2024,foreign_background,pearson,44,0.014524073352,0.925448249725,none
+2024,foreign_background,partial_pearson,44,-0.155716762239,0.324757372566,metro residuals; ranked first for Spearman
+2024,foreign_background,spearman,44,0.0557946203397,0.719052409695,none
+2024,foreign_background,partial_spearman,44,-0.115464445301,0.466519671673,metro residuals; ranked first for Spearman
+2024,any_foreign_parent_among_Sweden_born,pearson,44,0.0517653002721,0.738597725133,none
+2024,any_foreign_parent_among_Sweden_born,partial_pearson,44,-0.126948204795,0.423051214943,metro residuals; ranked first for Spearman
+2024,any_foreign_parent_among_Sweden_born,spearman,44,0.0833039780293,0.590850288347,none
+2024,any_foreign_parent_among_Sweden_born,partial_spearman,44,-0.0769858625042,0.627968061895,metro residuals; ranked first for Spearman
+2024,two_foreign_parents_among_Sweden_born,pearson,44,0.0162240949038,0.916751059738,none
+2024,two_foreign_parents_among_Sweden_born,partial_pearson,44,-0.141897546982,0.370041017954,metro residuals; ranked first for Spearman
+2024,two_foreign_parents_among_Sweden_born,spearman,44,0.0241941274039,0.876121084026,none
+2024,two_foreign_parents_among_Sweden_born,partial_spearman,44,-0.130300885196,0.410805433304,metro residuals; ranked first for Spearman
+2024,foreign_born_share_2015,pearson,44,0.0550066826245,0.722861062181,none
+2024,foreign_born_share_2015,partial_pearson,44,-0.136911033134,0.387264126849,metro residuals; ranked first for Spearman
+2024,foreign_born_share_2015,spearman,44,0.14234329184,0.356673609157,none
+2024,foreign_born_share_2015,partial_spearman,44,-0.0300757023765,0.85003537908,metro residuals; ranked first for Spearman
+2024,foreign_background_2015,pearson,44,0.00870070895815,0.955299192894,none
+2024,foreign_background_2015,partial_pearson,44,-0.159427344071,0.313216666389,metro residuals; ranked first for Spearman
+2024,foreign_background_2015,spearman,44,0.0509275801331,0.742682312108,none
+2024,foreign_background_2015,partial_spearman,44,-0.103569552491,0.513943147066,metro residuals; ranked first for Spearman
+2024,any_foreign_parent_among_Sweden_born_2015,pearson,44,0.0440804075168,0.776320846786,none
+2024,any_foreign_parent_among_Sweden_born_2015,partial_pearson,44,-0.127640776218,0.4205048692,metro residuals; ranked first for Spearman
+2024,any_foreign_parent_among_Sweden_born_2015,spearman,44,0.07547439161,0.626312636825,none
+2024,any_foreign_parent_among_Sweden_born_2015,partial_spearman,44,-0.0880896784531,0.57907381466,metro residuals; ranked first for Spearman
+2024,two_foreign_parents_among_Sweden_born_2015,pearson,44,0.00933969174673,0.952020037614,none
+2024,two_foreign_parents_among_Sweden_born_2015,partial_pearson,44,-0.142374565356,0.368417788389,metro residuals; ranked first for Spearman
+2024,two_foreign_parents_among_Sweden_born_2015,spearman,44,0.0459900031119,0.766895779028,none
+2024,two_foreign_parents_among_Sweden_born_2015,partial_spearman,44,-0.0990700171464,0.532489933385,metro residuals; ranked first for Spearman

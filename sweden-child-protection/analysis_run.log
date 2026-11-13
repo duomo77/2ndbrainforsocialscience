@@ -1,0 +1,15 @@
+                                 predictor  n  coefficient  std_error  ci95_low  ci95_high  p_value  p_value_BH_primary_8
+                        foreign_born_share 44    -0.215868   0.226239 -0.673113   0.241378 0.345734              0.419416
+                        foreign_background 44    -0.162638   0.153178 -0.472223   0.146946 0.294713              0.419416
+      any_foreign_parent_among_Sweden_born 44    -0.122585   0.145270 -0.416186   0.171017 0.403776              0.419416
+     two_foreign_parents_among_Sweden_born 44    -0.160225   0.160638 -0.484886   0.164436 0.324552              0.419416
+                   foreign_born_share_2015 44    -0.253117   0.282679 -0.824433   0.318198 0.375918              0.419416
+                   foreign_background_2015 44    -0.189728   0.177228 -0.547919   0.168462 0.290796              0.419416
+ any_foreign_parent_among_Sweden_born_2015 44    -0.136320   0.167089 -0.474021   0.201380 0.419416              0.419416
+two_foreign_parents_among_Sweden_born_2015 44    -0.189109   0.193136 -0.579452   0.201233 0.333391              0.419416
+ year  count       mean       std     median
+ 2022     42  97.952381 15.888257  97.000000
+ 2023     42 103.571429 12.647458 103.500000
+ 2024     44 100.702273 13.482728 100.500000
+ 2025     41  98.350078 14.086018  99.556701
+PASS: 510 checks; 51 rows for 2024; 204 panel rows; 61 regression estimates.

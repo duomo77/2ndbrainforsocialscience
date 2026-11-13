@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="sv" class="sv-no-js sv-template-tom">
+<head>
+   <meta charset="UTF-8">
+   <script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">(function(c){c.add('sv-js');c.remove('sv-no-js');})(document.documentElement.classList)</script>
+   <title>Felsida 404 | SKR Webbfamilj | SKR</title>
+   <meta name="robots" content="noindex, nofollow">
+   <link rel="preload" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/jquery-social.js" as="script">
+   <link rel="preload" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/envision/envision.js" as="script">
+   <link rel="preload" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/utils.js" as="script">
+   <link rel="preload" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/portlets-social.js" as="script">
+               <meta name="fdse-keywords" content="">
+                     <meta name="content-type" content="">
+                     <meta name="lpWorkArea" content="">
+                        <meta name="lpShowInfoResponsible" content="Ja">
+                        <meta name="keywords" content="">
+                     <meta name="DC.modified" content="7 oktober 2025">
+                     <meta name="description" content="">
+         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+   <meta name="dcterms.identifier" content="https://extra.skr.se">
+   <meta name="dcterms.language" content="sv">
+   <meta name="dcterms.format" content="text/html">
+   <meta name="dcterms.type" content="text">
+   <link rel="stylesheet" type="text/css" href="/2.319bc251170f399ba0921f3/1794297379738/sitevision-responsive-grids.css">
+   
+      <link rel="stylesheet" type="text/css" href="/2.319bc251170f399ba0921f3/auto/1794494678961/SiteVision.css">
+      <link rel="stylesheet" type="text/css" href="/2.319bc251170f399ba0921f3/263/6332/print/SiteVision.css">
+   <link rel="stylesheet" type="text/css" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/css/portlets-social.css">
+   <link rel="stylesheet" type="text/css" href="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/envision/envision.css">
+
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092ae3/1566474406131/fonts.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092ab5/1711525072123/base.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba09288c/1692258989298/focus-visible.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba09295b/1696238473602/form-objects.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092aaa/1700469214977/layout.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092935/1692257193445/topmenu.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092ab4/1692339266014/submenu.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092aba/1695047108974/sv-modules.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.1709984117c021c159819ca9/1764928647080/lp-modules.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092afc/1692340004159/decorations.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba0929cc/1692260075758/search.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092954/1692262398377/tables.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092950/1599814620084/site-tools.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092a85/1692339110898/page-tools.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092ab7/1599821455705/share.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092932/1566217329398/byline.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092ade/1566217329515/publication-date.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092a7e/1566217329489/feedback-link.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092912/1566217329378/related-contact.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.14995aea175214466cf3ed/1602592604691/select2.min.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.771ecc01174bf3df809155c/1653393434974/contact-form.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.668ca5111744c9a9eed85c41/1599556884942/contact-list.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba09290d/1566217329376/related-links.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba0928a2/1569246874609/event-list.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092a95/1669892427841/event-date.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba0929bc/1692258391948/news-list.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.3629568c18361c29e68651d/1692262400840/job-listing-visma.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092afe/1692264620447/jquery.expandable-content.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba09292e/1566217329393/alert.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092a84/1694766300578/startpage.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092998/1566217329436/quick-links.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.399a36f417f44c4bf24a87d4/1719816864450/event-page.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.553838ea17305720c325b69/1692257716802/box-navigation.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.6cb79862189eab9d3903a8df/1693376681798/variables.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.d9ec095172e6db963775ab3/1692258354957/banners.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.6f10621c18aef28e522b8b2/1700553394505/assesment.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.7b0fd771764beedf6212595/1612867469291/cookie-banner.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.4d3d64e3177db55b1663c7d1/1615819028046/educational-examples.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.319bc251170f399ba092975/1592484661864/footer-menu.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.33a785d317487303393cc9a4/1696233616270/calendar.css">
+      <link rel="stylesheet" type="text/css" media="all and (min-width: 801px) and (max-width: 1024px)" href="/download/18.319bc251170f399ba092ab9/1655205741367/tablet.css">
+      <link rel="stylesheet" type="text/css" media="all and (max-width: 800px)" href="/download/18.319bc251170f399ba092abd/1706014742733/smartphone.css">
+      <link rel="stylesheet" type="text/css" media="print" href="/download/18.319bc251170f399ba092ab8/1700128316406/print.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.2ee7eb0171ac15bcfc987/1692275381745/migration-control-panel.css">
+      <link rel="stylesheet" type="text/css" media="all" href="/download/18.3556b1db17f446f10561df/1692339640037/webshop.css">
+         <link rel="stylesheet" type="text/css" href="/webapp-resource/4.319bc251170f399ba09225e/360.4eeedb00198e5b61f835a25d/1756821276805/webapp-assets.css">
+      <script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">!function(t,e){t=t||"docReady",e=e||window;var n=[],o=!1,c=!1;function d(){if(!o){o=!0;for(var t=0;t<n.length;t++)try{n[t].fn.call(window,n[t].ctx)}catch(t){console&&console.error(t)}n=[]}}function a(){"complete"===document.readyState&&d()}e[t]=function(t,e){if("function"!=typeof t)throw new TypeError("callback for docReady(fn) must be a function");o?setTimeout(function(){t(e)},1):(n.push({fn:t,ctx:e}),"complete"===document.readyState?setTimeout(d,1):c||(document.addEventListener?(document.addEventListener("DOMContentLoaded",d,!1),window.addEventListener("load",d,!1)):(document.attachEvent("onreadystatechange",a),window.attachEvent("onload",d)),c=!0))}}("svDocReady",window);</script>
+   <script>(function(html){html.className += ' lp-js'})(document.documentElement);</script>
+   <meta name="referrer" content="no-referrer">
+   
+
+
+
+
+
+
+
+                                                                                          
+                                          
+   
+         <meta property="og:image" content="https://extra.skr.se/images/18.eb74a4a17f44902bceca10f/1647931268930/skr-logotyp-fallback.jpg" />
+
+               <meta property="og:image:width" content="1200" />
+      
+               <meta property="og:image:height" content="630" />
+         
+                                    
+   
+                           
+         <meta property="og:title" content="Sidan kunde inte hittas (404)" />
+   
+<meta name="twitter:card" content="summary" />
+<meta property="og:url" content="https://extra.skr.se/omportalen/felsida404.8.html" />
+   
+
+
+
+
+
+
+   
+   <style>
+  .lp-subscription2__queue-manager { display: none !important; }
+</style>
+   
+   <script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">
+      window.sv = window.sv || {};
+      sv.UNSAFE_MAY_CHANGE_AT_ANY_GIVEN_TIME_webAppExternals = {};
+      sv.PageContext = {
+      pageId: '4.319bc251170f399ba09225e',
+      siteId: '2.319bc251170f399ba0921f3',
+      userIdentityId: '',
+      userIdentityReadTimeout: 0,
+      userLocale: 'sv',
+      dev: false,
+      csrfToken: '',
+      html5: true,
+      useServerSideEvents: false,
+      nodeIsReadOnly: false
+      };
+   </script>
+      <script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">!function(){"use strict";var t,n={},e={},i={};function r(t){return n[t]=n[t]||{instances:[],modules:{},bundle:{}},n[t]}document.querySelector("html").classList.add("js");var s={registerBootstrapData:function(t,n,i,r,s){var a,o=e[t];o||(o=e[t]={}),(a=o[i])||(a=o[i]={}),a[n]={subComponents:r,options:s}},registerInitialState:function(t,n){i[t]=n},registerApp:function(n){var e=n.applicationId,i=r(e);if(t){var s={};s[e]=i,s[e].instances=[n],t.start(s)}else i.instances.push(n)},registerModule:function(t){r(t.applicationId).modules[t.path]=t},registerBundle:function(t){r(t.applicationId).bundle=t.bundle},getRegistry:function(){return n},setAppStarter:function(n){t=n},getBootstrapData:function(t){return e[t]},getInitialState:function(t){return i[t]}};window.AppRegistry=s}();</script>
+</head>
+<body class=" sv-responsive sv-theme-skr-nytt-tema env-m-around--0">
+<div id="svid10_319bc251170f399ba092643" class="sv-layout"><div class="sv-custom-module sv-limepark-webapp-redirector sv-skip-spacer sv-template-portlet
+" id="svid12_71b542201784abfbf7a92ca5"><div id="Vidarebefodran"><!-- Vidarebefodran --></div>
+<script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">AppRegistry.registerApp({applicationId:'limepark.webapp-redirector|2.1.0',htmlElementId:'svid12_71b542201784abfbf7a92ca5',route:'/',portletId:'12.71b542201784abfbf7a92ca5',locale:'sv',defaultLocale:'en',webAppId:'limepark.webapp-redirector',webAppVersion:'2.1.0',webAppAopId:'360.71b542201784abfbf7a90a52',webAppImportTime:'1617692110798',requiredLibs:{},childComponentStateExtractionStrategy:'BY_ID'});</script></div>
+<div class="sv-custom-module sv-limepark-subwebs sv-template-portlet
+" id="svid12_4f76e11319319a5c0f86478a"><div id="Underwebbar"><!-- Underwebbar --></div>
+<script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">AppRegistry.registerApp({applicationId:'limepark.subwebs|1.2.2',htmlElementId:'svid12_4f76e11319319a5c0f86478a',route:'/',portletId:'12.4f76e11319319a5c0f86478a',locale:'sv',defaultLocale:'en',webAppId:'limepark.subwebs',webAppVersion:'1.2.2',webAppAopId:'360.4eeedb00198e5b61f835a25d',webAppImportTime:'1756821276805',requiredLibs:{}});</script></div>
+<div id="svid94_319bc251170f399ba09252b"><main class="sv-vertical sv-layout sv-skip-spacer sv-template-layout" id="svid10_319bc251170f399ba09267b"><div class="sv-layout sv-skip-spacer sv-template-portlet
+" id="svid30_319bc251170f399ba0929f6"><div id="Innehallsankare"><!-- Innehållsankare --></div><div class="sv-html-portlet sv-portlet sv-skip-spacer sv-template-portlet
+" id="svid12_319bc251170f399ba09296d_svid30_319bc251170f399ba0929f6"><div id="InnehallsankareHTML"><!-- Innehållsankare - HTML --></div><div id="sidans-innehall" class="lp-content-anchor"></div></div>
+</div>
+<div id="svid94_319bc251170f399ba0922b4" class="pagecontent sv-layout"><div id="Mittenspalt"><!-- Mittenspalt --></div><div class="sv-vertical sv-layout lp-login-404 sv-skip-spacer" id="svid10_319bc251170f399ba0923e8"><div class="sv-text-portlet sv-use-margins sv-skip-spacer" id="svid12_319bc251170f399ba092666"><div id="Rubrik"><!-- Rubrik --></div><div class="sv-text-portlet-content"><h1 class="heading" id="h-Sidankundeintehittas404">Sidan kunde inte hittas (404)<br></h1></div></div>
+<div class="sv-text-portlet sv-use-margins" id="svid12_319bc251170f399ba09229a"><div id="Innehall"><!-- Innehåll --></div><div class="sv-text-portlet-content"><p class="normal">Den sida du söker går inte att nå - den kan vara borttagen eller flyttad. Kontrollera att du har skrivit in rätt adress i din webbläsare.</p><h2 class="subheading" id="h-Gavidare">Gå vidare:</h2></div></div>
+<div class="sv-custom-module sv-marketplace-sitevision-button c39707"  id="svid12_40a28c9019993bbae1c6d995"><div id="Knapp"><!-- Knapp --></div><div class="env-flex"><a class="env-button env-button--primary" href="https://skr.se">SKR:s webbplats<span class="env-assistive-text"> (länk till annan webbplats)</span></a></div></div>
+<div class="sv-linked-portlet sv-jcrmenu-portlet sv-portlet c39701"  id="svid12_70c3d424173b4900fc5402af"><div id="Webbplatslista"><!-- Webbplatslista --></div>   
+      <ul class="lp-portal-site-list">
+                        	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/framtidenssocialtjanst.74978.html" class="lp-portal-site-list__item__link">Framtidens socialtjänst</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://heltid.nu/heltid.57791.html" class="lp-portal-site-list__item__link">Heltid</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://innovationsguiden.se/innovationsguiden.60637.html" class="lp-portal-site-list__item__link">Innovationsguiden</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://kompetensforsorjningskola.se/kompetensforsorjningskola.54887.html" class="lp-portal-site-list__item__link">Kompetensförsörjning skola</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://kunskapsstyrningvard.se/kunskapsstyrningvard.44259.html" class="lp-portal-site-list__item__link">Kunskapsstyrning vård</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://patientenkat.se/nationellpatientenkat.44334.html" class="lp-portal-site-list__item__link">Nationell patientenkät</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/offentligafastigheter.58164.html" class="lp-portal-site-list__item__link">Offentliga fastigheter</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/primarvardskvalitet.32919.html" class="lp-portal-site-list__item__link">Primärvårdskvalitet</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://rka.nu/radetforframjandeavkommunalaanalyser.44588.html" class="lp-portal-site-list__item__link">Rådet för främjande av kommunala analyser</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/rattsjukskrivning.32861.html" class="lp-portal-site-list__item__link">Rätt sjukskrivning</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://salarinternational.se/salar.67955.html" class="lp-portal-site-list__item__link">SALAR</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://sfti.se/sfti.44442.html" class="lp-portal-site-list__item__link">SFTI</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://skhi.se/skhi.44681.html" class="lp-portal-site-list__item__link">SKHI</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://vagentilljobben.se/vagentilljobben2.96900.html" class="lp-portal-site-list__item__link">Vägen till jobben 2</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/valfardsteknik.64112.html" class="lp-portal-site-list__item__link">Välfärdsteknik</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/vantetiderivarden.46246.html" class="lp-portal-site-list__item__link">Väntetider i vården</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://extra.skr.se/webbhandboken.43674.html" class="lp-portal-site-list__item__link">Webbhandboken</a>
+         	</li>
+                                 	        		            
+            <li class="lp-portal-site-list__item">
+            	<a href="https://yrkesresan.se/yrkesresan.69217.html" class="lp-portal-site-list__item__link">Yrkesresan</a>
+         	</li>
+                     </ul>
+   </div>
+<div class="sv-text-portlet sv-use-margins" id="svid12_319bc251170f399ba0927af"><div id="Text"><!-- Text --></div><div class="sv-text-portlet-content"><h2 class="subheading" id="h-Rapporteratrasiglank">Rapportera trasig länk</h2></div></div>
+<div class="sv-form-portlet sv-portlet" id="svid12_319bc251170f399ba0927a8"><div id="Epostformular"><!-- E-postformulär --></div>
+
+
+
+   
+<form novalidate="novalidate" id="form_319bc251170f399ba0927a8" action="/omportalen/felsida404.8.html;jsessionid=0D31222124E68EA91D701CCD9923DBBD?sv.url=12.319bc251170f399ba0927a8&amp;state=create#svid12_319bc251170f399ba0927a8"  method="post" class="env-m-around--0" data-sv-user-consent data-sv-single-click>
+<div class="sv-defaultFormTheme">
+   <label class="env-d--none" hidden for="mailname_id_319bc251170f399ba0927a8">Mail name e-mail:</label>
+<input class="env-d--none" hidden id="mailname_id_319bc251170f399ba0927a8" name="mail_name_319bc251170f399ba0927a8" autocomplete="off" type="text" value="">
+
+
+
+ 
+<div class="sv-formFieldRow">
+        
+         
+   
+      <div class="sv-formField sv-formField--cols-12 c39686"  id="field_120_319bc251170f399ba092ad5_container">
+         
+         
+         
+           
+
+
+
+
+
+
+
+      <div>
+   
+
+
+
+
+   <div class="sv-field-title-container">
+                        <label class="normal" for="field_120_319bc251170f399ba092ad5">Adress  </label>         </div>
+   
+
+</div>
+<div  >
+<input class="sv-form-textfield normal"
+    title="" type="url" value="" id="field_120_319bc251170f399ba092ad5" name="url"   maxlength=4000 
+          autocomplete="url"
+  >
+
+
+</div>
+
+
+      </div>
+           
+            </div>
+      <div class="sv-formFieldRow">
+         
+   
+      <div class="sv-formField sv-formField--cols-12 c39686"  id="field_120_319bc251170f399ba092ad4_container">
+         
+         
+         
+           
+
+
+
+
+
+
+
+      <div>
+   
+
+
+
+
+   <div class="sv-field-title-container">
+                        <label class="normal" for="field_120_319bc251170f399ba092ad4">Länken fanns på  </label>         </div>
+   
+
+</div>
+<div  >
+<input class="sv-form-textfield normal"
+    title="" type="text" value="" id="field_120_319bc251170f399ba092ad4" name="field_120_319bc251170f399ba092ad4"   maxlength=4000 
+      >
+
+
+</div>
+
+
+      </div>
+   </div>
+
+               <div class="sv-formFieldRow">
+         <div class="sv-formField c39686" >
+            <div class="sv-form-consent">
+               <input id="consent_319bc251170f399ba0927a8" name="consent" type="checkbox" value="consent" data-sv-form-consent-checkbox>
+
+               
+                              
+               <label for="consent_319bc251170f399ba0927a8" class="normal">Jag samtycker till att SKR lagrar och hanterar mina uppgifter.<span class="c39677"> *</span></label>
+
+                                 <div class="normal">
+                                                                                                                                                                  <p>Läs mer på <a href="https://skr.se/dataskydd" target="_blank">https://skr.se/dataskydd</a></p>
+                                                               </div>
+                           </div>
+
+                     </div>
+      </div>
+   
+   <div class="sv-formFieldRow">
+      <div class="sv-formField c39686" >
+         <input class="normal" type="submit" value="Skicka">
+      </div>
+   </div>
+
+</div>
+</form>
+
+   
+   <script nonce="58ab0df0-deb8-11f1-8254-4b82fe10a2ee">
+svDocReady(function() {
+   var counter = 0;
+   var selector = '#svid' + '12.319bc251170f399ba0927a8'.replace('.', '_') + ' form';
+   $svjq(selector).one('keypress', function() {
+      var checkInterval = setInterval(function() {
+         $svjq.post('/4.319bc251170f399ba09225e/12.319bc251170f399ba0927a8.html?state=keepAlive&amp;sv.contenttype=text/html;charset=UTF-8');
+         if (++counter === 12) {
+            window.clearInterval(checkInterval);
+         }
+      }, 900000); // 15 minutes
+   });
+});
+</script></div>
+<div class="sv-html-portlet sv-portlet" id="svid12_319bc251170f399ba0927b3"><div id="HTMLAutomatisktadressfalt"><!-- HTML - Automatiskt adressfält --></div><script>
+(function () {
+   var urlField = document.querySelector('.sv-form-portlet [name="url"]');
+   if (urlField) {
+      urlField.value = location.href;
+   }
+})();
+</script></div>
+</div>
+</div></main>
+</div></div>
+
+
+
+
+<script src="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/jquery-social.js"></script>
+<script src="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/envision/envision.js"></script>
+<script src="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/utils.js"></script>
+<script src="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/js/portlets-social.js"></script>
+
+<script src="/download/18.319bc251170f399ba092af3/1571909722299/svgxuse.js"></script>
+<script src="/download/18.319bc251170f399ba092abb/1569242730736/scroll.js"></script>
+<script src="/download/18.319bc251170f399ba092b01/1567590695367/utils.js"></script>
+<script src="/download/18.319bc251170f399ba092ada/1608625995661/lp-toggle.js"></script>
+<script src="/download/18.319bc251170f399ba092a29/1700131732277/clickable-area.js"></script>
+<script src="/download/18.319bc251170f399ba092b00/1599555934889/jquery.expandable-content.js"></script>
+<script src="/download/18.319bc251170f399ba092ae9/1567590753837/page-tools.js"></script>
+<script src="/download/18.14995aea175214466cf3ee/1602592607851/select2.min.js"></script>
+<script src="/download/18.319bc251170f399ba092af9/1615897798167/site.js"></script>
+<script src="/download/18.319bc251170f399ba092afa/1602595403298/focus-visible.js"></script>
+<script src="/download/18.2ee7eb0171ac15bcfc989/1587985336321/migration-control-panel-client.js"></script>
+<script src="/webapp-resource/4.319bc251170f399ba09225e/360.4eeedb00198e5b61f835a25d/1756821276805/webapp-assets.js"></script>
+<script src="/webapp-resource/4.319bc251170f399ba09225e/360.71b542201784abfbf7a90a52/1617692110798/webapp-assets.js"></script>
+<script src="/sitevision/system-resource/a4c5d51b61945e98d3fa41bfd0d352117942e20e561e92dfbb048674d5484c5b/webapps/webapp_sdk-legacy.js"></script>
+</body>
+</html>

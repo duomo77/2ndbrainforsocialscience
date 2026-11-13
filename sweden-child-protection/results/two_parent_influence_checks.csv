@@ -1,0 +1,21 @@
+﻿check,passed
+FWL equals original slope TWFE_unbalanced,True
+FWL equals original slope TWFE_balanced,True
+FWL equals original slope municipality_metro_year_unbalanced,True
+FWL equals original slope municipality_metro_year_balanced,True
+annual differences are genuinely adjacent,True
+no duplicate municipality/interval,True
+two-wave FE equals endpoint first difference False,True
+two-wave FE equals endpoint first difference True,True
+reproduces original coefficient TWFE_unbalanced,True
+reproduces original clustered SE TWFE_unbalanced,True
+reproduces original coefficient TWFE_balanced,True
+reproduces original clustered SE TWFE_balanced,True
+cell contributions sum to slope TWFE_balanced,True
+partial information shares sum to one TWFE_balanced,True
+cell contributions sum to slope TWFE_unbalanced,True
+partial information shares sum to one TWFE_unbalanced,True
+cell contributions sum to slope municipality_metro_year_balanced,True
+partial information shares sum to one municipality_metro_year_balanced,True
+cell contributions sum to slope municipality_metro_year_unbalanced,True
+partial information shares sum to one municipality_metro_year_unbalanced,True

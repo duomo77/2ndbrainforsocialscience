@@ -1,0 +1,135 @@
+BASE MODELS
+                      specification   kind   n  municipalities  coefficient  std_error  p_value  ci95_low  ci95_high                      unit
+                   TWFE_unbalanced levels 126              43     6.696774   2.247197 0.004776  2.161747  11.231801 days per percentage point
+                     TWFE_balanced levels 120              40     6.554615   3.058175 0.038383  0.368871  12.740359 days per percentage point
+municipality_metro_year_unbalanced levels 126              43     6.517999   3.181781 0.046791  0.096905  12.939094 days per percentage point
+  municipality_metro_year_balanced levels 120              40     6.074398   4.036329 0.140398 -2.089848  14.238644 days per percentage point
+
+MUNICIPAL DELETION RANGES
+                                     slope_min  slope_max     p_min     p_max  positive  p_below_05  total
+specification                                                                                            
+TWFE_balanced                        5.159165   7.258074  0.023167  0.116702        40          33     40
+TWFE_unbalanced                      5.642356   7.168098  0.002306  0.057372        43          42     43
+municipality_metro_year_balanced     4.388148   7.145635  0.091601  0.273700        40           0     40
+municipality_metro_year_unbalanced   5.342879   7.397547  0.027276  0.178710        43          26     43
+
+PRIMARY SUPPORTING MUNICIPALITIES
+ municipality_code municipality          metro  covariance_numerator  slope_contribution  covariance_share  partial_x_information_share   specification  supporting_influence  coefficient_omitting_municipality  p_omitting_municipality
+             1407       Öckerö  Stor-Göteborg             14.266736            1.164582          0.173902                     0.024028 TWFE_unbalanced              1.054418                           5.642356                 0.006798
+             0192    Nynäshamn Stor-Stockholm             15.612088            1.274402          0.190301                     0.103661 TWFE_unbalanced              0.665192                           6.031582                 0.017460
+             0139 Upplands-Bro Stor-Stockholm             29.250903            2.387728          0.356549                     0.288861 TWFE_unbalanced              0.659769                           6.037005                 0.057372
+             1230 Staffanstorp     Stor-Malmö              7.297210            0.595665          0.088948                     0.004085 TWFE_unbalanced              0.584788                           6.111986                 0.011577
+             1231       Burlöv     Stor-Malmö              5.821166            0.475177          0.070956                     0.024596 TWFE_unbalanced              0.326357                           6.370417                 0.008205
+             0136      Haninge Stor-Stockholm              5.322972            0.434510          0.064883                     0.023223 TWFE_unbalanced              0.292849                           6.403924                 0.008478
+             0117    Österåker Stor-Stockholm              2.885943            0.235577          0.035178                     0.000716 TWFE_unbalanced              0.236655                           6.460118                 0.005531
+             0188    Norrtälje Stor-Stockholm              1.554610            0.126902          0.018950                     0.001163 TWFE_unbalanced              0.122201                           6.574573                 0.005419
+             1384   Kungsbacka  Stor-Göteborg              1.716887            0.140148          0.020928                     0.009308 TWFE_unbalanced              0.080502                           6.616272                 0.005918
+             1482      Kungälv  Stor-Göteborg              1.603308            0.130877          0.019543                     0.008793 TWFE_unbalanced              0.074441                           6.622332                 0.005701
+
+PRIMARY SUPPORTING CELLS
+   specification   kind   n  municipalities  coefficient  std_error  p_value  ci95_low  ci95_high                      unit omitted_code omitted_municipality  omitted_year  full_coefficient  supporting_influence  actual_rows_removed
+TWFE_unbalanced levels 125              43     5.632653   1.981016 0.006867  1.634801   9.630506 days per percentage point         1407               Öckerö          2022          6.696774              1.064120                    1
+TWFE_unbalanced levels 125              43     5.946199   2.751331 0.036428  0.393789  11.498609 days per percentage point         1419                Tjörn          2024          6.696774              0.750575                    1
+TWFE_unbalanced levels 125              43     6.003185   2.373291 0.015264  1.213689  10.792681 days per percentage point         0192            Nynäshamn          2022          6.696774              0.693589                    1
+TWFE_unbalanced levels 124              42     6.037005   3.087316 0.057372 -0.197957  12.271967 days per percentage point         0139         Upplands-Bro          2024          6.696774              0.659769                    2
+TWFE_unbalanced levels 124              42     6.037005   3.087316 0.057372 -0.197957  12.271967 days per percentage point         0139         Upplands-Bro          2022          6.696774              0.659769                    2
+TWFE_unbalanced levels 125              43     6.125764   2.313955 0.011375  1.456013  10.795514 days per percentage point         1230         Staffanstorp          2024          6.696774              0.571010                    1
+TWFE_unbalanced levels 125              43     6.346328   2.432294 0.012521  1.437760  11.254896 days per percentage point         0140              Nykvarn          2024          6.696774              0.350446                    1
+TWFE_unbalanced levels 125              43     6.351695   2.269218 0.007708  1.772227  10.931162 days per percentage point         1231               Burlöv          2023          6.696774              0.345079                    1
+TWFE_unbalanced levels 125              43     6.356891   2.238593 0.006932  1.839227  10.874556 days per percentage point         1230         Staffanstorp          2022          6.696774              0.339882                    1
+TWFE_unbalanced levels 125              43     6.395715   2.477427 0.013415  1.396066  11.395364 days per percentage point         0163           Sollentuna          2022          6.696774              0.301059                    1
+
+CUMULATIVE DELETIONS
+                      specification          kind   n  municipalities  coefficient  std_error  p_value  ci95_low  ci95_high                      unit  omitted_count                                         omitted_codes                                   omitted_municipalities  actual_rows_removed
+                   TWFE_unbalanced        levels 123              42     5.642356   1.979249 0.006798  1.645181   9.639531 days per percentage point              1                                                  1407                                                   Öckerö                  NaN
+                   TWFE_unbalanced        levels 120              41     4.895570   2.207780 0.032340  0.433481   9.357659 days per percentage point              2                                             1407,0192                                        Öckerö; Nynäshamn                  NaN
+                   TWFE_unbalanced        levels 118              40     3.210162   2.825733 0.262870 -2.505423   8.925747 days per percentage point              3                                        1407,0192,0139                          Öckerö; Nynäshamn; Upplands-Bro                  NaN
+                   TWFE_unbalanced        levels 115              39     1.811902   2.646523 0.497729 -3.545704   7.169507 days per percentage point              4                                   1407,0192,0139,1230            Öckerö; Nynäshamn; Upplands-Bro; Staffanstorp                  NaN
+                   TWFE_unbalanced        levels 112              38     1.096471   2.724119 0.689629 -4.423119   6.616061 days per percentage point              5                              1407,0192,0139,1230,1231    Öckerö; Nynäshamn; Upplands-Bro; Staffanstorp; Burlöv                  NaN
+                   TWFE_unbalanced cell_deletion 125              43     5.632653   1.981016 0.006867  1.634801   9.630506 days per percentage point              1                                             1407/2022                                                   Öckerö                  1.0
+                   TWFE_unbalanced cell_deletion 124              43     4.811697   2.581997 0.069386 -0.398984  10.022378 days per percentage point              2                                  1419/2024; 1407/2022                                            Öckerö; Tjörn                  2.0
+                   TWFE_unbalanced cell_deletion 123              43     3.987531   2.815999 0.164141 -1.695386   9.670447 days per percentage point              3                       1419/2024; 1407/2022; 0192/2022                                 Öckerö; Tjörn; Nynäshamn                  3.0
+                   TWFE_unbalanced cell_deletion 121              42     1.961751   3.527554 0.581150 -5.162290   9.085791 days per percentage point              5 0139/2022; 0192/2022; 0139/2024; 1419/2024; 1407/2022     Öckerö; Tjörn; Nynäshamn; Upplands-Bro; Upplands-Bro                  5.0
+                     TWFE_balanced        levels 117              39     5.159165   2.623837 0.056604 -0.152514  10.470845 days per percentage point              1                                                  1407                                                   Öckerö                  NaN
+                     TWFE_balanced        levels 114              38     3.788898   2.780430 0.181213 -1.844789   9.422584 days per percentage point              2                                             1407,0192                                        Öckerö; Nynäshamn                  NaN
+                     TWFE_balanced        levels 111              37     2.396068   2.576136 0.358514 -2.828579   7.620714 days per percentage point              3                                        1407,0192,1230                          Öckerö; Nynäshamn; Staffanstorp                  NaN
+                     TWFE_balanced        levels 108              36     1.440691   2.738881 0.602196 -4.119533   7.000915 days per percentage point              4                                   1407,0192,1230,0136                 Öckerö; Nynäshamn; Staffanstorp; Haninge                  NaN
+                     TWFE_balanced        levels 105              35     0.669428   2.868796 0.816890 -5.160667   6.499523 days per percentage point              5                              1407,0192,1230,0136,1231         Öckerö; Nynäshamn; Staffanstorp; Haninge; Burlöv                  NaN
+municipality_metro_year_unbalanced        levels 123              42     5.342879   2.994687 0.081806 -0.705014  11.390772 days per percentage point              1                                                  1230                                             Staffanstorp                  NaN
+municipality_metro_year_unbalanced        levels 121              41     3.912752   3.668113 0.292506 -3.500780  11.326285 days per percentage point              2                                             1230,0139                               Staffanstorp; Upplands-Bro                  NaN
+municipality_metro_year_unbalanced        levels 118              40     2.939426   3.297491 0.378174 -3.730378   9.609231 days per percentage point              3                                        1230,0139,0117                    Staffanstorp; Upplands-Bro; Österåker                  NaN
+municipality_metro_year_unbalanced        levels 115              39     1.296065   3.331067 0.699386 -5.447328   8.039457 days per percentage point              4                                   1230,0139,0117,0192         Staffanstorp; Upplands-Bro; Österåker; Nynäshamn                  NaN
+municipality_metro_year_unbalanced        levels 112              38     0.164913   3.125080 0.958198 -6.167100   6.496927 days per percentage point              5                              1230,0139,0117,0192,1407 Staffanstorp; Upplands-Bro; Österåker; Nynäshamn; Öckerö                  NaN
+  municipality_metro_year_balanced        levels 117              39     4.388148   3.596071 0.229884 -2.891718  11.668014 days per percentage point              1                                                  1230                                             Staffanstorp                  NaN
+  municipality_metro_year_balanced        levels 114              38     2.706846   3.568703 0.452959 -4.524034   9.937726 days per percentage point              2                                             1230,0192                                  Staffanstorp; Nynäshamn                  NaN
+  municipality_metro_year_balanced        levels 111              37     1.843463   3.227385 0.571417 -4.701978   8.388903 days per percentage point              3                                        1230,0192,0117                       Staffanstorp; Nynäshamn; Österåker                  NaN
+  municipality_metro_year_balanced        levels 108              36     0.712813   2.985178 0.812666 -5.347421   6.773046 days per percentage point              4                                   1230,0192,0117,1407               Staffanstorp; Nynäshamn; Österåker; Öckerö                  NaN
+  municipality_metro_year_balanced        levels 105              35    -0.129364   3.015340 0.966031 -6.257272   5.998545 days per percentage point              5                              1230,0192,0117,1407,1231       Staffanstorp; Nynäshamn; Österåker; Öckerö; Burlöv                  NaN
+  municipality_metro_year_balanced cell_deletion 119              40     4.404432   3.578253 0.225736 -2.833268  11.642132 days per percentage point              1                                             1230/2024                                             Staffanstorp                  1.0
+  municipality_metro_year_balanced cell_deletion 118              40     2.714362   3.487799 0.441121 -4.340377   9.769102 days per percentage point              2                                  0192/2022; 1230/2024                                  Staffanstorp; Nynäshamn                  2.0
+  municipality_metro_year_balanced cell_deletion 117              40     1.899285   3.164915 0.551907 -4.502360   8.300931 days per percentage point              3                       0117/2022; 0192/2022; 1230/2024                       Staffanstorp; Nynäshamn; Österåker                  3.0
+  municipality_metro_year_balanced cell_deletion 114              39     0.862874   2.921910 0.769364 -5.052223   6.777970 days per percentage point              5 0117/2022; 1407/2022; 0192/2022; 1230/2024; 1230/2022 Staffanstorp; Nynäshamn; Österåker; Öckerö; Staffanstorp                  6.0
+
+FIRST DIFFERENCES
+                         specification             kind  n  municipalities  coefficient  std_error  p_value   ci95_low  ci95_high                      unit                standard_errors
+               FD_adjacent_unbalanced first_difference 82              42     4.249003   3.504838 0.232328  -2.829161  11.327167 days per percentage point municipality clustered; t(G-1)
+                 FD_adjacent_balanced first_difference 80              40     5.121853   3.471659 0.148151  -1.900240  12.143945 days per percentage point municipality clustered; t(G-1)
+FD_adjacent_metro_interval_unbalanced first_difference 82              42     4.064707   4.150866 0.333203  -4.318136  12.447550 days per percentage point municipality clustered; t(G-1)
+  FD_adjacent_metro_interval_balanced first_difference 80              40     4.851386   4.116106 0.245685  -3.474224  13.176996 days per percentage point municipality clustered; t(G-1)
+                         FD_2022_2023 first_difference 41              41     3.375015   8.223524 0.683751 -13.258632  20.008662 days per percentage point                    HC3; t(n-k)
+          FD_2022_2023_metro_controls first_difference 41              41     4.454091   7.601398 0.561462 -10.947803  19.855986 days per percentage point                    HC3; t(n-k)
+                         FD_2023_2024 first_difference 41              41     5.187553   5.319183 0.335445  -5.571511  15.946617 days per percentage point                    HC3; t(n-k)
+          FD_2023_2024_metro_controls first_difference 41              41     3.663600   6.761948 0.591207 -10.037408  17.364607 days per percentage point                    HC3; t(n-k)
+                FD_endpoint_2022_2024 first_difference 41              41     7.743886   1.644524 0.000031   4.417522  11.070250 days per percentage point                    HC3; t(n-k)
+ FD_endpoint_2022_2024_metro_controls first_difference 41              41     7.434297   2.527064 0.005601   2.313980  12.554615 days per percentage point                    HC3; t(n-k)
+
+FD DELETION RANGES
+                                        slope_min  slope_max     p_max  p_below_05  total
+specification                                                                           
+FD_adjacent_balanced                    3.157522   6.692339  0.333236           1     40
+FD_adjacent_metro_interval_balanced     2.884808   6.202794  0.463035           0     40
+FD_adjacent_metro_interval_unbalanced   2.176258   5.384717  0.587328           0     42
+FD_adjacent_unbalanced                  2.251789   5.703211  0.472009           0     42
+FD_endpoint_2022_2024                   6.944411   8.246085  0.003582          41     41
+FD_endpoint_2022_2024_metro_controls    6.248252   8.435484  0.047940          41     41
+
+ENDPOINT SUPPORTING MUNICIPALITIES
+                        specification             kind  n  municipalities  coefficient  std_error  p_value  ci95_low  ci95_high                      unit standard_errors omitted_code omitted_municipality  full_coefficient  supporting_influence
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     6.248252   2.425632 0.014248  1.328842  11.167662 days per percentage point     HC3; t(n-k)         1230         Staffanstorp          7.434297              1.186045
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     6.546716   2.263358 0.006447  1.956413  11.137019 days per percentage point     HC3; t(n-k)         0117            Österåker          7.434297              0.887582
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     6.796962   2.733989 0.017693  1.252176  12.341748 days per percentage point     HC3; t(n-k)         0192            Nynäshamn          7.434297              0.637335
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     6.836043   3.338417 0.047940  0.065420  13.606666 days per percentage point     HC3; t(n-k)         0139         Upplands-Bro          7.434297              0.598255
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     7.013479   2.576486 0.009935  1.788122  12.238836 days per percentage point     HC3; t(n-k)         1462           Lilla Edet          7.434297              0.420818
+
+ENDPOINT CUMULATIVE DELETIONS
+                        specification             kind  n  municipalities  coefficient  std_error  p_value  ci95_low  ci95_high                      unit standard_errors  omitted_count            omitted_codes                                       omitted_municipalities
+               FD_endpoint_2022_2024 first_difference 40              40     6.944411   1.513954 0.000048  3.879572  10.009249 days per percentage point     HC3; t(n-k)              1                     1407                                                       Öckerö
+               FD_endpoint_2022_2024 first_difference 39              39     6.329941   1.742978 0.000848  2.798332   9.861550 days per percentage point     HC3; t(n-k)              2                1407,1230                                         Öckerö; Staffanstorp
+               FD_endpoint_2022_2024 first_difference 38              38     5.530874   2.223462 0.017633  1.021484  10.040264 days per percentage point     HC3; t(n-k)              3           1407,1230,0192                              Öckerö; Staffanstorp; Nynäshamn
+               FD_endpoint_2022_2024 first_difference 36              36     2.715903   2.500763 0.285106 -2.366259   7.798065 days per percentage point     HC3; t(n-k)              5 1407,1230,0192,0139,0136       Öckerö; Staffanstorp; Nynäshamn; Upplands-Bro; Haninge
+FD_endpoint_2022_2024_metro_controls first_difference 40              40     6.248252   2.425632 0.014248  1.328842  11.167662 days per percentage point     HC3; t(n-k)              1                     1230                                                 Staffanstorp
+FD_endpoint_2022_2024_metro_controls first_difference 39              39     5.337477   2.137452 0.017375  0.998218   9.676736 days per percentage point     HC3; t(n-k)              2                1230,0117                                      Staffanstorp; Österåker
+FD_endpoint_2022_2024_metro_controls first_difference 38              38     4.640751   2.585171 0.081525 -0.612949   9.894451 days per percentage point     HC3; t(n-k)              3           1230,0117,0192                           Staffanstorp; Österåker; Nynäshamn
+FD_endpoint_2022_2024_metro_controls first_difference 36              36     1.828845   2.637577 0.493073 -3.543723   7.201412 days per percentage point     HC3; t(n-k)              5 1230,0117,0192,0139,1462 Staffanstorp; Österåker; Nynäshamn; Upplands-Bro; Lilla Edet
+
+FOCUS RAW VALUES
+ municipality_code municipality  year      x_pp  U33401_days
+             0139 Upplands-Bro  2022 33.962264         75.0
+             0139 Upplands-Bro  2024 37.291786        100.0
+             0192    Nynäshamn  2022 18.672951         79.0
+             0192    Nynäshamn  2023 19.989339        100.0
+             0192    Nynäshamn  2024 20.929000        101.0
+             1230 Staffanstorp  2022 14.488593         65.0
+             1230 Staffanstorp  2023 15.069935         73.0
+             1230 Staffanstorp  2024 15.472435        117.0
+             1231       Burlöv  2022 39.813931        103.0
+             1231       Burlöv  2023 40.516006        122.0
+             1231       Burlöv  2024 40.018766        104.0
+             1407       Öckerö  2022  1.928721        140.0
+             1407       Öckerö  2023  1.694915        111.0
+             1407       Öckerö  2024  1.903114        112.0
+             1419        Tjörn  2022  5.234348         69.0
+             1419        Tjörn  2023  4.975644        113.0
+             1419        Tjörn  2024  4.922096         67.0
+
+CHECKS 20 passed

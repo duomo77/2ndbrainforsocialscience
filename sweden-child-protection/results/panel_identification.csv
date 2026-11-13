@@ -1,0 +1,5 @@
+﻿predictor,n,municipalities,year_min,year_max,within_sd_pp
+foreign_born_share,169,45,2022,2025,0.325058789493
+foreign_background,126,43,2022,2024,0.399429928384
+any_foreign_parent_among_Sweden_born,126,43,2022,2024,0.478140710313
+two_foreign_parents_among_Sweden_born,126,43,2022,2024,0.416126435397

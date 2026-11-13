@@ -1,0 +1,17 @@
+﻿metro,measure,n_2015,n_2024,mean_2015_pct,mean_2024_pct,change_in_mean_pp,aggregation
+All 51,foreign_born_share,51,51,17.0156227843,21.1937753529,4.17815256863,unweighted municipalities
+All 51,foreign_background,51,51,18.9926129239,24.5174789139,5.52486599001,unweighted municipalities
+All 51,any_foreign_parent_among_Sweden_born,51,51,27.7080758617,33.896953876,6.18887801421,unweighted municipalities
+All 51,two_foreign_parents_among_Sweden_born,51,51,13.0797845866,17.9512785909,4.87149400429,unweighted municipalities
+Stor-Göteborg,foreign_born_share,13,13,11.5833097692,14.9823682308,3.39905846154,unweighted municipalities
+Stor-Göteborg,foreign_background,13,13,12.5247488338,17.0035995269,4.47885069305,unweighted municipalities
+Stor-Göteborg,any_foreign_parent_among_Sweden_born,13,13,19.9620698382,24.9505950598,4.98852522161,unweighted municipalities
+Stor-Göteborg,two_foreign_parents_among_Sweden_born,13,13,7.91958066878,11.490405877,3.57082520825,unweighted municipalities
+Stor-Malmö,foreign_born_share,12,12,14.8961268333,18.6271448333,3.731018,unweighted municipalities
+Stor-Malmö,foreign_background,12,12,18.1221288929,22.8725279024,4.75039900949,unweighted municipalities
+Stor-Malmö,any_foreign_parent_among_Sweden_born,12,12,26.1389051534,31.8906308022,5.75172564884,unweighted municipalities
+Stor-Malmö,two_foreign_parents_among_Sweden_born,12,12,12.4777595713,16.4181958134,3.94043624211,unweighted municipalities
+Stor-Stockholm,foreign_born_share,26,26,20.7100081923,25.4840776154,4.77406942308,unweighted municipalities
+Stor-Stockholm,foreign_background,26,26,22.6283068293,29.0336267665,6.40531993719,unweighted municipalities
+Stor-Stockholm,any_foreign_parent_among_Sweden_born,26,26,32.3053115081,39.2961285488,6.99081704069,unweighted municipalities
+Stor-Stockholm,two_foreign_parents_among_Sweden_born,26,26,15.9377442449,21.8892916143,5.95154736947,unweighted municipalities

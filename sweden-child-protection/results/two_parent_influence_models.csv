@@ -1,0 +1,5 @@
+﻿specification,kind,n,municipalities,coefficient,std_error,p_value,ci95_low,ci95_high,unit
+TWFE_unbalanced,levels,126,43,6.6967738254,2.24719691321,0.00477584416755,2.16174685221,11.2318007986,days per percentage point
+TWFE_balanced,levels,120,40,6.55461502098,3.05817546381,0.0383832816574,0.368871278449,12.7403587635,days per percentage point
+municipality_metro_year_unbalanced,levels,126,43,6.51799941459,3.18178142177,0.0467906891375,0.0969045449425,12.9390942842,days per percentage point
+municipality_metro_year_balanced,levels,120,40,6.07439811721,4.03632901546,0.14039828693,-2.08984793263,14.2386441671,days per percentage point

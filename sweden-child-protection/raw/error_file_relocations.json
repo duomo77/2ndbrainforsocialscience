@@ -1,0 +1,14 @@
+[
+  {
+    "original_file": "raw/rka_kkik_changes_2025.pdf",
+    "stored_file": "raw/rka_kkik_changes_2025.pdf.http_error.txt",
+    "sha256": "7b96b1bb5c81f836cca0ae604b22f63946a304d4217c68ef670bd788d377c8c1",
+    "relocated_at_utc": "2026-11-12T16:51:01.550246+00:00"
+  },
+  {
+    "original_file": "raw/rka_kkik_changes_2025_rka.pdf",
+    "stored_file": "raw/rka_kkik_changes_2025_rka.pdf.http_error.txt",
+    "sha256": "839ef9318dcee4ad3a7135967769ad6e155c51ee2388ecaa49be24b695ba1a7a",
+    "relocated_at_utc": "2026-11-12T16:51:01.550815+00:00"
+  }
+]

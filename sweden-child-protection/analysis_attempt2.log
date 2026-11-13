@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "[WORKSPACE]\sweden_metro_51\analysis.py", line 368, in <module>
+    if __name__=='__main__': main()
+                             ~~~~^^
+  File "[WORKSPACE]\sweden_metro_51\analysis.py", line 358, in main
+    descriptives(panel); reg,corr=regressions(panel,annual)
+                                  ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "[WORKSPACE]\sweden_metro_51\analysis.py", line 266, in regressions
+    fit(g,x,'OLS_municipality_metro_by_year_FE',fe='C(municipality_code) + C(metro):C(year)',cluster=True)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "[WORKSPACE]\sweden_metro_51\analysis.py", line 209, in fit
+    check('full rank '+spec+'/'+x,np.linalg.matrix_rank(model.exog)==model.exog.shape[1])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "[WORKSPACE]\sweden_metro_51\analysis.py", line 30, in check
+    if not condition: raise ValueError(f'{name}: {details}')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: full rank OLS_municipality_metro_by_year_FE/foreign_born_share: 

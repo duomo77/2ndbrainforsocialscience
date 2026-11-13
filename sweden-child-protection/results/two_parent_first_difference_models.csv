@@ -1,0 +1,11 @@
+﻿specification,kind,n,municipalities,coefficient,std_error,p_value,ci95_low,ci95_high,unit,standard_errors
+FD_adjacent_unbalanced,first_difference,82,42,4.2490032133,3.50483791554,0.232327798454,-2.8291605519,11.3271669785,days per percentage point,municipality clustered; t(G-1)
+FD_adjacent_balanced,first_difference,80,40,5.12185256929,3.47165852459,0.148151309142,-1.90023960586,12.1439447444,days per percentage point,municipality clustered; t(G-1)
+FD_adjacent_metro_interval_unbalanced,first_difference,82,42,4.06470670189,4.15086562355,0.333202959769,-4.31813648768,12.4475498915,days per percentage point,municipality clustered; t(G-1)
+FD_adjacent_metro_interval_balanced,first_difference,80,40,4.85138563563,4.11610594926,0.245684918943,-3.47422449386,13.1769957651,days per percentage point,municipality clustered; t(G-1)
+FD_2022_2023,first_difference,41,41,3.37501535158,8.2235238986,0.683751373846,-13.2586317688,20.008662472,days per percentage point,HC3; t(n-k)
+FD_2022_2023_metro_controls,first_difference,41,41,4.45409136021,7.60139773378,0.561462116914,-10.9478034365,19.8559861569,days per percentage point,HC3; t(n-k)
+FD_2023_2024,first_difference,41,41,5.18755322137,5.31918338903,0.335445147145,-5.57151072164,15.9466171644,days per percentage point,HC3; t(n-k)
+FD_2023_2024_metro_controls,first_difference,41,41,3.66359987306,6.76194773671,0.59120672471,-10.0374076665,17.3646074126,days per percentage point,HC3; t(n-k)
+FD_endpoint_2022_2024,first_difference,41,41,7.74388623863,1.64452423501,3.1239852862e-05,4.41752200069,11.0702504766,days per percentage point,HC3; t(n-k)
+FD_endpoint_2022_2024_metro_controls,first_difference,41,41,7.43429739764,2.52706393416,0.0056010631932,2.31397950065,12.5546152946,days per percentage point,HC3; t(n-k)

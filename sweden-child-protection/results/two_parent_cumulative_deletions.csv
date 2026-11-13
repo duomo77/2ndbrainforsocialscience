@@ -1,0 +1,29 @@
+﻿specification,kind,n,municipalities,coefficient,std_error,p_value,ci95_low,ci95_high,unit,omitted_count,omitted_codes,omitted_municipalities,actual_rows_removed
+TWFE_unbalanced,levels,123,42,5.64235587529,1.97924929974,0.00679774788012,1.64518082375,9.63953092683,days per percentage point,1,1407,Öckerö,
+TWFE_unbalanced,levels,120,41,4.89556992412,2.2077796394,0.0323399971916,0.433480827715,9.35765902052,days per percentage point,2,"1407,0192",Öckerö; Nynäshamn,
+TWFE_unbalanced,levels,118,40,3.21016203196,2.82573330283,0.262870477482,-2.50542306213,8.92574712605,days per percentage point,3,"1407,0192,0139",Öckerö; Nynäshamn; Upplands-Bro,
+TWFE_unbalanced,levels,115,39,1.8119015877,2.64652304286,0.497729218271,-3.54570421494,7.16950739033,days per percentage point,4,"1407,0192,0139,1230",Öckerö; Nynäshamn; Upplands-Bro; Staffanstorp,
+TWFE_unbalanced,levels,112,38,1.0964709753,2.724119311,0.689628689227,-4.42311904104,6.61606099164,days per percentage point,5,"1407,0192,0139,1230,1231",Öckerö; Nynäshamn; Upplands-Bro; Staffanstorp; Burlöv,
+TWFE_unbalanced,cell_deletion,125,43,5.63265340495,1.98101637539,0.00686669446259,1.63480050478,9.63050630511,days per percentage point,1,1407/2022,Öckerö,1
+TWFE_unbalanced,cell_deletion,124,43,4.81169685213,2.58199698406,0.0693855449742,-0.398984018138,10.0223777224,days per percentage point,2,1419/2024; 1407/2022,Öckerö; Tjörn,2
+TWFE_unbalanced,cell_deletion,123,43,3.98753063619,2.81599914686,0.164141405824,-1.69538571725,9.67044698962,days per percentage point,3,1419/2024; 1407/2022; 0192/2022,Öckerö; Tjörn; Nynäshamn,3
+TWFE_unbalanced,cell_deletion,121,42,1.96175074226,3.52755436313,0.581149994158,-5.16228981954,9.08579130407,days per percentage point,5,0139/2022; 0192/2022; 0139/2024; 1419/2024; 1407/2022,Öckerö; Tjörn; Nynäshamn; Upplands-Bro; Upplands-Bro,5
+TWFE_balanced,levels,117,39,5.15916529879,2.62383664214,0.0566039253604,-0.152514286613,10.4708448842,days per percentage point,1,1407,Öckerö,
+TWFE_balanced,levels,114,38,3.78889791186,2.78043006615,0.181213466772,-1.84478853215,9.42258435586,days per percentage point,2,"1407,0192",Öckerö; Nynäshamn,
+TWFE_balanced,levels,111,37,2.39606751431,2.57613627214,0.358514017612,-2.82857900494,7.62071403355,days per percentage point,3,"1407,0192,1230",Öckerö; Nynäshamn; Staffanstorp,
+TWFE_balanced,levels,108,36,1.44069075337,2.73888102673,0.602195632438,-4.11953333354,7.00091484027,days per percentage point,4,"1407,0192,1230,0136",Öckerö; Nynäshamn; Staffanstorp; Haninge,
+TWFE_balanced,levels,105,35,0.669427817656,2.86879595986,0.81689040645,-5.16066702012,6.49952265544,days per percentage point,5,"1407,0192,1230,0136,1231",Öckerö; Nynäshamn; Staffanstorp; Haninge; Burlöv,
+municipality_metro_year_unbalanced,levels,123,42,5.34287898474,2.99468693069,0.0818063588892,-0.705013965437,11.3907719349,days per percentage point,1,1230,Staffanstorp,
+municipality_metro_year_unbalanced,levels,121,41,3.91275246193,3.66811267311,0.292506326289,-3.50077979056,11.3262847144,days per percentage point,2,"1230,0139",Staffanstorp; Upplands-Bro,
+municipality_metro_year_unbalanced,levels,118,40,2.93942636253,3.29749060779,0.378174419418,-3.73037794876,9.60923067382,days per percentage point,3,"1230,0139,0117",Staffanstorp; Upplands-Bro; Österåker,
+municipality_metro_year_unbalanced,levels,115,39,1.29606453338,3.33106713568,0.699385933915,-5.44732833568,8.03945740245,days per percentage point,4,"1230,0139,0117,0192",Staffanstorp; Upplands-Bro; Österåker; Nynäshamn,
+municipality_metro_year_unbalanced,levels,112,38,0.164913324852,3.12508001751,0.95819833023,-6.16710025298,6.49692690269,days per percentage point,5,"1230,0139,0117,0192,1407",Staffanstorp; Upplands-Bro; Österåker; Nynäshamn; Öckerö,
+municipality_metro_year_balanced,levels,117,39,4.38814814747,3.59607148746,0.229884497337,-2.89171798475,11.6680142797,days per percentage point,1,1230,Staffanstorp,
+municipality_metro_year_balanced,levels,114,38,2.70684622376,3.56870349815,0.452959037776,-4.52403390697,9.93772635449,days per percentage point,2,"1230,0192",Staffanstorp; Nynäshamn,
+municipality_metro_year_balanced,levels,111,37,1.84346265948,3.22738514999,0.571417187516,-4.70197780208,8.38890312103,days per percentage point,3,"1230,0192,0117",Staffanstorp; Nynäshamn; Österåker,
+municipality_metro_year_balanced,levels,108,36,0.712812527842,2.98517789022,0.812665785814,-5.34742077432,6.77304583001,days per percentage point,4,"1230,0192,0117,1407",Staffanstorp; Nynäshamn; Österåker; Öckerö,
+municipality_metro_year_balanced,levels,105,35,-0.129363731563,3.0153402783,0.966030726288,-6.25727245587,5.99854499275,days per percentage point,5,"1230,0192,0117,1407,1231",Staffanstorp; Nynäshamn; Österåker; Öckerö; Burlöv,
+municipality_metro_year_balanced,cell_deletion,119,40,4.40443197982,3.57825325059,0.225736373334,-2.83326837975,11.6421323394,days per percentage point,1,1230/2024,Staffanstorp,1
+municipality_metro_year_balanced,cell_deletion,118,40,2.71436221974,3.48779909086,0.44112079442,-4.34037733225,9.76910177173,days per percentage point,2,0192/2022; 1230/2024,Staffanstorp; Nynäshamn,2
+municipality_metro_year_balanced,cell_deletion,117,40,1.89928548037,3.16491524156,0.551906669535,-4.50235984142,8.30093080216,days per percentage point,3,0117/2022; 0192/2022; 1230/2024,Staffanstorp; Nynäshamn; Österåker,3
+municipality_metro_year_balanced,cell_deletion,114,39,0.862873515331,2.92190966863,0.769363538753,-5.05222336532,6.77797039598,days per percentage point,5,0117/2022; 1407/2022; 0192/2022; 1230/2024; 1230/2022,Staffanstorp; Nynäshamn; Österåker; Öckerö; Staffanstorp,6

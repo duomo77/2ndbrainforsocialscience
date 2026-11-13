@@ -1,0 +1,9 @@
+﻿specification,kind,n,municipalities,coefficient,std_error,p_value,ci95_low,ci95_high,unit,standard_errors,omitted_count,omitted_codes,omitted_municipalities
+FD_endpoint_2022_2024,first_difference,40,40,6.94441050267,1.51395361192,4.78076188261e-05,3.87957164627,10.0092493591,days per percentage point,HC3; t(n-k),1,1407,Öckerö
+FD_endpoint_2022_2024,first_difference,39,39,6.32994125399,1.74297800736,0.000848036056166,2.79833235225,9.86155015572,days per percentage point,HC3; t(n-k),2,"1407,1230",Öckerö; Staffanstorp
+FD_endpoint_2022_2024,first_difference,38,38,5.53087389494,2.22346186942,0.0176330934044,1.02148421617,10.0402635737,days per percentage point,HC3; t(n-k),3,"1407,1230,0192",Öckerö; Staffanstorp; Nynäshamn
+FD_endpoint_2022_2024,first_difference,36,36,2.71590330432,2.50076303363,0.285105946317,-2.36625863987,7.79806524852,days per percentage point,HC3; t(n-k),5,"1407,1230,0192,0139,0136",Öckerö; Staffanstorp; Nynäshamn; Upplands-Bro; Haninge
+FD_endpoint_2022_2024_metro_controls,first_difference,40,40,6.24825220444,2.42563225976,0.0142477869444,1.32884196984,11.167662439,days per percentage point,HC3; t(n-k),1,1230,Staffanstorp
+FD_endpoint_2022_2024_metro_controls,first_difference,39,39,5.33747672051,2.13745229254,0.0173746093475,0.998217875164,9.67673556585,days per percentage point,HC3; t(n-k),2,"1230,0117",Staffanstorp; Österåker
+FD_endpoint_2022_2024_metro_controls,first_difference,38,38,4.64075073059,2.58517122236,0.081525019615,-0.612949291688,9.89445075287,days per percentage point,HC3; t(n-k),3,"1230,0117,0192",Staffanstorp; Österåker; Nynäshamn
+FD_endpoint_2022_2024_metro_controls,first_difference,36,36,1.82884464937,2.63757652843,0.493073190748,-3.54372292732,7.20141222606,days per percentage point,HC3; t(n-k),5,"1230,0117,0192,0139,1462",Staffanstorp; Österåker; Nynäshamn; Upplands-Bro; Lilla Edet

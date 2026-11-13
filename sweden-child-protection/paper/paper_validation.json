@@ -1,0 +1,98 @@
+{
+  "page_count": 26,
+  "tables": 12,
+  "native_equations": 6,
+  "checks": [
+    {
+      "check": "twelve academic tables",
+      "passed": true
+    },
+    {
+      "check": "six editable native Word equations",
+      "passed": true
+    },
+    {
+      "check": "three native fraction expressions",
+      "passed": true
+    },
+    {
+      "check": "no theme border below title",
+      "passed": true
+    },
+    {
+      "check": "all 51 municipal rows retained",
+      "passed": true
+    },
+    {
+      "check": "four-digit codes and uniqueness",
+      "passed": true
+    },
+    {
+      "check": "no blank or nearly blank pages",
+      "passed": true
+    },
+    {
+      "check": "reference page size preserved",
+      "passed": true
+    },
+    {
+      "check": "Korean text extracted",
+      "passed": true
+    },
+    {
+      "check": "no replacement or box glyphs",
+      "passed": true
+    },
+    {
+      "check": "no unresolved placeholders",
+      "passed": true
+    },
+    {
+      "check": "primary panel coefficient matches 6.70",
+      "passed": true
+    },
+    {
+      "check": "primary panel sample matches 126/43",
+      "passed": true
+    },
+    {
+      "check": "endpoint coefficient matches 7.43",
+      "passed": true
+    },
+    {
+      "check": "contemporaneous headline statistics included",
+      "passed": true
+    },
+    {
+      "check": "individual delay not presented as measured",
+      "passed": true
+    },
+    {
+      "check": "author identity not invented",
+      "passed": true
+    },
+    {
+      "check": "no user computer path in PDF",
+      "passed": true
+    }
+  ],
+  "outputs": [
+    {
+      "file": "Sweden_ChildProtection_Policy_Draft_KO.docx",
+      "bytes": 63391,
+      "sha256": "f01c31f89b2c289ea14acbed3522aad0e410580235ff0ae59f633365eff58d7e"
+    },
+    {
+      "file": "Sweden_ChildProtection_Policy_Draft_KO.md",
+      "bytes": 48477,
+      "sha256": "a350104a9ae9f948c92c41d50af66179f8594cbc2bd14756858f51adf82233d9"
+    },
+    {
+      "file": "Sweden_ChildProtection_Policy_Draft_KO.pdf",
+      "bytes": 707614,
+      "sha256": "3767f4d7188f571bcb7747c63db523f3ee5b1555d37fc238bae33032f8eb28c9"
+    }
+  ],
+  "render_method": "Microsoft Word 16 COM PDF export of the actual DOCX; Poppler 130 dpi page images",
+  "reference_use": "User-provided format and conceptual framing; prior VIND28/district estimates not re-estimated or pooled"
+}

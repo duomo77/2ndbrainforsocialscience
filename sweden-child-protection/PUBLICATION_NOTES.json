@@ -1,0 +1,22 @@
+{
+  "changes": [
+    {
+      "file": "analysis_attempt1.log",
+      "change": "User-machine path masked",
+      "original_local_sha256": "83544b7e423d036caac86ba46aea288c74803b116c9b38e2d3960cf5b1be0749"
+    },
+    {
+      "file": "analysis_attempt2.log",
+      "change": "User-machine path masked",
+      "original_local_sha256": "a21edeb01f3168c487bf768cce5181bb9544b9c194a1a55c5bec0d4186d7a9e4"
+    },
+    {
+      "file": "raw/requests.jsonl",
+      "change": "HTTP response cookie headers redacted",
+      "header_count": 14,
+      "original_local_sha256": "3f3d8f9060d801ec596a5ea311aee0bd23786a0b4e53f706dbe700cf15313856"
+    }
+  ],
+  "official_observation_bodies_modified": false,
+  "scope": "Only this Sweden research package; unrelated workspace projects are not included"
+}

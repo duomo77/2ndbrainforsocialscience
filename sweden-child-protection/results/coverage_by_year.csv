@@ -1,0 +1,81 @@
+﻿metro,year,variable,n_expected,n_observed,n_missing
+Stor-Göteborg,2022,U33401_days,13,10,3
+Stor-Göteborg,2022,foreign_born_share,13,13,0
+Stor-Göteborg,2022,foreign_background,13,13,0
+Stor-Göteborg,2022,any_foreign_parent_among_Sweden_born,13,13,0
+Stor-Göteborg,2022,two_foreign_parents_among_Sweden_born,13,13,0
+Stor-Göteborg,2023,U33401_days,13,10,3
+Stor-Göteborg,2023,foreign_born_share,13,13,0
+Stor-Göteborg,2023,foreign_background,13,13,0
+Stor-Göteborg,2023,any_foreign_parent_among_Sweden_born,13,13,0
+Stor-Göteborg,2023,two_foreign_parents_among_Sweden_born,13,13,0
+Stor-Göteborg,2024,U33401_days,13,11,2
+Stor-Göteborg,2024,foreign_born_share,13,13,0
+Stor-Göteborg,2024,foreign_background,13,13,0
+Stor-Göteborg,2024,any_foreign_parent_among_Sweden_born,13,13,0
+Stor-Göteborg,2024,two_foreign_parents_among_Sweden_born,13,13,0
+Stor-Göteborg,2025,U33401_days,13,10,3
+Stor-Göteborg,2025,foreign_born_share,13,13,0
+Stor-Göteborg,2025,foreign_background,13,0,13
+Stor-Göteborg,2025,any_foreign_parent_among_Sweden_born,13,0,13
+Stor-Göteborg,2025,two_foreign_parents_among_Sweden_born,13,0,13
+Stor-Malmö,2022,U33401_days,12,11,1
+Stor-Malmö,2022,foreign_born_share,12,12,0
+Stor-Malmö,2022,foreign_background,12,12,0
+Stor-Malmö,2022,any_foreign_parent_among_Sweden_born,12,12,0
+Stor-Malmö,2022,two_foreign_parents_among_Sweden_born,12,12,0
+Stor-Malmö,2023,U33401_days,12,12,0
+Stor-Malmö,2023,foreign_born_share,12,12,0
+Stor-Malmö,2023,foreign_background,12,12,0
+Stor-Malmö,2023,any_foreign_parent_among_Sweden_born,12,12,0
+Stor-Malmö,2023,two_foreign_parents_among_Sweden_born,12,12,0
+Stor-Malmö,2024,U33401_days,12,11,1
+Stor-Malmö,2024,foreign_born_share,12,12,0
+Stor-Malmö,2024,foreign_background,12,12,0
+Stor-Malmö,2024,any_foreign_parent_among_Sweden_born,12,12,0
+Stor-Malmö,2024,two_foreign_parents_among_Sweden_born,12,12,0
+Stor-Malmö,2025,U33401_days,12,9,3
+Stor-Malmö,2025,foreign_born_share,12,12,0
+Stor-Malmö,2025,foreign_background,12,0,12
+Stor-Malmö,2025,any_foreign_parent_among_Sweden_born,12,0,12
+Stor-Malmö,2025,two_foreign_parents_among_Sweden_born,12,0,12
+Stor-Stockholm,2022,U33401_days,26,21,5
+Stor-Stockholm,2022,foreign_born_share,26,26,0
+Stor-Stockholm,2022,foreign_background,26,26,0
+Stor-Stockholm,2022,any_foreign_parent_among_Sweden_born,26,26,0
+Stor-Stockholm,2022,two_foreign_parents_among_Sweden_born,26,26,0
+Stor-Stockholm,2023,U33401_days,26,20,6
+Stor-Stockholm,2023,foreign_born_share,26,26,0
+Stor-Stockholm,2023,foreign_background,26,26,0
+Stor-Stockholm,2023,any_foreign_parent_among_Sweden_born,26,26,0
+Stor-Stockholm,2023,two_foreign_parents_among_Sweden_born,26,26,0
+Stor-Stockholm,2024,U33401_days,26,22,4
+Stor-Stockholm,2024,foreign_born_share,26,26,0
+Stor-Stockholm,2024,foreign_background,26,26,0
+Stor-Stockholm,2024,any_foreign_parent_among_Sweden_born,26,26,0
+Stor-Stockholm,2024,two_foreign_parents_among_Sweden_born,26,26,0
+Stor-Stockholm,2025,U33401_days,26,22,4
+Stor-Stockholm,2025,foreign_born_share,26,26,0
+Stor-Stockholm,2025,foreign_background,26,0,26
+Stor-Stockholm,2025,any_foreign_parent_among_Sweden_born,26,0,26
+Stor-Stockholm,2025,two_foreign_parents_among_Sweden_born,26,0,26
+All 51,2022,U33401_days,51,42,9
+All 51,2022,foreign_born_share,51,51,0
+All 51,2022,foreign_background,51,51,0
+All 51,2022,any_foreign_parent_among_Sweden_born,51,51,0
+All 51,2022,two_foreign_parents_among_Sweden_born,51,51,0
+All 51,2023,U33401_days,51,42,9
+All 51,2023,foreign_born_share,51,51,0
+All 51,2023,foreign_background,51,51,0
+All 51,2023,any_foreign_parent_among_Sweden_born,51,51,0
+All 51,2023,two_foreign_parents_among_Sweden_born,51,51,0
+All 51,2024,U33401_days,51,44,7
+All 51,2024,foreign_born_share,51,51,0
+All 51,2024,foreign_background,51,51,0
+All 51,2024,any_foreign_parent_among_Sweden_born,51,51,0
+All 51,2024,two_foreign_parents_among_Sweden_born,51,51,0
+All 51,2025,U33401_days,51,41,10
+All 51,2025,foreign_born_share,51,51,0
+All 51,2025,foreign_background,51,0,51
+All 51,2025,any_foreign_parent_among_Sweden_born,51,0,51
+All 51,2025,two_foreign_parents_among_Sweden_born,51,0,51
