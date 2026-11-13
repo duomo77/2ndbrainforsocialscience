@@ -44,11 +44,12 @@ def tab(key,caption,headers,rows,widths,note):
 
 tab('measurement','<표 1> 자료의 측정 대상과 해석 범위',
  ['자료와 지표','단위와 기간','관측 내용과 한계'],[
+ ['VIND28 및 전국 공표값','절차 응답\n문제제기용','교육보장 서면 절차. 2024년 34%는 전국 공표값이며 이번 51개 지역의 충족률이나 지원률이 아님'],
  ['Kolada U33401','지방정부·연도\n2022–2025','상반기 0–20세 사회복지 조사 평균 일수. 개인의 보호·입소 대기기간 아님'],
  ['Kolada N02926','지방정부·연도\n2015, 2022–2025','연말 전체 주민 중 해외 출생 비중. 사건 표본의 구성 아님'],
  ['SCB TAB4824','지방정부·연령·성별\n2015, 2022–2024','0–17세 아동의 출생지와 부모 출생배경. 2025년 값 없음'],
  ['SCB 대도시권 분류','51개 지방정부','스톡홀름 26, 예테보리 13, 말뫼 12. 시 내부 구역과 구분']
- ],[75,82,168],'출처: Kolada 지표 메타데이터, SCB TAB4824 및 공식 대도시권 집계 분류[3–5].')
+ ],[75,82,168],'출처: Kolada 지표 메타데이터, SCB TAB4824 및 공식 대도시권 집계 분류[3–5], 교육보장 절차의 공식 설명과 전국 공표값[12, 13].')
 
 cov=read('coverage_by_year.csv'); nat=read('outcome_national_coverage.csv')
 rows=[]
@@ -162,7 +163,7 @@ section.header_distance=Pt(25); section.footer_distance=Pt(22)
 section.different_first_page_header_footer=True
 settings=doc.settings.element
 settings.append(OxmlElement('w:evenAndOddHeaders'))
-core=doc.core_properties; core.title='이주배경 인구구성과 아동보호 행정의 조사기간'; core.author=''; core.subject='스웨덴 51개 대도시권 지방정부 정책연구'; core.keywords='Sweden, child welfare, migrant background, municipal administration'; core.comments=''
+core=doc.core_properties; core.title='이주배경 인구가 많은 지역의 조사는 더 오래 걸리는가'; core.author=''; core.subject='스웨덴 51개 대도시권 지방정부 정책연구'; core.keywords='Sweden, child welfare, migrant background, municipal administration'; core.comments=''
 
 def font(run,name='바탕',size=None,bold=None):
     run.font.name=name
@@ -308,12 +309,12 @@ for block in re.split(r'\n\s*\n',source.strip()):
     if block.startswith('# '):
         text=block[2:]
         if text=='English Abstract':english=True
-        elif text.startswith('1 서론'):abstract=False
+        elif text.startswith('1 '):abstract=False
         if firsttitle:
             p=para('정책연구논문 초안');p.paragraph_format.first_line_indent=Pt(0)
             p.paragraph_format.space_after=Pt(18)
             for r in p.runs:font(r,size=9)
-            p=para(text.replace(' 아동보호','\n아동보호'),'Title');p.paragraph_format.space_after=Pt(12)
+            p=para(text.replace(' 지역의 조사는',' 지역의\n조사는'),'Title');p.paragraph_format.space_after=Pt(12)
             firsttitle=False
         else:p=para(text,'Heading 1')
         if pending_break:p.paragraph_format.page_break_before=True;pending_break=False

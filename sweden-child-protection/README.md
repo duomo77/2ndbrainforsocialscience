@@ -12,6 +12,18 @@
 - [도구변수 가능성 검토](results/iv_audit.md)
 - [전체 공개 패키지 ZIP](sweden_child_protection_public_bundle.zip)
 
+## 전문가 관점 검토와 별도 데이터 해설
+
+- [개정 논문의 주장과 세 관점 검토](EXPERT_REVIEW_KO.md)
+- [SUPPLEMENTARY 데이터 해설 PDF](paper/output/SUPPLEMENTARY_Data_Guide_KO.pdf)
+- [SUPPLEMENTARY 편집용 Word](paper/output/SUPPLEMENTARY_Data_Guide_KO.docx)
+- [GitHub에서 읽는 데이터 해설](SUPPLEMENTARY.md)
+- [실제 Nynäshamn 계산 예제 CSV](results/supplementary_worked_example.csv)
+- [핵심 변수의 단위와 분모 사전](results/supplementary_data_dictionary.csv)
+- [문체 규칙 적용과 남은 경고](tools/README.md)
+
+개정 제목은 **이주배경 인구가 많은 지역의 조사는 더 오래 걸리는가**다. 검토는 정책학·계량경제학·학술 편집의 세 AI 보조 역할로 수행했으며 외부 전문가 심사를 뜻하지 않는다. 기존 자료와 회귀 추정치는 유지했다.
+
 ## VIND28에서 출발한 서술 개정
 
 교육보장 절차에 관한 VIND28의 질문에서 시작해, 지역의 조사기간 자료로 무엇을 확인할 수 있는지 살펴보도록 원고를 고쳤습니다. [개정 설명과 공식 출처 확인](NARRATIVE_REVISION_KO.md)에서 연결 논리와 해석 범위를 확인할 수 있습니다.

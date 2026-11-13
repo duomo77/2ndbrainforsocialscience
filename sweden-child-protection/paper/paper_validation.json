@@ -86,19 +86,34 @@
   ],
   "outputs": [
     {
+      "file": "SUPPLEMENTARY_Data_Guide_KO.docx",
+      "bytes": 46951,
+      "sha256": "d4311d0be263e867df980e91b1d2af7409621503206b73072089aee5bb8272e9"
+    },
+    {
+      "file": "SUPPLEMENTARY_Data_Guide_KO.md",
+      "bytes": 18429,
+      "sha256": "dd882bb2d269a783e79f95dafe74f1017fc73ac882f6232e0a1ea7c7ce2fcd8c"
+    },
+    {
+      "file": "SUPPLEMENTARY_Data_Guide_KO.pdf",
+      "bytes": 405253,
+      "sha256": "8891ca16a3c4ec52d9b0adc6f90649cd0ba60191197e0ccc3c859fc98f1a85a8"
+    },
+    {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 121276,
-      "sha256": "42f3405ad6b9e23fa7bac03236161b454022dce05b93c3aeede9c90b8b121a5d"
+      "bytes": 121737,
+      "sha256": "40b423dd1fe8ba9cd71c2f896935f89bbabfb7eb1e3a2925ffd179200e9749f3"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 57530,
-      "sha256": "2f6b09ae100f2e241a18e17f7658c73f0390e22651ce2e542cafecf2fd1638f9"
+      "bytes": 58583,
+      "sha256": "d980816585d6915f1b83ce858985fa2336d63b0d89d4d6fdb6f9fa1729dd41dc"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 797722,
-      "sha256": "0c7454fb2062e0e71bcc602cd77554ce11fe97b1ac5cbb2f5e9a841af81a3a2d"
+      "bytes": 802179,
+      "sha256": "157f1bf1730a3e62480a951422202c80be29b7329791cd438387f074e215b7e8"
     }
   ],
   "render_method": "Microsoft Word 16 COM PDF export of the actual DOCX; Poppler 130 dpi page images",

@@ -56,6 +56,11 @@
       "sha256": "f07f8307be80a9475097cd9d7a100ef757d6e28cb8616f3be814c4341df67e9e"
     },
     {
+      "file": "EXPERT_REVIEW_KO.md",
+      "bytes": 4357,
+      "sha256": "c0119963131415650cfe649596d25152d00daa0119e56fcc640d3eacd2019a12"
+    },
+    {
       "file": "fetch_scb.py",
       "bytes": 1298,
       "sha256": "3194986f33f84582c5d9c374d423874ddb6b95ea45f2a6606a123359b15e6a25"
@@ -87,18 +92,28 @@
     },
     {
       "file": "paper/artifact.md",
-      "bytes": 1896,
-      "sha256": "ce9447b54e7f25f1a191c203c3d023a87fc0d294201dd42bb60c9b812bca4e34"
+      "bytes": 2205,
+      "sha256": "9088a8cbfbdcef15a3332df7ef66905c0c3fdb231ff34031f64ea341e63cfe98"
     },
     {
       "file": "paper/build_paper.py",
-      "bytes": 27871,
-      "sha256": "b0b6c2f7d1f2f033bdf33134ffee5bc1b7a4a5ee3be529eee66591f0ecb66d5e"
+      "bytes": 28149,
+      "sha256": "51400a35ece5b6dcb00f6bffcd608a801a8f8096087c74c4a0ef595f4da896e4"
+    },
+    {
+      "file": "paper/build_supplementary.py",
+      "bytes": 5540,
+      "sha256": "a2cf421f81de8d96722ebe55d62aafae50647abd684d77b7e1fb520fa3499628"
     },
     {
       "file": "paper/export_payload.py",
       "bytes": 663,
       "sha256": "363e39bf63a33428beb1425d7f42ff5bc00f6ef6c2febf28476cf002be2a351d"
+    },
+    {
+      "file": "paper/export_supplementary_pdf.ps1",
+      "bytes": 1405,
+      "sha256": "7a62621e3da180bdfc9f878d26be4f98e137a5f9c0d96df538a2d660d91c86ee"
     },
     {
       "file": "paper/export_word_pdf.ps1",
@@ -107,28 +122,43 @@
     },
     {
       "file": "paper/manuscript_source_ko.md",
-      "bytes": 43123,
-      "sha256": "197d39a7a9a8da96e6617164ca31eb51349522f53f82e7b7e4cb7da9818a4659"
+      "bytes": 43924,
+      "sha256": "8dcac5e7fa884d79ec6ab88a4ac34bd37a2257e72728461ef4586571ca590052"
+    },
+    {
+      "file": "paper/output/SUPPLEMENTARY_Data_Guide_KO.docx",
+      "bytes": 46951,
+      "sha256": "d4311d0be263e867df980e91b1d2af7409621503206b73072089aee5bb8272e9"
+    },
+    {
+      "file": "paper/output/SUPPLEMENTARY_Data_Guide_KO.md",
+      "bytes": 18429,
+      "sha256": "dd882bb2d269a783e79f95dafe74f1017fc73ac882f6232e0a1ea7c7ce2fcd8c"
+    },
+    {
+      "file": "paper/output/SUPPLEMENTARY_Data_Guide_KO.pdf",
+      "bytes": 405253,
+      "sha256": "8891ca16a3c4ec52d9b0adc6f90649cd0ba60191197e0ccc3c859fc98f1a85a8"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 121276,
-      "sha256": "42f3405ad6b9e23fa7bac03236161b454022dce05b93c3aeede9c90b8b121a5d"
+      "bytes": 121737,
+      "sha256": "40b423dd1fe8ba9cd71c2f896935f89bbabfb7eb1e3a2925ffd179200e9749f3"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 57530,
-      "sha256": "2f6b09ae100f2e241a18e17f7658c73f0390e22651ce2e542cafecf2fd1638f9"
+      "bytes": 58583,
+      "sha256": "d980816585d6915f1b83ce858985fa2336d63b0d89d4d6fdb6f9fa1729dd41dc"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 797722,
-      "sha256": "0c7454fb2062e0e71bcc602cd77554ce11fe97b1ac5cbb2f5e9a841af81a3a2d"
+      "bytes": 802179,
+      "sha256": "157f1bf1730a3e62480a951422202c80be29b7329791cd438387f074e215b7e8"
     },
     {
       "file": "paper/paper_validation.json",
-      "bytes": 2661,
-      "sha256": "172ae32b8d44909f4498470b4a0fec0325c98a01cc7788c99c7ac7c28a14f3fb"
+      "bytes": 3178,
+      "sha256": "1c98337a165d3939e56404135521dfba52633dbe3ef61e501684b2253c3e7fcb"
     },
     {
       "file": "paper/qa_render.py",
@@ -137,8 +167,13 @@
     },
     {
       "file": "paper/README.md",
-      "bytes": 2309,
-      "sha256": "05f756ebcb1cbac0df352c4e38f66076352d905cff36abc2d50e65454f6378b9"
+      "bytes": 2998,
+      "sha256": "b402c792c2de400da5e42a483ff3cca02cc2e4fc2e44275b74228514a1c73acd"
+    },
+    {
+      "file": "paper/render_revision.py",
+      "bytes": 2356,
+      "sha256": "870fe5d25caf5a0c5fa54185013cd02324a2d00abea1cadce23eae37cc3a9a1f"
     },
     {
       "file": "paper/requirements.txt",
@@ -146,9 +181,94 @@
       "sha256": "d8e382e22d9768bb48e8a461bf53ebd3b52a122c009d2cbe2a600fef3c7c9eb1"
     },
     {
+      "file": "paper/style_audit/00_metrics.json",
+      "bytes": 3468,
+      "sha256": "ba6dd1159bb4288c9e2c55d1a63d41c3e52be8263b75d2c9da04d5608cdbb9b7"
+    },
+    {
+      "file": "paper/style_audit/01_input.txt",
+      "bytes": 44096,
+      "sha256": "0d6e751734c02c46508396ac6c87a510867fe30394eba17acf300d0996593010"
+    },
+    {
+      "file": "paper/style_audit/02_diagnosis.md",
+      "bytes": 2235,
+      "sha256": "8963ed1c64aa1bf579a580cb839be7747a50909d4c289a37c8da4905bdb1621a"
+    },
+    {
+      "file": "paper/style_audit/09_finalize.json",
+      "bytes": 3892,
+      "sha256": "467d7e5d91c13b5b9123e3c7d0c3a52214d7af76ca9242410e3e42ce726bdc9c"
+    },
+    {
+      "file": "paper/style_audit/argument_revised_before_style.md",
+      "bytes": 44096,
+      "sha256": "0d6e751734c02c46508396ac6c87a510867fe30394eba17acf300d0996593010"
+    },
+    {
+      "file": "paper/style_audit/editorial_edits.json",
+      "bytes": 4494,
+      "sha256": "4c6cbe8951871ed2bf8f0d6e640134ea71b4984d9316b5a0361c493121f00301"
+    },
+    {
+      "file": "paper/style_audit/editorial_selfcheck.json",
+      "bytes": 2115,
+      "sha256": "162a2510bbbcc107c3e6fee6e62317c48a21f3e5aefb2c60976660a16dac7512"
+    },
+    {
+      "file": "paper/style_audit/final.md",
+      "bytes": 43885,
+      "sha256": "eec5522b696d4f7c95eb92cbc7cbe051f661e8db5767173b3fb2dad2d723d832"
+    },
+    {
+      "file": "paper/style_audit/gates_final.txt",
+      "bytes": 1546,
+      "sha256": "c22f85db2b04c2ca9b59dd181c68a3992a52c6ea661cafcd0eb00654e9d9a48f"
+    },
+    {
+      "file": "paper/style_audit/gates_first.txt",
+      "bytes": 1546,
+      "sha256": "c22f85db2b04c2ca9b59dd181c68a3992a52c6ea661cafcd0eb00654e9d9a48f"
+    },
+    {
+      "file": "paper/style_audit/post_style_argument_corrections.json",
+      "bytes": 715,
+      "sha256": "5fbf38b38f9f80504ecb48028d503c839d1f0fa38e185f8c9eac7af28974ee1a"
+    },
+    {
+      "file": "paper/style_audit/STYLE_APPLICATION.json",
+      "bytes": 1161,
+      "sha256": "35d6f7612272681a335c3d841a405404e9831e9f2ccc2609aaf17ae4123ad267"
+    },
+    {
+      "file": "paper/SUPPLEMENTARY_Data_Guide_KO_validation.json",
+      "bytes": 280,
+      "sha256": "2870a3ffd0c2688e96f3b610d045efc59d66897e6544b1ad1e4e93c478822708"
+    },
+    {
+      "file": "paper/supplementary_source_ko.md",
+      "bytes": 18429,
+      "sha256": "dd882bb2d269a783e79f95dafe74f1017fc73ac882f6232e0a1ea7c7ce2fcd8c"
+    },
+    {
+      "file": "paper/supplementary_table_manifest.json",
+      "bytes": 4220,
+      "sha256": "79b33a947f4049155873b90390c5cd2251a5428a2302adcaee142e265f4017ce"
+    },
+    {
+      "file": "paper/supplementary_visual_review.json",
+      "bytes": 359,
+      "sha256": "59cfb28b80c0fde603a84dd298a73ca33831c7ffb3189080003e965f86efa2ac"
+    },
+    {
+      "file": "paper/Sweden_ChildProtection_Policy_Draft_KO_validation.json",
+      "bytes": 293,
+      "sha256": "0ce9c7c6afdf1e2b8f3acd6ac443aa6e6fa30f309e42e3eb8319d28917367848"
+    },
+    {
       "file": "paper/table_manifest.json",
-      "bytes": 19891,
-      "sha256": "23ebf05603a405d2f4e349779a0988d516a87a99b1fb4833ac66c70a4cda4d6d"
+      "bytes": 20195,
+      "sha256": "6b1ac463bf870794240a1bf6ac21b47faea9f77d54936995b85b0d9b0198952f"
     },
     {
       "file": "paper/validate_paper.py",
@@ -157,8 +277,8 @@
     },
     {
       "file": "paper/visual_review.json",
-      "bytes": 749,
-      "sha256": "3e635685e8a296104813a8688b7b706b2eac87fa3f6dff1088a69fa248638bb4"
+      "bytes": 586,
+      "sha256": "45526dd4227aad5d18845f8813a63f6f52461da40c172fe5ca4c77d16f5309ab"
     },
     {
       "file": "PUBLICATION_NOTES.json",
@@ -387,8 +507,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 3393,
-      "sha256": "0aa63d637996cd3c899294c86867bedbe145fee245bed7b52f34470621732381"
+      "bytes": 4278,
+      "sha256": "f5a7f09881cb5a1ec29766bd820affc1a11e0b4846ae2393635c4de9a23bc7c8"
     },
     {
       "file": "requirements.txt",
@@ -434,6 +554,11 @@
       "file": "results/environment.json",
       "bytes": 224,
       "sha256": "1e86a5d376573a033647a5bc01b8892b144107ddeb4f578eb8d1378519e47acd"
+    },
+    {
+      "file": "results/expert_revision_preservation.json",
+      "bytes": 4197,
+      "sha256": "dc2bac9f90b55c08f5c71766258cb810033f215d365bb4a33685583050f62c5f"
     },
     {
       "file": "results/fetch_diagnostics.md",
@@ -514,6 +639,21 @@
       "file": "results/source_manifest.csv",
       "bytes": 13430,
       "sha256": "c26206e7bf21b931b62445ac524243c27b1f49e512b8b327de13daa290a04947"
+    },
+    {
+      "file": "results/supplementary_data_checks.json",
+      "bytes": 252,
+      "sha256": "6dba2fb4ed29fc9d79da296a46b30300c4854dbf43b54d0fe17e3daa75829932"
+    },
+    {
+      "file": "results/supplementary_data_dictionary.csv",
+      "bytes": 2225,
+      "sha256": "9b0dce38bd02673228aaa70dca6753a80dbd55a11df39fd89097cfe9e515caf1"
+    },
+    {
+      "file": "results/supplementary_worked_example.csv",
+      "bytes": 388,
+      "sha256": "c2c21a10a36f78a437b201fea73005fbeedd3f6df5126bf1e772e0038dc8c3d5"
     },
     {
       "file": "results/two_parent_cumulative_deletions.csv",
@@ -629,6 +769,26 @@
       "file": "retrieve.py",
       "bytes": 5221,
       "sha256": "e365e01f80b2626632c13df1b9d64112ac7745e036376ca1ba0d3d37e338af8a"
+    },
+    {
+      "file": "SUPPLEMENTARY.md",
+      "bytes": 18429,
+      "sha256": "dd882bb2d269a783e79f95dafe74f1017fc73ac882f6232e0a1ea7c7ce2fcd8c"
+    },
+    {
+      "file": "tools/humanize_korean_source.zip",
+      "bytes": 282269,
+      "sha256": "2ee3c26240f27f76e79ad7ab49b580a781a7c23ce1682059422d96e4a1a73b87"
+    },
+    {
+      "file": "tools/README.md",
+      "bytes": 1091,
+      "sha256": "60b3eafc0f93eac63bbd0a42b34241c706fabb7374d8f31d7e14a6298f3a9602"
+    },
+    {
+      "file": "tools/SOURCE_PROVENANCE.json",
+      "bytes": 283,
+      "sha256": "3cdd425fc1035da1ec9de73c93c3ed4726a77fc5baacdd69136776f8f0f1b197"
     },
     {
       "file": "upgrade_analysis.py",

@@ -1,6 +1,6 @@
 # 한국어 정책논문 초안
 
-최종 원고는 `output/Sweden_ChildProtection_Policy_Draft_KO.docx`, 같은 이름의 PDF 및 Markdown이다. 제목은 **이주배경 인구구성과 아동보호 행정의 조사기간**이다.
+최종 원고는 `output/Sweden_ChildProtection_Policy_Draft_KO.docx`, 같은 이름의 PDF 및 Markdown이다. 제목은 **이주배경 인구가 많은 지역의 조사는 더 오래 걸리는가**이다.
 
 사용자가 제시한 22쪽 참고 원고의 판형(448 × 655 pt), 국문초록·번호 본문·학술 표·참고문헌·부록·영문초록 구성을 참고했다. 학회의 정식 투고규정 자체를 인증한 문서는 아니다. 저자명과 소속은 기입하지 않았다. 참고 원고의 VIND28와 스톡홀름 구역 추정치를 본고의 새 실증 결과로 전재하지 않았다.
 
@@ -22,3 +22,14 @@ DOCX 작성은 Codex 번들 Python 3 환경과 python-docx를 사용했다. 기�
 2026년 11월 개정의 추가 추론과 측정시점 검증은 `../UPGRADE_NOTES_KO.md`를 참조한다.
 
 VIND28을 출발점으로 삼은 후속 문체·구성 개정의 출처와 범위는 `../NARRATIVE_REVISION_KO.md`에 기록했다.
+
+
+2026년 11월 14일 세 관점 검토와 문체·주장 개정은 `../EXPERT_REVIEW_KO.md`, 공개 문체 코드의 적용·경고는 `../tools/README.md`에 기록했다. 별도 데이터 해설은 `output/SUPPLEMENTARY_Data_Guide_KO.pdf`와 DOCX다.
+
+```powershell
+python paper/build_supplementary.py
+powershell -NoProfile -ExecutionPolicy Bypass -File paper/export_supplementary_pdf.ps1
+python paper/render_revision.py SUPPLEMENTARY_Data_Guide_KO
+```
+
+위 명령은 연구 패키지 루트에서 실행한다. Windows Microsoft Word와 Poppler, 문서 Python 의존성이 필요하다. 핵심 예제 수치는 `results/supplementary_worked_example.csv`에 있다.

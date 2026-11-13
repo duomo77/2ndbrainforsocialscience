@@ -1,0 +1,61 @@
+{
+  "role": "AI-assisted policy and Korean academic prose finalizer",
+  "review_scope": "Direct comparison of 01_input.txt and final.md, all 16 entries in editorial_edits.json, editorial_selfcheck.json and gates_first.txt; local style preservation pass only",
+  "verdict": "PASS_WITH_DISCLOSED_STYLE_WARNINGS",
+  "final_md_changed": false,
+  "changes_made_by_finalizer": [],
+  "reviewed_edit_spans": 16,
+  "verification": {
+    "all_final_differences_reconstructed_from_logged_edits": true,
+    "headings_unchanged": true,
+    "template_markers_unchanged": true,
+    "english_abstract_unchanged": true,
+    "numbers_citations_register_gate": "PASS in supplied code gate; no conflicting manual finding",
+    "modality_loss": 0,
+    "substantive_policy_followup_changes_applied": false
+  },
+  "concrete_review_findings": [
+    {
+      "location": "국문초록",
+      "finding": "문장 성분의 순서만 바꾸어 별도의 실증 질문이라는 뜻을 유지했다. VIND28과 조사기간의 관계를 새로 연결하거나 검정 범위를 넓히지 않았다."
+    },
+    {
+      "location": "서론, 자료 설명, 결과 해석, IV 부록",
+      "finding": "따라서와 이유가 여기에 있다는 반복을 줄였으나, 전후 문장에서 근거와 결론의 관계를 복원할 수 있다. 부정, 유보, 비교 대상은 유지되어 있다."
+    },
+    {
+      "location": "2.3 조사기간을 성과로 읽기 전에",
+      "finding": "조사기간을 볼 이유를 묻는 도입을 덜고 동반 변화를 확인할 단서를 바로 설명했다. 조건절 달라졌다면과 후속 자료로 이유를 확인해야 한다는 한계가 남아 있어 기제의 확인이나 인과 주장으로 바뀌지 않았다."
+    },
+    {
+      "location": "3.3 아동 배경비중",
+      "finding": "분자와 분모 보존 문장의 어순만 바뀌었다. 세 지표의 서로 다른 분모, 조사 대상 아동의 비율이 아니라는 설명은 그대로다."
+    },
+    {
+      "location": "6.1 인구 측정시점",
+      "finding": "값이기 때문이다를 값이다로 고쳤지만 상반기 결과와 연말 비중의 시간 불일치 및 시차 분석의 불확실성을 유지했다."
+    },
+    {
+      "location": "10 이번 자료가 답하지 못한 질문",
+      "finding": "추상적인 지표와 자료 사이 표현을 지표와 자료가 다르다는 명시적인 문장으로 바꾸었다. 대상 불일치라는 기존 한계의 강도는 유지했다."
+    }
+  ],
+  "remaining_warnings": [
+    {
+      "metric": "ending_comma_rate",
+      "z_before": 2.86,
+      "z_after": 2.86,
+      "decision": "retain",
+      "explanation": "수치·사례·추정 조건을 구분하는 쉼표와 해석의 유보가 많은 학술 원고다. 수치만 낮추기 위해 문장을 나누거나 유보를 제거할 만한 구체적인 의미·자연성 문제는 이번 16개 편집에서 발견하지 못했다."
+    },
+    {
+      "metric": "comma_segment_length",
+      "z_before": 2.27,
+      "z_after": 2.25,
+      "decision": "retain",
+      "explanation": "목표치에는 미달하지만 변화가 작다는 이유만으로 추가 편집이 필요하지는 않다. 결과·조건·해석의 한계를 연결한 문장을 일률적으로 짧게 바꾸면 관계가 흐려질 수 있어 의미 보존을 우선했다."
+    }
+  ],
+  "metric_scope_note": "제공된 게이트에는 genre=abstract가 기록되어 있으나 대조 파일은 본문과 부록을 포함한 전문이다. 이 경고를 문장별 자연성이나 저자성에 대한 판정으로 해석하지 않았다.",
+  "finalizer_note": "이전 정책 검토에서 제안한 네 개의 내용 수정은 root가 이 문체 게이트 뒤 별도로 반영할 예정이므로 이 패스에서는 적용하지 않았다. AI 판별 회피나 인간 저자성에 관한 보장은 하지 않는다."
+}

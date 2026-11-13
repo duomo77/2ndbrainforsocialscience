@@ -1,0 +1,19 @@
+﻿column,korean_label,unit,denominator_or_population,reading_note
+municipality_code,지방정부 코드,네 자리 문자,앞자리 0 보존,자료 연결 키
+year,자료 연도,정수,결과 상반기와 인구 연말은 다름,지방정부와 합쳐 한 행의 키
+metro,대도시권,범주,스톡홀름 26 예테보리 13 말뫼 12,지방정부 내부 구역과 다름
+U33401_days,평균 조사기간,일,0–20세 일반 사회복지 조사,보호·입소·학교 복귀 대기 아님
+N02926_pct,전체 주민 해외 출생 비중,이미 백분율,전 연령 전체 주민,100을 다시 곱하지 않음
+foreign_born_share,전체 주민 해외 출생 비중,0–1 비율,전 연령 전체 주민,회귀 시 100을 곱해 %p 단위 사용
+A_foreign_born,A 해외 출생 아동,명,0–17세,부모 출생지 조건 없음
+B_sweden_born_two_foreign_parents,B 스웨덴 출생 양부모 해외 출생,명,0–17세,전체 아동 비중과 구별
+C_sweden_born_one_foreign_parent,C 스웨덴 출생 한 부모만 해외 출생,명,0–17세,다른 부모는 스웨덴 출생
+D_sweden_born_two_sweden_parents,D 스웨덴 출생 양부모 스웨덴 출생,명,0–17세,A B C와 배타적인 범주
+children_total_0_17,전체 아동 분모 A+B+C+D,명,지역의 전체 0–17세 아동,조사 사건 수 아님
+sweden_born_children_0_17,스웨덴 출생 아동 분모 B+C+D,명,A를 제외,부모배경 두 지표의 분모
+foreign_background,전체 아동 해외배경 비중,0–1 비율,(A+B)/(A+B+C+D),공식 배경 분류
+any_foreign_parent_among_Sweden_born,스웨덴 출생 해외 출생 부모 한 명 이상,0–1 비율,(B+C)/(B+C+D),A는 분자 분모에서 제외
+two_foreign_parents_among_Sweden_born,스웨덴 출생 양부모 해외 출생,0–1 비율,B/(B+C+D),기본 양의 패널 관계를 보고한 지표
+U33401_reporting_unit_count,API 보고 단위 수,보고 단위,사건 수 분모와 다름,회귀 사건 수 가중치로 사용 안함
+U33401_availability,결과 관측 상태,문자,observed 등 원응답 처리 상태,빈값을 0일로 바꾸지 않음
+*_2015,2015년 기준값,각 변수와 동일,시간 불변 기초 비중,지방정부 FE와 단독 기울기 추정 안함

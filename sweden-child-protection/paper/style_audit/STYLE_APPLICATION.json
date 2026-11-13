@@ -1,0 +1,29 @@
+{
+  "source": "https://github.com/Gaeduck-0908/im-not-ai-kiro",
+  "source_commit": "a8e268aae6097ce5146e588ca6921002380992bf",
+  "run_id": "2026-11-14-001",
+  "mode": "Source rules and Python scripts applied in Codex; not a native Kiro CLI agent run",
+  "genre": "abstract",
+  "scope": "Whole main manuscript including appendices; quantitative stylistic baselines have limited genre fit",
+  "style_change_rate": 0.0049,
+  "gate_exit_code": 1,
+  "remaining_warnings": [
+    {
+      "metric": "ending_comma_rate",
+      "z_before": 2.86,
+      "z_after": 2.86,
+      "verdict": "미달"
+    },
+    {
+      "metric": "comma_segment_length",
+      "z_before": 2.27,
+      "z_after": 2.25,
+      "verdict": "미달"
+    }
+  ],
+  "numbers_citations_register": "PASS",
+  "modality_lost_pairs": 0,
+  "final_review": "AI-assisted direct before/after semantic review completed",
+  "substantive_edits": "Claims and titles revised before the style-only baseline; separate policy precision corrections applied after the style check",
+  "supplementary": "Rules used editorially; no automatic author-detection claim and no standalone style score"
+}

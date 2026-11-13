@@ -1,0 +1,8 @@
+{
+  "document": "Sweden_ChildProtection_Policy_Draft_KO",
+  "pages": 32,
+  "tables": 13,
+  "structural_checks_passed": true,
+  "pdf_sha256": "157f1bf1730a3e62480a951422202c80be29b7329791cd438387f074e215b7e8",
+  "render_method": "Word COM PDF export followed by Poppler 130 dpi images"
+}

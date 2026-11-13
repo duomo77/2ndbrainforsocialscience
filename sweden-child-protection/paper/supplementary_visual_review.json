@@ -1,0 +1,17 @@
+{
+  "document": "SUPPLEMENTARY_Data_Guide_KO",
+  "pages": 8,
+  "reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "result": "passed",
+  "method": "All actual Word-exported PDF pages visually reviewed as Poppler 130 dpi images",
+  "pdf_sha256": "8891ca16a3c4ec52d9b0adc6f90649cd0ba60191197e0ccc3c859fc98f1a85a8"
+}

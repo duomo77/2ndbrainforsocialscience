@@ -1,0 +1,53 @@
+{
+  "role": "Codex Korean academic editorial review; not Kiro CLI",
+  "scope": "Conservative local style edits after substantive revisions",
+  "edit_spans": 16,
+  "literal_checks": {
+    "headings_identical": true,
+    "template_markers_identical": true,
+    "numeric_sequence_identical": true,
+    "bracketed_citation_sequence_identical": true,
+    "english_abstract_identical": true
+  },
+  "selfcheck": [
+    {
+      "item": 1,
+      "name": "Proper names numbers dates citations and content anchors",
+      "status": "reviewed",
+      "detail": "No named entity or technical formula edit. Literal protected elements matched; retained core measurement, outcome, covariate, uncertainty and negation content in each edited span."
+    },
+    {
+      "item": 2,
+      "name": "Change-rate threshold",
+      "status": "pending_parent_code_gate",
+      "detail": "No self-reported percentage is used as the authoritative result."
+    },
+    {
+      "item": 3,
+      "name": "Genre",
+      "status": "reviewed",
+      "detail": "Academic prose and its scientific terminology remain. No anecdote, new metaphor or blog-style passage."
+    },
+    {
+      "item": 4,
+      "name": "Register and modality",
+      "status": "reviewed",
+      "detail": "Preserved formal declarative register, uncertainty and obligation. Rolled back a candidate that would have changed important into should consider."
+    },
+    {
+      "item": 5,
+      "name": "Residual stylistic patterns",
+      "status": "not_claimed_zero",
+      "detail": "Reduced 따라서 from 10 to 2. Necessary statistical negations and academic clause punctuation remain. Did not diagnose C-11 as a document-wide removal target or claim all S1 patterns absent. Finalizer/code audit remains with parent."
+    },
+    {
+      "item": 6,
+      "name": "No injected rhetoric",
+      "status": "reviewed",
+      "detail": "No new facts, numerical illustrations, experiences, metaphors or artificial contrasts were inserted."
+    }
+  ],
+  "reviewed_items": 4,
+  "pending_or_qualified_items": 2,
+  "claim": "No guarantee about authorship classification or AI detection."
+}

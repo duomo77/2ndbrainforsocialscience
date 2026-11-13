@@ -1,0 +1,61 @@
+[P0 문자율] 0.5% [전문] — OK (경고 30% / 중단 50%)
+[P1 목표달성] ending_comma_rate: z +2.86 → +2.86  미달
+[P1 목표달성] comma_segment_length: z +2.27 → +2.25  미달
+[P2 전멸] C-8 대구 2 → 2 — 스킵 (원문 대구 < 5)
+[P3 golden] PASS (수치 주입·각주·인용·register 이상 없음)
+[P4 터치율] 4.3% (18/415 문장) — 보고 전용
+[P5 서법] 소실 0문장 (참고 총수: 당위 30→30 / 완곡 14→14) — OK
+gate: WARN — 경고. 사용자 고지 + finalize 승급
+{
+  "genre": "abstract",
+  "change_rate": {
+    "rate": 0.0049,
+    "scope": "전문",
+    "verdict": "OK"
+  },
+  "s1_targets": [
+    {
+      "metric": "ending_comma_rate",
+      "z_before": 2.86,
+      "z_after": 2.86,
+      "verdict": "미달"
+    },
+    {
+      "metric": "comma_segment_length",
+      "z_before": 2.27,
+      "z_after": 2.25,
+      "verdict": "미달"
+    }
+  ],
+  "antithesis": {
+    "before": 2,
+    "after": 2,
+    "verdict": "스킵 (원문 대구 < 5)"
+  },
+  "golden": [],
+  "sentence_touch": {
+    "rate": 0.0434,
+    "touched": 18,
+    "total": 415
+  },
+  "numbers_dropped": [],
+  "modality": {
+    "lost_pairs": [],
+    "uncertain_pairs": [],
+    "counts": {
+      "deontic": {
+        "before": 30,
+        "after": 30
+      },
+      "hedge": {
+        "before": 14,
+        "after": 14
+      }
+    },
+    "verdict": "OK"
+  },
+  "gate": {
+    "verdict": "WARN — 경고. 사용자 고지 + finalize 승급",
+    "exit_code": 1
+  }
+}
