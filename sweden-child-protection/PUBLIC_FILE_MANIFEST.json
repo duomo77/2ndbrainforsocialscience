@@ -61,6 +61,11 @@
       "sha256": "3194986f33f84582c5d9c374d423874ddb6b95ea45f2a6606a123359b15e6a25"
     },
     {
+      "file": "NARRATIVE_REVISION_KO.md",
+      "bytes": 3526,
+      "sha256": "c09673d040290acd553ab1aac6a2c67166bde56d798522e65a237ca43678e0a5"
+    },
+    {
       "file": "package.py",
       "bytes": 3528,
       "sha256": "c05233dfce7b9a952e1586a4c60b93d34c01409708ce9dd28987b31b4addc06f"
@@ -82,13 +87,13 @@
     },
     {
       "file": "paper/artifact.md",
-      "bytes": 1589,
-      "sha256": "eb50378d352c565cb258d47a6e3ec706c511266029bd84e38da9951bdd45e61c"
+      "bytes": 1896,
+      "sha256": "ce9447b54e7f25f1a191c203c3d023a87fc0d294201dd42bb60c9b812bca4e34"
     },
     {
       "file": "paper/build_paper.py",
-      "bytes": 27174,
-      "sha256": "24b972aec77b80ae63363da176e708636f584cc55b0f0f3d466947009788cafb"
+      "bytes": 27871,
+      "sha256": "b0b6c2f7d1f2f033bdf33134ffee5bc1b7a4a5ee3be529eee66591f0ecb66d5e"
     },
     {
       "file": "paper/export_payload.py",
@@ -97,33 +102,33 @@
     },
     {
       "file": "paper/export_word_pdf.ps1",
-      "bytes": 1031,
-      "sha256": "76027cdae547defe5b09abe5980f3b26e4a2c8c4427903cfc3bb1c5f04c8e793"
+      "bytes": 1522,
+      "sha256": "7a21e6d83d1b9c78224e41f202ddf6d20c6d47372253306c098e2cd07571a017"
     },
     {
       "file": "paper/manuscript_source_ko.md",
-      "bytes": 39924,
-      "sha256": "580ddb3d83555f6782a8314aff3c0f7960dbe0df8c770fdf1671cb2ec9042ebc"
+      "bytes": 43123,
+      "sha256": "197d39a7a9a8da96e6617164ca31eb51349522f53f82e7b7e4cb7da9818a4659"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 119652,
-      "sha256": "32b094217b58df7fe6ffcdd9750ce7c7295719018e715221bcf7603a9fc94a14"
+      "bytes": 121276,
+      "sha256": "42f3405ad6b9e23fa7bac03236161b454022dce05b93c3aeede9c90b8b121a5d"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 53791,
-      "sha256": "ec8dd6bf46f5c66f4f754ca8e91c4e03d753ca50593f31f7e7d19703a40d509b"
+      "bytes": 57530,
+      "sha256": "2f6b09ae100f2e241a18e17f7658c73f0390e22651ce2e542cafecf2fd1638f9"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 775209,
-      "sha256": "75bb810beeb09b9102a8337e4522ed134007568f2d71dc07cc083658eeb548f2"
+      "bytes": 797722,
+      "sha256": "0c7454fb2062e0e71bcc602cd77554ce11fe97b1ac5cbb2f5e9a841af81a3a2d"
     },
     {
       "file": "paper/paper_validation.json",
       "bytes": 2661,
-      "sha256": "812977098a51599e112e291df31b7e261d02a604c38c844b3962b6d59c437797"
+      "sha256": "172ae32b8d44909f4498470b4a0fec0325c98a01cc7788c99c7ac7c28a14f3fb"
     },
     {
       "file": "paper/qa_render.py",
@@ -132,8 +137,8 @@
     },
     {
       "file": "paper/README.md",
-      "bytes": 2174,
-      "sha256": "f7ded78f07e6f16002b9104d97524dba6866c839b999caf5cb750ff195bbaa79"
+      "bytes": 2309,
+      "sha256": "05f756ebcb1cbac0df352c4e38f66076352d905cff36abc2d50e65454f6378b9"
     },
     {
       "file": "paper/requirements.txt",
@@ -152,8 +157,8 @@
     },
     {
       "file": "paper/visual_review.json",
-      "bytes": 731,
-      "sha256": "9bd434cee8e7957f5e5171c9207e8b30e7d6430cab8690c3afe5cf89e9b27547"
+      "bytes": 749,
+      "sha256": "3e635685e8a296104813a8688b7b706b2eac87fa3f6dff1088a69fa248638bb4"
     },
     {
       "file": "PUBLICATION_NOTES.json",
@@ -266,6 +271,11 @@
       "sha256": "fcfd2b49da532b093daa6a2c2eaaa70c8428d0e1e42d89d54b7eddd8d277f25a"
     },
     {
+      "file": "raw/narrative_source_requests.json",
+      "bytes": 1707,
+      "sha256": "6211c8be2afe5083052fc6b1546050c997270537d95ae4fa250c638ace95982a"
+    },
+    {
       "file": "raw/policy_reform_2024_government.html",
       "bytes": 203367,
       "sha256": "347330c38a196c9516d91ef4fcd2997ad956110bd6d6a0d319fe0c8953c00886"
@@ -356,14 +366,29 @@
       "sha256": "b39c597f6acc0ad2335ddd20cd21af6884bb0442b26366aacb6f1140cddc7584"
     },
     {
+      "file": "raw/socialstyrelsen_ifo_2025.pdf",
+      "bytes": 1009478,
+      "sha256": "caca37e189126424a267e87e9d9ee959e4611c7162ab6958359df3fb74ab5552"
+    },
+    {
+      "file": "raw/socialstyrelsen_ifo_2026.pdf",
+      "bytes": 1461289,
+      "sha256": "d15fd80d8ee81c3f8453908f139f138a1af9dfac22016257168b2fc6d067f448"
+    },
+    {
+      "file": "raw/socialstyrelsen_indicators_2019.pdf",
+      "bytes": 2991163,
+      "sha256": "d50acda8c4bd6d3e704cc8be79e7607a2a935ac88e21ec278ece241e861373c4"
+    },
+    {
       "file": "raw/TAB4824_sv.zip",
       "bytes": 24492021,
       "sha256": "b6149c30f22d49849e6f0dc1e57c0ae61d206a251b31fb1e18286f3ff026c13e"
     },
     {
       "file": "README.md",
-      "bytes": 3039,
-      "sha256": "e1dc2eaa14f5d2c8b687d19ee9e1a2b16df42bb7c2464f3e8d453daa9687d683"
+      "bytes": 3393,
+      "sha256": "0aa63d637996cd3c899294c86867bedbe145fee245bed7b52f34470621732381"
     },
     {
       "file": "requirements.txt",
@@ -417,8 +442,8 @@
     },
     {
       "file": "results/independent_checks.csv",
-      "bytes": 3942,
-      "sha256": "b4d6e852f1f37e2e88370a9e21e835923853059c723024302318838bbce5efc5"
+      "bytes": 4139,
+      "sha256": "2461c65902945469dbc636db1c8d39d72fb8ba63b0c8bec5217c93e51bed2bfa"
     },
     {
       "file": "results/influence.csv",
@@ -446,6 +471,11 @@
       "sha256": "eecb3ce53095bf88c90077459e9fd152dee035ee10666ded751c8790121bcba7"
     },
     {
+      "file": "results/narrative_preservation_checks.json",
+      "bytes": 260,
+      "sha256": "98e7cb4b3edd6a440a455b7498adc197296e1ebc028a7ab76937100ad8c1f36e"
+    },
+    {
       "file": "results/outcome_national_coverage.csv",
       "bytes": 177,
       "sha256": "232611848a38c9f3537fc621d617bc1f09e89d6d7efb7a7168a9a42f9fee35b2"
@@ -467,8 +497,8 @@
     },
     {
       "file": "results/raw_checksums.csv",
-      "bytes": 4080,
-      "sha256": "03a44b9b9ce64a96c7b84df59f5df5b1294c20160e8a6ffe1651013ec154f900"
+      "bytes": 4514,
+      "sha256": "067a9eb5cdab13fc2481e2603494cfc917c007d215180eeb66cda496b44bc4fb"
     },
     {
       "file": "results/regressions.csv",
@@ -482,8 +512,8 @@
     },
     {
       "file": "results/source_manifest.csv",
-      "bytes": 12239,
-      "sha256": "f76f40eba39b9ff86693f0ca3fcf56620c5d48c23275a34afcbf4095cc0d77a3"
+      "bytes": 13430,
+      "sha256": "c26206e7bf21b931b62445ac524243c27b1f49e512b8b327de13daa290a04947"
     },
     {
       "file": "results/two_parent_cumulative_deletions.csv",
@@ -626,5 +656,5 @@
       "sha256": "bbec2765701b4505321c77eb00be3fcc0ab10ef668f95fa82a0c37ddd08fd877"
     }
   ],
-  "scope": "All published research files except this self-referencing manifest and bundle; excludes temporary QA images and caches"
+  "scope": "All published research files except this manifest and bundle; excludes temporary QA images and caches"
 }

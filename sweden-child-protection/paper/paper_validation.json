@@ -1,5 +1,5 @@
 {
-  "page_count": 30,
+  "page_count": 32,
   "tables": 13,
   "native_equations": 6,
   "checks": [
@@ -87,18 +87,18 @@
   "outputs": [
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 119652,
-      "sha256": "32b094217b58df7fe6ffcdd9750ce7c7295719018e715221bcf7603a9fc94a14"
+      "bytes": 121276,
+      "sha256": "42f3405ad6b9e23fa7bac03236161b454022dce05b93c3aeede9c90b8b121a5d"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 53791,
-      "sha256": "ec8dd6bf46f5c66f4f754ca8e91c4e03d753ca50593f31f7e7d19703a40d509b"
+      "bytes": 57530,
+      "sha256": "2f6b09ae100f2e241a18e17f7658c73f0390e22651ce2e542cafecf2fd1638f9"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 775209,
-      "sha256": "75bb810beeb09b9102a8337e4522ed134007568f2d71dc07cc083658eeb548f2"
+      "bytes": 797722,
+      "sha256": "0c7454fb2062e0e71bcc602cd77554ce11fe97b1ac5cbb2f5e9a841af81a3a2d"
     }
   ],
   "render_method": "Microsoft Word 16 COM PDF export of the actual DOCX; Poppler 130 dpi page images",

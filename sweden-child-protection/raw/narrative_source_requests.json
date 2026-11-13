@@ -1,0 +1,35 @@
+[
+  {
+    "timestamp_utc": "2026-11-13T14:34:02.157328+00:00",
+    "method": "GET",
+    "url": "https://www.socialstyrelsen.se/globalassets/sharepoint-dokument/dokument-webb/oppna-jamforelser/oppna-jamforelser-socialtjanst-2019-indikatorer.pdf",
+    "file": "raw/socialstyrelsen_indicators_2019.pdf",
+    "status": 200,
+    "final_url": "https://www.socialstyrelsen.se/globalassets/sharepoint-dokument/dokument-webb/oppna-jamforelser/oppna-jamforelser-socialtjanst-2019-indikatorer.pdf",
+    "bytes": 2991163,
+    "sha256": "d50acda8c4bd6d3e704cc8be79e7607a2a935ac88e21ec278ece241e861373c4",
+    "content_type": "application/pdf"
+  },
+  {
+    "timestamp_utc": "2026-11-13T14:34:10.916667+00:00",
+    "method": "GET",
+    "url": "https://www.socialstyrelsen.se/contentassets/050b284d61c84e73b572a55c369860f6/2026-3-10113.pdf",
+    "file": "raw/socialstyrelsen_ifo_2026.pdf",
+    "status": 200,
+    "final_url": "https://www.socialstyrelsen.se/contentassets/050b284d61c84e73b572a55c369860f6/2026-3-10113.pdf",
+    "bytes": 1461289,
+    "sha256": "d15fd80d8ee81c3f8453908f139f138a1af9dfac22016257168b2fc6d067f448",
+    "content_type": "application/pdf"
+  },
+  {
+    "timestamp_utc": "2026-11-13T14:35:30.376904+00:00",
+    "method": "GET",
+    "url": "https://www.socialstyrelsen.se/contentassets/24e1b0146b8a446a9096eb4cdf3e81b2/2025-3-9498.pdf",
+    "final_url": "https://www.socialstyrelsen.se/contentassets/24e1b0146b8a446a9096eb4cdf3e81b2/2025-3-9498.pdf",
+    "status": 200,
+    "file": "raw/socialstyrelsen_ifo_2025.pdf",
+    "bytes": 1009478,
+    "sha256": "caca37e189126424a267e87e9d9ee959e4611c7162ab6958359df3fb74ab5552",
+    "content_type": "application/pdf"
+  }
+]

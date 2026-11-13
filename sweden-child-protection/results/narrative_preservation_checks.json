@@ -1,0 +1,7 @@
+{
+  "base_commit": "9ece53e774b708f98421e32a002b2802ece29a58",
+  "all_analysis_data_byte_identical": true,
+  "regressions_byte_identical": true,
+  "additional_analyses_byte_identical": true,
+  "all_existing_official_response_files_byte_identical": true
+}

@@ -150,6 +150,8 @@ REFERENCES=[
  ('[9] Adão, R., Kolesár, M. and Morales, E. (2019). Shift-Share Designs: Theory and Inference. Quarterly Journal of Economics, 134(4), 1949–2010.','https://www.nber.org/papers/w24944'),
  ('[10] Jaeger, D. A., Ruist, J. and Stuhler, J. (2018). Shift-Share Instruments and the Impact of Immigration. NBER Working Paper 24285.','https://www.nber.org/papers/w24285'),
  ('[11] 선행 통합 연구원고 (2026). 이주배경 인구가 집중된 지역에서 아동보호 행정 대응은 더 느린가. 스웨덴의 교육보장 절차와 사회복지 조사 장기화에 관한 이중 수준 분석. 11월 11일. 사용자 제공 미간행 원고.',''),
+ ('[12] Socialstyrelsen (2019). Indikatorer – öppna jämförelser 2019. Socialtjänst och kommunal hälso- och sjukvård. 지표 80, 110–111쪽.','https://www.socialstyrelsen.se/globalassets/sharepoint-dokument/dokument-webb/oppna-jamforelser/oppna-jamforelser-socialtjanst-2019-indikatorer.pdf'),
+ ('[13] Socialstyrelsen (2025). Individ- och familjeomsorg – Lägesrapport 2025. Artikelnummer 2025-3-9498. 39, 43쪽, 표 5.','https://www.socialstyrelsen.se/contentassets/24e1b0146b8a446a9096eb4cdf3e81b2/2025-3-9498.pdf'),
 ]
 
 doc=Document(); section=doc.sections[0]
@@ -236,7 +238,8 @@ def table_block(t):
             cell.width=Pt(w); cell.vertical_alignment=WD_CELL_VERTICAL_ALIGNMENT.CENTER
             p=cell.paragraphs[0];p.paragraph_format.first_line_indent=Pt(0)
             p.paragraph_format.space_after=Pt(0);p.paragraph_format.space_before=Pt(0);p.paragraph_format.line_spacing=1.22
-            p.paragraph_format.keep_with_next=False
+            # Keep compact tables with their source notes; long appendix tables may split.
+            p.paragraph_format.keep_with_next=(len(t['rows'])<=4 or i>=len(allrows)-3)
             # Identifiers and short numerical cells are centered; prose remains left-aligned.
             p.alignment=WD_ALIGN_PARAGRAPH.LEFT if (j==0 and w>=60) or w>=90 else WD_ALIGN_PARAGRAPH.CENTER
             run=p.add_run(str(text));font(run,size=8.8 if len(values)>=5 else 9.1,bold=i==0)
@@ -298,7 +301,7 @@ for block in re.split(r'\n\s*\n',source.strip()):
             'cross':'Y_i,2024 = α + β X_i,2024 + γ_m(i) + ε_i','panel':'Y_it = α_i + λ_t + β X_it + ε_it','fd':'ΔY_it = δ_t + β ΔX_it + Δε_it'}[match.group(1)]);continue
     if block=='{{REFERENCES}}':
         for text,url in REFERENCES:
-            p=para(text);p.paragraph_format.first_line_indent=Pt(-10);p.paragraph_format.left_indent=Pt(10);p.paragraph_format.line_spacing=1.3
+            p=para(text);p.paragraph_format.first_line_indent=Pt(-10);p.paragraph_format.left_indent=Pt(10);p.paragraph_format.line_spacing=1.22;p.paragraph_format.space_after=Pt(3)
             for r in p.runs:font(r,size=9)
             if url:hyperlink(p,'  원문',url)
         rendered.append('\n\n'.join(text+(' [원문]('+url+')' if url else '') for text,url in REFERENCES));continue

@@ -1,6 +1,6 @@
 {
   "pdf": "output/Sweden_ChildProtection_Policy_Draft_KO.pdf",
-  "page_count": 30,
+  "page_count": 32,
   "reviewed_pages": [
     1,
     2,
@@ -31,18 +31,18 @@
     27,
     28,
     29,
-    30
+    30,
+    31,
+    32
   ],
-  "method": "Visual inspection of all actual Word-exported PDF page images rendered by Poppler at 130 dpi",
+  "method": "Visual review of all Word-exported pages rendered by Poppler at 130 dpi; compact table pagination checked",
+  "result": "passed",
   "checked": [
     "Korean and Swedish glyphs",
-    "six native equations",
-    "thirteen tables",
-    "comparison figure",
-    "leading-zero codes",
-    "page breaks",
-    "references",
-    "no blank pages"
-  ],
-  "result": "passed"
+    "editable equations",
+    "thirteen tables and one figure",
+    "VIND28 opening and scope",
+    "references and source pages",
+    "page breaks"
+  ]
 }
