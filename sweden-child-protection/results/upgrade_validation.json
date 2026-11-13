@@ -1,0 +1,8 @@
+{
+  "primary_reproduced": true,
+  "bootstrap_covariance_independently_matched": true,
+  "exact_decomposition_all_51": true,
+  "lag_merge_one_to_one": true,
+  "common_timing_sample_matched": true,
+  "input_sha256": "f85ab968d0d01a7580e30481318080a08c8ccb098d110420190bac264a0cb87d"
+}

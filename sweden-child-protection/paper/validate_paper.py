@@ -14,7 +14,7 @@ def read(path):
 doc=Document(O/'Sweden_ChildProtection_Policy_Draft_KO.docx')
 pdf=PdfReader(O/'Sweden_ChildProtection_Policy_Draft_KO.pdf')
 full='\n'.join(p.extract_text() or '' for p in pdf.pages)
-check('twelve academic tables',len(doc.tables)==12)
+check('thirteen academic tables',len(doc.tables)==13)
 check('six editable native Word equations',len(doc.element.xpath('//m:oMath'))==6)
 check('three native fraction expressions',len(doc.element.xpath('//m:f'))==3)
 check('no theme border below title',len(doc.element.xpath('//w:pBdr'))==0 and len(doc.styles.element.xpath('//w:pBdr'))==0)
@@ -37,10 +37,12 @@ check('contemporaneous headline statistics included',all(v in full for v in ['10
 check('individual delay not presented as measured','개인별 보호 도달과 인과효과' in full and '미추정' in full)
 check('author identity not invented',not doc.core_properties.author)
 check('no user computer path in PDF','C:\\Users' not in full and 'kim58' not in full)
+check('new timing results and appendix included',all(v in full for v in ['9.78','27.92','부록 C','군집 추론']))
+check('one comparison figure embedded',len(doc.inline_shapes)==1)
 records=[]
 for p in sorted(O.iterdir()):
     if p.is_file():records.append({'file':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
-report={'page_count':len(pdf.pages),'tables':12,'native_equations':6,'checks':checks,'outputs':records,
+report={'page_count':len(pdf.pages),'tables':13,'native_equations':6,'checks':checks,'outputs':records,
         'render_method':'Microsoft Word 16 COM PDF export of the actual DOCX; Poppler 130 dpi page images',
         'reference_use':'User-provided format and conceptual framing; prior VIND28/district estimates not re-estimated or pooled'}
 (P/'paper_validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

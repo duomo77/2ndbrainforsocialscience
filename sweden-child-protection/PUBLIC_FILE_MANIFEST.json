@@ -87,8 +87,8 @@
     },
     {
       "file": "paper/build_paper.py",
-      "bytes": 25661,
-      "sha256": "2b39563b08106d1d044aadaf1103b86145a425d223735ac9dbc4a5a2137c2003"
+      "bytes": 27174,
+      "sha256": "24b972aec77b80ae63363da176e708636f584cc55b0f0f3d466947009788cafb"
     },
     {
       "file": "paper/export_payload.py",
@@ -102,28 +102,28 @@
     },
     {
       "file": "paper/manuscript_source_ko.md",
-      "bytes": 34837,
-      "sha256": "1dd3e662d8c810367f503d26a98335465bbaaa832b388c730d1c9cdda6f21781"
+      "bytes": 39924,
+      "sha256": "580ddb3d83555f6782a8314aff3c0f7960dbe0df8c770fdf1671cb2ec9042ebc"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 63391,
-      "sha256": "f01c31f89b2c289ea14acbed3522aad0e410580235ff0ae59f633365eff58d7e"
+      "bytes": 119652,
+      "sha256": "32b094217b58df7fe6ffcdd9750ce7c7295719018e715221bcf7603a9fc94a14"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 48477,
-      "sha256": "a350104a9ae9f948c92c41d50af66179f8594cbc2bd14756858f51adf82233d9"
+      "bytes": 53791,
+      "sha256": "ec8dd6bf46f5c66f4f754ca8e91c4e03d753ca50593f31f7e7d19703a40d509b"
     },
     {
       "file": "paper/output/Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 707614,
-      "sha256": "3767f4d7188f571bcb7747c63db523f3ee5b1555d37fc238bae33032f8eb28c9"
+      "bytes": 775209,
+      "sha256": "75bb810beeb09b9102a8337e4522ed134007568f2d71dc07cc083658eeb548f2"
     },
     {
       "file": "paper/paper_validation.json",
-      "bytes": 2474,
-      "sha256": "7d5ffa833426ba687db5ee69748600db0768ffdc3288ebf9ff021557eaf7ed73"
+      "bytes": 2661,
+      "sha256": "812977098a51599e112e291df31b7e261d02a604c38c844b3962b6d59c437797"
     },
     {
       "file": "paper/qa_render.py",
@@ -132,8 +132,8 @@
     },
     {
       "file": "paper/README.md",
-      "bytes": 2016,
-      "sha256": "51b4ebc59fbb92b8760b153f653ddfc824a9771b2cf83274f5f5c65acc3c1c5e"
+      "bytes": 2174,
+      "sha256": "f7ded78f07e6f16002b9104d97524dba6866c839b999caf5cb750ff195bbaa79"
     },
     {
       "file": "paper/requirements.txt",
@@ -142,18 +142,18 @@
     },
     {
       "file": "paper/table_manifest.json",
-      "bytes": 19136,
-      "sha256": "261c30401186473bd458d538ebf351544cf6a41d6be4dae3b8fe99f4c1fa08dd"
+      "bytes": 19891,
+      "sha256": "23ebf05603a405d2f4e349779a0988d516a87a99b1fb4833ac66c70a4cda4d6d"
     },
     {
       "file": "paper/validate_paper.py",
-      "bytes": 3462,
-      "sha256": "828deac4dacdf357c5bfd3f0d9f497c7f09f9190323aa41f6f7fea4d3c319b5c"
+      "bytes": 3697,
+      "sha256": "0844b0c95553e50c398f9821fa22d1987c376aa54211597ba2c94e5a323dc3a0"
     },
     {
       "file": "paper/visual_review.json",
-      "bytes": 483,
-      "sha256": "339d856df7b3c5619e28b5699c558640abe996117aad26679d5e685bbb9bb4cb"
+      "bytes": 731,
+      "sha256": "9bd434cee8e7957f5e5171c9207e8b30e7d6430cab8690c3afe5cf89e9b27547"
     },
     {
       "file": "PUBLICATION_NOTES.json",
@@ -362,8 +362,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 2741,
-      "sha256": "8d8025ec5fb1636384b92db4311c43b07237400af42766f710d3af4f3a34682e"
+      "bytes": 3039,
+      "sha256": "e1dc2eaa14f5d2c8b687d19ee9e1a2b16df42bb7c2464f3e8d453daa9687d683"
     },
     {
       "file": "requirements.txt",
@@ -561,6 +561,36 @@
       "sha256": "d76e3e3571293729e3bb6e78a43136dc99cadf5c19d587be46f226089695be5e"
     },
     {
+      "file": "results/upgrade_figure_data.csv",
+      "bytes": 522,
+      "sha256": "8b101b46a15a438f5d2461fcd074b0a29ef920eb123cb26f3387ac9f47d54490"
+    },
+    {
+      "file": "results/upgrade_ratio_decomposition.csv",
+      "bytes": 6057,
+      "sha256": "7a3ec14dc902c311c1f1b4a52bc27c03012792730b08e6897eab27c194b5b383"
+    },
+    {
+      "file": "results/upgrade_specifications.png",
+      "bytes": 64457,
+      "sha256": "38c9a28a47b27fef6fc9f61c186d7bf2c33035bfb24dd122509c1063b150a05c"
+    },
+    {
+      "file": "results/upgrade_timing_models.csv",
+      "bytes": 806,
+      "sha256": "a903c4be938a67db523603266bedd1c6012951bbe8d68bf158732e0aa7f65c23"
+    },
+    {
+      "file": "results/upgrade_validation.json",
+      "bytes": 289,
+      "sha256": "9c1aefecc8ba04465a207a52d9f4df857bd7f0acc180fce757f836cb9c6a783e"
+    },
+    {
+      "file": "results/upgrade_wild_cluster_bootstrap.json",
+      "bytes": 466,
+      "sha256": "51225d90154bc03ce9aecd542a6e8a5e22a14ddcbb8a7857ac2f72d9851a3230"
+    },
+    {
       "file": "results/validation.csv",
       "bytes": 18693,
       "sha256": "2e77c35e3696bb51af2928ec0e51dc0fe9b1db45cd2e080cb58a6234b742da75"
@@ -571,10 +601,30 @@
       "sha256": "e365e01f80b2626632c13df1b9d64112ac7745e036376ca1ba0d3d37e338af8a"
     },
     {
+      "file": "upgrade_analysis.py",
+      "bytes": 5950,
+      "sha256": "1140abd673cb6f4e826bf635f052bc95adc26f7e30b78585044407185767dd75"
+    },
+    {
+      "file": "upgrade_download_receipt.json",
+      "bytes": 584,
+      "sha256": "14818b77f240949b04d0bd0480b69fe9c1c15cbfce53d4c0e8c1f9f1ba22d3dc"
+    },
+    {
+      "file": "upgrade_figure.py",
+      "bytes": 2325,
+      "sha256": "3a1327db2d762f9db43ade8b720828a1b97eabcfca77c24dec7ea42a39ece3b9"
+    },
+    {
+      "file": "UPGRADE_NOTES_KO.md",
+      "bytes": 4166,
+      "sha256": "32577e1fe1546447b872ea8161d7f90f541d34597cf41e522653f1cff6d2d302"
+    },
+    {
       "file": "verify.py",
       "bytes": 5730,
       "sha256": "bbec2765701b4505321c77eb00be3fcc0ab10ef668f95fa82a0c37ddd08fd877"
     }
   ],
-  "scope": "All research files except this self-referencing manifest and the bundle itself"
+  "scope": "All published research files except this self-referencing manifest and bundle; excludes temporary QA images and caches"
 }

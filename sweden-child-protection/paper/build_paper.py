@@ -269,11 +269,25 @@ def equation(key):
         for tok in tokens:m.append(sub(*tok) if isinstance(tok,tuple) else mr(tok))
     p._p.append(op);r=p.add_run(f'   ({no})');font(r,size=9)
 
+timing=read('upgrade_timing_models.csv')
+timing=[v for v in timing if v['specification'].startswith('common_sample_')]
+tab('timing','<표 C1> 동일 표본에서 인구 측정시점 비교',
+    ['인구비중 시점','계수','95% 신뢰구간','p값'],
+    [['전년도 말' if v['predictor']=='lag_x_pp' else '당해 연도 말',num(v['coefficient']),ci(v),pval(v['p_value'])] for v in timing],
+    [100,45,130,50],
+    '2023–2024년 41개 지방정부·82개 관측치. 지방정부·연도 고정효과 및 지방정부 군집 표준오차, t(40). 단위는 비중 1%포인트당 일수다. 출처: 공식 자료를 이용한 추가 계산.')
+
 source=(PAPER/'manuscript_source_ko.md').read_text(encoding='utf-8')
 rendered=[]; firsttitle=True; firstsubtitle=True; english=False; abstract=False; pending_break=False
 for block in re.split(r'\n\s*\n',source.strip()):
     block=block.strip()
     if block=='{{PAGEBREAK}}':pending_break=True;rendered.append('\n---\n');continue
+    figure=re.fullmatch(r'\{\{FIG:([^}]+)\}\}',block)
+    if figure:
+        p=para('<그림 C1> 양부모 해외 출생 비중의 모형별 추정');p.paragraph_format.keep_with_next=True;p.paragraph_format.first_line_indent=Pt(0)
+        for r in p.runs:font(r,size=9,bold=True)
+        p=doc.add_paragraph();p.paragraph_format.first_line_indent=Pt(0);p.add_run().add_picture(str(RESULTS/figure.group(1)),width=Pt(325))
+        rendered.append('![그림 C1](../../results/'+figure.group(1)+')');continue
     match=re.fullmatch(r'\{\{TABLE:(\w+)\}\}',block)
     if match:
         t=tables[match.group(1)];table_block(t)

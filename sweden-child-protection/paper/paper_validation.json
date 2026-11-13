@@ -1,10 +1,10 @@
 {
-  "page_count": 26,
-  "tables": 12,
+  "page_count": 30,
+  "tables": 13,
   "native_equations": 6,
   "checks": [
     {
-      "check": "twelve academic tables",
+      "check": "thirteen academic tables",
       "passed": true
     },
     {
@@ -74,23 +74,31 @@
     {
       "check": "no user computer path in PDF",
       "passed": true
+    },
+    {
+      "check": "new timing results and appendix included",
+      "passed": true
+    },
+    {
+      "check": "one comparison figure embedded",
+      "passed": true
     }
   ],
   "outputs": [
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.docx",
-      "bytes": 63391,
-      "sha256": "f01c31f89b2c289ea14acbed3522aad0e410580235ff0ae59f633365eff58d7e"
+      "bytes": 119652,
+      "sha256": "32b094217b58df7fe6ffcdd9750ce7c7295719018e715221bcf7603a9fc94a14"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.md",
-      "bytes": 48477,
-      "sha256": "a350104a9ae9f948c92c41d50af66179f8594cbc2bd14756858f51adf82233d9"
+      "bytes": 53791,
+      "sha256": "ec8dd6bf46f5c66f4f754ca8e91c4e03d753ca50593f31f7e7d19703a40d509b"
     },
     {
       "file": "Sweden_ChildProtection_Policy_Draft_KO.pdf",
-      "bytes": 707614,
-      "sha256": "3767f4d7188f571bcb7747c63db523f3ee5b1555d37fc238bae33032f8eb28c9"
+      "bytes": 775209,
+      "sha256": "75bb810beeb09b9102a8337e4522ed134007568f2d71dc07cc083658eeb548f2"
     }
   ],
   "render_method": "Microsoft Word 16 COM PDF export of the actual DOCX; Poppler 130 dpi page images",

@@ -1,0 +1,11 @@
+{
+  "method": "Null-imposed wild cluster bootstrap-t, Rademacher, CR1 studentization",
+  "draws": 9999,
+  "seed": 20261113,
+  "clusters": 43,
+  "observed_t": 2.980056525539777,
+  "p_value": 0.0138,
+  "monte_carlo_se": 0.0011666585229667338,
+  "exceedances": 137,
+  "limitations": "Exploratory two-sided test of zero slope only; no bootstrap confidence interval. Assumes independent municipality clusters; does not fix confounding or influential support."
+}

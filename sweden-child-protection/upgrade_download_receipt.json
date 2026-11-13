@@ -1,0 +1,9 @@
+{
+  "commit": "e61e7254b274a1529159d6214693038973147ff6",
+  "url": "https://raw.githubusercontent.com/duomo77/2ndbrainforsocialscience/e61e7254b274a1529159d6214693038973147ff6/sweden-child-protection/sweden_child_protection_public_bundle.zip",
+  "timestamp": "2026-11-13T14:21:00.565602+00:00",
+  "zip_sha256": "463f5efff735350bcb562003bdd9a3a848a49ff1b80795083746335d8f634feb",
+  "head_files_checked": 115,
+  "head_files_refreshed": 1,
+  "scope": "Downloaded public bundle, then verified every current non-ZIP target file against GitHub tree and refreshed differing files."
+}
