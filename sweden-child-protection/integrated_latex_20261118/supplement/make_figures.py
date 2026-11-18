@@ -171,7 +171,7 @@ def metro_fits(panel):
     cross = panel[panel.year.eq(2024)].copy()
     specifications = [(cross, "C(metro)", "2024년 지역 간 비교"),
                       (panel, "C(municipality_code)+C(year)", "2022–2024년 지역 내 비교")]
-    fig, axes = plt.subplots(1, 2, figsize=(8.4, 3.6), layout="constrained")
+    fig, axes = plt.subplots(1, 2, figsize=(8.4, 3.6), sharey=True, layout="constrained")
     rows = []
     for ax,(frame, rhs, title), expected in zip(axes, specifications, [-.105, 6.555]):
         x = smf.ols("x ~ "+rhs, frame).fit().resid
@@ -182,10 +182,11 @@ def metro_fits(panel):
         xx = np.array([x.min(), x.max()])
         ax.plot(xx, coef*xx, color=ORANGE, lw=1.6)
         ax.axhline(0, color="#cad3d9", lw=.8, zorder=0)
-        ax.set(title=title, xlabel="양부모 해외 출생 비중 잔차 (%p)", ylabel="조사기간 잔차 (일)")
+        ax.set(title=title, xlabel="양부모 해외 출생 비중 잔차 (%p)", ylim=(-35, 40))
         ax.text(.03,.96,f"기울기 {coef:+.3f} 일/%p", transform=ax.transAxes, va="top",
                 fontsize=9.5, bbox=dict(facecolor="white", edgecolor="none", alpha=.93))
         rows.append(frame[["municipality_code","year"]].assign(comparison=title,x_residual=x,y_residual=y))
+    axes[0].set_ylabel("조사기간 잔차 (일)")
     pd.concat(rows).to_csv(DATA/"metro_partial_residuals.csv", index=False, encoding="utf-8-sig")
     save(fig,"s3_metro_partial_residuals")
 
@@ -201,7 +202,12 @@ def vind_levels(vind):
         for group, color, marker, name in [(1,BLUE,"o","고비중 집단"),(0,ORANGE,"s","비교집단")]:
             sub = frame[frame.high_foreign_2015.eq(group)]
             pct = 100*sub[["y"+str(y) for y in ys]].mean().to_numpy()
-            ax.plot(ys,pct,ls="--",color=color,lw=1.7,marker=marker,ms=5,label=name)
+            plot_years, plot_rates = ys, pct
+            if 2023 in ys and 2024 not in ys:
+                break_at = ys.index(2023) + 1
+                plot_years = [*ys[:break_at], 2024, *ys[break_at:]]
+                plot_rates = np.insert(pct, break_at, np.nan)
+            ax.plot(plot_years,plot_rates,ls="--",color=color,lw=1.7,marker=marker,ms=5,label=name)
             counts = sub[["y"+str(y) for y in ys]].sum().to_numpy()
             rows.extend(dict(sample=label,group=group,year=y,n=len(sub),yes=int(count),rate_pct=v)
                         for y,count,v in zip(ys,counts,pct))
@@ -225,7 +231,13 @@ def split_plot():
         points = audit[audit.family.eq("fold_only") & audit.period.eq(period)].sort_values("fold_seed")
         assert len(points)==10
         ax.axhline(0,color="#78858f",lw=.8)
-        ax.scatter(np.linspace(.80,1.20,10), points.estimate_pp, c=SLATE, s=20, alpha=.8)
+        x_fold = np.linspace(.76, 1.24, len(points))
+        excludes_zero = (points.lo_pp > 0) | (points.hi_pp < 0)
+        assert np.array_equal(excludes_zero, points.p_value.lt(.05))
+        ax.scatter(x_fold[excludes_zero], points.loc[excludes_zero, "estimate_pp"],
+                   color=SLATE, s=26, linewidths=.9)
+        ax.scatter(x_fold[~excludes_zero], points.loc[~excludes_zero, "estimate_pp"],
+                   facecolors="white", edgecolors=SLATE, s=26, linewidths=.9)
         for x, table, prefix, color, marker in [(0,main,"",BLUE,"o"),(2,legacy,"reported_",ORANGE,"s")]:
             row=table.loc[period]
             center=row["estimate_pp" if x==0 else "reported_pp"]

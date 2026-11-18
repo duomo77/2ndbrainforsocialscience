@@ -27,6 +27,15 @@ for year, median, count in [(2015, "11.78", 35), (2024, "14.65", 62)]:
     values = population[f"foreign_born_pct_{year}"]
     assert values.notna().all() and f"{values.median():.2f}" == median
     assert values.ge(20).sum() == count
+partial = pd.read_csv(ROOT / "supplement/data/metro_partial_residuals.csv",
+                      dtype={"municipality_code": str})
+across = partial[partial.year.eq(2024) & partial.comparison.str.startswith("2024년")]
+within = partial[partial.comparison.str.startswith("2022")]
+assert (len(across), len(within)) == (40, 120)
+assert set(across.municipality_code) == set(within.municipality_code)
+for frame, expected in [(across, "-0.105"), (within, "6.555")]:
+    x, y = frame.x_residual, frame.y_residual
+    assert f"{(x @ y) / (x @ x):.3f}" == expected
 abstract = source.split(r"\begin{abstract}", 1)[1].split(r"\end{abstract}", 1)[0]
 assert "263개 연결표본" in abstract and "두 해 모두 35개" in abstract
 assert "17개에서 31개" not in abstract
@@ -90,6 +99,9 @@ for period, group, *cells in tables["c2transitions"]:
 for group, data in linked.groupby(high):
     assert data.y2025.notna().all() and data.y2026.notna().all()
     assert [int(data.y2025.sum()), int(data.y2026.sum())] == ([35, 35] if group else [70, 93])
+    if group:
+        transitions = Counter(zip(data.y2025, data.y2026))
+        assert transitions[(0, 1)] == transitions[(1, 0)] == 13
 assert f"{-100*23/195:.2f}" == "-11.79"
 binary = wide[~wide.code.isin(["0180", "1480"])]
 gaps = {}
@@ -111,6 +123,15 @@ assert gaps[2025][0] > gaps[2026][1]
 assert gaps[2026][0] < 0 < gaps[2026][1]
 
 audit = pd.read_csv(CASE2 / "results/second_audit_models.csv")
+folds = audit[audit.family.eq("fold_only")]
+for period, (negative, positive, significant) in {
+    "2025-2023": (0, 10, 2), "2026-2023": (9, 1, 0), "2026-2025": (10, 0, 8),
+}.items():
+    rows = folds[folds.period.eq(period)]
+    outside_zero = rows.lo_pp.gt(0) | rows.hi_pp.lt(0)
+    assert (rows.estimate_pp.lt(0).sum(), rows.estimate_pp.gt(0).sum(),
+            outside_zero.sum()) == (negative, positive, significant)
+    assert outside_zero.equals(rows.p_value.lt(.05))
 for row in tables["c2second"]:
     family = "fold_only" if row[0] == "폴드만 변경" else "learner_rng_only"
     data = audit[audit.family.eq(family) & audit.period.eq(row[1])]
