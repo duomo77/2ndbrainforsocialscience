@@ -50,15 +50,15 @@ $r_i=\Delta Y_i-\widehat g_{0,-k(i)}(X_i)$, $\widehat q_i=(1-H_i)\widehat e_i/(1
  assert anchor in s;s=s.replace(anchor,newtable+'\n'+text+'\n'+anchor)
  s=s.replace('\\caption{CASE 2 변화 차이와 조정 추정의 95\\% 구간}','\\caption{CASE 2 기존 원고의 보고치: 변화 차이와 조정 추정}')
  # Newly verified descriptive tables are distinct from unrerun legacy models.
- for label in ['c2flow','c2levels','c2transitions','c2expand']:
+ for label in ['c2flow','c2levels','c2transitions','c2expand','c2missing']:
   record=next(r for r in records if r['label']==label)
-  oldnote=record['note'];newnote=oldnote.replace(' 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.',' 공식 원자료로 표본 수·충족 건수 또는 전환 셀을 다시 구성해 원고와 일치함을 확인했다.')
+  verified = ' 2026년 공식 파일에서 결측 범위를 다시 계산해 보고값과 일치함을 확인했다.' if label=='c2missing' else ' 공식 원자료에서 표본 수, 충족 건수와 전환 셀을 다시 계산해 일치를 확인했다.'
   # Table notes were escaped by the builder; substitution is ASCII/Korean only.
   ending=' 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.'
   start=s.index('\\label{tab:'+label+'}')
   end=s.index('\\end{table}',start)
-  s=s[:start]+s[start:end].replace(ending,' 공식 원자료에서 표본·충족 건수·전환 셀을 재구축하여 일치를 확인했다.')+s[end:]
-  record['note']=newnote
+  s=s[:start]+s[start:end].replace(ending,verified)+s[end:]
+  record['note']=record['note'].replace(ending,verified)
  s=s.replace('H2의 집단 차이는 연도별 수준과 전환, 조정 방법에 따라 달라진다.','H2의 집단 차이는 연도별 수준과 전환, 조정 방법에 따라 달라진다. 독립 DML 재추정의 세 주 구간은 모두 0을 포함하며, 방향의 재현과 유의성의 재현은 구분해야 한다.')
  s=s.replace('제공 CASE 2 원고가 인용한 원자료이며 이번 통합에서 원파일 재검증은 수행하지 않음.','제공 CASE 2 원고의 출처. 이번에 공식 Excel DATA를 새로 확보했으나 당시 조사표 전체의 동등성을 재인증한 것은 아님.')
  s=s.replace('개별적인 개인의 불리함을 확인할 근거가 아니다.','개별적인 개인의 불리함을 확인할 근거가 아니다.')

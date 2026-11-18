@@ -79,16 +79,15 @@ Python 3, numpy, pandas, scipy, scikit-learn, openpyxl, requests가 필요하다
 
 ```powershell
 cd <이 폴더>
-python discover.py
-python fetch.py
-python get_scb.py
+python verify_execution.py
 python build_data.py
 python analysis.py
 python finalize.py
-python verify_execution.py
+python second_audit.py
+python second_audit_report.py
 ```
 
-기존 `raw/`가 있으면 SCB 다운로드는 캐시를 사용한다. 공식 자료가 수정되었을 경우 기존 파일을 별도 보관하고 새 폴더에서 받아 비교해야 한다. `discover.py`는 XLSX와 공개 저장소 목록을 다시 내려받으므로 기존 해시의 원본 보관에 주의한다.
+이 순서는 전체 ZIP의 보존 원본을 사용한다. 첫 명령이 보존 원본의 SHA-256과 저장된 주 추정값을 확인한다. 공식 자료의 새 버전이 필요하면 별도 작업 복사본에서 `discover.py`, `fetch.py`, `get_scb.py` 순으로 수집한다. `discover.py`는 XLSX와 공개 저장소 목록을 갱신하며 SCB 스크립트는 같은 이름의 응답이 있으면 이를 사용한다.
 
 자료 체크는 표본 수·정확 분류 경계·모든 기준 시점 충족 건수·포함/제외 소득 평균·도시 집계 분리를 검증한다. 수치 체크는 군집 누출 없음·유한 공변량·평균 0 점수·상수 보조모형에서 단순 DID 점추정과 표준오차가 일치함을 검증한다. 세 주 모형을 다시 적합하여 점추정·표준오차·구간·ESS가 1e-10 이내에서 일치함도 확인했다. 원본 SHA-256도 유지되었다. 이는 새 코드의 점검이며 원래 코드와의 일치 검증을 대체하지 않는다.
 

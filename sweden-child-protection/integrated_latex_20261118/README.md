@@ -4,12 +4,14 @@
 
 최신 해석·스토리라인 개정은 [주장 범위 정리](CLAIM_SCOPE_KO.md)에 기록했다. 초록·서론·증거 상태·두 사례 요약·마지막 답변을 일관되게 고쳤다. 고비중 집단의 높은 충족률과 그 격차의 축소를 구분하고, 263개 표본에서 고비중 충족 건수가 유지됨을 설명한다. 새 모형이나 유의한 사양으로 교체하지 않았으며 기존 원자료·정제자료·결과 37개 파일의 바이트 보존을 확인했다.
 
+최신 [전반 검수 기록](MANUSCRIPT_REVIEW_KO.md)에 초록의 표본 귀속 오류, 주요 회귀 재계산, 결측 범위 대조 및 남은 근거의 한계를 정리했다. CASE 1의 원자료 수집과 확장 분석은 [상위 연구 폴더](https://github.com/duomo77/2ndbrainforsocialscience/tree/main/sweden-child-protection)에서 확인할 수 있다.
+
 공식 VIND28 원본 Excel·SCB 원응답을 포함한 전체 자료는 이 폴더의 `Sweden_ChildProtection_Integrated_LaTeX_KO_20261118.zip`에 있다. GitHub의 개별 파일은 코드와 결과 검토용이며, 실행에는 ZIP을 풀어 사용한다.
 
 ## 파일
 
 - `main.tex`: 독립적으로 컴파일할 수 있는 전체 LaTeX 원본.
-- `main.pdf`: 위 원본을 Tectonic 0.17.0으로 컴파일한 18쪽 PDF. III절에 새 구현, IV절에 기존 보고치 비교와 두 차례 민감도 점검을 추가했다.
+- `main.pdf`: 위 원본을 Tectonic 0.17.0으로 컴파일한 19쪽 PDF. III절은 분석 설계를, IV절은 추정과 민감도 점검을 담는다.
 - `build_manuscript.py`: 문장과 표를 원본으로 출력하는 Python 스크립트. 표준 라이브러리만 필요하다. 실행은 LaTeX 파일을 다시 작성하며, 계량모형을 재추정하지 않는다.
 - `case1_table_manifest.json`: 제공 CASE 1 26쪽 원고와 대조한 기존 결과표.
 - `table_transcription.json`: 통합 원고 표 20개의 수치와 주석. 기존 보고치와 직접 재추정치를 구분한다.
@@ -20,6 +22,7 @@
 - `interpretation_revision.py`: 검증된 결과에 맞춰 초록·서론·결과 해석과 마지막 답변을 재작성한다.
 - `CLAIM_SCOPE_KO.md`: 관측 사실, 조건부 추정, 허용되지 않는 인과·개인 주장을 대응시킨 검토 문서.
 - `verify_interpretation.py`: 기존 경험적 파일의 보존과 본문 구조 확인. 결과는 `reproduction/results/interpretation_preservation.json`에 있다.
+- `verify_manuscript.py`: CASE 1 기본 단면·고정효과 회귀와 CASE 2 집계·결측·DML 표 확인. 실행에는 pandas, numpy, statsmodels가 필요하다.
 - `main.log`, `qa/verification.json`: 컴파일과 PDF 점검 기록.
 - `SHA256SUMS.json`: 배포 파일 체크섬.
 
@@ -73,4 +76,4 @@ CASE 1의 Kolada·SCB 전체 다운로드를 반복하지 않았다. CASE 2에�
 
 추가 점검은 `reproduction/SECOND_AUDIT_KO.md`에 있다. 동일 폴드에서 성향점수·결과 모형을 따로 바꾸고, 폴드 배정만 10회, 학습기 난수만 5회 바꾸었다. 2026−2025년은 폴드 10개 모두 음수·8개 p<.05였고 2026−2023년은 모두 비유의였다. 이전 한 분할의 비유의를 신호 부재로 일반화하지 않으며, 유의한 분할을 골라 주 결과로 대체하지도 않았다.
 
-Tectonic 컴파일 성공. 18쪽 전체의 렌더링을 검토했으며, 추출 텍스트에서 미치환 자리표시자나 대체문자(�)는 없었다. Overfull 및 Missing character 경고는 없었다. 바탕체의 일부 굵은꼴/기울임꼴 대체와 표의 Underfull 경고는 로그에 남아 있다. Windows 글꼴 의존성이 있으므로 다른 운영체제에서 줄바꿈과 쪽수는 달라질 수 있다.
+Tectonic 컴파일 성공. 19쪽 전체의 렌더링을 검토했으며, 추출 텍스트에서 미치환 자리표시자나 대체문자(�)는 없었다. Overfull 및 Missing character 경고는 없었다. 바탕체의 일부 굵은꼴/기울임꼴 대체와 표의 Underfull 경고는 로그에 남아 있다. Windows 글꼴 의존성이 있으므로 다른 운영체제에서 줄바꿈과 쪽수는 달라질 수 있다.
