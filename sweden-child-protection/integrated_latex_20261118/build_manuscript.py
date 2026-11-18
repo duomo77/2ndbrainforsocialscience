@@ -253,6 +253,8 @@ from reproduction_update import apply_reproduction
 source=apply_reproduction(source,table,records)
 from interpretation_revision import revise
 source=revise(source)
+from submission_revision import revise_for_submission
+source=revise_for_submission(source)
 assert '@@' not in source
 (P/'main.tex').write_text(source,encoding='utf-8')
 (P/'table_transcription.json').write_text(json.dumps(records,ensure_ascii=False,indent=2),encoding='utf-8')
