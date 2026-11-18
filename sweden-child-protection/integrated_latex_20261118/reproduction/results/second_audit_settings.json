@@ -1,0 +1,30 @@
+{
+  "original_code_recovered": false,
+  "original_exact_replication": false,
+  "one_at_a_time": true,
+  "main_unchanged": true,
+  "fold_seeds": [
+    20261201,
+    20261202,
+    20261203,
+    20261204,
+    20261205,
+    20261206,
+    20261207,
+    20261208,
+    20261209,
+    20261210
+  ],
+  "learner_seeds": [
+    20261201,
+    20261202,
+    20261203,
+    20261204,
+    20261205
+  ],
+  "fold_and_learner_rng_separated": true,
+  "normalization": "Diagnostic unnormalized weights use global treatment mean for both group denominators; not the complete DoubleML no-normalization option with foldwise p",
+  "iid": "Diagnostic only; county clustering is required for substantive inference",
+  "ratio_IF": "Finite-sample ratio-linearization sensitivity; not claimed to be the unique correct IF when nuisances are estimated",
+  "selection": "All prelisted settings retained; none selected for matching old estimates"
+}

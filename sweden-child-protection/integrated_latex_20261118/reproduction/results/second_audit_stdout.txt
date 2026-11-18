@@ -1,0 +1,52 @@
+baseline
+propensity_only_linear
+outcome_only_linear
+both_linear
+outcome_levels_then_difference
+fold_only_20261201
+fold_only_20261202
+fold_only_20261203
+fold_only_20261204
+fold_only_20261205
+fold_only_20261206
+fold_only_20261207
+fold_only_20261208
+fold_only_20261209
+fold_only_20261210
+learner_rng_only_20261201
+learner_rng_only_20261202
+learner_rng_only_20261203
+learner_rng_only_20261204
+learner_rng_only_20261205
+                       setting    period  estimate_pp    lo_pp   hi_pp  p_value
+                      baseline 2025-2023       9.2440 -16.1841 34.6721   0.4571
+                      baseline 2026-2023     -11.2076 -35.8254 13.4101   0.3536
+                      baseline 2026-2025     -18.4326 -40.0869  3.2217   0.0910
+        propensity_only_linear 2025-2023      13.8505  -8.4844 36.1854   0.2106
+        propensity_only_linear 2026-2023       0.3096 -23.0889 23.7082   0.9783
+        propensity_only_linear 2026-2025     -11.9617 -33.5198  9.5965   0.2607
+           outcome_only_linear 2025-2023      13.0061 -11.0469 37.0591   0.2727
+           outcome_only_linear 2026-2023      -2.7049 -26.5605 21.1508   0.8154
+           outcome_only_linear 2026-2025     -15.7110 -35.7920  4.3700   0.1183
+                   both_linear 2025-2023      15.0654  -4.6411 34.7719   0.1265
+                   both_linear 2026-2023       1.3389 -18.6525 21.3303   0.8903
+                   both_linear 2026-2025     -13.7265 -33.0829  5.6299   0.1547
+outcome_levels_then_difference 2025-2023       8.4645 -18.1475 35.0765   0.5146
+outcome_levels_then_difference 2026-2023      -8.1993 -34.0639 17.6653   0.5160
+outcome_levels_then_difference 2026-2025     -16.6638 -37.6929  4.3653   0.1140
+  unnormalized_control_weights 2025-2023       9.5912 -14.7839 33.9662   0.4214
+    iid_normal_diagnostic_only 2025-2023       9.2440 -18.5613 37.0492   0.5147
+        finite_sample_ratio_IF 2025-2023       9.2440 -15.9056 34.3936   0.4522
+  unnormalized_control_weights 2026-2023     -10.7583 -34.3534 12.8368   0.3529
+    iid_normal_diagnostic_only 2026-2023     -11.2076 -37.3392 14.9239   0.4006
+        finite_sample_ratio_IF 2026-2023     -11.2076 -34.7856 12.3704   0.3333
+  unnormalized_control_weights 2026-2025     -18.3787 -39.4682  2.7108   0.0841
+    iid_normal_diagnostic_only 2026-2025     -18.4326 -40.3648  3.4995   0.0995
+        finite_sample_ratio_IF 2026-2025     -18.4326 -39.9725  3.1072   0.0894
+          family    period  n    minimum    maximum     median  significant
+       fold_only 2025-2023 10   5.790299  24.916984  14.674299            2
+       fold_only 2026-2023 10 -24.136700   1.123035  -8.992342            0
+       fold_only 2026-2025 10 -31.503233 -17.963632 -26.045539            8
+learner_rng_only 2025-2023  5  10.002570  10.932255  10.848656            0
+learner_rng_only 2026-2023  5 -11.610945  -8.825431 -10.270368            0
+learner_rng_only 2026-2025  5 -21.006221 -18.700772 -19.904527            1

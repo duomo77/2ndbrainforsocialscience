@@ -1,18 +1,18 @@
 [
   {
     "file": "main.tex",
-    "bytes": 57229,
-    "sha256": "db3eac0e144952d1d133a953726fcebdd122291ef862aba2f149d62df38fbfd5"
+    "bytes": 60094,
+    "sha256": "752a8fb8c22e63b3977013cf9104daec8392f2affbe4d12e7afff9f14d252a1e"
   },
   {
     "file": "main.pdf",
-    "bytes": 313767,
-    "sha256": "f9c79aeecf71a83cbb58ffafcbfec629d2f672b3178a808687e7ea7e3803421a"
+    "bytes": 318057,
+    "sha256": "23f77162d57325838918dd42e7deb17b63c6ed85a5cc1d8b49e001cfb33718c5"
   },
   {
     "file": "README.md",
-    "bytes": 6097,
-    "sha256": "e6f361cb3b3f9d3a2a14076f7b1225b290ba67b298b324a9109c42191359bf40"
+    "bytes": 6538,
+    "sha256": "0faf59ebebacbc441752ff5ad7961149810d75cd56b83b89e83988462bc2b9c7"
   },
   {
     "file": "build_manuscript.py",
@@ -26,8 +26,8 @@
   },
   {
     "file": "table_transcription.json",
-    "bytes": 20525,
-    "sha256": "e0e6b2317d0dfc8837638ba2264b8c74da0357b7cfef332cf12c8d3dd9c61ecf"
+    "bytes": 21851,
+    "sha256": "85cd54bfb588631e5de2846f3e657e5d8f5b27ad99d7db3a6d5d433d340327ce"
   },
   {
     "file": "input_provenance.json",
@@ -36,8 +36,8 @@
   },
   {
     "file": "main.log",
-    "bytes": 24968,
-    "sha256": "4507192f7bf6b7db185cef97eabc69050b223644d22bd3fb60340b10541cb870"
+    "bytes": 24973,
+    "sha256": "3f8a2cf88ae4e3ee459159e85369d17b39778a3ac319ae9bb5fde657e4760eae"
   },
   {
     "file": "verify_pdf.py",
@@ -52,7 +52,7 @@
   {
     "file": "qa/verification.json",
     "bytes": 306,
-    "sha256": "582b2c90f6d2b83bd6c846b73b5666a718f0874c2f9a357fbf85a3cf7954ff34"
+    "sha256": "4aa9a887da7452ea4704351a55cec1683ba2fbde4f7715f4d55991c2e2336c8a"
   },
   {
     "file": "data/metro_51_2024.csv",
@@ -66,8 +66,8 @@
   },
   {
     "file": "reproduction_update.py",
-    "bytes": 11467,
-    "sha256": "00fdea4a8cdc0b963aca77959d6be8d58901b06bb2b94a5eeb9f71c3d4bab720"
+    "bytes": 14155,
+    "sha256": "755f7e6e6e4af7be3c5c496b86ff8bb49e928045c52b29d705479fefe1a743c8"
   },
   {
     "file": "reproduction/analysis.py",
@@ -141,8 +141,8 @@
   },
   {
     "file": "reproduction/README.md",
-    "bytes": 10212,
-    "sha256": "2ae799307bb0ee2f94d083661a5d20240a5ce45eca24525582e729cafcee2832"
+    "bytes": 10580,
+    "sha256": "7d7aa48b19ff9b8ff991236eee6bd08b312d3fd1fd4dc382cf34397240e8b55e"
   },
   {
     "file": "reproduction/results/build_data_stdout.txt",
@@ -235,6 +235,36 @@
     "sha256": "4e283cd894a71150f236594f22bb80242ba9da5e7ebcc418205029d85266ddf8"
   },
   {
+    "file": "reproduction/results/second_audit_decomposition.csv",
+    "bytes": 331,
+    "sha256": "29b5f391189139769ab40988e9419f1a50f0e634f8cec7e3b32abb316d09f108"
+  },
+  {
+    "file": "reproduction/results/second_audit_models.csv",
+    "bytes": 15263,
+    "sha256": "fe7fab008ad8f0c862d49357337eb3b8c68c26f7537f6d8181df33fdc6b6b7ef"
+  },
+  {
+    "file": "reproduction/results/second_audit_oof.csv",
+    "bytes": 1141039,
+    "sha256": "ae8f92e54c9b61b30ca80c9a8e3939f98449aeaf6c3410046f6a147ee33a1362"
+  },
+  {
+    "file": "reproduction/results/second_audit_settings.json",
+    "bytes": 941,
+    "sha256": "60642189ae5a626eda219cd3400fe2e0fa8327f5872577f9cac0e09d16b086e9"
+  },
+  {
+    "file": "reproduction/results/second_audit_stdout.txt",
+    "bytes": 2999,
+    "sha256": "957b18d3b12654518699ebd4ce4c200dee1fd58b380af878bca5056813ad8955"
+  },
+  {
+    "file": "reproduction/results/second_audit_summary.csv",
+    "bytes": 570,
+    "sha256": "a17849383373816aee59c55db08e9d429f494e274e32b7929bb6517240b94b92"
+  },
+  {
     "file": "reproduction/results/sensitivity_summary.csv",
     "bytes": 252,
     "sha256": "ce17b260c0c06ea90a8054624c6b56107e27dc9f65b43e3261c83fb6eed88fb2"
@@ -248,6 +278,21 @@
     "file": "reproduction/results/unadjusted_did.csv",
     "bytes": 446,
     "sha256": "0329dbc59a03357fef09e73bbf231fe77780b871b2a60eecd47335c8be577825"
+  },
+  {
+    "file": "reproduction/second_audit.py",
+    "bytes": 5396,
+    "sha256": "2bb0a43bacfda2debff86b5fb311714da443331a1116ae49209115002b88619b"
+  },
+  {
+    "file": "reproduction/SECOND_AUDIT_KO.md",
+    "bytes": 4473,
+    "sha256": "63c2c6e0f15ddc650a802f240a84cae4379a3609ab78f6d50a57239f25b66f4f"
+  },
+  {
+    "file": "reproduction/second_audit_report.py",
+    "bytes": 4268,
+    "sha256": "ee53fff64783178aec4c614be7014ba7d85914aa4afa073a7a0e1ee8ec772168"
   },
   {
     "file": "reproduction/verify_execution.py",
