@@ -1,4 +1,19 @@
 """Align argument with verified descriptive patterns and bounded sensitivity evidence."""
+
+
+def figure(label, filename, caption, note, width=r"\linewidth"):
+ return rf"""
+\begin{{figure}}[!htbp]
+\centering
+\includegraphics[width={width}]{{supplement/figures/{filename}.png}}
+\caption{{{caption}}}\label{{fig:{label}}}
+\begin{{minipage}}{{.98\linewidth}}\footnotesize
+{note}
+\end{{minipage}}
+\end{{figure}}
+"""
+
+
 def revise(s):
  def block(start,end,text):
   nonlocal s
@@ -84,4 +99,44 @@ CASE 1의 복수 영향 지역 제외는 패널 기울기를 지지하는 정보
  s=s.replace('특히 DML 수렴률과 학습 안정성은 원고에서 별도로 검증되지 않았다.','고비중 여부는 사전 해외 출생 비중의 경계로 결정된다. 이 비중 자체를 공변량에 넣으면 집단 소속이 결정되므로, 새 DML의 성향점수는 그 외 다섯 공변량에서 본 집단 소속의 예측값이다. 비교 가중치가 고르게 분포하더라도 관측되지 않은 지역 차이나 반사실 추세의 동등성은 검증되지 않는다.')
  s=s.replace('신뢰구간은 사용한 오차 가정 아래의 불확실성이고, 비무작위 결측과 측정 기준 변경의 불확실성을 모두 포함하는 구간은 아니다.','CASE 2의 인과 해석에는 개편이 없었을 때의 변화 경로가 비교집단과 같았을 것이라는 가정이 필요하다. 장기패널의 개편 전 2018--2023년 비조정 격차는 0.15--7.98\\%포인트 범위에서 움직였다(그림 S4). 이 점검은 집단의 격차 경로를 보여 주며 조정 후 평행추세를 검정한 결과는 아니다. 2024년은 장기패널 정의에서 빠져 있어 2023년과 2025년 사이의 변화를 개편 직후 효과로 분리하기도 어렵다.\\par\n각 DML 구간은 사용한 분할과 21개 주의 군집 추론에 따른 개별 구간이다. 여러 기간과 설정을 함께 읽을 때에는 다중 비교와 분할에 따른 학습 변동이 남는다. 수치상의 유의성은 이러한 불확실성을 모두 반영하지 않으므로 민감도 점검과 관측 집계를 함께 제시한다.')
  s=s.replace('고정 폴드에서 학습기 난수만 바꿀 때보다 계수 변동이 컸다.','검토한 범위에서는 고정 폴드에서 학습기 난수만 바꿀 때보다 계수 변동이 컸다. 그림 S5는 기본 추정과 기존 보고치의 개별 구간, 폴드별 점추정을 보여 준다.')
+ # Keep model results and table numbering intact while placing figures where they are interpreted.
+ s=s.replace(r'\renewcommand{\tablename}{표}',r'\renewcommand{\tablename}{표}'+'\n'+r'\renewcommand{\figurename}{그림}')
+ s=s.replace(r'\FloatBarrier\section{실증분석 결과}',r'\clearpage\section{실증분석 결과}')
+ def before(anchor, content):
+  nonlocal s
+  assert s.count(anchor) == 1, anchor
+  s=s.replace(anchor,content+"\n"+anchor)
+
+ s=s.replace('보충자료 그림 S1–S2는 전국의 해외 출생 주민 분포와 세 대도시권의 인구구성 및 조사기간을 보여 준다. 그림 S3–S5는 단면과 패널의 비교, VIND28 응답 추이와 학습 분할에 따른 추정치 변동을 제시한다. 두 사례의 추정 단위는 각각 유지한다.',r'본문 그림~\ref{fig:national}--\ref{fig:metro}는 전국과 세 대도시권의 분포를 보여 준다. 그림~\ref{fig:partial}--\ref{fig:folds}는 단면과 패널의 비교, VIND28 응답 추이와 학습 분할에 따른 추정치 변동을 제시한다.')
+ s=s.replace('그림 S2에서 보고 범위와 미관측 지역을 확인할 수 있다.',r'그림~\ref{fig:metro}에서 보고 범위와 미관측 지역을 확인할 수 있다.')
+ s=s.replace('그림 S3은 같은 시군의 두 비교에서 가로축의 변동 폭이 크게 다름을 보여 준다.',r'그림~\ref{fig:partial}의 두 패널은 가로축의 척도가 달라 선의 각도로 계수 크기를 비교하기 어렵다.')
+ s=s.replace('(그림 S4)',r'(그림~\ref{fig:vindlevels})')
+ s=s.replace('그림 S5는 기본 추정과 기존 보고치의 개별 구간, 폴드별 점추정을 보여 준다.',r'그림~\ref{fig:folds}에서 2026년과 2025년을 비교한 오른쪽 패널의 회색 점은 모두 0 아래에 있다. 독립 주 추정의 95\% 구간은 0을 가로지른다.')
+
+ before(r'\subsection{CASE 1 자료와 모형}',r'''
+\clearpage
+그림~\ref{fig:national}은 전국 290개 시군의 해외 출생 주민 비중을 두 시점에 같은 색상으로 보여 준다. 전체 시군의 비가중 중앙값은 2015년 11.78\%에서 2024년 14.65\%로 높아졌고, 비중이 20\% 이상인 시군은 35개에서 62개로 늘었다. 지도에서 넓게 보이는 시군이 주민 수가 더 많다는 뜻은 아니므로 이 비교는 시군 수와 비중을 기준으로 읽어야 한다. CASE 2의 고비중 집단은 지도의 2024년 색이 달라져도 2015년 기준으로 유지된다.
+'''+figure("national","s1_sweden_foreign_born","스웨덴 290개 시군의 해외 출생 주민 비중",
+             r"같은 색상 구간과 SCB 도식용 경계를 양 연도에 사용했다. 전체 주민이 분모다. 자료 · Kolada N02926, SCB Digitala gränser.",
+             r".90\linewidth")+r"\FloatBarrier")
+
+ before(r'\begin{table}[htbp]\centering\small'+"\n"+r'\caption{2024년 평균 조사기간의 지역별 분포}',r'''
+그림~\ref{fig:metro}는 전국 지도에서 서로 가까워 구분하기 어려운 세 대도시권을 확대한다. 왼쪽 두 열은 분모가 다르다. 첫 열은 전체 주민 중 해외 출생자, 가운데 열은 0--17세 아동 중 해외 출생이거나 스웨덴 출생이면서 양부모가 해외 출생인 아동이다. 오른쪽은 시군이 보고한 조사기간이다. 예를 들어 Botkyrka는 해외 출생 주민 비중이 44.21\%이지만 조사기간이 미관측이다. 현황이 다른 시군끼리 색을 비교하는 것만으로 관계의 방향을 정할 수 없어, 이어지는 단면 회귀는 관측 시군에서 대도시권 차이를 조정한다.
+'''+figure("metro","s2_metro_maps","세 대도시권의 인구구성과 2024년 조사기간",
+             r"행은 스톡홀름권 26개, 예테보리권 13개, 말뫼권 12개다. 빗금은 조사기간이 미관측인 7개 시군이다. 확대 배율은 대도시권마다 다르다. 자료 · Kolada, SCB TAB4824 및 대도시권 분류. 경계 · SCB.",
+             r".94\linewidth")+r"\FloatBarrier")
+ before(r'\begin{table}[htbp]\centering\small'+"\n"+r'\caption{양부모 해외 출생 비중의 패널 민감도}',r'''
+왼쪽 패널의 점은 2024년 40개 시군의 대도시권 내 편차다. 오른쪽은 같은 시군의 3년 자료에서 시군과 연도 효과를 제거한 120개 관측이다. 좁은 지역 내 변동에서 얻은 양의 기울기가 일부 시군이나 기간에 과도하게 좌우되는지는 뒤의 차분과 제외 진단에서 확인한다.
+'''+figure("partial","s3_metro_partial_residuals","같은 40개 시군에서의 횡단면과 패널 관계",
+             r"가로축은 스웨덴 출생 아동 중 양부모가 해외 출생인 비중의 잔차다. 세로축은 조사기간 잔차다. 두 패널의 가로축 척도는 다르다. 자료 · CASE 1 시군 패널."))
+
+ before(r'\subsubsection{DID와 조정 추정}',r'''
+그림~\ref{fig:vindlevels}의 왼쪽을 보면 2025년에서 2026년 사이 고비중 집단은 60.78\%에서 52.94\%로 하락했고 비교집단은 40.00\%에서 49.29\%로 상승했다. 오른쪽의 263개 연결표본에서는 고비중 집단이 두 해 모두 51.47\%였지만 비교집단이 35.90\%에서 47.69\%로 높아졌다. 따라서 격차 축소의 방향은 두 표본에서 같고, 축소를 만든 집단별 변화는 다르다. 왼쪽의 2024년 세로선은 개편 시점을 표시하며 그해 충족률은 이 표본에서 표시하지 않는다.
+'''+figure("vindlevels","s4_vind28_levels","VIND28 충족률의 추이와 최근 연결표본 비교",
+             r"왼쪽은 장기패널 191개, 오른쪽은 최근 연결표본 263개다. 고비중 집단은 2015년 전국 해외 출생 비중의 75분위 이상이다. 자료 · 스웨덴 사회청 2026년 공개 파일 및 SCB.")+r"\FloatBarrier")
+
+ before("원고의 비교집단 유효표본크기는",r'''
+가운데 패널에서는 2026년과 2023년을 비교한 점들이 0의 양쪽에 분포한다. 따라서 2025년 이후 단기 축소와 2023년 대비 지속적 변화는 구분해서 해석해야 한다. 회색 점의 세로 분산은 자료 분할을 바꿨을 때 추정값이 얼마나 움직였는지를 보여 준다. 개별 추정의 표본추출 불확실성은 양옆의 구간으로 읽는다.
+'''+figure("folds","s5_vind28_dml_folds","VIND28 조정 추정과 학습 분할의 민감도",
+             r"파란 원과 주황 사각형은 각각 독립 주 추정과 기존 보고치이며 수직선은 각 95\% 구간이다. 회색 점은 같은 자료에서 주별 폴드 배정만 바꾼 10개 점추정이다. 구간의 추론 방식은 본문을 참조한다. 자료 · CASE 2 DML 결과."))
  return s

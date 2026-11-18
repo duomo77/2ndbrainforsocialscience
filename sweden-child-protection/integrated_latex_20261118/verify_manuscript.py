@@ -16,6 +16,17 @@ tables = {
 }
 source = (ROOT / "main.tex").read_text(encoding="utf-8")
 assert Counter(re.findall(r"\\label\{tab:([^}]+)\}", source)) == Counter(tables.keys())
+figure_labels = re.findall(r"\\label\{fig:([^}]+)\}", source)
+assert figure_labels == ["national", "metro", "partial", "vindlevels", "folds"]
+for label in figure_labels:
+    assert rf"\ref{{fig:{label}}}" in source
+population = pd.read_csv(ROOT / "supplement/data/sweden_map_values.csv",
+                         dtype={"municipality_code": str})
+assert len(population) == population.municipality_code.nunique() == 290
+for year, median, count in [(2015, "11.78", 35), (2024, "14.65", 62)]:
+    values = population[f"foreign_born_pct_{year}"]
+    assert values.notna().all() and f"{values.median():.2f}" == median
+    assert values.ge(20).sum() == count
 abstract = source.split(r"\begin{abstract}", 1)[1].split(r"\end{abstract}", 1)[0]
 assert "263개 연결표본" in abstract and "두 해 모두 35개" in abstract
 assert "17개에서 31개" not in abstract

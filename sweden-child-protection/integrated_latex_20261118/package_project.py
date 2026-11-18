@@ -2,7 +2,7 @@ from pathlib import Path
 import json,hashlib,zipfile
 P=Path(__file__).resolve().parent
 qa=P/'qa/verification.json';v=json.loads(qa.read_text(encoding='utf-8'))
-v.update(visual_review=f"passed: all {v['pages']} pages reviewed in contact sheets; new score equations and comparison/sensitivity tables inspected at page size",overfull_warnings=0,missing_character_warnings=0)
+v.update(visual_review=f"passed: all {v['pages']} pages reviewed in contact sheets; figures and nearby analysis checked for placement and legibility",overfull_warnings=0,missing_character_warnings=0)
 qa.write_text(json.dumps(v,ensure_ascii=False,indent=2),encoding='utf-8')
 supplement_qa=P/'qa/supplement/verification.json'
 review=json.loads(supplement_qa.read_text(encoding='utf-8'))

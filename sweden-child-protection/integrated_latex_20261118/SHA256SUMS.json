@@ -1,18 +1,18 @@
 [
   {
     "file": "main.tex",
-    "bytes": 66476,
-    "sha256": "5350d15645233934f5dd0eaf61526f415e3576d76ceb0fde51c6229d5b85bb6d"
+    "bytes": 71747,
+    "sha256": "0254c58184db73a638196ca9d1bd91dc6c485e2b7d5ae781cffe34bd7b1df2f1"
   },
   {
     "file": "main.pdf",
-    "bytes": 328416,
-    "sha256": "73e2b0e04de1f879295512abc413803f5d6ca6ef9e93d67b782baba737bf9a39"
+    "bytes": 1201898,
+    "sha256": "5c84a8d182887a9d2a56b6cf04aa3e4e94d1768f7a0002c1255a2354df47f5ef"
   },
   {
     "file": "README.md",
-    "bytes": 8472,
-    "sha256": "ea8198edefb30c2f8f6d61e53d3d5c2ecf9626c1b2bf77bdab76505392ff9704"
+    "bytes": 8899,
+    "sha256": "67883b8871299e1013e8d9d0ea51fcbd6a92650649ebd2240e1094a80e23b1d6"
   },
   {
     "file": "build_manuscript.py",
@@ -36,23 +36,23 @@
   },
   {
     "file": "main.log",
-    "bytes": 24674,
-    "sha256": "09571ac6af0b6031bc22cb0d0ac08f175076dd816c0afb032b4cfceb920e5e1d"
+    "bytes": 25296,
+    "sha256": "dc14488e5f5b4361b2e1d60309057dd19236deb7d99ad37cbf2c2be0502ab12d"
   },
   {
     "file": "verify_pdf.py",
-    "bytes": 1820,
-    "sha256": "c5cfada22fe3597d2ae3f8e9d87d7e70df9b4763d421f69367aa43e1be269fce"
+    "bytes": 2002,
+    "sha256": "44dcf2c325f8d98333aa5201644f2a8514c2998351cce8d8a0b48e9977775853"
   },
   {
     "file": "package_project.py",
-    "bytes": 2256,
-    "sha256": "166fae5d7337dd5106662bb716591593c6e55e85887a17e56747581fb6dad303"
+    "bytes": 2244,
+    "sha256": "4de1b1dc904453de858fc426ea75223d56303f8ab721ce0be5b952907bdb0f2c"
   },
   {
     "file": "qa/verification.json",
-    "bytes": 306,
-    "sha256": "07642dc28c0603011de97f45a759de5bb48240a9a0b3f3cacdf10b3007fee1af"
+    "bytes": 381,
+    "sha256": "67636f7cd09da392e8dfabe2bb8d471525441cf3a4d910afb720158a1ac30899"
   },
   {
     "file": "data/metro_51_2024.csv",
@@ -71,8 +71,8 @@
   },
   {
     "file": "interpretation_revision.py",
-    "bytes": 23534,
-    "sha256": "8768a2a71cf28ff1549f53c6e34492bb6fb01a420e083e2a9dd2bff97ed5a1a5"
+    "bytes": 30523,
+    "sha256": "c304dddfa59761a80f1b6d929d94213854de7ea5a563c5df8524cd3808c31dab"
   },
   {
     "file": "CLAIM_SCOPE_KO.md",
@@ -86,8 +86,8 @@
   },
   {
     "file": "verify_manuscript.py",
-    "bytes": 6030,
-    "sha256": "6b35580d6eba858ad0b95a281b800d84eb0ff8f8e32be983be3fb17e0aa8a44f"
+    "bytes": 6683,
+    "sha256": "ba272663fa4ebe8eaf0589b9414445438ca0da997dfef7c2afdb787be560a37f"
   },
   {
     "file": "MANUSCRIPT_REVIEW_KO.md",

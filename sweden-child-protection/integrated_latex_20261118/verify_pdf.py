@@ -23,6 +23,9 @@ r=PdfReader(pdf);txt='\n'.join(p.extract_text() or '' for p in r.pages)
 report={'pages':len(r.pages),'replacement_characters':txt.count('\ufffd'),'placeholders':('@@' in txt),'visual_review':'Contact sheets and full-size selected pages to be inspected'}
 if pdf.name=='main.pdf':
     report['tables']=len(json.loads((P/'table_transcription.json').read_text(encoding='utf-8')))
+    report['figure_pages']=[i for i,page in enumerate(r.pages,1) if len(page.images)]
+    report['figures']=sum(len(page.images) for page in r.pages)
+    assert report['figures']==5
 else:
     report['figures']=sum(f'S{i}' in txt for i in range(1,6))
     assert report['pages']==5 and report['figures']==5
