@@ -1,0 +1,32 @@
+[
+  {
+    "file": "raw/github_tree.json",
+    "bytes": 383041,
+    "sha256": "92f71f9a091ba7816ee6e1587867ea2f17fa6ce959a6e548a49109e640029d0a"
+  },
+  {
+    "file": "raw/socialstyrelsen_2026.xlsx",
+    "bytes": 2122527,
+    "sha256": "2081c75143645b45a35eaa740e00d88b08fe6ae16871d9709f6a1723b3f71119"
+  },
+  {
+    "file": "raw/TAB1121_2015.json",
+    "bytes": 35599,
+    "sha256": "b6934f961c85755cd91f5cb325bfd37a795d51faa3c9b03c6a3f75485e3660ac"
+  },
+  {
+    "file": "raw/TAB1121_metadata.json",
+    "bytes": 21278,
+    "sha256": "bbaf1e7bb3876ff3155a2ec76688429e757250a10f4f8eb202517e447c4e01e7"
+  },
+  {
+    "file": "raw/TAB4823_2015.json",
+    "bytes": 353296,
+    "sha256": "8b51d8ed97457207345664e3ef487814d0950bb351e85a07e6d4ce6f6c050ef1"
+  },
+  {
+    "file": "raw/TAB4823_metadata.json",
+    "bytes": 19400,
+    "sha256": "5791adfacdda1b055b1783dc87915ba20ba34d0171774019c6bb9465e08809aa"
+  }
+]

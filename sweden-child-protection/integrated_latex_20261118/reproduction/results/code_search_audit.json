@@ -1,0 +1,17 @@
+{
+  "original_code_found": false,
+  "searched_scopes": [
+    "Current workspace and Downloads/Documents/OneDrive code and file-name searches",
+    "Additional local econometrics/PycharmProjects/source folders",
+    "Connected GitHub repository search for VIND28 including research and archive repositories",
+    "Public repository recursive tree",
+    "Two downloaded VIND28 LaTeX ZIP listings",
+    "Selected relevant connected chat summaries; sandbox links are not locally available files"
+  ],
+  "original_archives": [
+    "Sweden_VIND28_Overleaf_Ready.zip",
+    "Sweden_VIND28_Scandinavian_Studies_LaTeX.zip"
+  ],
+  "archive_contents": "LaTeX/style/readme/three figures only; no estimation code or raw municipal panel",
+  "conclusion": "Original exact DML implementation not recovered. Official outcomes and SCB covariates rebuilt and independently estimated. No search result establishes that the original code does not exist elsewhere."
+}

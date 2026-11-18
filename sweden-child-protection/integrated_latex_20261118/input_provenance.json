@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "file": "Sweden_VIND28_Argument_Revised_20261111.pdf",
+      "bytes": 855505,
+      "sha256": "e833d3b3250841d788490aa7004a941c02d383ec7eafd932199ee46778779ca2"
+    },
+    {
+      "file": "Sweden_ChildProtection_Policy_Draft_KO.pdf",
+      "bytes": 707614,
+      "sha256": "3767f4d7188f571bcb7747c63db523f3ee5b1555d37fc238bae33032f8eb28c9"
+    }
+  ],
+  "case1": "Provided 26-page PDF and matching existing result tables; no refit",
+  "case2": "Official Socialstyrelsen and SCB raw data downloaded 2026-11-18, sample/counts independently rebuilt, DML independently re-estimated; original executable code not located; old DR/SDID and sensitivity tables retained as reported, not rerun",
+  "official_provenance": "reproduction/results/requests.jsonl and raw_checksums.json",
+  "exact_original_dml_replication": false,
+  "pooling": false
+}

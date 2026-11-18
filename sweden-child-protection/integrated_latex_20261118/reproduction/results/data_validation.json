@@ -1,0 +1,89 @@
+{
+  "threshold": 15.662790386208915,
+  "expected_threshold": 15.662790386,
+  "national_n": 290,
+  "national_high": 73,
+  "long_n": 191,
+  "long_high": 51,
+  "linked_n": 263,
+  "income_concepts": [
+    {
+      "type": "FastInkIn",
+      "means_by_high": {
+        "0": 295.2783410138249,
+        "1": 296.02465753424656
+      }
+    },
+    {
+      "type": "FastInkEx",
+      "means_by_high": {
+        "0": 285.7152073732719,
+        "1": 286.1068493150685
+      }
+    },
+    {
+      "type": "DispInkInkl",
+      "means_by_high": {
+        "0": 304.60829493087556,
+        "1": 306.9506849315069
+      }
+    },
+    {
+      "type": "DispInkExkl",
+      "means_by_high": {
+        "0": 299.3271889400922,
+        "1": 301.658904109589
+      }
+    }
+  ],
+  "year_group_counts": [
+    {
+      "year": 2023,
+      "high": 0,
+      "n": 140,
+      "yes": 39
+    },
+    {
+      "year": 2023,
+      "high": 1,
+      "n": 51,
+      "yes": 17
+    },
+    {
+      "year": 2025,
+      "high": 0,
+      "n": 140,
+      "yes": 56
+    },
+    {
+      "year": 2025,
+      "high": 1,
+      "n": 51,
+      "yes": 31
+    },
+    {
+      "year": 2026,
+      "high": 0,
+      "n": 140,
+      "yes": 69
+    },
+    {
+      "year": 2026,
+      "high": 1,
+      "n": 51,
+      "yes": 27
+    }
+  ],
+  "income_included_excluded_means": [
+    308.20314136125654,
+    299.40000000000003
+  ],
+  "assertions_passed": [
+    "290 municipalities",
+    "Exact national threshold to 1e-8",
+    "191/263 sample sizes",
+    "Stockholm/Gothenburg aggregates not binary",
+    "Six group-year affirmative counts",
+    "Included/excluded income means agree to 0.01"
+  ]
+}

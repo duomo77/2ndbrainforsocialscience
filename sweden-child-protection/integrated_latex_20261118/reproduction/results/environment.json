@@ -1,0 +1,27 @@
+{
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "scipy": "1.16.3",
+  "sklearn": "1.6.1",
+  "system": "Windows-11-10.0.26300-SP0",
+  "features": [
+    "log_population_2015",
+    "elderly_pct_2015",
+    "female_pct_2015",
+    "median_income_2015",
+    "poverty_pct_2015"
+  ],
+  "main_seed": 20261106,
+  "main_clip": 0.05,
+  "learner": "RandomForestClassifier/Regressor 300 trees, min_samples_leaf=8, max_features=1.0; seed+k per fold",
+  "standard_errors": "County-clustered orthogonal-score influence sums; G/(G-1); t(G-1); no municipality independent SE",
+  "code_origin": "New independent reconstruction: original executable code not located",
+  "tests": [
+    "191 observations/51 high/21 counties",
+    "No county leakage across folds",
+    "Finite observed covariates, no imputation",
+    "Zero mean estimating score",
+    "Constant nuisance score equals unadjusted DID estimate and SE"
+  ]
+}

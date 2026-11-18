@@ -1,0 +1,18 @@
+[
+  {
+    "file": "socialstyrelsen_2026.xlsx",
+    "url": "https://www.socialstyrelsen.se/contentassets/11a181f7bb3f4fd3b827c842b7df21c9/2026-6-10349.xlsx",
+    "timestamp_utc": "2026-11-18T09:03:32.408231+00:00",
+    "status": 200,
+    "bytes": 2122527,
+    "sha256": "2081c75143645b45a35eaa740e00d88b08fe6ae16871d9709f6a1723b3f71119"
+  },
+  {
+    "file": "github_tree.json",
+    "url": "https://api.github.com/repos/duomo77/2ndbrainforsocialscience/git/trees/main?recursive=1",
+    "timestamp_utc": "2026-11-18T09:03:33.060467+00:00",
+    "status": 200,
+    "bytes": 383041,
+    "sha256": "92f71f9a091ba7816ee6e1587867ea2f17fa6ce959a6e548a49109e640029d0a"
+  }
+]

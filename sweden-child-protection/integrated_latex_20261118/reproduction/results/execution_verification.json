@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "All downloaded raw bytes still match recorded SHA-256",
+    "Repeated independent-code fit agrees to 1e-10: 2025-2023",
+    "Repeated independent-code fit agrees to 1e-10: 2026-2023",
+    "Repeated independent-code fit agrees to 1e-10: 2026-2025"
+  ],
+  "exact_original_implementation_replicated": false,
+  "distinction": "Repeatability of the newly written code is verified. Original code and exact original DML output have not been recovered."
+}

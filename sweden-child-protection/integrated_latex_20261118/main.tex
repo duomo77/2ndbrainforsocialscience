@@ -27,7 +27,7 @@
 {\small 통합 연구원고\quad 2026년 11월 18일}
 \end{center}
 \begin{abstract}
-이주배경 인구가 많은 지역에서 아동보호 행정 대응이 더 느린지를 서로 다른 두 행정지표로 살펴본다. CASE 1은 스웨덴 51개 대도시권 지방정부의 인구구성과 일반 아동·청소년 사회복지 조사기간을, CASE 2는 2015년 해외 출생 비중으로 구분한 전국 지방정부의 학업보장 서면 절차 충족 응답을 분석한다. 두 사례의 표본과 결과변수, 추정량은 별도로 유지하였다. CASE 1의 2024년 관측 지역 44곳에서 평균 조사기간은 100.70일이었다. 대도시권 조정 횡단면의 인구비중 기울기는 작았으나, 지방정부·연도 고정효과 모형에서 스웨덴 출생 아동 중 양부모 해외 출생 비중의 계수는 1\%포인트당 6.70일이었다. 영향력이 큰 세 지역을 함께 제외하면 3.21일로 줄고 불확실성이 커졌으며, 연간 차분과 양 끝 시점 차분의 결과도 달랐다. CASE 2의 191개 장기패널에서 고비중 집단과 비교집단의 충족률 격차는 2023년 5.48\%포인트, 2025년 20.78\%포인트, 2026년 3.66\%포인트였다. 2025--2026년 고비중 집단의 충족 건수 감소는 263개 연결표본으로 확장하면 추가 편입 지역의 증가와 상쇄되었다. DML-DID를 포함한 조정 추정은 기간·집단 경계·측정 기준에 민감했다. 처리기간의 지역 내 양의 관계와 절차 응답의 변동은 관측되지만, 이를 지역 전반의 일관된 지연이나 개인 아동의 불리한 처리로 일반화할 근거는 제한적이다.
+이주배경 인구가 많은 지역에서 아동보호 행정 대응이 더 느린지를 서로 다른 두 행정지표로 살펴본다. CASE 1은 스웨덴 51개 대도시권 지방정부의 인구구성과 일반 아동·청소년 사회복지 조사기간을, CASE 2는 2015년 해외 출생 비중으로 구분한 전국 지방정부의 학업보장 서면 절차 충족 응답을 분석한다. 두 사례의 표본과 결과변수, 추정량은 별도로 유지하였다. CASE 1의 2024년 관측 지역 44곳에서 평균 조사기간은 100.70일이었다. 대도시권 조정 횡단면의 인구비중 기울기는 작았으나, 지방정부·연도 고정효과 모형에서 스웨덴 출생 아동 중 양부모 해외 출생 비중의 계수는 1\%포인트당 6.70일이었다. 영향력이 큰 세 지역을 함께 제외하면 3.21일로 줄고 불확실성이 커졌으며, 연간 차분과 양 끝 시점 차분의 결과도 달랐다. CASE 2의 191개 장기패널에서 고비중 집단과 비교집단의 충족률 격차는 2023년 5.48\%포인트, 2025년 20.78\%포인트, 2026년 3.66\%포인트였다. 2025--2026년 고비중 집단의 충족 건수 감소는 263개 연결표본으로 확장하면 추가 편입 지역의 증가와 상쇄되었다. 공식 원자료를 재구축한 독립 DML-DID 주 추정은 2025--2023년 $+9.24$, 2026--2023년 $-11.21$, 2026--2025년 $-18.43$\%포인트였으며 세 구간은 모두 0을 포함했다. 기존 보고치의 유의성은 이번 구현에서 확인되지 않았다. 처리기간의 지역 내 양의 관계와 절차 응답의 변동은 관측되지만, 이를 지역 전반의 일관된 지연이나 개인 아동의 불리한 처리로 일반화할 근거는 제한적이다.
 \end{abstract}
 \noindent\textbf{주제어:} 이주배경, 아동보호 행정, 사회복지 조사기간, VIND28, DML-DID, 응답 전환\par
 \noindent\textbf{JEL:} C23, I21, I38, J15
@@ -48,7 +48,7 @@
 \subsection{연구의 실증적 접근과 구성}
 CASE 1은 스톡홀름·예테보리·말뫼 대도시권 51개 지방정부의 Kolada와 SCB 자료를 사용한다. 2024년 단면과 2022--2025년 패널을 구분하며 아동 배경변수는 실제 값이 있는 2022--2024년만 사용한다. CASE 2는 VIND28의 191개 장기 균형패널과 263개 2개년 연결패널을 구분한다. 일반 DID를 집단 변화 차이의 기준선으로 두고 DR-DID·DML-DID·SDID와 측정·표본 민감도를 함께 읽는다.
 
-이 통합은 제공된 두 PDF의 결과와 기존 CASE 1 계산 파일을 대조하여 작성하였다. CASE 2의 원시 패널과 실행 코드는 이번에 제공되지 않았으므로 해당 결과는 원고 보고치를 전사한 것이며 재현 또는 재추정의 성과로 보고하지 않는다. 이후 II절은 공통 배경과 가설을, III절은 독립된 두 설계를, IV절은 각 사례와 비교 결과를 제시한다.
+이 통합은 제공된 두 PDF의 결과와 기존 CASE 1 계산 파일을 대조하여 작성하였다. CASE 2는 Socialstyrelsen의 공식 2026년 Excel과 SCB의 2015년 원자료를 새로 내려받아 패널을 재구축하고 DML-DID를 독립 재추정하였다. 원래 실행 코드는 발견하지 못했으므로 기존 구현을 그대로 복원한 정확 재현과는 구분한다. 기존 DR-DID·SDID와 추가 원고 보고치는 새 추정치와 별도로 표시한다. 이후 II절은 공통 배경과 가설을, III절은 독립된 두 설계를, IV절은 각 사례와 비교 결과를 제시한다.
 
 \section{제도적 배경과 분석틀}
 \subsection{스웨덴의 아동보호 행정체계}
@@ -128,7 +128,7 @@ VIND28의 Ja는 1, Nej는 0, 무응답과 기타 값은 결측이다. 서면 학
 2024년 공통 표본 & 51 & 139 & 190 \\
 2025–2026 연결표본 & 68 & 195 & 263 \\
 \bottomrule\end{tabular}
-\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 집단 경계는 전국 2015년 비중에서 고정. 원고 4–5쪽 및 10–11쪽. 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.\end{minipage}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 집단 경계는 전국 2015년 비중에서 고정. 원고 4–5쪽 및 10–11쪽. 공식 원자료에서 표본·충족 건수·전환 셀을 재구축하여 일치를 확인했다.\end{minipage}
 \end{table}
 장기패널은 2018--2023년과 2025--2026년의 유효 응답을 같은 191개 시군에서 연결한다. 2024년까지 포함하면 공통 표본은 190개다. 2025--2026년 263개 표본은 최근 두 해의 연결 응답을 위해 별도로 사용한다. 스톡홀름·예테보리는 하위기관 충족 비율을 보고하므로 일반 시군 이진 응답에 합산하지 않는다.
 
@@ -154,6 +154,23 @@ DR-DID는 두 보조모형을 결합한 조정이다\cite{sz}. DML-DID는 직교
 SDID는 과거 응답 경로에 따라 비교 시군과 기간에 가중치를 준다\cite{sdid}. 세 방법은 관측 변화 차이의 조정과 민감도 진단이며, 보조학습이 인과적 정보를 추가로 제공한다고 주장하지 않는다. 특히 DML 수렴률과 학습 안정성은 원고에서 별도로 검증되지 않았다.
 
 비조정 대비는 21개 주를 재표집하는 1,999회 백분위 부트스트랩, DR-DID·DML-DID는 주 군집 영향함수와 자유도 20의 t 구간, SDID는 가중치를 매번 재추정하는 399회 주 부트스트랩을 사용한 보고치다. CASE 1의 지방정부 군집 추론과 이 주 군집 추론은 대체하지 않는다.
+
+
+\subsubsection{공식 원자료 재구축과 독립 DML-DID 구현}
+2026년 11월 18일 Socialstyrelsen의 공식 2026년 Excel DATA 시트와 SCB TAB4823·TAB1121의 2015년 응답을 내려받았다. 다운로드 URL, UTC 시각, 요청 본문, 원본 해시와 정제·추정 코드를 재현 패키지에 보존했다\cite{newraw}. 전국 경계값은 15.662790386208915\%로 일치했고, 장기표본 191개와 연결표본 263개, 여섯 개 집단·연도별 충족 건수와 최근 전환표가 기존 원고와 같았다. 포함·제외 시군의 중위소득 평균도 308.203과 299.400천 SEK로 기존 보고치와 일치했다. 2026년 파일의 역사적 관측을 사용했으며, 당시의 개별 파일 대조와 측정동등성 감사를 새로 완료한 것은 아니다.
+
+Malmö에는 같은 연도의 이진 응답이 반복되고 일부 연도에는 숫자 집계도 함께 있었다. 서로 일치하는 Ja/Nej를 한 건만 채택하고 중복 원행을 남겼다. 상충하는 이진 응답이 나오면 정제를 중단하도록 했다. 다른 도시의 수치 집계를 이진값으로 바꾸거나 결측을 0으로 대체하지 않았다. 원래 코드를 찾지 못했으므로 아래 설정은 이번에 새로 고정한 구현이며, 기존 계수를 맞추기 위해 선택하지 않았다.
+
+공변량은 2015년 인구 로그, 65세 이상 비율, 여성 비율, 소비단위당 중위 가처분소득(자본이득 포함), 저경제수준 비율이다. 소득은 SCB의 2024년 고정가격 천 SEK다. 21개 주를 난수 시드 20261106으로 섞어 5개 평가 폴드로 나누었다. 각 폴드의 주는 두 보조모형의 학습에서 모두 제외했다. 성향점수와 비교집단 변화 회귀에 각각 무작위숲 분류기·회귀기를 사용했으며, 나무 300개, 최소 잎 관측 8개, 전체 공변량 후보를 고정했다. 성향점수는 $[.05,.95]$로 제한했다. 원고의 부트스트랩 시드를 원래 교차적합 시드로 확인한 것은 아니다.
+
+$r_i=\Delta Y_i-\widehat g_{0,-k(i)}(X_i)$, $\widehat q_i=(1-H_i)\widehat e_i/(1-\widehat e_i)$, $\widehat p=\overline H$, $\overline q=n^{-1}\sum_i\widehat q_i$로 쓰면 새 점수는 다음과 같다\cite{dmlscore}.
+\begin{align}
+\widehat\theta&=\frac1n\sum_i\left(\frac{H_i}{\widehat p}-\frac{\widehat q_i}{\overline q}\right)r_i,\\
+\widehat\psi_i&=-\frac{H_i}{\widehat p}\widehat\theta+\left(\frac{H_i}{\widehat p}-\frac{\widehat q_i}{\overline q}\right)r_i.
+\end{align}
+표준오차는 $\widehat{\mathrm{se}}^2=\{G/(G-1)\}n^{-2}\sum_{c=1}^{G}(\sum_{i\in c}\widehat\psi_i)^2$로 계산하고 $t_{20}$ 구간을 사용했다. 평균 점수 0, 폴드 사이의 주 중복 없음, 공변량 결측 없음, 상수 보조모형에서 단순 DID 점추정·표준오차 일치를 코드로 확인했다. 이는 보조학습 수렴률이나 인과 가정을 검증한 것은 아니다. 패키지의 공개 점수를 Python으로 구현했으며 DoubleML 패키지 자체를 실행한 결과는 아니다.
+
+주 추정 이외에 로지스틱·Ridge와 ExtraTrees, 네 추가 시드, 성향점수 제한 .01·.10, 자본이득 제외 소득을 각각 확인했다. 주 추정과 대안을 합해 기간별 10개 설정이며, 원래 표의 집단 경계 민감도와는 다른 점검이다. 시드 대안은 폴드와 학습기의 난수를 함께 바꾸므로 순수한 폴드 효과로 해석하지 않는다. 세 기간의 변화 보조모형은 각각 학습하므로 독립 추정치에 정확한 가산성을 강제하지 않는다.
 
 \subsection{식별 대상과 통계적 추론의 범위}
 단면 계수는 지역 간 선형 관계, 고정효과는 공통 연도 변화와 고정 지역 차이를 제외한 동반 변화, DID는 사전 집단 사이의 응답 변화 차이다. 서로 다른 추정 대상이므로 계수 부호와 통계적 유의성의 차이를 모형 우열로 읽지 않는다. 두 사례의 지역 집계로 개인의 차별적 처리나 개별 보호 지연을 식별할 수 없다. 신뢰구간은 사용한 오차 가정 아래의 불확실성이고, 비무작위 결측과 측정 기준 변경의 불확실성을 모두 포함하는 구간은 아니다.
@@ -268,12 +285,12 @@ H1은 모든 비교에서 일관되게 지지되지 않는다. 2024년 지역 �
 2025 & 31/51 & 56/140 & +20.78 \\
 2026 & 27/51 & 69/140 & +3.66 \\
 \bottomrule\end{tabular}
-\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 인원은 원고에 보고된 동일 표본 충족 건수. 격차는 고비중–비교집단. 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.\end{minipage}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 인원은 원고에 보고된 동일 표본 충족 건수. 격차는 고비중–비교집단. 공식 원자료에서 표본·충족 건수·전환 셀을 재구축하여 일치를 확인했다.\end{minipage}
 \end{table}
 고비중 집단의 충족 건수는 17에서 31로 늘어난 뒤 27로 줄고, 비교집단은 39에서 56, 69로 증가한다. 따라서 격차는 2025년 확대되었다가 2026년에 좁혀진다. 2026년 두 집단의 절차가 동일하다거나 이후 수렴이 지속된다는 의미는 아니다.
 \subsubsection{DID와 조정 추정}
 \begin{table}[htbp]\centering\small
-\caption{CASE 2 변화 차이와 조정 추정의 95\% 구간}\label{tab:c2did}
+\caption{CASE 2 기존 원고의 보고치: 변화 차이와 조정 추정}\label{tab:c2did}
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.22\linewidth} >{\raggedright\arraybackslash}p{0.21\linewidth} >{\raggedright\arraybackslash}p{0.16\linewidth} >{\raggedright\arraybackslash}p{0.16\linewidth} >{\raggedright\arraybackslash}p{0.16\linewidth}}
 \toprule
 기간 & 방법 & 추정치 & 하한 & 상한 \\
@@ -293,7 +310,36 @@ H1은 모든 비교에서 일관되게 지지되지 않는다. 2024년 지역 �
 \bottomrule\end{tabular}
 \par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 단위 \%p, n=191, 주 21개. 비조정 1,999회 주 부트스트랩; DR·DML 주 영향함수 t(20); SDID 399회 주 부트스트랩. 원고 표 5. 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.\end{minipage}
 \end{table}
-DML-DID의 2025--2023년 대비는 $+18.10$\%포인트, 2026--2025년 대비는 $-26.46$\%포인트다. 두 구간은 0을 제외하지만, 동일 대비에서 DR-DID 또는 SDID의 구간은 0을 포함하는 경우가 있다. 2026--2023년의 세 조정 결과는 모두 0을 포함한다. 2025년 격차 확대와 다음 관측의 축소를 한 번의 사후 평균으로 압축하면 시간 경로를 놓칠 수 있다. 특정 방법의 유의한 구간만 선택하지 않는다.
+기존 원고의 DML-DID는 2025--2023년 $+18.10$, 2026--2025년 $-26.46$\%포인트이고 두 보고 구간은 0을 제외했다. 그러나 이 수치를 공식 원자료의 새 구현으로 그대로 얻지는 못했다. 표~\ref{tab:c2new}는 원래 코드의 정확 재현을 주장하지 않고, 같은 표본과 기초 공변량을 사용한 독립 재추정과 나란히 비교한다.
+
+\begin{table}[htbp]\centering\small
+\caption{CASE 2 기존 DML 보고치와 공식 원자료의 독립 재추정}\label{tab:c2new}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.21\linewidth} >{\raggedright\arraybackslash}p{0.14\linewidth} >{\raggedright\arraybackslash}p{0.15\linewidth} >{\raggedright\arraybackslash}p{0.29\linewidth} >{\raggedright\arraybackslash}p{0.1\linewidth}}
+\toprule
+대비 & 기존 보고 & 독립 추정 & 새 95\% 구간 & p값 \\
+\midrule
+2025-2023 & +18.10 & +9.24 & [-16.18, 34.67] & 0.457 \\
+2026-2023 & -8.36 & -11.21 & [-35.83, 13.41] & 0.354 \\
+2026-2025 & -26.46 & -18.43 & [-40.09, 3.22] & 0.091 \\
+\bottomrule\end{tabular}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 단위 \%p; n=191, 고비중 51, 주 G=21. 새 구간은 주 영향함수 표준오차와 t(20). 기존 코드를 발견하지 못했으므로 정확 일치 재현이 아니다. 기존 구간은 앞 표의 보고치와 구분한다.\end{minipage}
+\end{table}\begin{table}[htbp]\centering\small
+\caption{CASE 2 독립 DML 구현의 민감도}\label{tab:c2newrobust}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.21\linewidth} >{\raggedright\arraybackslash}p{0.29\linewidth} >{\raggedright\arraybackslash}p{0.18\linewidth} >{\raggedright\arraybackslash}p{0.23\linewidth}}
+\toprule
+대비 & 계수 범위 (\%p) & 양수/음수 & p<.05 / 설정 수 \\
+\midrule
+2025-2023 & [9.21, 15.07] & 10/0 & 0/10 \\
+2026-2023 & [-12.78, 1.34] & 1/9 & 0/10 \\
+2026-2025 & [-23.77, -13.73] & 0/10 & 1/10 \\
+\bottomrule\end{tabular}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 기간별 주 추정과 대안 9개. 대안은 학습기 2개, 시드 4개, 절단 2개, 소득 개념 1개다. 서로 독립인 검정이 아니며 다중검정 보정 전 값이다. 기존 원고의 민감도 표를 재현한 결과가 아니다.\end{minipage}
+\end{table}
+
+공식 자료의 독립 재추정에서는 2025--2023년 $+9.24$\%포인트, 95\% 구간 $[-16.18,34.67]$이었고, 2026--2023년은 $-11.21$ $[-35.83,13.41]$, 2026--2025년은 $-18.43$ $[-40.09,3.22]$였다. 세 주 구간이 모두 0을 포함하므로, 원래의 두 유의한 DML 대비가 새로운 구현에서도 확인됐다고 기술할 수 없다. 원래 학습기와 폴드가 불명확하여 차이의 원인을 특정 설정 하나로 귀속하거나 기존 수치가 오류라고 판정할 수도 없다.
+
+가중치 집중과 분할 변동을 살펴볼 이유도 있다. 새 비교집단 유효표본크기는 54.79였으며 성향점수 21개가 .05 아래에서 제한되었다. 기간별 10개 설정 모두에서 2025--2023년은 양수, 2026--2025년은 음수였지만 전자는 유의한 설정이 없고 후자는 한 설정만 $p<.05$였다. 2026--2023년은 학습기에 따라 부호도 바뀌었다. 따라서 살아남는 것은 격차의 확대 후 축소라는 방향과 연결 전환의 산술이며, 일정한 유의성은 아니다.
+
 
 원고의 비교집단 유효표본크기는 DR-DID 14.79, DML-DID 84.60, 기존 평균 SDID 138.81로 보고된다. 가중 규칙이 서로 달라 구간 폭만으로 우열을 정할 수 없다. 비조정 대비의 주 하나씩 제외한 점추정 범위는 2025--2023년 $[12.44,17.72]$, 2026--2023년 $[-6.03,1.60]$, 2026--2025년 $[-20.46,-10.84]$\%포인트이며 이는 신뢰구간이 아니다.
 
@@ -309,7 +355,7 @@ DML-DID의 2025--2023년 대비는 $+18.10$\%포인트, 2026--2025년 대비는 
 2025$\to$2026 & 비교 & 51 & 33 & 20 & 36 & +13 \\
 2025$\to$2026 & 고비중 & 14 & 6 & 10 & 21 & $-$4 \\
 \bottomrule\end{tabular}
-\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 원고 표 6. 첫 기간은 2년, 둘째는 1년. 코드 전환을 실제 절차의 신설·폐지로 단정하지 않음. 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.\end{minipage}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 원고 표 6. 첫 기간은 2년, 둘째는 1년. 코드 전환을 실제 절차의 신설·폐지로 단정하지 않음. 공식 원자료에서 표본·충족 건수·전환 셀을 재구축하여 일치를 확인했다.\end{minipage}
 \end{table}
 2025--2026년 고비중 집단의 순감소 4건은 충족 전환 6건과 비충족 전환 10건의 차이다. 비교집단 순증가 13건도 33건과 20건의 이동을 포함한다. 두 집단을 합친 69개 시군, 191개 중 36.1\%가 코드를 바꾸었다. 2023--2025년 전환은 두 해 사이의 이동으로, 1년 간격의 전환 건수와 연간 발생률처럼 비교하지 않는다.
 
@@ -327,7 +373,7 @@ DML-DID의 2025--2023년 대비는 $+18.10$\%포인트, 2026--2025년 대비는 
  & 추가 & 55 & 14 & 24 & +10 & 15 & 5 \\
  & 연결 & 195 & 70 & 93 & +23 & 48 & 25 \\
 \bottomrule\end{tabular}
-\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 원고 표 7의 보고값. 추가 편입 건수도 원고의 산술 분해이며 이번에 새로운 전환 자료를 만들지 않음. 제공 CASE 2 원고 보고치의 전사이며 이번 통합에서 재추정하지 않았다.\end{minipage}
+\par\vspace{3pt}\begin{minipage}{.98\linewidth}\footnotesize 원고 표 7의 보고값. 추가 편입 건수도 원고의 산술 분해이며 이번에 새로운 전환 자료를 만들지 않음. 공식 원자료에서 표본·충족 건수·전환 셀을 재구축하여 일치를 확인했다.\end{minipage}
 \end{table}
 263개 연결표본의 고비중 집단은 35에서 35로 유지된다. 추가 편입 17개 시군의 4건 증가가 장기패널의 4건 감소를 상쇄한다. 비교집단에는 추가 55개 시군의 10건 증가가 더해진다. 확대 표본의 격차 변화는 $-11.79$\%포인트, 주 군집 구간은 $[-26.47,6.24]$\%포인트다. 표본 확장은 단순히 정밀성만 바꾸지 않고 관측 변화의 구성을 바꾼다.
 \begin{table}[htbp]\centering\small
@@ -405,7 +451,7 @@ SDID & +8.07 & +8.03 & $-$0.04 \\
 기본 CASE 2에서 스톡홀름·예테보리는 이미 비율 단위로 분리되어 있다. 세 도시를 제외한 190개 장기패널의 2026--2023년 DR-DID·DML-DID·SDID 대비는 각각 $-3.15$, $-10.29$, $-0.88$\%포인트로 보고되며 세 주 군집 구간은 모두 0을 포함한다. 공개 비율을 임의로 0과 1로 바꾸거나 일반 시군 값과 평균하지 않는다.
 
 \subsubsection{CASE 2 결과의 요약}
-H2의 집단 차이는 연도별 수준과 전환, 조정 방법에 따라 달라진다. 2025년의 양의 격차가 다음 관측까지 같은 크기로 유지되지 않았고, 장기표본에서의 충족 건수 감소는 2개년 확대 표본에서 상쇄되었다. 이는 공개 응답의 변동과 선택에 관한 결과다. 절차의 실제 폐지나 행정 지연의 증가를 확인한 결과가 아니다.
+H2의 집단 차이는 연도별 수준과 전환, 조정 방법에 따라 달라진다. 독립 DML 재추정의 세 주 구간은 모두 0을 포함하며, 방향의 재현과 유의성의 재현은 구분해야 한다. 2025년의 양의 격차가 다음 관측까지 같은 크기로 유지되지 않았고, 장기표본에서의 충족 건수 감소는 2개년 확대 표본에서 상쇄되었다. 이는 공개 응답의 변동과 선택에 관한 결과다. 절차의 실제 폐지나 행정 지연의 증가를 확인한 결과가 아니다.
 
 \FloatBarrier\subsection{두 사례의 실증 결과 비교}
 \subsubsection{처리기간과 절차 충족의 방향}
@@ -426,11 +472,14 @@ CASE 1의 복수 영향 지역 제외는 주어진 대도시권 표본에서 기
 \bibitem{reform} Socialstyrelsen (2024). \textit{Nya bestämmelser om skyddat boende}. Meddelandeblad 2/2024, 2024-3-8989.
 \bibitem{kolada} RKA/Kolada. U33401 및 N02926 지표 메타데이터. \url{https://api.kolada.se/v3/kpi/U33401,N02926}.
 \bibitem{scb} Statistiska centralbyrån. TAB4824 및 대도시권 분류. CASE 1 저장 응답과 제공 원고의 자료 정의.
-\bibitem{vind} Socialstyrelsen (2026). \textit{Öppna jämförelser 2026 -- Våld i nära relationer}. Artikel 2026-6-10349. DATA·Analysstöd·Versionshistorik. 제공 CASE 2 원고가 인용한 원자료이며 이번 통합에서 원파일 재검증은 수행하지 않음.
+\bibitem{vind} Socialstyrelsen (2026). \textit{Öppna jämförelser 2026 -- Våld i nära relationer}. Artikel 2026-6-10349. DATA·Analysstöd·Versionshistorik. 제공 CASE 2 원고의 출처. 이번에 공식 Excel DATA를 새로 확보했으나 당시 조사표 전체의 동등성을 재인증한 것은 아님.
 \bibitem{sz} Sant'Anna, P. H. C. and Zhao, J. (2020). Doubly Robust Difference-in-Differences Estimators. \textit{Journal of Econometrics}, 219(1), 101--122. DOI: 10.1016/j.jeconom.2020.06.003.
 \bibitem{dml} Chernozhukov, V. et al. (2018). Double/debiased Machine Learning for Treatment and Structural Parameters. \textit{The Econometrics Journal}, 21(1), C1--C68. DOI: 10.1111/ectj.12097.
 \bibitem{sdid} Arkhangelsky, D. et al. (2021). Synthetic Difference-in-Differences. \textit{American Economic Review}, 111(12), 4088--4118. DOI: 10.1257/aer.20190159.
 \bibitem{trygged} Trygged, S. (2017). Open Comparisons of Social Services in Sweden---Why, How, and for What? \textit{Cogent Social Sciences}, 3(1), 1404735. DOI: 10.1080/23311886.2017.1404735.
 \bibitem{denvall} Denvall, V. et al. (2021). Lost in Comparison: A Program Theory Analysis of Performance Measurement in Social Work. \textit{Nordic Social Work Research}, 11(3), 249--263. DOI: 10.1080/2156857X.2019.1690559.
+
+\bibitem{dmlscore} DoubleML. Score functions: observational panel difference-in-differences. \url{https://docs.doubleml.org/stable/guide/scores.html}. 2026년 11월 18일 확인. 본고는 공개 점수를 직접 구현하였다.
+\bibitem{newraw} Socialstyrelsen. \textit{Öppna jämförelser 2026 -- Våld i nära relationer}, DATA 시트. \url{https://www.socialstyrelsen.se/contentassets/11a181f7bb3f4fd3b827c842b7df21c9/2026-6-10349.xlsx}. SCB TAB4823 및 TAB1121, 2015년. 2026년 11월 18일 공식 원자료 다운로드; 요청·해시는 동봉 재현자료 참조.
 \end{thebibliography}
 \end{document}
