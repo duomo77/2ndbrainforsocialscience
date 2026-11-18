@@ -2,6 +2,8 @@
 
 2026-11-18. 완성 본문은 국문초록, I–IV절과 참고문헌으로 구성된다. 본문은 IV. 실증분석 결과에서 끝난다. CASE 1과 CASE 2의 원자료를 합치거나 새 통합 회귀를 추정하지 않았다.
 
+최신 해석·스토리라인 개정은 [주장 범위 정리](CLAIM_SCOPE_KO.md)에 기록했다. 초록·서론·증거 상태·두 사례 요약·마지막 답변을 일관되게 고쳤다. 고비중 집단의 높은 충족률과 그 격차의 축소를 구분하고, 263개 표본에서 고비중 충족 건수가 유지됨을 설명한다. 새 모형이나 유의한 사양으로 교체하지 않았으며 기존 원자료·정제자료·결과 37개 파일의 바이트 보존을 확인했다.
+
 공식 VIND28 원본 Excel·SCB 원응답을 포함한 전체 자료는 이 폴더의 `Sweden_ChildProtection_Integrated_LaTeX_KO_20261118.zip`에 있다. GitHub의 개별 파일은 코드와 결과 검토용이며, 실행에는 ZIP을 풀어 사용한다.
 
 ## 파일
@@ -15,6 +17,9 @@
 - `data/`: CASE 1의 기존 2024년 자료와 2022–2025년 패널을 바이트 그대로 복사한 CSV.
 - `reproduction/`: CASE 2 공식 Excel·SCB 원응답, 290개 시군 분석자료, 다운로드/정제/새 DML 코드, 실행 결과, OOF 예측, 폴드, 환경과 감사 기록. [자세한 재현 설명](reproduction/README.md)을 참조한다.
 - `reproduction_update.py`: 실제 실행 결과 CSV에서 논문 비교표를 생성하고 설명을 갱신한다.
+- `interpretation_revision.py`: 검증된 결과에 맞춰 초록·서론·결과 해석과 마지막 답변을 재작성한다.
+- `CLAIM_SCOPE_KO.md`: 관측 사실, 조건부 추정, 허용되지 않는 인과·개인 주장을 대응시킨 검토 문서.
+- `verify_interpretation.py`: 기존 경험적 파일의 보존과 본문 구조 확인. 결과는 `reproduction/results/interpretation_preservation.json`에 있다.
 - `main.log`, `qa/verification.json`: 컴파일과 PDF 점검 기록.
 - `SHA256SUMS.json`: 배포 파일 체크섬.
 

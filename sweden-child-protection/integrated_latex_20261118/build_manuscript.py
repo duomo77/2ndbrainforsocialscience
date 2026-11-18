@@ -251,6 +251,8 @@ put('c2threshold','CASE 2 집단 경계별 사후 평균 대비',['분위','경�
 put('c2urban','CASE 2 대도시의 서로 다른 공개 단위',['도시','2023','2025','2026','단위'],[['스톡홀름','50.00','50.00','72.73','하위기관 충족 비율 (%)'],['말뫼','0','1','1','시군 이진값'],['예테보리','75.00','100.00','0.00','하위기관 충족 비율 (%)']],'원고 표 12. 단위를 합산하거나 임의로 이진화하지 않음.',[.18,.12,.12,.12,.36])
 from reproduction_update import apply_reproduction
 source=apply_reproduction(source,table,records)
+from interpretation_revision import revise
+source=revise(source)
 assert '@@' not in source
 (P/'main.tex').write_text(source,encoding='utf-8')
 (P/'table_transcription.json').write_text(json.dumps(records,ensure_ascii=False,indent=2),encoding='utf-8')

@@ -645,26 +645,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [14] [15] [16]
 
 LaTeX Font Warning: Font shape `TU/Batang(0)/m/it' undefined
-(Font)              using `TU/Batang(0)/m/n' instead on input line 491.
+(Font)              using `TU/Batang(0)/m/n' instead on input line 501.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--492
-[]\TU/Batang(0)/m/it/10.95 제 공 원 고. 이 주 배 경 인 구 구 성 과 아 동 보 호 행 정 의 조 사 기 간. \T
-U/TimesNewRoman(0)/m/n/10.95 Swe-
+Underfull \hbox (badness 10000) in paragraph at lines 501--502
+[]\TU/Batang(0)/m/it/10 제 공 원 고. 이 주 배 경 인 구 구 성 과 아 동 보 호 행 정 의 조 사 기 간. \TU/T
+imesNewRoman(0)/m/n/10 Swe-
  []
 
-[17]
-Underfull \hbox (badness 1755) in paragraph at lines 501--502
-[]\TU/TimesNewRoman(0)/m/n/10.95 Denvall, V. et al. \TU/Batang(0)/m/it/10.95 (\
-TU/TimesNewRoman(0)/m/n/10.95 2021\TU/Batang(0)/m/it/10.95 ). \TU/TimesNewRoman
-(0)/m/n/10.95 Lost in Comparison: A Program Theory Analysis of Perfor-
- []
-
-[18] (main.aux)
+[17] [18] (main.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2CEEB93F06FBFB85886E8CFB601FDDC1;7008.
  )
-Output written on main.xdv (18 pages, 338380 bytes).
+Output written on main.xdv (18 pages, 356280 bytes).

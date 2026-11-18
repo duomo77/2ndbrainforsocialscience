@@ -1,23 +1,23 @@
 [
   {
     "file": "main.tex",
-    "bytes": 60094,
-    "sha256": "752a8fb8c22e63b3977013cf9104daec8392f2affbe4d12e7afff9f14d252a1e"
+    "bytes": 63111,
+    "sha256": "a4514ead1489c64f64b8775b45a34e18f50f382ceb9862ae18e0b44b70d8015a"
   },
   {
     "file": "main.pdf",
-    "bytes": 318057,
-    "sha256": "23f77162d57325838918dd42e7deb17b63c6ed85a5cc1d8b49e001cfb33718c5"
+    "bytes": 322633,
+    "sha256": "645a49cbe7cb95b2a3ad4f2288fb2c870353a17f8b3a794230a7bd17d1933e0d"
   },
   {
     "file": "README.md",
-    "bytes": 6538,
-    "sha256": "0faf59ebebacbc441752ff5ad7961149810d75cd56b83b89e83988462bc2b9c7"
+    "bytes": 7464,
+    "sha256": "7513b8dccc811a7585281266815cc100260549e88a43e4c58938069d163ddc2f"
   },
   {
     "file": "build_manuscript.py",
-    "bytes": 40275,
-    "sha256": "01b56f92c660bac1f21e5eebf56c8fa115c40ffec61a482535f4fccd77587ed6"
+    "bytes": 40340,
+    "sha256": "01d8fb84cd9a4907377b8eadad87d89a3f7072d409f722f4600033b1c5da1915"
   },
   {
     "file": "case1_table_manifest.json",
@@ -36,8 +36,8 @@
   },
   {
     "file": "main.log",
-    "bytes": 24973,
-    "sha256": "3f8a2cf88ae4e3ee459159e85369d17b39778a3ac319ae9bb5fde657e4760eae"
+    "bytes": 24669,
+    "sha256": "9c5574caff9e16ec449dd35b710ebe7f83ed5f66482a24724ebedb47c19dbd3b"
   },
   {
     "file": "verify_pdf.py",
@@ -46,8 +46,8 @@
   },
   {
     "file": "package_project.py",
-    "bytes": 1518,
-    "sha256": "a405d21b111eee6ddac15f014ba8daa2528fb27db40f5dc3eee60ec0771ef3f6"
+    "bytes": 1623,
+    "sha256": "4194680c28e73d13700d0a9c5802423db8c5c47f6c53e879b2cbffa0ae08606f"
   },
   {
     "file": "qa/verification.json",
@@ -68,6 +68,21 @@
     "file": "reproduction_update.py",
     "bytes": 14155,
     "sha256": "755f7e6e6e4af7be3c5c496b86ff8bb49e928045c52b29d705479fefe1a743c8"
+  },
+  {
+    "file": "interpretation_revision.py",
+    "bytes": 13993,
+    "sha256": "160437262b0c7a4b0ef3aa1a0d2660e5e1768ac0e579018f46f9d54dcc06adb9"
+  },
+  {
+    "file": "CLAIM_SCOPE_KO.md",
+    "bytes": 5164,
+    "sha256": "08c9430f8495809fe45379d97d8b1e4f7305a3c38b95a4ec879c0f5190569446"
+  },
+  {
+    "file": "verify_interpretation.py",
+    "bytes": 1238,
+    "sha256": "fd1dbdb69c23a95749d7a13171dd00091fe3ad47f92031d90797b7a653227c35"
   },
   {
     "file": "reproduction/analysis.py",
@@ -198,6 +213,11 @@
     "file": "reproduction/results/folds_2026_2025.json",
     "bytes": 2052,
     "sha256": "7584abdd9129930cb41243c9a4f4ca0748bb33c28610c31b6ba07e3ba5d2c6b6"
+  },
+  {
+    "file": "reproduction/results/interpretation_preservation.json",
+    "bytes": 2140,
+    "sha256": "7ce56ec68ac11f8db28b4b6448981e79ce51c417b863f2b8cfc0518a466a95c1"
   },
   {
     "file": "reproduction/results/official_duplicate_rows.csv",
