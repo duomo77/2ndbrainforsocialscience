@@ -1,0 +1,12 @@
+{
+  "boundary_codes": 290,
+  "map_2015_observed": 290,
+  "map_2024_observed": 290,
+  "metro_included": 51,
+  "metro_duration_observed": 44,
+  "raw_sha256": {
+    "kolada_N02926_2015.json": "727dcfac7ed195b8d777c4a2cde300ce3c6b9f2673cf6fa8f1cb7c343eebb68e",
+    "kolada_N02926_2024.json": "adcd3e971fb0685b51d0561f44ac1c880b9fde52bbcd31bb65b91dbd431125ac",
+    "scb_boundaries.zip": "26a7030a23648ad25a69acee16f08974148eafd076bfa8dd76013060693f51f4"
+  }
+}

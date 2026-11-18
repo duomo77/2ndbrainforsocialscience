@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec,kotex,graphicx,xcolor,setspace,xurl,hyperref}
+\usepackage[margin=23mm]{geometry}
+\setmainfont{Times New Roman}
+\setmainhangulfont{Batang}
+\setsanshangulfont{Malgun Gothic}
+\definecolor{accent}{HTML}{126E89}
+\hypersetup{hidelinks,pdftitle={스웨덴 아동보호 행정 연구 그림 보충자료}}
+\setstretch{1.23}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\renewcommand{\thepage}{S-\arabic{page}}
+\newcommand{\figtitle}[2]{\noindent{\sffamily\bfseries\large\color{accent} #1\quad #2}\par\vspace{5pt}}
+\newcommand{\suppfigure}[2]{\begin{center}\includegraphics[width=\linewidth,height=#1,keepaspectratio]{figures/#2.png}\end{center}}
+\newcommand{\src}[1]{{\small #1}\par}
+\begin{document}
+{\sffamily\LARGE\bfseries 스웨덴 아동보호 행정 연구}\par
+{\sffamily\large\color{accent} 지방정부 지도와 실증 결과 보충자료}\par\vspace{10pt}
+\figtitle{그림 S1}{2015년과 2024년의 해외 출생 주민 비중}
+\suppfigure{0.64\textheight}{s1_sweden_foreign_born}
+두 지도는 스웨덴 290개 시군을 같은 경계와 색상 구간으로 표시한다. 분자는 해외 출생 주민, 분모는 해당 연도 말 전체 주민이다. 지도에서 넓게 보이는 시군이 인구가 더 많다는 뜻은 아니다. 2015년 지도는 CASE 2의 집단 구분 시점의 지역 분포를, 2024년 지도는 CASE 1 단면 비교 시점의 분포를 보여 준다.
+\src{자료 · Kolada N02926의 2015년·2024년 전체 주민 응답. 기초 인구자료는 SCB. 경계 · SCB Digitala gränser, SWEREF 99 TM, CC0. 동일한 도식용 경계를 사용했다.}
+
+\clearpage
+\figtitle{그림 S2}{세 대도시권의 인구구성과 2024년 조사기간}
+\suppfigure{0.75\textheight}{s2_metro_maps}
+스톡홀름권 26개, 예테보리권 13개, 말뫼권 12개 시군의 분포다. 해외 배경 아동은 0--17세 중 해외 출생 아동과 스웨덴 출생이면서 양부모가 해외 출생인 아동이다. 빗금은 조사기간 미관측 7곳, 연한 회색은 해당 대도시권 밖의 시군을 나타낸다. 지도의 색상은 시군별 집계량이다. 세 지역의 확대 배율은 다르다.
+\src{자료 · Kolada N02926·U33401, SCB TAB4824와 대도시권 분류. 경계 · SCB Digitala gränser.}
+
+\clearpage
+\figtitle{그림 S3}{같은 40개 시군에서 본 단면과 패널}
+\suppfigure{0.44\textheight}{s3_metro_partial_residuals}
+가로축은 스웨덴 출생 0--17세 아동 중 양부모 해외 출생 비중에서 고정효과를 제거한 잔차다. 세로축은 평균 조사기간에서 같은 고정효과를 제거한 잔차다. 왼쪽은 2024년 40개 시군에서 대도시권 효과를, 오른쪽은 같은 시군의 2022--2024년 120개 관측에서 시군과 연도 효과를 제거했다.
+
+각 기울기는 해당 회귀의 부분 관계를 보여 준다. 오른쪽의 가로축 변동 폭이 훨씬 작으므로 선의 각도로 두 관계의 크기를 비교하기 어렵다. 계수는 1\%포인트당 일수로 제시했다. 신뢰구간과 영향 지역을 제외한 결과는 본문 표를 참조한다.
+\src{자료 · 통합 원고의 CASE 1 패널 CSV. 각 축의 잔차와 표시값을 다시 계산했다.}
+
+\clearpage
+\figtitle{그림 S4}{같은 시군의 VIND28 충족률 추이}
+\suppfigure{0.46\textheight}{s4_vind28_levels}
+고비중 집단은 2015년 전국 해외 출생 주민 비중의 75분위 이상이다. 장기패널은 고비중 51개와 비교 140개 시군이다. 이 표본의 정의에서 2024년은 빠져 있으므로 해당 연도 점을 표시하지 않았다. 세로선은 제도 개편 연도이며, 점선은 관측값 사이의 간격을 보여 준다.
+
+최근 연결표본은 고비중 68개와 비교 195개 시군이다. 고비중 집단은 두 해 모두 35개 시군이 충족했고, 비교집단은 70개에서 93개로 늘었다. 이 표본에서 격차 축소는 비교집단의 충족률 상승에서 나온다. 선은 각 집단에서 충족 응답을 한 시군의 비율이다.
+\src{자료 · 스웨덴 사회청 2026년 공식 Excel의 VIND28 시계열과 SCB 2015년 인구 자료.}
+
+\clearpage
+\figtitle{그림 S5}{VIND28 조정 추정과 학습 분할 민감도}
+\suppfigure{0.53\textheight}{s5_vind28_dml_folds}
+파란 원은 새 독립 DML-DID의 주 추정, 주황 사각형은 제공 원고의 보고치다. 수직선은 각 분석이 보고한 95\% 구간이다. 가운데 회색 점 10개는 새 구현에서 학습기의 난수를 고정하고 주별 폴드 배정만 바꾼 점추정이다. 점의 가로 간격은 일부 점의 겹침을 줄이기 위한 배치다.
+
+2026 대 2025 비교에서 폴드를 바꿔도 점추정은 모두 음수다. 전체 범위는 $-31.50$에서 $-17.96$\%포인트이고 주 추정의 구간은 0을 포함한다. 관측된 10개 점의 범위는 신뢰구간이 아니며 8/10이라는 유의 빈도는 통합 검정에 해당하지 않는다.
+\src{자료 · 통합 원고의 독립 추정, 추가 민감도 파일, 제공 원고의 DML-DID 보고값.}
+
+\vfill
+{\small
+\textbf{공식 출처}\par
+\href{https://www.scb.se/hitta-statistik/regional-statistik-och-kartor/regionala-indelningar/digitala-granser/}{SCB 지방정부 경계와 CC0 이용 조건}\par
+\href{https://api.kolada.se/v3/kpi/U33401,N02926}{Kolada 지표 정의}\par
+\href{https://www.socialstyrelsen.se/statistik-och-data/oppna-jamforelser/socialtjanst/vald-i-nara-relationer/}{스웨덴 사회청 VIND28 공개 자료}\par
+}
+\end{document}

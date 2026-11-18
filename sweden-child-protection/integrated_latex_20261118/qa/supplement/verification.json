@@ -1,0 +1,9 @@
+{
+  "pages": 5,
+  "replacement_characters": 0,
+  "placeholders": false,
+  "visual_review": "passed: checked all 5 rendered pages, map legends, and DML axes",
+  "figures": 5,
+  "overfull_warnings": 0,
+  "missing_character_warnings": 0
+}

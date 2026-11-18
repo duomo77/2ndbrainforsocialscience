@@ -33,6 +33,10 @@ assert panel.loc[panel.year.eq(2025), predictors[1:]].isna().all().all()
 annual = panel.loc[panel.year.eq(2024) & panel.U33401_days.notna()]
 assert f"{annual.U33401_days.mean():.2f}" == "100.70"
 assert f"{annual.U33401_days.std():.2f}" == "13.48"
+missing_2024 = panel.loc[panel.year.eq(2024) & panel.U33401_days.isna()]
+assert len(missing_2024) == 7
+assert f"{annual.N02926_pct.mean():.2f}" == "20.25"
+assert f"{missing_2024.N02926_pct.mean():.2f}" == "27.14"
 
 def check_fit(fit, row, offset, decimals):
     coefficient, interval, p_value = row[offset:offset + 3]
@@ -59,6 +63,9 @@ long = wide[wide.long_panel]
 linked = wide[wide.linked_2025_2026]
 assert (len(wide), len(long), len(linked), long.y2024.count()) == (290, 191, 263, 190)
 high = "high_foreign_2015"
+pre = long.groupby(high)[[f"y{year}" for year in range(2018,2024)]].mean()
+pre_gaps = 100*(pre.loc[1] - pre.loc[0])
+assert f"{pre_gaps.min():.2f}" == "0.15" and f"{pre_gaps.max():.2f}" == "7.98"
 for year, high_cell, comparison_cell, gap in tables["c2levels"]:
     ones = long.groupby(high)[f"y{year}"].sum()
     assert high_cell == f"{ones[1]:.0f}/51" and comparison_cell == f"{ones[0]:.0f}/140"

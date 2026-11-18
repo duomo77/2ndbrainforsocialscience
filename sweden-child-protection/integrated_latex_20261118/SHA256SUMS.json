@@ -1,18 +1,18 @@
 [
   {
     "file": "main.tex",
-    "bytes": 64349,
-    "sha256": "bbbed249e65af5dc55e82f58b2085417b35dcaebc74092af64d369be222ecc40"
+    "bytes": 66476,
+    "sha256": "5350d15645233934f5dd0eaf61526f415e3576d76ceb0fde51c6229d5b85bb6d"
   },
   {
     "file": "main.pdf",
-    "bytes": 325503,
-    "sha256": "2d717d840801357ca9b3ec4c1ef2b8cd77610c07bb09f168855f41f47d6f5dd4"
+    "bytes": 328416,
+    "sha256": "73e2b0e04de1f879295512abc413803f5d6ca6ef9e93d67b782baba737bf9a39"
   },
   {
     "file": "README.md",
-    "bytes": 7973,
-    "sha256": "3153694ebb99e95f24517341b5f0de6e270117f7545316f556e4e11ca5ab4510"
+    "bytes": 8472,
+    "sha256": "ea8198edefb30c2f8f6d61e53d3d5c2ecf9626c1b2bf77bdab76505392ff9704"
   },
   {
     "file": "build_manuscript.py",
@@ -37,22 +37,22 @@
   {
     "file": "main.log",
     "bytes": 24674,
-    "sha256": "cd62414e52c497a44b4f8ab4dec43abf57d4a69e29a1bb3e7a4a6399444fedbb"
+    "sha256": "09571ac6af0b6031bc22cb0d0ac08f175076dd816c0afb032b4cfceb920e5e1d"
   },
   {
     "file": "verify_pdf.py",
-    "bytes": 1561,
-    "sha256": "a7fd7bda315b50f67026c26bab8a5e6cbf2714776925888f7a4e98851dce16ec"
+    "bytes": 1820,
+    "sha256": "c5cfada22fe3597d2ae3f8e9d87d7e70df9b4763d421f69367aa43e1be269fce"
   },
   {
     "file": "package_project.py",
-    "bytes": 1701,
-    "sha256": "fb12447c664930fb5fa12e4ba1b3f4b9ff36824b7c7d2bcf66e8941c5704ea83"
+    "bytes": 2256,
+    "sha256": "166fae5d7337dd5106662bb716591593c6e55e85887a17e56747581fb6dad303"
   },
   {
     "file": "qa/verification.json",
     "bytes": 306,
-    "sha256": "12bc91695d90365b2ccf6a653f7950a3b746c1d108ce360532c1813378a1be83"
+    "sha256": "07642dc28c0603011de97f45a759de5bb48240a9a0b3f3cacdf10b3007fee1af"
   },
   {
     "file": "data/metro_51_2024.csv",
@@ -71,8 +71,8 @@
   },
   {
     "file": "interpretation_revision.py",
-    "bytes": 19843,
-    "sha256": "4b0d5d29e7358b7cff6ae1f1f99cafb2ad127dda6bbc68565377448bf77f1de5"
+    "bytes": 23534,
+    "sha256": "8768a2a71cf28ff1549f53c6e34492bb6fb01a420e083e2a9dd2bff97ed5a1a5"
   },
   {
     "file": "CLAIM_SCOPE_KO.md",
@@ -86,13 +86,113 @@
   },
   {
     "file": "verify_manuscript.py",
-    "bytes": 5622,
-    "sha256": "80b864e1f3e786b56bdf4da5d154cc1fee2ec0eb40e0b857dfe9409f9a73d58a"
+    "bytes": 6030,
+    "sha256": "6b35580d6eba858ad0b95a281b800d84eb0ff8f8e32be983be3fb17e0aa8a44f"
   },
   {
     "file": "MANUSCRIPT_REVIEW_KO.md",
     "bytes": 2719,
     "sha256": "2863fd648fec7f688b42d3a859341a9c7b5970880b7b9ae69deb12a5a1bfa403"
+  },
+  {
+    "file": "REFEREE_REVIEW_KO.md",
+    "bytes": 3132,
+    "sha256": "8e20165a62aad0d9416e26ef21920bb11a52daa59e9e20cef8c23d7677473400"
+  },
+  {
+    "file": "qa/supplement/verification.json",
+    "bytes": 243,
+    "sha256": "742e6f5d89eae36045b99e406ad953ad50949c76f51879f82e511eafd41d5e2f"
+  },
+  {
+    "file": "supplement/data/map_validation.json",
+    "bytes": 465,
+    "sha256": "9f33b530dd17a8015bc171be036be71f8a5469ad35c19ffe553d4966a43012a9"
+  },
+  {
+    "file": "supplement/data/metro_map_values.csv",
+    "bytes": 2141,
+    "sha256": "c933ec0d30c3917d6bdfee9a586167ad198d5d3d3cd36b9dc9e446fbdc650c95"
+  },
+  {
+    "file": "supplement/data/metro_partial_residuals.csv",
+    "bytes": 13061,
+    "sha256": "98eebf402b0d39696071ffe3a680fcf01bf387d049dc973c05232d0823286c40"
+  },
+  {
+    "file": "supplement/data/sweden_map_values.csv",
+    "bytes": 10022,
+    "sha256": "0a8476eeeeddd063fc9ff63c3835c3f5a753e12da74f00304249888d9b525bf2"
+  },
+  {
+    "file": "supplement/data/vind_levels.csv",
+    "bytes": 1156,
+    "sha256": "182047e8c745f4119ede682ae4f0ee04e348c26cac2a780d7dc1bc6537cc25da"
+  },
+  {
+    "file": "supplement/figures/s1_sweden_foreign_born.png",
+    "bytes": 300455,
+    "sha256": "c56c3346528fef8a900f22d8c670597c8161490c6fe4131f7fd2d96c7a193bd0"
+  },
+  {
+    "file": "supplement/figures/s2_metro_maps.png",
+    "bytes": 351512,
+    "sha256": "14ae65072a610fe8dca81b20ae5761b7283f69014e79c8945c2d96d004fdb38d"
+  },
+  {
+    "file": "supplement/figures/s3_metro_partial_residuals.png",
+    "bytes": 96968,
+    "sha256": "a96c9cf874bb46dc504249ed6f96a1d39b283c6c0ade52f02dc39573c4dd85dd"
+  },
+  {
+    "file": "supplement/figures/s4_vind28_levels.png",
+    "bytes": 87997,
+    "sha256": "c8576a8fb739c69314572b19d3640b1cf9b8ce871917936b5c4415fdc680fb66"
+  },
+  {
+    "file": "supplement/figures/s5_vind28_dml_folds.png",
+    "bytes": 67822,
+    "sha256": "d9dce231d715db212341e129c4d13ecfee1bcd52d59206d124e524a6c431cd66"
+  },
+  {
+    "file": "supplement/make_figures.py",
+    "bytes": 14566,
+    "sha256": "a5acac6468fb8d52dfb8a8c934925efc5be9e84d890f5bc02c075fdd8eb5d3f4"
+  },
+  {
+    "file": "supplement/raw/kolada_N02926_2015.json",
+    "bytes": 1058178,
+    "sha256": "727dcfac7ed195b8d777c4a2cde300ce3c6b9f2673cf6fa8f1cb7c343eebb68e"
+  },
+  {
+    "file": "supplement/raw/kolada_N02926_2024.json",
+    "bytes": 1059369,
+    "sha256": "adcd3e971fb0685b51d0561f44ac1c880b9fde52bbcd31bb65b91dbd431125ac"
+  },
+  {
+    "file": "supplement/raw/scb_boundaries.zip",
+    "bytes": 214808,
+    "sha256": "26a7030a23648ad25a69acee16f08974148eafd076bfa8dd76013060693f51f4"
+  },
+  {
+    "file": "supplement/README.md",
+    "bytes": 2655,
+    "sha256": "0b1fe100bf3fe62a7a0a48b743b225c39a5f0c82ea021b7d4778c3a07849d98b"
+  },
+  {
+    "file": "supplement/supplement.log",
+    "bytes": 22859,
+    "sha256": "e42981ac54bb2b782c3d71c5c5a75d37f33dcfc52488d30583b50b5d3ad6ad8f"
+  },
+  {
+    "file": "supplement/supplement.pdf",
+    "bytes": 1013369,
+    "sha256": "3c17c47099d021e4ea9390c21f951422bd8fde0abaa32b000c44c17b22062882"
+  },
+  {
+    "file": "supplement/supplement.tex",
+    "bytes": 5526,
+    "sha256": "d3da6284837bf997f173780dfec6d0bad12b1ec08d97e9f0c1fe7955348fd8d1"
   },
   {
     "file": "reproduction/analysis.py",
